@@ -1,9 +1,9 @@
 ﻿// masis.cpp : Defines the entry point for the application.
 //
 
-#include "masis.h"
+#include "tests/containers.h"
 
 int main()
 {
-	// ...
+	test_vector();
 }

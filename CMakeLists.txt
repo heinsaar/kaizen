@@ -12,7 +12,7 @@ endif()
 project ("masis")
 
 # Add source to this project's executable.
-add_executable (masis "masis.cpp" "masis.h" "containers/vector.h")
+add_executable (masis "masis.cpp" "masis.h" "containers/vector.h" "tests/containers.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET masis PROPERTY CXX_STANDARD 20)
