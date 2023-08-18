@@ -5,6 +5,6 @@
 
 void test_vector() {
     mas::vector<int> v;
-    v.populate_random(20);
+    mas::populate_random(v);
     mas::print(v);
 }
