@@ -14,9 +14,9 @@ void print(const C& c)
 }
 
 template<class C>
-void populate_random(C& c)
+void populate_random(C& c, int size = 10)
 {
-    c.resize(11);
+    c.resize(size);
 
     // Seed the random number generator
     std::random_device              rd;
