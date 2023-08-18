@@ -35,12 +35,6 @@ struct vector : std::vector<T>
         std::generate(my::begin(), my::end(), [&]() { return dis(gen); });
     }
 
-    void print()
-    {
-        for (int i : *this)
-            std::cout << i << " ";
-    }
-
 private:
     using my = vector;
 };
