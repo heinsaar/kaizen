@@ -1,6 +1,8 @@
 #ifndef MASIS_VECTOR_H
 #define MASIS_VECTOR_H
 
+#include <algorithm>
+#include <numeric>
 #include <vector>
 
 namespace mas {
