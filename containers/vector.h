@@ -21,6 +21,12 @@ struct vector : std::vector<T>
         return std::find_if(my::begin(), my::end(), p) != my::end();
     }
 
+    void print()
+    {
+        for (int i : *this)
+            std::cout << i << " ";
+    }
+
 private:
     using my = vector;
 };
