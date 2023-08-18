@@ -10,7 +10,7 @@ namespace mas {
 template<typename T>
 struct vector : std::vector<T>
 {
-    using std::vector<T>::vector; // Inherit constructors of std::vector<T>
+    using std::vector<T>::vector; // inherit constructors of std::vector<T>
 
     bool contains(const T& x) const
     {
