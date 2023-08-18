@@ -1,5 +1,4 @@
-#ifndef MASIS_VECTOR_H
-#define MASIS_VECTOR_H
+#pragma once
 
 #include <algorithm>
 #include <numeric>
@@ -34,5 +33,3 @@ private:
 };
 
 } // namespace masis
-
-#endif // MASIS_VECTOR_H
