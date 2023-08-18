@@ -23,18 +23,6 @@ struct vector : std::vector<T>
         return std::find_if(my::begin(), my::end(), p) != my::end();
     }
 
-    void populate_random(const int size)
-    {
-        my::resize(size);
-
-        // Seed the random number generator
-        std::random_device              rd;
-        std::mt19937                    gen(rd());
-        std::uniform_int_distribution<> dis(0, 100);
-
-        std::generate(my::begin(), my::end(), [&]() { return dis(gen); });
-    }
-
 private:
     using my = vector;
 };
