@@ -1,4 +1,4 @@
-# masis
+# kaizen
 
 Utility code.
 
