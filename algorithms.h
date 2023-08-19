@@ -6,6 +6,15 @@
 
 namespace mas {
 
+template<typename T = int>
+T random_int(T min = 0, T max = 10)
+{
+    static std::random_device        rd;
+    static std::mt19937              gen(rd());
+    std::uniform_int_distribution<T> dis(min, max);
+    return dis(gen);
+}
+
 template<class C>
 void print(const C& c)
 {
@@ -28,13 +37,7 @@ template<class C>
 void populate_random(C& c, int size = 10)
 {
     c.resize(size);
-
-    // Seed the random number generator
-    std::random_device              rd;
-    std::mt19937                    gen(rd());
-    std::uniform_int_distribution<> dis(0, 100);
-
-    std::generate(std::begin(c), std::end(c), [&]() { return dis(gen); });
+    std::generate(std::begin(c), std::end(c), [&](){ return random_int(0, 100); });
 }
 
 } // namespace
