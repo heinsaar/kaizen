@@ -11,6 +11,8 @@ void test_vector() {
 
     v.push_back(777);
     assert(v.contains(777));
+
+    std::cout << "TEST PASS: mas::list<T>" << std::endl;
 }
 
 void test_list() {
@@ -20,4 +22,6 @@ void test_list() {
 
     x.push_back(777);
     assert(x.contains(777));
+
+    std::cout << "TEST PASS: mas::list<T>" << std::endl;
 }
