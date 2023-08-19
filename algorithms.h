@@ -37,4 +37,4 @@ void populate_random(C& c, int size = 10)
     std::generate(std::begin(c), std::end(c), [&]() { return dis(gen); });
 }
 
-} // namespace mas
+} // namespace
