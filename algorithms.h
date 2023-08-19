@@ -12,9 +12,9 @@ T random_int(T min = 0, T max = 10)
     // Reasons why the std::random_device and the std::mt19937 are 'static' below:
     // ---------------------------------------------------------------------------------------------------------------
     // 1. Initialization Efficiency:
-    // Random devices and generators often involve some computational cost during initialization and seeding.
-    // By declaring them as static, they are initialized only once, the first time the function is called.
-    // Subsequent calls to to this function reuse the existing instances, avoiding the overhead.
+    // Random devices and generators often involve some computational cost due to entropy gathering, seeding, generator
+    // initialization and good old algorithmic complexity. By declaring them as static, they are initialized only once,
+    // the first time the function is called. Subsequent calls to to this function reuse the existing instances, avoiding the overhead.
     // ---------------------------------------------------------------------------------------------------------------
     // 2. State Preservation:
     // Random number generators like std::mt19937 maintain an internal state that evolves as numbers are generated.
