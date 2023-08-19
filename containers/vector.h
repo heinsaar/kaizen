@@ -27,4 +27,4 @@ private:
     using my = vector;
 };
 
-} // namespace masis
+} // namespace

@@ -26,4 +26,4 @@ namespace mas {
         using my = list;
     };
 
-} // namespace masis
+} // namespace
