@@ -10,6 +10,7 @@ void print(const C& c)
 {
     for (const auto& x : c)
         std::cout << x << " ";
+    std::cout << std::endl;
 }
 
 template<class C>
