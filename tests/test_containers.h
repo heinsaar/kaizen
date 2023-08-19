@@ -12,3 +12,12 @@ void test_vector() {
     v.push_back(777);
     assert(v.contains(777));
 }
+
+void test_list() {
+    mas::list<int> x;
+    mas::populate_random(x);
+    mas::print(x);
+
+    x.push_back(777);
+    assert(x.contains(777));
+}
