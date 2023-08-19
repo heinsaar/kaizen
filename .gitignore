@@ -363,5 +363,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+# VS Code
 # VSCodeCounter (count lines of code)
 /.VSCodeCounter/
+/.vscode
