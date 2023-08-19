@@ -1,6 +1,8 @@
 # kaizen
 
-Utility code.
+Utility code for most C++ projects.
+
+**AT THE MOMENT IN ALPHA WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
 
 See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
 
