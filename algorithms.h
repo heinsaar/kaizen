@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
 #include <random>
 
 namespace mas {
@@ -8,9 +9,19 @@ namespace mas {
 template<class C>
 void print(const C& c)
 {
+    std::cout << to_string(c) << std::endl;
+}
+
+template<class C>
+std::string to_string(const C& c)
+{
+    std::ostringstream oss;
     for (const auto& x : c)
-        std::cout << x << " ";
-    std::cout << std::endl;
+    {
+        oss << x << " ";
+    }
+    std::string result = oss.str();
+    return result.empty() ? result : result.substr(0, result.size() - 1); // remove trailing space if present
 }
 
 template<class C>
