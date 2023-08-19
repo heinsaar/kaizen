@@ -6,6 +6,12 @@ See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for
 
 Follow the steps described below to run it on your system
 
+## Windows
+
+In Visual Studio, just open the repo folder and run the main() function.
+
+In Visual Studio Code, you'll need to do [a few configurations](https://www.youtube.com/watch?v=G9gnSGKYIg4) for your environment.
+
 ## Linux
 
 1. **Open a Terminal:** You can open a terminal window by searching for "Terminal" in your Linux desktop's application menu or by using the keyboard shortcut (usually `Ctrl+Alt+T`).
