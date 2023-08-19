@@ -6,7 +6,7 @@ Utility code for most C++ projects.
 
 See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
 
-Follow the steps described below to run it on your system
+Follow the steps described below to run it on your system.
 
 ## Windows
 
