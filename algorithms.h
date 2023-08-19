@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <random>
-#include <ranges>
 
 namespace mas {
 
