@@ -4,7 +4,7 @@
 #include <sstream>
 #include <random>
 
-namespace mas {
+namespace zen {
 
 template<typename T = int>
 T random_int(T min = 0, T max = 10)

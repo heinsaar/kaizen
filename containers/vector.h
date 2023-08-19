@@ -5,7 +5,7 @@
 #include <vector>
 #include <random>
 
-namespace mas {
+namespace zen {
 
 template<typename T>
 struct vector : std::vector<T>

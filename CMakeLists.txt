@@ -9,13 +9,13 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("masis")
+project ("kaizen")
 
 # Add source to this project's executable.
-add_executable (masis "masis.cpp" "masis.h" "containers/vector.h" "tests/test_containers.h" "algorithms.h" "containers/list.h")
+add_executable (kaizen "kaizen.cpp" "kaizen.h" "containers/vector.h" "tests/test_containers.h" "algorithms.h" "containers/list.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET masis PROPERTY CXX_STANDARD 20)
+  set_property(TARGET kaizen PROPERTY CXX_STANDARD 20)
 endif()
 
 # TODO: Add tests and install targets if needed.

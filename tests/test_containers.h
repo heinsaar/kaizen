@@ -1,13 +1,13 @@
 #pragma once
 
 #include "../algorithms.h"
-#include "../masis.h"
+#include "../kaizen.h"
 #include <cassert>
 
 void test_vector() {
-    mas::vector<int> v;
-    mas::populate_random(v);
-    mas::print(v);
+    zen::vector<int> v;
+    zen::populate_random(v);
+    zen::print(v);
 
     v.push_back(777);
     assert(v.contains(777));
@@ -16,9 +16,9 @@ void test_vector() {
 }
 
 void test_list() {
-    mas::list<int> x;
-    mas::populate_random(x);
-    mas::print(x);
+    zen::list<int> x;
+    zen::populate_random(x);
+    zen::print(x);
 
     x.push_back(777);
     assert(x.contains(777));

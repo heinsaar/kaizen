@@ -4,7 +4,7 @@
 #include <random>
 #include <list>
 
-namespace mas {
+namespace zen {
 
     template<typename T>
     struct list : std::list<T>
