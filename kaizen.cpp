@@ -7,5 +7,5 @@
 int main()
 {
 	test_vector();
-	test_list();
+	sanitest_list();
 }
