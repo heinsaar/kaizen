@@ -12,5 +12,5 @@ void sanitest_vector() {
     v.push_back(777);
     assert(v.contains(777));
 
-    std::cout << "TEST PASS: zen::list<T>" << std::endl;
+    std::cout << "TEST PASS: zen::vector<T>" << std::endl;
 }
