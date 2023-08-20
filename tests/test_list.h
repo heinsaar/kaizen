@@ -4,7 +4,8 @@
 #include "../algorithms.h"
 #include "../containers/list.h"
 
-void sanitest_list() {
+void sanitest_list()
+{
     zen::list<int> x;
     zen::populate_random(x);
 
