@@ -7,7 +7,7 @@
 
 namespace zen {
 
-template<typename T>
+template<class T>
 struct vector : std::vector<T>
 {
     using std::vector<T>::vector; // inherit constructors of std::vector<T>
@@ -17,7 +17,7 @@ struct vector : std::vector<T>
         return std::find(my::begin(), my::end(), x) != my::end();
     }
 
-    template<typename Pred>
+    template<class Pred>
     bool contains(Pred p) const
     {
         return std::find_if(my::begin(), my::end(), p) != my::end();

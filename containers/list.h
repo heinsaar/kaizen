@@ -6,7 +6,7 @@
 
 namespace zen {
 
-    template<typename T>
+    template<class T>
     struct list : std::list<T>
     {
         using std::list<T>::list; // inherit constructors of std::list<T>
@@ -16,7 +16,7 @@ namespace zen {
             return std::find(my::begin(), my::end(), x) != my::end();
         }
 
-        template<typename Pred>
+        template<class Pred>
         bool contains(Pred p) const
         {
             return std::find_if(my::begin(), my::end(), p) != my::end();
