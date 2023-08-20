@@ -52,7 +52,7 @@ In Visual Studio Code, you'll need to do [a few configurations](https://www.yout
 6. **Run the Executable:** If the build is successful, you can run the resulting executable from the build directory:
 
    ```bash
-   ./your_program_name
+   ./program_name
    ```
 
 If everything is set up correctly in your `CMakeLists.txt` file and your code is compatible with Linux, these steps should configure and build your project on a Linux system.
