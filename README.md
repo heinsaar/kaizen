@@ -10,9 +10,9 @@ Follow the steps described below to run it on your system.
 
 ## Windows
 
-In Visual Studio, just open the repo folder and run the ```main()``` function.
+In *Visual Studio*, just open the repo folder and run the ```main()``` function.
 
-In Visual Studio Code, you'll need to do [a few configurations](https://www.youtube.com/watch?v=G9gnSGKYIg4) for your environment first.
+In *Visual Studio Code*, you'll need to do [a few configurations](https://www.youtube.com/watch?v=G9gnSGKYIg4) for your environment first.
 
 ## Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 
