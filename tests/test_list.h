@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../algorithms.h"
-#include "../kaizen.h"
 #include <cassert>
+#include "../algorithms.h"
+#include "../containers/list.h"
 
 void test_list() {
     zen::list<int> x;

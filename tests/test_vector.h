@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../algorithms.h"
-#include "../kaizen.h"
 #include <cassert>
+#include "../algorithms.h"
+#include "../containers/vector.h"
 
 void test_vector() {
     zen::vector<int> v;
