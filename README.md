@@ -14,7 +14,7 @@ In Visual Studio, just open the repo folder and run the ```main()``` function.
 
 In Visual Studio Code, you'll need to do [a few configurations](https://www.youtube.com/watch?v=G9gnSGKYIg4) for your environment first.
 
-## Linux
+## Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 
 1. **Open a Terminal:** You can open a terminal window by searching for "Terminal" in your Linux desktop's application menu or by using the keyboard shortcut (usually `Ctrl+Alt+T`).
 
