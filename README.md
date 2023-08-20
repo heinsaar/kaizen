@@ -37,7 +37,7 @@ In Visual Studio Code, you'll need to do [a few configurations](https://www.yout
    cmake ..
    ```
 
-   If you need to specify a particular version of g++ or any other build options, you can do so with additional arguments. For example, to set the C++ compiler to g++, you could use:
+   *Advanced*: If you need to specify a particular version of g++ or any other build options, you can do so with additional arguments. For example, to set the C++ compiler to g++, you could use:
 
    ```bash
    cmake -DCMAKE_CXX_COMPILER=g++ ..
