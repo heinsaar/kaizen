@@ -2,7 +2,7 @@
 
 Utility code for most C++ projects.
 
-**AT THE MOMENT IN ALPHA WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
+**At the moment in alpha, with lots of code having very low melting point.**
 
 See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
 
