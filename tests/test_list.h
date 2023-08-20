@@ -12,5 +12,5 @@ void sanitest_list() {
     x.push_back(777);
     assert(x.contains(777));
 
-    std::cout << "TEST PASS: zen::list<T>" << std::endl;
+    std::cout << "TEST PASS: zen::list<T>" << __func__ << std::endl;
 }
