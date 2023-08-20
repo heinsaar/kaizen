@@ -4,7 +4,7 @@
 #include "../algorithms.h"
 #include "../containers/vector.h"
 
-void test_vector() {
+void sanitest_vector() {
     zen::vector<int> v;
     zen::populate_random(v);
     zen::print(v);

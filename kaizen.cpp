@@ -6,6 +6,6 @@
 
 int main()
 {
-	test_vector();
+	sanitest_vector();
 	sanitest_list();
 }
