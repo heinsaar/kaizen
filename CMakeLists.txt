@@ -12,7 +12,10 @@ endif()
 project ("kaizen")
 
 # Add source to this project's executable.
-add_executable (kaizen "kaizen.cpp" "kaizen.h" "containers/vector.h" "tests/test_vector.h" "algorithms.h" "containers/list.h" "tests/test_list.h")
+add_executable ( kaizen
+    "kaizen.cpp" "kaizen.h" "containers/vector.h" "tests/test_vector.h" "algorithms.h"
+    "containers/list.h" "tests/test_list.h"
+)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET kaizen PROPERTY CXX_STANDARD 20)
