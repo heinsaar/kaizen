@@ -21,4 +21,15 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET kaizen PROPERTY CXX_STANDARD 20)
 endif()
 
+################################### Single header generation
+
+add_custom_command(
+    OUTPUT  kaizen.h
+    COMMAND python3 ${CMAKE_SOURCE_DIR}/make_kaizen.py
+    DEPENDS containers/list.h containers/vector.h
+    COMMENT "GENERATING kaizen.h"
+)
+
+add_custom_target(generate_single_header ALL DEPENDS kaizen.h)
+
 # TODO: Add tests and install targets if needed.
