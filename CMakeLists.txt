@@ -11,7 +11,7 @@ endif()
 
 project ("kaizen")
 
-# Add source to this project's executable.
+################################### Add source to this project's executable.
 add_executable ( kaizen
     "test_kaizen.cpp" "test_kaizen.h" "containers/vector.h" "tests/test_vector.h" "algorithms.h"
     "containers/list.h" "tests/test_list.h"
