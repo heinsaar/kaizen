@@ -13,7 +13,7 @@ project ("kaizen")
 
 # Add source to this project's executable.
 add_executable ( kaizen
-    "kaizen.cpp" "kaizen.h" "containers/vector.h" "tests/test_vector.h" "algorithms.h"
+    "test_kaizen.cpp" "test_kaizen.h" "containers/vector.h" "tests/test_vector.h" "algorithms.h"
     "containers/list.h" "tests/test_list.h"
 )
 
