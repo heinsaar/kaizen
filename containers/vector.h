@@ -23,9 +23,8 @@
 #pragma once
 
 #include <algorithm>
-#include <numeric>
-#include <vector>
 #include <random>
+#include <vector>
 
 namespace zen {
 
