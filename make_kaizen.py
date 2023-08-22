@@ -1,3 +1,4 @@
+import datetime
 import re
 
 header_files = [
@@ -33,9 +34,10 @@ for header_file in header_files:
                 code_content.append(line)
 
 with open('kaizen.h', 'w') as kaizenh:
-    kaizenh.write('#pragma once\n\n')
+    now = datetime.datetime.now()
+    kaizenh.write('// FILE AUTO-GENERATED ON: ' + now.strftime("%d-%m-%Y %H:%M:%S") + '\n//\n')
     kaizenh.writelines(license_text)
-    kaizenh.write('\n')
+    kaizenh.write('\n#pragma once\n\n')
     
     for include_directive in sorted(include_directives):
         kaizenh.write(include_directive + '\n')
