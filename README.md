@@ -1,18 +1,14 @@
 # kaizen
 
-Utility code for C++ projects.
+Commonly used utility code for C++ projects in a single header file ```kaizen.h```.
 
-**At the moment in alpha, with lots of code having very low melting point.**
+**AT THE MOMENT IN ACTIVE DEVELOPMENT, WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
 
 See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
 
-The ```main()``` function simply runs the tests. Follow the steps described below to run it on your system.
+The ```main()``` function simply runs the tests.
 
-## Windows
-
-In *Visual Studio*, just open the repo folder and run as usual.
-
-In *Visual Studio Code*, you'll need to do [a few configurations](https://www.youtube.com/watch?v=G9gnSGKYIg4) for your environment first.
+Open the repo folder in your favorite IDE and follow the steps described below to run it on your system.
 
 ## Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 
