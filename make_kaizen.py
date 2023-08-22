@@ -1,8 +1,8 @@
 import re
 
 header_files = [
-    'containers/list.h',
-    'containers/vector.h',
+    '../containers/list.h',
+    '../containers/vector.h',
 ]
 
 include_directives = set()
