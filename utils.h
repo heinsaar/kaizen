@@ -59,16 +59,22 @@ void print(T t, Args... args) {
 // Base case for the recursive calls
 void print() { std::cout << std::endl; }
 
-template<class Collection>
-std::string to_string(const Collection& c)
-{
-    std::ostringstream oss;
-    for (const auto& x : c)
-    {
-        oss << x << " ";
+// Overload for containers like vector, list, etc.
+template<typename Collection>
+std::string to_string(const Collection& c) {
+    std::stringstream ss;
+    for (const auto& x : c) {
+        ss << " " << x;
     }
-    std::string result = oss.str();
-    return result.empty() ? result : result.substr(0, result.size() - 1); // remove trailing space if present
+    return ss.str();
+}
+// Base case for the recursive calls
+std::string to_string() { return ""; }
+
+// Recursive variadic template to handle multiple arguments
+template<typename T, typename... Args>
+std::string to_string(const T& t, const Args&... args) {
+    return to_string(t) + " " + to_string(args...);
 }
 
 template<class Collection>
