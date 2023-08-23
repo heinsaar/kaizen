@@ -51,6 +51,14 @@ void print(const C& c)
     std::cout << to_string(c) << std::endl;
 }
 
+template<typename T, typename... Args>
+void print(T t, Args... args) {
+    std::cout << t << " ";
+    print(args...);
+}
+// Base case for the recursive calls
+void print() { std::cout << std::endl; }
+
 template<class C>
 std::string to_string(const C& c)
 {
