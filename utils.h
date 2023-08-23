@@ -45,8 +45,8 @@ T random_int(T min = 0, T max = 10)
     return dis(gen);
 }
 
-template<class C>
-void print(const C& c)
+template<class Collection>
+void print(const Collection& c)
 {
     std::cout << to_string(c) << std::endl;
 }
@@ -59,8 +59,8 @@ void print(T t, Args... args) {
 // Base case for the recursive calls
 void print() { std::cout << std::endl; }
 
-template<class C>
-std::string to_string(const C& c)
+template<class Collection>
+std::string to_string(const Collection& c)
 {
     std::ostringstream oss;
     for (const auto& x : c)
@@ -71,8 +71,8 @@ std::string to_string(const C& c)
     return result.empty() ? result : result.substr(0, result.size() - 1); // remove trailing space if present
 }
 
-template<class C>
-void populate_random(C& c, int size = 10)
+template<class Collection>
+void populate_random(Collection& c, int size = 10)
 {
     c.resize(size);
     std::generate(std::begin(c), std::end(c), [&](){ return random_int(0, 100); });
