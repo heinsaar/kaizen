@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string_view>
 #include <iostream>
 #include <sstream>
 #include <random>
@@ -83,5 +84,9 @@ void populate_random(Collection& c, int size = 10)
     c.resize(size);
     std::generate(std::begin(c), std::end(c), [&](){ return random_int(0, 100); });
 }
+
+/////////////////////////////////////// USEFUL TRIVIA ///////////////////////////////////////
+
+inline std::string quote(std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
 } // namespace
