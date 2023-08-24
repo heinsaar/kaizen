@@ -1,8 +1,7 @@
 #pragma once
 
 #include <cassert>
-#include "../utils.h"
-#include "../containers/list.h"
+#include "../build/kaizen.h"
 
 void sanitest_list()
 {
