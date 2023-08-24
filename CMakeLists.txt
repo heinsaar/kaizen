@@ -30,6 +30,6 @@ add_custom_command(
     COMMENT "GENERATING kaizen.h"
 )
 
-add_custom_target(generate_single_header ALL DEPENDS kaizen.h)
+add_custom_target(generate_kaizen_main_header ALL DEPENDS kaizen.h)
 
 # TODO: Add tests and install targets if needed.
