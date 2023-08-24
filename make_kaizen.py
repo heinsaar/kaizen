@@ -14,14 +14,9 @@ has_pragma_once    = False
 for header_file in header_files:
     with open(header_file, 'r') as input_file:
         lines = input_file.readlines()
-        is_license = True
         for line in lines:
-            if is_license and line.strip().startswith('//'):
-                if header_file == header_files[0]:
-                    license_text.append(line)
-                continue
-            elif is_license:
-                is_license = False
+            if line.strip().startswith('//'):
+                continue # skip license at the top of file
 
             if '#pragma once' in line:
                 has_pragma_once = True
@@ -32,6 +27,12 @@ for header_file in header_files:
                 include_directives.add(line.strip())
             else:
                 code_content.append(line)
+
+# Read license text from LICENSE.txt
+with open('../LICENSE.txt', 'r') as license_file:
+    license_text = license_file.readlines()
+    # Add comment characters if they're not present
+    license_text = ['// ' + line if not line.startswith('// ') else line for line in license_text]
 
 with open('kaizen.h', 'w') as kaizenh:
     now = datetime.datetime.now()
