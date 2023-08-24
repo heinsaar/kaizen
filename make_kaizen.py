@@ -2,6 +2,7 @@ import datetime
 import re
 
 header_files = [
+    '../utils.h',
     '../containers/list.h',
     '../containers/vector.h',
 ]
