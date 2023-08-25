@@ -1,3 +1,5 @@
+Kaizen Version 0.0.1
+
 MIT License
 
 Copyright (c) 2023 Leo Heinsaar
