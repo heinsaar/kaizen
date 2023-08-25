@@ -3,9 +3,9 @@ import re
 
 header_files = [
     '../utils.h',
-    '../containers/list.h',
-    '../containers/array.h',
-    '../containers/vector.h',
+    '../types/list.h',
+    '../types/array.h',
+    '../types/vector.h',
 ]
 
 include_directives = set()
