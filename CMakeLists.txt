@@ -28,7 +28,7 @@ add_executable(kaizen
 )
 
 # Set a dependency on the custom target to ensure it runs before the kaizen executable is built
-add_dependencies(kaizen generate_kaizen_main_header)
+add_dependencies(kaizen generate_kaizen_header)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET kaizen PROPERTY CXX_STANDARD 20)
