@@ -19,11 +19,11 @@ add_custom_command(
     COMMENT "GENERATING kaizen.h"
 )
 
-add_custom_target(generate_kaizen_main_header ALL DEPENDS kaizen.h)
+add_custom_target(generate_kaizen_header ALL DEPENDS kaizen.h)
 
 ################################### Add source to this project's executable.
 add_executable(kaizen
-    "test_kaizen.cpp" "test_kaizen.h" "types/vector.h" "tests/test_vector.h" "utils.h"
+    "test_kaizen.cpp" "test_kaizen.h" "types/vector.h" "tests/test_vector.h" "functions/utils.h"
     "types/list.h" "tests/test_list.h"
 )
 
