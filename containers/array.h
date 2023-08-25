@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2023 Leo Heinsaar
 // 
@@ -20,13 +20,37 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "tests/test_vector.h"
-#include "tests/test_array.h"
-#include "tests/test_list.h"
+#pragma once
 
-int main()
-{
-	sanitest_vector();
-	sanitest_array();
-	sanitest_list();
-}
+#include <algorithm>
+#include <array>
+
+namespace zen {
+
+    template<class T, size_t N>
+    struct array : std::array<T, N>
+    {
+        using std::array<T, N>::array; // inherit constructors of std::array<T>
+
+        // Custom constructor to handle initializer list
+        array(std::initializer_list<T> init_list)
+        {
+            std::copy(std::begin(init_list), std::end(init_list), my::begin());
+        }
+
+        bool contains(const T& x) const
+        {
+            return std::find(my::begin(), my::end(), x) != my::end();
+        }
+
+        template<class Pred>
+        bool contains(Pred p) const
+        {
+            return std::find_if(my::begin(), my::end(), p) != my::end();
+        }
+
+    private:
+        using my = array;
+    };
+
+} // namespace

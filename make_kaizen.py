@@ -4,6 +4,7 @@ import re
 header_files = [
     '../utils.h',
     '../containers/list.h',
+    '../containers/array.h',
     '../containers/vector.h',
 ]
 

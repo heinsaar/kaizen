@@ -15,7 +15,7 @@ project ("kaizen")
 add_custom_command(
     OUTPUT  kaizen.h
     COMMAND python3 ${CMAKE_SOURCE_DIR}/make_kaizen.py
-    DEPENDS containers/list.h containers/vector.h
+    DEPENDS containers/list.h containers/vector.h containers/array.h
     COMMENT "GENERATING kaizen.h"
 )
 
