@@ -10,16 +10,6 @@ endif()
 
 project ("kaizen")
 
-################################### Add source to this project's executable.
-add_executable ( kaizen
-    "test_kaizen.cpp" "test_kaizen.h" "containers/vector.h" "tests/test_vector.h" "utils.h"
-    "containers/list.h" "tests/test_list.h"
-)
-
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET kaizen PROPERTY CXX_STANDARD 20)
-endif()
-
 ################################### Single header generation
 
 add_custom_command(
@@ -30,5 +20,18 @@ add_custom_command(
 )
 
 add_custom_target(generate_kaizen_main_header ALL DEPENDS kaizen.h)
+
+################################### Add source to this project's executable.
+add_executable(kaizen
+    "test_kaizen.cpp" "test_kaizen.h" "containers/vector.h" "tests/test_vector.h" "utils.h"
+    "containers/list.h" "tests/test_list.h"
+)
+
+# Set a dependency on the custom target to ensure it runs before the kaizen executable is built
+add_dependencies(kaizen generate_kaizen_main_header)
+
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET kaizen PROPERTY CXX_STANDARD 20)
+endif()
 
 # TODO: Add tests and install targets if needed.
