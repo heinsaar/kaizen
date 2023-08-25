@@ -37,7 +37,7 @@ with open('../LICENSE.txt', 'r') as license_file:
 
 with open('kaizen.h', 'w') as kaizenh:
     now = datetime.datetime.now()
-    kaizenh.write('// FILE AUTO-GENERATED ON: ' + now.strftime("%d-%m-%Y %H:%M:%S") + '\n//\n')
+    kaizenh.write('// FILE AUTO-GENERATED ON: ' + now.strftime("%d.%m.%Y %H:%M:%S") + '\n//\n')
     kaizenh.writelines(license_text)
     kaizenh.write('\n#pragma once\n\n')
     
