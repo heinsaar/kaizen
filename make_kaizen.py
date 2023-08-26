@@ -16,9 +16,14 @@ has_pragma_once    = False
 for header_file in header_files:
     with open(header_file, 'r') as input_file:
         lines = input_file.readlines()
+        skipping_license = True  # to skip license comments at the top of files
+        
         for line in lines:
-            if line.strip().startswith('//'):
-                continue # skip license at the top of file
+            if skipping_license:
+                if line.strip().startswith('//'):
+                    continue  # license part, so skip
+                else:
+                    skipping_license = False  # end of license comment section, prepare for reading code
 
             if '#pragma once' in line:
                 has_pragma_once = True
