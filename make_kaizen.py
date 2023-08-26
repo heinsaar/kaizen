@@ -3,7 +3,7 @@ import re
 import os
 
 # Directories to look for header files
-directories = [
+dirs = [
     '../functions',
     '../types'
 ]
@@ -11,7 +11,7 @@ directories = [
 header_files = []
 
 # Populate header_files dynamically from specified dirs
-for directory in directories:
+for directory in dirs:
     for filename in os.listdir(directory):
         if filename.endswith('.h'):
             header_files.append(os.path.join(directory, filename))
