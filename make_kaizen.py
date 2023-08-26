@@ -2,7 +2,7 @@ import datetime
 import re
 import os
 
-# Directories to look for header files
+# Dirs to look for header files
 dirs = [
     '../functions',
     '../types'
