@@ -10,7 +10,7 @@ The ```main()``` function simply runs the tests.
 
 Open the repo folder in your favorite IDE and follow the steps described below to run it on your system.
 
-## Build & Run (Windows & Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)))
+## Build & Run on Windows & Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 
 1. **Open a Terminal:** You can open a terminal window by searching for "Terminal" in your Linux desktop's application menu or by using the keyboard shortcut (usually `Ctrl+Alt+T`).
 
