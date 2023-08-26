@@ -1,12 +1,20 @@
 import datetime
 import re
+import os
 
-header_files = [
-    '../functions/utils.h',
-    '../types/list.h',
-    '../types/array.h',
-    '../types/vector.h',
+# Directories to look for header files
+directories = [
+    '../functions',
+    '../types'
 ]
+
+header_files = []
+
+# Populate header_files dynamically from specified dirs
+for directory in directories:
+    for filename in os.listdir(directory):
+        if filename.endswith('.h'):
+            header_files.append(os.path.join(directory, filename))
 
 include_directives = set()
 license_text       = []
