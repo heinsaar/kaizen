@@ -4,8 +4,8 @@ import os
 
 # Dirs to look for header files
 dirs = [
-    '../functions',
-    '../types'
+    '../functions', # algorithms, utils, etc.
+    '../types'      # types, data structures, etc.
 ]
 
 header_files = []
