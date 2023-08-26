@@ -10,6 +10,13 @@ endif()
 
 project ("kaizen")
 
+################################### Delete kaizen.h if it exists
+
+add_custom_target(delete_kaizen_header
+    COMMAND ${CMAKE_COMMAND} -E remove -f ${CMAKE_CURRENT_BINARY_DIR}/kaizen.h
+    COMMENT "DELETING kaizen.h"
+)
+
 ################################### Single header generation
 
 add_custom_command(
@@ -20,6 +27,7 @@ add_custom_command(
 )
 
 add_custom_target(generate_kaizen_header ALL DEPENDS kaizen.h)
+add_dependencies(generate_kaizen_header delete_kaizen_header)
 
 ################################### Add source to this project's executable.
 add_executable(kaizen
