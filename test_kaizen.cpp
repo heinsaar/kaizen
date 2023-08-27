@@ -20,10 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "tests/test_vector.h"
-#include "tests/test_array.h"
-#include "tests/test_deque.h"
-#include "tests/test_list.h"
+#include "test_kaizen.h"
 
 int main()
 {
