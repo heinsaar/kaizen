@@ -30,11 +30,10 @@ add_custom_target(generate_kaizen_header ALL DEPENDS kaizen.h)
 add_dependencies(generate_kaizen_header delete_kaizen_header)
 
 ################################### Add source to this project's executable.
-add_executable(kaizen
+add_executable(kaizen "test_kaizen.cpp"
     "datas/vector.h" "datas/list.h"
     "functions/utils.h"
     "test_kaizen.h" "tests/test_vector.h" "tests/test_list.h"
-    "test_kaizen.cpp"
 )
 
 # Set a dependency on the custom target to ensure it runs before the kaizen executable is built
