@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2023 Leo Heinsaar
 // 
@@ -20,15 +20,31 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "tests/test_vector.h"
-#include "tests/test_array.h"
-#include "tests/test_deque.h"
-#include "tests/test_list.h"
+#pragma once
 
-int main()
+#include <algorithm>
+#include <deque>
+
+namespace zen {
+
+template<class T>
+struct deque : std::deque<T>
 {
-	sanitest_vector();
-	sanitest_array();
-	sanitest_deque();
-	sanitest_list();
-}
+    using std::deque<T>::deque; // inherit constructors of std::deque<T>
+
+    bool contains(const T& x) const
+    {
+        return std::find(my::begin(), my::end(), x) != my::end();
+    }
+
+    template<class Pred>
+    bool contains(Pred p) const
+    {
+        return std::find_if(my::begin(), my::end(), p) != my::end();
+    }
+
+private:
+    using my = deque;
+};
+
+} // namespace
