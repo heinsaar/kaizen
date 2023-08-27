@@ -11,5 +11,5 @@ void sanitest_deque()
     q.push_back(777);
     assert(q.contains(777));
 
-    std::cout << "TEST PASS: " << __func__ << "() CONTENT " << zen::to_string(q) << std::endl;
+    std::cout << "TEST PASS: " << __func__ << "() CONTENT" << zen::to_string(q) << std::endl;
 }

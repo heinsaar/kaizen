@@ -11,5 +11,5 @@ void sanitest_vector()
     v.push_back(777);
     assert(v.contains(777));
 
-    std::cout << "TEST PASS: " << __func__ << "() CONTENT " << zen::to_string(v) << std::endl;
+    std::cout << "TEST PASS: " << __func__ << "() CONTENT" << zen::to_string(v) << std::endl;
 }
