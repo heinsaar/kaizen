@@ -30,7 +30,7 @@ namespace zen {
 template<class T>
 struct deque : std::deque<T>
 {
-    using std::deque<T>::deque; // inherit constructors of std::deque<T>
+    using std::deque<T>::deque; // inherit constructors, has to be explicit
 
     bool contains(const T& x) const
     {

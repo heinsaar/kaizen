@@ -30,7 +30,7 @@ namespace zen {
 template<class T>
 struct list : std::list<T>
 {
-    using std::list<T>::list; // inherit constructors of std::list<T>
+    using std::list<T>::list; // inherit constructors, has to be explicit
 
     bool contains(const T& x) const
     {

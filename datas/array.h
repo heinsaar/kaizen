@@ -30,7 +30,7 @@ namespace zen {
     template<class T, size_t N>
     struct array : std::array<T, N>
     {
-        using std::array<T, N>::array; // inherit constructors of std::array<T>
+        using std::array<T, N>::array; // inherit constructors, has to be explicit
 
         // Custom constructor to handle initializer list
         array(std::initializer_list<T> init_list)
