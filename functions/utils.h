@@ -82,7 +82,7 @@ template<class Collection>
 void populate_random(Collection& c, int size = 10)
 {
     c.resize(size);
-    std::generate(std::begin(c), std::end(c), [&](){ return random_int(0, 100); });
+    std::generate(std::begin(c), std::end(c), [&](){ return random_int(10, 99); });
 }
 
 /////////////////////////////////////// USEFUL TRIVIA ///////////////////////////////////////
