@@ -22,7 +22,7 @@ add_custom_target(delete_kaizen_header
 add_custom_command(
     OUTPUT  kaizen.h
     COMMAND python3 ${CMAKE_SOURCE_DIR}/make_kaizen.py
-    DEPENDS types/list.h types/vector.h types/array.h
+    DEPENDS datas/list.h datas/vector.h datas/array.h
     COMMENT "GENERATING kaizen.h"
 )
 
@@ -31,8 +31,8 @@ add_dependencies(generate_kaizen_header delete_kaizen_header)
 
 ################################### Add source to this project's executable.
 add_executable(kaizen
-    "test_kaizen.cpp" "test_kaizen.h" "types/vector.h" "tests/test_vector.h" "functions/utils.h"
-    "types/list.h" "tests/test_list.h"
+    "test_kaizen.cpp" "test_kaizen.h" "datas/vector.h" "tests/test_vector.h" "functions/utils.h"
+    "datas/list.h" "tests/test_list.h"
 )
 
 # Set a dependency on the custom target to ensure it runs before the kaizen executable is built
