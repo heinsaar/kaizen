@@ -27,30 +27,30 @@
 
 namespace zen {
 
-    template<class T, size_t N>
-    struct array : std::array<T, N>
+template<class T, size_t N>
+struct array : std::array<T, N>
+{
+    using std::array<T, N>::array; // inherit constructors, has to be explicit
+
+    // Custom constructor to handle initializer list
+    array(std::initializer_list<T> init_list)
     {
-        using std::array<T, N>::array; // inherit constructors, has to be explicit
+        std::copy(std::begin(init_list), std::end(init_list), my::begin());
+    }
 
-        // Custom constructor to handle initializer list
-        array(std::initializer_list<T> init_list)
-        {
-            std::copy(std::begin(init_list), std::end(init_list), my::begin());
-        }
+    bool contains(const T& x) const
+    {
+        return std::find(my::begin(), my::end(), x) != my::end();
+    }
 
-        bool contains(const T& x) const
-        {
-            return std::find(my::begin(), my::end(), x) != my::end();
-        }
+    template<class Pred>
+    bool contains(Pred p) const
+    {
+        return std::find_if(my::begin(), my::end(), p) != my::end();
+    }
 
-        template<class Pred>
-        bool contains(Pred p) const
-        {
-            return std::find_if(my::begin(), my::end(), p) != my::end();
-        }
-
-    private:
-        using my = array;
-    };
+private:
+    using my = array;
+};
 
 } // namespace
