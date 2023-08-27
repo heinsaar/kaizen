@@ -8,7 +8,7 @@
 namespace zen {
 
 template<class T = int>
-T random_int(T min = 0, T max = 10)
+T random_int(const T min = 0, const T max = 10)
 {
     // Reasons why the std::random_device and the std::mt19937 are 'static' below:
     // ---------------------------------------------------------------------------------------------------------------
