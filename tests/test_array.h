@@ -9,5 +9,5 @@ void sanitest_array()
 
     assert(a.contains(5));
 
-    zen::print("TEST PASS:", __func__, " CONTENT", a);
+    zen::log("TEST PASS:", __func__, " CONTENT", a);
 }
