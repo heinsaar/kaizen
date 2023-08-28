@@ -88,14 +88,6 @@ std::string to_string(const T& t, const Args&... args) {
 // Base case for the recursive calls
 std::string to_string() { return ""; }
 
-template<class Collection>
-void print(const Collection& c)
-{
-    printx(c);
-    std::cout << std::endl;
-    //std::cout << to_string(c) << std::endl;
-}
-
 // Function to handle individual item printing
 template <class T>
 void printx(const T& x)
@@ -114,6 +106,14 @@ void printx(const T& x)
     else { // not iterable, single item
         std::cout << x;
     }
+}
+
+template<class Collection>
+void print(const Collection& c)
+{
+    printx(c);
+    std::cout << std::endl;
+    //std::cout << to_string(c) << std::endl;
 }
 
 // Generic, almost Python-like print(). Works like this:
