@@ -70,6 +70,24 @@ constexpr bool is_iterable_v = requires(T x) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+// Overload for containers like vector, list, etc.
+template<typename Collection>
+std::string to_string(const Collection& c) {
+    std::stringstream ss;
+    for (const auto& x : c) {
+        ss << " " << x;
+    }
+    return ss.str();
+}
+// Base case for the recursive calls
+std::string to_string() { return ""; }
+
+// Recursive variadic template to handle multiple arguments
+template<typename T, typename... Args>
+std::string to_string(const T& t, const Args&... args) {
+    return to_string(t) + " " + to_string(args...);
+}
+
 template<class Collection>
 void print(const Collection& c)
 {
@@ -112,23 +130,5 @@ void print(T x, Args... args) {
 }
 // Base case for the recursive calls
 void print() { std::cout << std::endl; }
-
-// Overload for containers like vector, list, etc.
-template<typename Collection>
-std::string to_string(const Collection& c) {
-    std::stringstream ss;
-    for (const auto& x : c) {
-        ss << " " << x;
-    }
-    return ss.str();
-}
-// Base case for the recursive calls
-std::string to_string() { return ""; }
-
-// Recursive variadic template to handle multiple arguments
-template<typename T, typename... Args>
-std::string to_string(const T& t, const Args&... args) {
-    return to_string(t) + " " + to_string(args...);
-}
 
 } // namespace
