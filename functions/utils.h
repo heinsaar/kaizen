@@ -71,7 +71,7 @@ constexpr bool is_iterable_v = requires(T x) {
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 // Overload for containers like vector, list, etc.
-template<typename Collection>
+template<class Collection>
 std::string to_string(const Collection& c) {
     std::stringstream ss;
     for (const auto& x : c) {
@@ -81,7 +81,7 @@ std::string to_string(const Collection& c) {
 }
 
 // Recursive variadic template to handle multiple arguments
-template<typename T, typename... Args>
+template<class T, class... Args>
 std::string to_string(const T& t, const Args&... args) {
     return to_string(t) + " " + to_string(args...);
 }
