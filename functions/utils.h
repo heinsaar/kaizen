@@ -49,12 +49,48 @@ T random_int(const T min = 0, const T max = 10)
 template<class Collection>
 void print(const Collection& c)
 {
-    std::cout << to_string(c) << std::endl;
+    printx(c);
+    std::cout << std::endl;
+    //std::cout << to_string(c) << std::endl;
 }
 
-template<typename T, typename... Args>
-void print(T t, Args... args) {
-    std::cout << t << " ";
+// Check if a type is iterable
+template <class T>
+constexpr bool is_iterable_v = requires(T x) {
+    *std::begin(x); // can be dereferenced
+    std::end(x);    // has an end
+};
+
+// Function to handle individual item printing
+template <class T>
+void printx(const T& x)
+{
+    if constexpr (is_iterable_v<T>) {
+        std::cout << "[";
+        auto it = std::begin(x);
+        if (it != std::end(x)) {
+            std::cout << *it++;
+        }
+        for (; it != std::end(x); ++it) {
+            std::cout << ", " << *it;
+        }
+        std::cout << "]";
+    }
+    else { // not iterable, single item
+        std::cout << x;
+    }
+}
+
+// Generic, almost Python-like print(). Works like this:
+// print("Hello", "World", vec, 42); // Output: Hello World [1, 2, 3] 42
+// print("Hello", "World", 24, vec); // Output: Hello World 24 [1, 2, 3]
+// print("Hello", vec, 42, "World"); // Output: Hello [1, 2, 3] 42 World
+template <class T, class... Args>
+void print(T x, Args... args) {
+    printx(x);
+    if constexpr (sizeof...(args) != 0) {
+        std::cout << " ";
+    }
     print(args...);
 }
 // Base case for the recursive calls
