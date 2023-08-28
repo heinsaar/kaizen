@@ -6,6 +6,8 @@ Commonly used utility code for C++ projects in a single header file ```kaizen.h`
 
 See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
 
+This project assumes that you have Python installed on your system.
+
 The ```main()``` function simply runs the tests.
 
 Open the repo folder in your favorite IDE and follow the steps described below to run it on your system.
@@ -59,6 +61,4 @@ Open the repo folder in your favorite IDE and follow the steps described below t
    .\kaizen.exe
    ```
 
-If everything is set up correctly in your `CMakeLists.txt` file and your code is compatible with Linux, these steps should configure and build your project on a Linux system.
-
-Keep in mind that if your project has specific dependencies or requires special configuration, additional steps may be necessary. This might include installing required libraries or tools on your Linux system or adding specific flags and options to the CMake command. But for a typical C++ project, the steps outlined above should be sufficient.
+Running the executable will run the tests and show their outputs in the console.
