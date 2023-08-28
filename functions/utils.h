@@ -104,7 +104,7 @@ std::string to_string(const T& x, const Args&... args) {
     return to_string(x) + " " + to_string(args...);
 }
 // Base case for the recursive calls
-std::string to_string() { return ""; }
+inline std::string to_string() { return ""; }
 
 // ------------------------------------------------------------------------------- print
 
@@ -128,7 +128,7 @@ void print(T x, Args... args) {
     print(args...);
 }
 // Base case for the recursive calls
-void print() {}
+inline void print() {}
 
 // ------------------------------------------------------------------------------- log
 
@@ -146,6 +146,6 @@ void log(T x, Args... args) {
     std::cout << std::endl;
 }
 // Base case for the recursive calls
-void log() {}
+inline void log() {}
 
 } // namespace
