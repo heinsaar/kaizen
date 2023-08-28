@@ -52,6 +52,13 @@ T random_int(const T min = 0, const T max = 10)
     return dis(gen);
 }
 
+template<class Collection>
+void populate_random(Collection& c, int size = 10)
+{
+    c.resize(size);
+    std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
+}
+
 // Check if a type is iterable
 template <class T>
 constexpr bool is_iterable_v = requires(T x) {
@@ -118,13 +125,6 @@ std::string to_string() { return ""; }
 template<typename T, typename... Args>
 std::string to_string(const T& t, const Args&... args) {
     return to_string(t) + " " + to_string(args...);
-}
-
-template<class Collection>
-void populate_random(Collection& c, int size = 10)
-{
-    c.resize(size);
-    std::generate(std::begin(c), std::end(c), [&](){ return random_int(10, 99); });
 }
 
 } // namespace
