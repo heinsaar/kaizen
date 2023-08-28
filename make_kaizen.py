@@ -56,6 +56,7 @@ def write_output_file(filename, license_text, include_directives, code_content):
             code_content.pop(0)
         code_content.insert(0, '\n')
         output_file.writelines(code_content)
+        os.chmod(filename, 0o444)
 
 if __name__ == '__main__':
     dirs = ['../datas', '../functions']
