@@ -136,7 +136,7 @@ void print() {}
 template <class T>
 void log(const T& x)
 {
-    std::cout << to_string(x) << std::endl;
+    print(x, '\n');
 }
 
 // Generic, almost Python-like log(). Works similar to the print() function but adds std::endl
