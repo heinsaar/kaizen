@@ -47,12 +47,17 @@ Open the repo folder in your favorite IDE and follow the steps described below t
    
    On Linux, you can also call ```make``` directly (does the same thing).
 
-6. **Run the Executable:** If the build is successful, you can run the resulting executable from the build directory:
+6. **Run the Executable:** If the build is successful, you can run the resulting executable from the build directory.
+  
+   Linux:
 
    ```bash
    ./kaizen
    ```
-   On Windows, it'll be ```kaizen.exe```
+   Windows:
+   ```bash
+   .\kaizen.exe
+   ```
 
 If everything is set up correctly in your `CMakeLists.txt` file and your code is compatible with Linux, these steps should configure and build your project on a Linux system.
 
