@@ -69,6 +69,10 @@ constexpr bool is_iterable_v = requires(T x) {
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
+// Main principle of textual visualization: from string to print to log. This means that:
+// 1. to_string() - is the base transformation into a string version of an object
+// 2. print()     - uses to_string() to output the    string version of an object
+// 3. log()       - uses print() and adds any formatting, new lines at the end, etc.
 
 // Overload for containers like vector, list, etc.
 template<class Collection>
