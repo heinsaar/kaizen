@@ -7,6 +7,10 @@
 
 namespace zen {
 
+/////////////////////////////////////// USEFUL TRIVIA ///////////////////////////////////////
+
+inline std::string quote(std::string_view s) { return '\"' + std::string(s) + '\"'; }
+
 template<class T = int>
 T random_int(const T min = 0, const T max = 10)
 {
@@ -120,9 +124,5 @@ void populate_random(Collection& c, int size = 10)
     c.resize(size);
     std::generate(std::begin(c), std::end(c), [&](){ return random_int(10, 99); });
 }
-
-/////////////////////////////////////// USEFUL TRIVIA ///////////////////////////////////////
-
-inline std::string quote(std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
 } // namespace
