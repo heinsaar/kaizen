@@ -75,7 +75,7 @@ constexpr bool is_iterable_v = requires(T x) {
 // 2. print()     - uses to_string() to output the object (as a string)
 // 3. log()       - uses print() and adds any formatting, new lines at the end, etc.
 
-// ------------------------------------------------------------------------------- string
+// ------------------------------------------------------------------------------- stringify
 
 // Overload for containers like vector, list, etc.
 template<class T>
