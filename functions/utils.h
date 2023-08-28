@@ -69,9 +69,10 @@ constexpr bool is_iterable_v = requires(T x) {
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-// Main principle of textual visualization: from string to print to log. This means that:
-// 1. to_string() - is the base transformation into a string version of an object
-// 2. print()     - uses to_string() to output the    string version of an object
+// Printing and logging in Kaizen follows the LPS principle of textual visualization.
+// The LPS principle: from string to print to log. This means that:
+// 1. to_string() - is the transformation of an object into a string
+// 2. print()     - uses to_string() to output the object (as a string)
 // 3. log()       - uses print() and adds any formatting, new lines at the end, etc.
 
 // ------------------------------------------------------------------------------- string
