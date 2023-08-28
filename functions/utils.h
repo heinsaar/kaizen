@@ -129,4 +129,22 @@ void print(T x, Args... args) {
 // Base case for the recursive calls
 void print() {}
 
+// ------------------------------------------------------------------------------- log
+
+// Handles logging a single item
+template <class T>
+void log(const T& x)
+{
+    std::cout << to_string(x) << std::endl;
+}
+
+// Generic, almost Python-like log(). Works similar to the print() function but adds std::endl
+template <class T, class... Args>
+void log(T x, Args... args) {
+    print(x, args...);
+    std::cout << std::endl;
+}
+// Base case for the recursive calls
+void log() {}
+
 } // namespace
