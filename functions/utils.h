@@ -127,6 +127,6 @@ void print(T x, Args... args) {
     print(args...);
 }
 // Base case for the recursive calls
-void print() { std::cout << std::endl; }
+void print() {}
 
 } // namespace
