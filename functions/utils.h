@@ -74,12 +74,25 @@ constexpr bool is_iterable_v = requires(T x) {
 // 2. print()     - uses to_string() to output the    string version of an object
 // 3. log()       - uses print() and adds any formatting, new lines at the end, etc.
 
+// ------------------------------------------------------------------------------- string
+
 // Overload for containers like vector, list, etc.
-template<class Collection>
-std::string to_string(const Collection& c) {
+template<class T>
+std::string to_string(const T& x) {
     std::stringstream ss;
-    for (const auto& x : c) {
-        ss << " " << x;
+    if constexpr (is_iterable_v<T>) {
+        ss << "[";
+        auto it = std::begin(x);
+        if (it != std::end(x)) {
+            ss << *it++;
+        }
+        for (; it != std::end(x); ++it) {
+            ss << ", " << *it;
+        }
+        ss << "]";
+    }
+    else { // not iterable, single item
+        ss << x;
     }
     return ss.str();
 }
@@ -92,32 +105,13 @@ std::string to_string(const T& x, const Args&... args) {
 // Base case for the recursive calls
 std::string to_string() { return ""; }
 
+// ------------------------------------------------------------------------------- print
+
 // Function to handle individual item printing
 template <class T>
-void printx(const T& x)
+void print(const T& x)
 {
-    if constexpr (is_iterable_v<T>) {
-        std::cout << "[";
-        auto it = std::begin(x);
-        if (it != std::end(x)) {
-            std::cout << *it++;
-        }
-        for (; it != std::end(x); ++it) {
-            std::cout << ", " << *it;
-        }
-        std::cout << "]";
-    }
-    else { // not iterable, single item
-        std::cout << x;
-    }
-}
-
-template<class Collection>
-void print(const Collection& c)
-{
-    printx(c);
-    std::cout << std::endl;
-    //std::cout << to_string(c) << std::endl;
+    std::cout << to_string(x);
 }
 
 // Generic, almost Python-like print(). Works like this:
@@ -126,7 +120,7 @@ void print(const Collection& c)
 // print("Hello", vec, 42, "World"); // Output: Hello [1, 2, 3] 42 World
 template <class T, class... Args>
 void print(T x, Args... args) {
-    printx(x);
+    print(x);
     if constexpr (sizeof...(args) != 0) {
         std::cout << " ";
     }
