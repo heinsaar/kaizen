@@ -46,6 +46,13 @@ T random_int(const T min = 0, const T max = 10)
     return dis(gen);
 }
 
+// Check if a type is iterable
+template <class T>
+constexpr bool is_iterable_v = requires(T x) {
+    *std::begin(x); // can be dereferenced
+    std::end(x);    // has an end
+};
+
 template<class Collection>
 void print(const Collection& c)
 {
@@ -53,13 +60,6 @@ void print(const Collection& c)
     std::cout << std::endl;
     //std::cout << to_string(c) << std::endl;
 }
-
-// Check if a type is iterable
-template <class T>
-constexpr bool is_iterable_v = requires(T x) {
-    *std::begin(x); // can be dereferenced
-    std::end(x);    // has an end
-};
 
 // Function to handle individual item printing
 template <class T>
