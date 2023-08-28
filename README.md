@@ -61,4 +61,4 @@ Open the repo folder in your favorite IDE and follow the steps described below t
    .\kaizen.exe
    ```
 
-Running the executable will run the tests and show their outputs in the console.
+The tests will run and show their outputs in the console.
