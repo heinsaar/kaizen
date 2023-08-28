@@ -59,6 +59,8 @@ void populate_random(Collection& c, int size = 10)
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 // Check if a type is iterable
 template <class T>
 constexpr bool is_iterable_v = requires(T x) {
