@@ -11,6 +11,8 @@ namespace zen {
 
 inline std::string quote(std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 template<class T = int>
 T random_int(const T min = 0, const T max = 10)
 {
