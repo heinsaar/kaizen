@@ -82,8 +82,8 @@ std::string to_string(const Collection& c) {
 
 // Recursive variadic template to handle multiple arguments
 template<class T, class... Args>
-std::string to_string(const T& t, const Args&... args) {
-    return to_string(t) + " " + to_string(args...);
+std::string to_string(const T& x, const Args&... args) {
+    return to_string(x) + " " + to_string(args...);
 }
 // Base case for the recursive calls
 std::string to_string() { return ""; }
