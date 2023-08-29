@@ -89,7 +89,7 @@ void populate_random(Collection& c, int size = 10)
 // 2. print()     - uses to_string() to output the object (as a string)
 // 3. log()       - uses print() and adds any formatting, new lines at the end, etc.
 
-// ------------------------------------------------------------------------------- stringify
+// ------------------------------------------------------------------------------------------ stringify
 
 // Overload for containers like vector, list, etc.
 template<class T>
@@ -120,7 +120,7 @@ std::string to_string(const T& x, const Args&... args) {
 // Base case for the recursive calls
 inline std::string to_string() { return ""; }
 
-// ------------------------------------------------------------------------------- print
+// ------------------------------------------------------------------------------------------ print
 
 // Function to handle individual item printing
 template <class T>
@@ -144,7 +144,7 @@ void print(T x, Args... args) {
 // Base case for the recursive calls
 inline void print() {}
 
-// ------------------------------------------------------------------------------- log
+// ------------------------------------------------------------------------------------------ log
 
 // Handles logging a single item
 template <class T>
