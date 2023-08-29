@@ -31,8 +31,8 @@ namespace zen {
 // Check if a type is iterable
 template <class T>
 constexpr bool is_iterable_v = requires(T x) {
-    *std::begin(x); // has begin and can be dereferenced
-    std::end(x);    // has an end
+   *std::begin(x); // has begin and can be dereferenced
+    std::end(x);   // has an end
 };
 
 } // namespace
