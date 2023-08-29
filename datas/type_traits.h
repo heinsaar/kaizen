@@ -36,10 +36,10 @@ namespace zen {
         std::end(x);   // has an end
     };
 #else // use SFINAE if concepts are not available (pre-C++20)
-    template <typename T, typename = void>
+    template <class T, class = void>
     struct is_iterable : std::false_type {};
 
-    template <typename T>
+    template <class T>
     struct is_iterable<T,
         std::void_t<
             decltype(*std::begin(std::declval<T&>())), // has begin and can be dereferenced
@@ -47,7 +47,7 @@ namespace zen {
         >
     > : std::true_type {};
 
-    template <typename T>
+    template <class T>
     constexpr bool is_iterable_v = is_iterable<T>::value;
 #endif
 } // namespace zen
