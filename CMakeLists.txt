@@ -1,14 +1,14 @@
 ﻿# CMakeList.txt : CMake project for Kaizen.
 
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required(VERSION 3.8)
 
 # Enable Hot Reload for MSVC compilers if supported.
-if (POLICY CMP0141)
+if(POLICY CMP0141)
   cmake_policy(SET CMP0141 NEW)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("kaizen")
+project("kaizen")
 
 ################################### Delete kaizen.h if it exists
 
@@ -40,12 +40,12 @@ add_executable(kaizen "test_kaizen.cpp"
 # Set a dependency on the custom target to ensure it runs before the kaizen executable is built
 add_dependencies(kaizen generate_kaizen_header)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
+if(CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET kaizen PROPERTY CXX_STANDARD 20)
 endif()
 
 # Copy the automated build-and-run scripts
-if (UNIX)
+if(UNIX)
   configure_file(${CMAKE_SOURCE_DIR}/runbuild_linx.sh ${CMAKE_BINARY_DIR}/runbuild_linx.sh COPYONLY)
   file(READ ${CMAKE_BINARY_DIR}/runbuild_linx.sh CONTENTS)
   string(REPLACE "\r\n" "\n" FIXED_CONTENTS "${CONTENTS}")       # Replace CRLF with LF
@@ -53,7 +53,7 @@ if (UNIX)
   file(WRITE ${CMAKE_BINARY_DIR}/runbuild_linx.sh "${FIXED_CONTENTS}")
 endif()
 
-if (WIN32)
+if(WIN32)
     configure_file(${CMAKE_SOURCE_DIR}/runbuild_win.bat ${CMAKE_BINARY_DIR}/runbuild_win.bat COPYONLY)
 endif()
 
