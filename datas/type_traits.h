@@ -28,11 +28,26 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// TYPE TRAITS
 
-// Check if a type is iterable
-template <class T>
-constexpr bool is_iterable_v = requires(T x) {
-   *std::begin(x); // has begin and can be dereferenced
-    std::end(x);   // has an end
-};
+#if __cpp_concepts >= 202002L
+    // Check if a type is iterable
+    template <class T>
+    constexpr bool is_iterable_v = requires(T x) {
+       *std::begin(x); // has begin and can be dereferenced
+        std::end(x);   // has an end
+    };
+#else // use SFINAE if concepts are not available (pre-C++20)
+    template <typename T, typename = void>
+    struct is_iterable : std::false_type {};
 
+    template <typename T>
+    struct is_iterable<T,
+        std::void_t<
+            decltype(*std::begin(std::declval<T&>())), // has begin and can be dereferenced
+            decltype( std::end(  std::declval<T&>()))  // has an end
+        >
+    > : std::true_type {};
+
+    template <typename T>
+    constexpr bool is_iterable_v = is_iterable<T>::value;
+#endif
 } // namespace zen
