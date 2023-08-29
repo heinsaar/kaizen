@@ -81,7 +81,7 @@ void populate_random(Collection& c, int size = 10)
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////// LPS (Log, Print, String)
 // Printing and logging in Kaizen follows the LPS principle of textual visualization.
 // The LPS principle: from string to print to log. This means that:
 // 1. to_string() - is the transformation of an object into a string
