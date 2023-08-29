@@ -36,7 +36,7 @@ namespace zen {
         std::end(x);   // has an end
     };
 #else // use SFINAE if concepts are not available (pre-C++20)
-    template <class T, class = void>  struct is_iterable : std::false_type {};
+    template <class T, class = void> constexpr struct is_iterable : std::false_type {};
 
     template <class T>
     struct is_iterable<T,
