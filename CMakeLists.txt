@@ -44,4 +44,12 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET kaizen PROPERTY CXX_STANDARD 20)
 endif()
 
+# Copy the automated build-and-run scripts
+if (UNIX)
+    configure_file(${CMAKE_SOURCE_DIR}/runbuild_linx.sh ${CMAKE_BINARY_DIR}/runbuild_linx.sh COPYONLY)
+endif()
+if (WIN32)
+    configure_file(${CMAKE_SOURCE_DIR}/runbuild_win.bat ${CMAKE_BINARY_DIR}/runbuild_win.bat COPYONLY)
+endif()
+
 # TODO: Add tests and install targets if needed.
