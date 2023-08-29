@@ -46,8 +46,13 @@ endif()
 
 # Copy the automated build-and-run scripts
 if (UNIX)
-    configure_file(${CMAKE_SOURCE_DIR}/runbuild_linx.sh ${CMAKE_BINARY_DIR}/runbuild_linx.sh COPYONLY)
+  configure_file(${CMAKE_SOURCE_DIR}/runbuild_linx.sh ${CMAKE_BINARY_DIR}/runbuild_linx.sh COPYONLY)
+  file(READ ${CMAKE_BINARY_DIR}/runbuild_linx.sh CONTENTS)
+  string(REPLACE "\r\n" "\n" FIXED_CONTENTS "${CONTENTS}")       # Replace CRLF with LF
+  string(REPLACE "\r"   "\n" FIXED_CONTENTS "${FIXED_CONTENTS}") # Replace CR   with LF (in case the file uses old Mac line endings)
+  file(WRITE ${CMAKE_BINARY_DIR}/runbuild_linx.sh "${FIXED_CONTENTS}")
 endif()
+
 if (WIN32)
     configure_file(${CMAKE_SOURCE_DIR}/runbuild_win.bat ${CMAKE_BINARY_DIR}/runbuild_win.bat COPYONLY)
 endif()
