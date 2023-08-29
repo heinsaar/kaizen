@@ -46,7 +46,7 @@ def read_license(filename):
 def write_output_file(filename, license_text, include_directives, code_content):
     with open(filename, 'w') as output_file:
         now = datetime.datetime.now()
-        output_file.write('// FILE AUTO-GENERATED ON: ' + now.strftime("%d.%m.%Y %H:%M:%S") + '\n//\n')
+        output_file.write('// FILE GENERATED ON: ' + now.strftime("%d.%m.%Y %H:%M:%S") + '\n//\n')
         output_file.writelines(license_text)
         output_file.write('\n#pragma once\n\n')
         for include_directive in sorted(include_directives):
