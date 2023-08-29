@@ -30,7 +30,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::vector
 
 template<class T>
-struct vector : std::vector<T>
+struct vector : std::vector<T> // read 'struct' as "extend the interface"
 {
     using std::vector<T>::vector; // inherit constructors, has to be explicit
 

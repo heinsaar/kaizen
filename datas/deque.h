@@ -30,7 +30,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::deque
 
 template<class T>
-struct deque : std::deque<T>
+struct deque : std::deque<T> // read 'struct' as "extend the interface"
 {
     using std::deque<T>::deque; // inherit constructors, has to be explicit
 

@@ -30,7 +30,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::array
 
 template<class T, size_t N>
-struct array : std::array<T, N>
+struct array : std::array<T, N> // read 'struct' as "extend the interface"
 {
     using std::array<T, N>::array; // inherit constructors, has to be explicit
 
