@@ -35,4 +35,4 @@ constexpr bool is_iterable_v = requires(T x) {
     std::end(x);   // has an end
 };
 
-} // namespace
+} // namespace zen
