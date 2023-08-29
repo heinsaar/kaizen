@@ -40,16 +40,9 @@ struct array : std::array<T, N>
         std::copy(std::begin(init_list), std::end(init_list), my::begin());
     }
 
-    bool contains(const T& x) const
-    {
-        return std::find(my::begin(), my::end(), x) != my::end();
-    }
-
     template<class Pred>
-    bool contains(Pred p) const
-    {
-        return std::find_if(my::begin(), my::end(), p) != my::end();
-    }
+    bool contains( Pred p)    const { return std::find_if(my::begin(), my::end(), p) != my::end(); }
+    bool contains(const T& x) const { return std::find(   my::begin(), my::end(), x) != my::end(); }
 
 private:
     using my = array;

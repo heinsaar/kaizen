@@ -34,16 +34,9 @@ struct vector : std::vector<T>
 {
     using std::vector<T>::vector; // inherit constructors, has to be explicit
 
-    bool contains(const T& x) const
-    {
-        return std::find(my::begin(), my::end(), x) != my::end();
-    }
-
     template<class Pred>
-    bool contains(Pred p) const
-    {
-        return std::find_if(my::begin(), my::end(), p) != my::end();
-    }
+    bool contains(Pred p)     const { return std::find_if(my::begin(), my::end(), p) != my::end(); }
+    bool contains(const T& x) const { return std::find(   my::begin(), my::end(), x) != my::end(); }
 
 private:
     using my = vector;
