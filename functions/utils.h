@@ -82,8 +82,33 @@ void populate_random(Collection& c, int size = 10)
     ZEN_STATIC_ASSERT(zen::is_iterable_v<Collection>, "TEMPLATE PARAMETER Collection EXPECTED TO BE ITERABLE, BUT IS NOT");
 
     if (!std::size(c))
-    c.resize(size);
+        c.resize(size);
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////// COLORS
+
+namespace color {
+    struct color {
+        color(const std::string_view s, int c) : text(s), code(c) {}
+        friend std::ostream& operator<<(std::ostream& os, const color& cw);
+        const std::string text;
+        const int /*col*/ code;
+    };
+
+    std::ostream& operator<<(std::ostream& os, const color& cw) {
+        os << "\033[" << cw.code << "m" << cw.text << "\033[0m";
+        return os;
+    }
+
+    color red    (const std::string_view s) { return color(s, 31); }
+    color blue   (const std::string_view s) { return color(s, 34); }
+    color green  (const std::string_view s) { return color(s, 32); }
+    color black  (const std::string_view s) { return color(s, 30); }
+    color yellow (const std::string_view s) { return color(s, 33); }
+    color magenta(const std::string_view s) { return color(s, 35); }
+    color cyan   (const std::string_view s) { return color(s, 36); }
+    color white  (const std::string_view s) { return color(s, 37); }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// LPS (Log, Print, String)
