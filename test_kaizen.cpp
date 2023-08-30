@@ -24,6 +24,8 @@
 
 int main()
 {
+	zen::print(zen::color::blue("|||||||||||||||||||||||||||| RUNNING TESTS...\n"));
+
 	sanitest_vector();
 	sanitest_array();
 	sanitest_deque();
