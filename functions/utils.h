@@ -92,15 +92,14 @@ void populate_random(Collection& c, int size = 10)
 namespace color {
     struct color {
         color(const std::string_view s, int c) : text(s), code(c) {}
-        friend std::ostream& operator<<(std::ostream& os, const color& cw);
         const std::string text;
         const int /*col*/ code;
-    };
 
-    std::ostream& operator<<(std::ostream& os, const color& cw) {
-        os << "\033[" << cw.code << "m" << cw.text << "\033[0m";
-        return os;
-    }
+        friend std::ostream& operator<<(std::ostream& os, const color& cw) {
+            os << "\033[" << cw.code << "m" << cw.text << "\033[0m";
+            return os;
+        }
+    };
 
     color red    (const std::string_view s) { return color(s, 31); }
     color blue   (const std::string_view s) { return color(s, 34); }
