@@ -11,5 +11,5 @@ void sanitest_list()
     x.push_back(777);
     assert(x.contains(777));
 
-    zen::log("TEST PASS:", __func__, " CONTENT", x);
+    zen::log(zen::color::green("TEST PASS:"), __func__, " CONTENT", x);
 }

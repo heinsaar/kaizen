@@ -11,5 +11,5 @@ void sanitest_deque()
     q.push_back(777);
     assert(q.contains(777));
 
-    zen::log("TEST PASS:", __func__, " CONTENT", q);
+    zen::log(zen::color::green("TEST PASS:"), __func__, " CONTENT", q);
 }
