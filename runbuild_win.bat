@@ -7,5 +7,5 @@ if ERRORLEVEL 1 (
   exit /b 1
 )
 
-:: Run the executable
+:: Run the executable (will run the tests)
 .\kaizen.exe
