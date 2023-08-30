@@ -1,12 +1,8 @@
 #!/bin/bash
 
-# Build the CMake project
-cmake --build .
-
-# Check if build succeeded
-if [ $? -eq 0 ]; then
-  # Run the executable
-  ./kaizen
+cmake --build .       # build the project
+if [ $? -eq 0 ]; then # check if build succeeded
+  ./kaizen            # run the executable (will run the tests)
 else
   echo "Build failed. Exiting."
   exit 1
