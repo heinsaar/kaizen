@@ -5,7 +5,7 @@
 
 void sanitest_vector()
 {
-    zen::vector<int> v;
+    zen::vector<int> v(15);
     zen::populate_random(v);
 
     v.push_back(777);

@@ -77,6 +77,7 @@ T random_int(const T min = 0, const T max = 10)
 template<class Collection>
 void populate_random(Collection& c, int size = 10)
 {
+    if (!std::size(c))
     c.resize(size);
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
