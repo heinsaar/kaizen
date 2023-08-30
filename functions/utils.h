@@ -79,6 +79,8 @@ T random_int(const T min = 0, const T max = 10)
 template<class Collection>
 void populate_random(Collection& c, int size = 10)
 {
+    ZEN_STATIC_ASSERT(zen::is_iterable_v<Collection>, "TEMPLATE PARAMETER Collection EXPECTED TO BE ITERABLE, BUT IS NOT");
+
     if (!std::size(c))
     c.resize(size);
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
