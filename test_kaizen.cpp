@@ -24,7 +24,10 @@
 
 int main()
 {
-	zen::print(zen::color::blue("|||||||||||||||||||||||||||| RUNNING TESTS...\n"));
+	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
+	zen::print(zen::color::blue("|||||||||||||||||||||||||||| KAIZEN 0.0.1 ||||||||||||||||||||||||||||\n"));
+	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
+	zen::print(zen::color::blue("RUNNING TESTS...\n"));
 
 	// Test data structures
 	sanitest_vector();
