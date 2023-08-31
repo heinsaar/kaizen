@@ -10,8 +10,7 @@ void sanitest_string()
 
     // TODO: Find a better way than asserting
     assert(z.contains("World"));
-    assert(s.starts_with("Hello"));
-    assert(s.starts_with("Hello"));
+    assert(z.extract_between("[", "]").starts_with("Hello"));
 
     zen::log(zen::color::green("TEST PASS:"), __func__);
 }
