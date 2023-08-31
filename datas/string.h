@@ -83,6 +83,41 @@ struct string : std::string // read 'struct' as "extend the interface"
         return *this;
     }
 
+    // TODO: Implement these
+    // From Deel:
+    // deflate()
+    // 
+    // From Python string
+    // capitalize()	    Converts the first character to upper case
+    // tolower()	    Converts string into lower case
+    // center()	        Returns a centered string
+    // endswith()	    Returns true if the string ends with the specified value
+    // isalnum()	    Returns True if all characters in the string are alphanumeric
+    // isalpha()	    Returns True if all characters in the string are in the alphabet
+    // isascii()	    Returns True if all characters in the string are ascii characters
+    // isdecimal()	    Returns True if all characters in the string are decimals
+    // isdigit()	    Returns True if all characters in the string are digits
+    // isidentifier()	Returns True if the string is an identifier
+    // islower()	    Returns True if all characters in the string are lower case
+    // isnumeric()	    Returns True if all characters in the string are numeric
+    // isprintable()	Returns True if all characters in the string are printable
+    // isspace()	    Returns True if all characters in the string are whitespaces
+    // isupper()	    Returns True if all characters in the string are upper case
+    // ljust()	        Returns a left justified version of the string
+    // lstrip()	        Returns a left trim version of the string
+    // maketrans()	    Returns a translation table to be used in translations
+    // partition()	    Returns a tuple where the string is parted into three parts
+    // rfind()	        Searches the string for a specified value and returns the last position of where it was found
+    // rjust()	        Returns a right justified version of the string
+    // rpartition()	    Returns a tuple where the string is parted into three parts
+    // rsplit()	        Splits the string at the specified separator, and returns a list
+    // rstrip()	        Returns a right trim version of the string
+    // split()	        Splits the string at the specified separator, and returns a list
+    // splitlines()	    Splits the string at line breaks and returns a list
+    // strip()	        Returns a trimmed version of the string
+    // swapcase()	    Swaps cases, lower case becomes upper case and vice versa
+    // toupper()	    Converts a string into upper case
+
 private:
     using my = string;
 };
