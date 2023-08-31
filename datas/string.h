@@ -33,6 +33,7 @@ struct string : std::string // read 'struct' as "extend the interface"
     using std::string::string;    // inherit constructors, has to be explicit
     using std::string::operator=; // inherit assignment operators, has to be explicit
 
+    string(const std::string&     s) : std::string(s) {}
     string(const std::string_view s) : std::string(s) {}
 
     // Non-modifying functions
