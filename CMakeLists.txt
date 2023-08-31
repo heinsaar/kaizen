@@ -34,8 +34,8 @@ add_executable(kaizen "test_kaizen.cpp"
     "datas/type_traits.h"
     "datas/vector.h" "datas/list.h" "datas/array.h" "datas/deque.h"
     "functions/utils.h"
-    "test_kaizen.h" "tests/test_vector.h" "tests/test_list.h" "tests/test_deque.h"
-)
+    "test_kaizen.h" "tests/test_vector.h" "tests/test_list.h" "tests/test_deque.h" "tests/test_utils.h"
+ )
 
 # Set a dependency on the custom target to ensure it runs before the kaizen executable is built
 add_dependencies(kaizen generate_kaizen_header)

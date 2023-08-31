@@ -34,4 +34,7 @@ int main()
 	sanitest_array();
 	sanitest_deque();
 	sanitest_list();
+
+	// Test utilities
+	sanitest_utils();
 }
