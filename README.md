@@ -1,6 +1,6 @@
 # Kaizen
 
-Commonly used utility code for C++ projects in a single header file ```kaizen.h```.
+Often seemingly minor, but very commonly used utility code for C++ projects in a single header file ```kaizen.h```.
 
 **AT THE MOMENT IN ACTIVE DEVELOPMENT, WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
 
