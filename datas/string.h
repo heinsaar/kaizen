@@ -46,8 +46,8 @@ struct string : std::string // read 'struct' as "extend the interface"
     bool contains(const std::string_view s) const { return find(s) != std::string::npos; }
 #endif
 
-    // For some string s = "[TOBEEXTRACTED]"; 
-    // ......................^^^^^^^^^^^^^...
+    // For some string s = "[EXTRACTME]"; 
+    // ......................^^^^^^^^^...
     // Usage: s.extract_between("[", "]");
     std::string extract_between(const std::string_view beg, const std::string_view end) const
     {
