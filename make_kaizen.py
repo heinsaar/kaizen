@@ -71,4 +71,5 @@ if __name__ == '__main__':
         all_include_directives.update(include_directives)
         all_code_content.extend(code_content)
     
+    # Generate the final result of the Kaizen library header file
     write_output_file('kaizen.h', license_text, all_include_directives, all_code_content)
