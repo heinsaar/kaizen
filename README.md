@@ -1,4 +1,4 @@
-# kaizen
+# Kaizen
 
 Commonly used utility code for C++ projects in a single header file ```kaizen.h```.
 
