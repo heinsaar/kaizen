@@ -90,25 +90,25 @@ void populate_random(Collection& c, int size = 10)
 ///////////////////////////////////////////////////////////////////////////////////////////// COLORS
 
 namespace color {
-    struct color {
-        color(const std::string_view s, int c) : text(s), code(c) {}
+    struct color_string {
+        color_string(const std::string_view s, int c) : text(s), code(c) {}
         const std::string text;
         const int /*col*/ code;
 
-        friend std::ostream& operator<<(std::ostream& os, const color& cw) {
+        friend std::ostream& operator<<(std::ostream& os, const color_string& cw) {
             os << "\033[" << cw.code << "m" << cw.text << "\033[0m";
             return os;
         }
     };
 
-    color red    (const std::string_view s) { return color(s, 31); }
-    color blue   (const std::string_view s) { return color(s, 34); }
-    color green  (const std::string_view s) { return color(s, 32); }
-    color black  (const std::string_view s) { return color(s, 30); }
-    color yellow (const std::string_view s) { return color(s, 33); }
-    color magenta(const std::string_view s) { return color(s, 35); }
-    color cyan   (const std::string_view s) { return color(s, 36); }
-    color white  (const std::string_view s) { return color(s, 37); }
+    color_string red    (const std::string_view s) { return color_string(s, 31); }
+    color_string blue   (const std::string_view s) { return color_string(s, 34); }
+    color_string green  (const std::string_view s) { return color_string(s, 32); }
+    color_string black  (const std::string_view s) { return color_string(s, 30); }
+    color_string yellow (const std::string_view s) { return color_string(s, 33); }
+    color_string magenta(const std::string_view s) { return color_string(s, 35); }
+    color_string cyan   (const std::string_view s) { return color_string(s, 36); }
+    color_string white  (const std::string_view s) { return color_string(s, 37); }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// LPS (Log, Print, String)
