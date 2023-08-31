@@ -72,5 +72,11 @@ I recommend using Visual Studio Code) and follow the steps described below to ru
    .\kaizen.exe
    ```
 
-The tests will run and show their outputs in the console. There are also utility scripts `runbuild_win.bat`
-and `runbuild_linx.sh` that combine steps 5 and 6, so you can only call the corresponding script.
+There are also utility scripts `runbuild_win.bat` and `runbuild_linx.sh` that combine steps 5 and 6, so you can only call the corresponding script.
+The tests will run and show their outputs in the console that will begin like this:
+```
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||||||||||||||||||||||| KAIZEN 1.0.0 ||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+RUNNING TESTS...
+```
