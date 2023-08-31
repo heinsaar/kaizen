@@ -83,5 +83,4 @@ private:
     using my = string;
 };
 
-
 } // namespace zen
