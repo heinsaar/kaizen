@@ -10,7 +10,18 @@ This project assumes that you have Python installed on your system.
 
 The ```main()``` function simply runs the tests.
 
-Open the repo folder in your favorite IDE and follow the steps described below to run it on your system.
+## Prerequisites for building
+
+You'll need GCC for Linux or MSVC (comes with Visual Studio) for Windows development.
+
+The project is probably more backward-compatible, but at the moment is being developed and tested with the following tools: 
+
+1. Python 3.11
+2. MSVC 19.37
+1. GCC 9.4.0
+
+Open the repo folder in your favorite IDE (on Windows, if you're not very used to Visual Studio,
+I recommend using Visual Studio Code) and follow the steps described below to run it on your system.
 
 ## Build & Run on Windows & Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 
