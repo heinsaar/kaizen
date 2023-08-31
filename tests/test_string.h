@@ -8,7 +8,7 @@ void sanitest_string()
     std::string s = "[Hello World]";
     zen::string z = s;
 
-    // TODO: Find a better way than asserting
+    // TODO: Find a better way than asserting: show red FAIL
     assert(z.contains("World"));
     assert(z.extract_between("[", "]").starts_with("Hello"));
 
