@@ -12,5 +12,7 @@ void sanitest_string()
     assert(z.contains("World"));
     assert(z.extract_between("[", "]").starts_with("Hello"));
 
+    std::string x = z; z = x;
+
     zen::log(zen::color::green("TEST PASS:"), __func__);
 }
