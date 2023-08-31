@@ -61,4 +61,5 @@ Open the repo folder in your favorite IDE and follow the steps described below t
    .\kaizen.exe
    ```
 
-The tests will run and show their outputs in the console.
+The tests will run and show their outputs in the console. There are also utility scripts `runbuild_win.bat`
+and `runbuild_linx.sh` that combine steps 5 and 6, so you can only call the corresponding script.
