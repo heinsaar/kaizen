@@ -39,9 +39,12 @@ struct string : std::string // read 'struct' as "extend the interface"
     // Non-modifying functions
     bool starts_with(const std::string_view s) const { return substr(0, s.length()) == s; }
     
-    template<class Pred>
+#if __cplusplus < 202303L // check pre-C++23, at which point std::string::contains() is standard
+    // SFINAE to ensure that this version is only enabled when Pred is callable
+    template<class Pred, typename = std::enable_if_t<std::is_invocable_r_v<bool, Pred, char>>>
     bool contains(const Pred& p)            const { return std::find_if(my::begin(), my::end(), p) != my::end(); }
     bool contains(const std::string_view s) const { return find(s) != std::string::npos; }
+#endif
 
     // For some string s = "[TOBEEXTRACTED]"; 
     // ......................^^^^^^^^^^^^^...
