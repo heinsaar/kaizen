@@ -23,6 +23,7 @@
 #pragma once
 
 #include <string>
+#include <regex>
 
 namespace zen {
 
@@ -58,6 +59,22 @@ struct string : std::string // read 'struct' as "extend the interface"
         if (posEnd == std::string::npos)
             return ""; // signals 'not found'
         return substr(posBeg + 1, posEnd - posBeg - 1);
+    }
+
+    std::string extract_pattern(const std::string& pattern) {
+        const std::regex regex_pattern(pattern);
+        std::smatch match;
+        std::string in(my::begin(), my::end());
+
+        if (std::regex_search(in,   match, regex_pattern)) {
+            const size_t startPos = match.position(0);
+            const size_t length   = match.length(0);
+
+            // Create a sub-string_view using the position and length
+            return std::string(my::data() + startPos, length);
+        }
+
+        return ""; // signals 'no match'
     }
 
     // Modifying functions
