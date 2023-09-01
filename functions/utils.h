@@ -34,7 +34,7 @@ namespace zen {
 
 #define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN: " M)
 
-inline std::string quote(std::string_view s) { return '\"' + std::string(s) + '\"'; }
+inline auto quote(std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
 inline auto timestamp() {
     std::time_t result  = std::time(nullptr);
