@@ -50,7 +50,7 @@ struct string : std::string // read 'struct' as "extend the interface"
     // For some string s = "[EXTRACTME]"; 
     // ......................^^^^^^^^^...
     // Usage: s.extract_between("[", "]");
-    std::string extract_between(const std::string_view beg, const std::string_view end) const
+    zen::string extract_between(const std::string_view beg, const std::string_view end) const
     {
         const size_t posBeg = find(beg);
         if (posBeg == std::string::npos)
@@ -61,7 +61,7 @@ struct string : std::string // read 'struct' as "extend the interface"
         return substr(posBeg + 1, posEnd - posBeg - 1);
     }
 
-    std::string extract_pattern(const std::string& pattern) {
+    zen::string extract_pattern(const std::string& pattern) {
         const std::regex regex_pattern(pattern);
         std::smatch match;
         std::string in(my::begin(), my::end());
