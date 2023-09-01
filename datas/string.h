@@ -50,7 +50,7 @@ struct string : std::string // read 'struct' as "extend the interface"
     // For some string s = "[EXTRACTME]"; 
     // ......................^^^^^^^^^...
     // Usage: s.extract_between("[", "]");
-    zen::string extract_between(const std::string_view beg, const std::string_view end) const
+    std::string extract_between(const std::string_view beg, const std::string_view end) const
     {
         const size_t posBeg = find(beg);
         if (posBeg == std::string::npos)
@@ -61,7 +61,7 @@ struct string : std::string // read 'struct' as "extend the interface"
         return substr(posBeg + 1, posEnd - posBeg - 1);
     }
 
-    zen::string extract_pattern(const std::string& pattern) {
+    std::string extract_pattern(const std::string& pattern) {
         const std::regex regex_pattern(pattern);
         std::smatch match;
         std::string in(my::begin(), my::end());
@@ -78,13 +78,13 @@ struct string : std::string // read 'struct' as "extend the interface"
     }
 
     // Modifying functions
-    zen::string& prefix(const std::string_view s)
+    string& prefix(const std::string_view s)
     {
         insert(0, s);
         return *this;
     }
 
-    zen::string& replace_all(const std::string_view oldStr, const std::string_view newStr)
+    string& replace_all(const std::string_view oldStr, const std::string_view newStr)
     {
         size_t startPos = 0;
         while ((startPos = find(oldStr, startPos)) != std::string::npos) {
@@ -94,20 +94,20 @@ struct string : std::string // read 'struct' as "extend the interface"
         return *this;
     }
 
-    zen::string& trim_from_last(const std::string_view str)
+    string& trim_from_last(const std::string_view str)
     {
         *this = substr(0, rfind(str));
         return *this;
     }
 
-    zen::string& trim()
+    string& trim()
     {
         // Trim leading and trailing spaces
         my::assign(std::regex_replace(*this, std::regex("^\\s+|\\s+$"), std::string("")));
         return *this; // for natural chaining
     }
 
-    zen::string& deflate()
+    string& deflate()
     {
         // Replace any & all multiple spaces with a single space
         my::assign(std::regex_replace(my::trim(), std::regex("\\s+"), " "));
@@ -150,7 +150,7 @@ struct string : std::string // read 'struct' as "extend the interface"
     // toupper()	    Converts a string into upper case
 
 private:
-    using my = zen::string;
+    using my = string;
 };
 
 } // namespace zen

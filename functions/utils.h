@@ -129,7 +129,7 @@ namespace color {
 
 // Overload for containers like vector, list, etc.
 template<class T>
-zen::string to_string(const T& x) {
+std::string to_string(const T& x) {
     std::stringstream ss;
     if constexpr (is_iterable_v<T>) {
         ss << "[";
@@ -150,11 +150,11 @@ zen::string to_string(const T& x) {
 
 // Recursive variadic template to handle multiple arguments
 template<class T, class... Args>
-inline zen::string to_string(const T& x, const Args&... args) {
+std::string to_string(const T& x, const Args&... args) {
     return to_string(x) + " " + to_string(args...);
 }
 // Base case for the recursive calls
-inline zen::string to_string() { return ""; }
+inline std::string to_string() { return ""; }
 
 // ------------------------------------------------------------------------------------------ print
 
