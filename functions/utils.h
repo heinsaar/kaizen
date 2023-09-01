@@ -82,10 +82,10 @@ T random_int(const T min = 0, const T max = 10) {
     return dis(gen);
 }
 
-template<class Collection>
-void populate_random(Collection& c, int size = 10)
+template<class C>
+void populate_random(C& c, int size = 10)
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<Collection>, "TEMPLATE PARAMETER Collection EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_iterable_v<C>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
 
     if (!std::size(c))
         c.resize(size);
