@@ -56,6 +56,7 @@ endif()
 
 if(WIN32)
     configure_file(${CMAKE_SOURCE_DIR}/runbuild_win.bat ${CMAKE_BINARY_DIR}/runbuild_win.bat COPYONLY)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
 # TODO: Add tests and install targets if needed.
