@@ -47,5 +47,11 @@ void sanitest_string()
     s = z.extract_pattern(R"((\.\w+$))");
     assert(s == ".jpeg");
 
+    // Trim a string from leading & trailing empty spaces
+    z = "   No spaces    around me.  ";
+    s = z.trim();
+    assert(!::isspace(s.front()));
+    assert(!::isspace(s.back()));
+
     zen::log(zen::color::green("TEST PASS:"), __func__);
 }

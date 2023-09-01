@@ -100,6 +100,13 @@ struct string : std::string // read 'struct' as "extend the interface"
         return *this;
     }
 
+    string& trim()
+    {
+        // Trim leading and trailing spaces
+        my::assign(std::regex_replace(*this, std::regex("^\\s+|\\s+$"), std::string("")));
+        return *this; // for natural chaining
+    }
+
     // TODO: Implement these
     // From Deel:
     // deflate()
