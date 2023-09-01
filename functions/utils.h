@@ -38,8 +38,7 @@ inline std::string quote(std::string_view s) { return '\"' + std::string(s) + '\
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
 
 template<class T = int>
-T random_int(const T min = 0, const T max = 10)
-{
+T random_int(const T min = 0, const T max = 10) {
     // Reasons why the std::random_device and the std::mt19937 are 'static' below:
     // ---------------------------------------------------------------------------------------------------------------
     // 1. Initialization Efficiency:
