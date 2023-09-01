@@ -107,6 +107,13 @@ struct string : std::string // read 'struct' as "extend the interface"
         return *this; // for natural chaining
     }
 
+    string& deflate()
+    {
+        // Replace any & all multiple spaces with a single space
+        my::assign(std::regex_replace(my::trim(), std::regex("\\s+"), " "));
+        return *this; // for natural chaining
+    }
+
     // TODO: Implement these
     // From Deel:
     // deflate()
