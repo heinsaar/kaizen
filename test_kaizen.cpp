@@ -24,8 +24,12 @@
 
 int main()
 {
+	zen::filestring   filestr("../LICENSE.txt");
+	zen::string		  first   = filestr.getline(1);
+	const zen::string version = first.extract_pattern(R"((\d+\.\d+\.\d+))");	
+
 	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
-	zen::print(zen::color::blue("|||||||||||||||||||||||||||| KAIZEN 0.0.1 ||||||||||||||||||||||||||||\n"));
+	zen::print(zen::color::blue("|||||||||||||||||||||||||||| KAIZEN"), version, zen::color::blue("||||||||||||||||||||||||||||\n"));
 	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
 	zen::print(zen::color::blue("RUNNING TESTS...\n"));
 
