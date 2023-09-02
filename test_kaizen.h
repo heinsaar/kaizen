@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include "tests/test_filestring.h"
 #include "tests/test_string.h"
 #include "tests/test_vector.h"
 #include "tests/test_array.h"

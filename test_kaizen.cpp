@@ -30,6 +30,7 @@ int main()
 	zen::print(zen::color::blue("RUNNING TESTS...\n"));
 
 	// Test data structures
+	sanitest_filestring();
 	sanitest_string();
 	sanitest_vector();
 	sanitest_array();
