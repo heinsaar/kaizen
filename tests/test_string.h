@@ -52,7 +52,7 @@ void sanitest_string()
     s = z.trim();
     assert(!::isspace(s.front()));
     assert(!::isspace(s.back()));
-    assert(!::isspace(z.deflate()[5])); // TODO: Replace with s.is_deflated()
+    assert(!::isspace(z.deflate()[5])); // Expect: "Trim me" // TODO: Replace with s.is_deflated()
 
     zen::log(zen::color::green("TEST PASS:"), __func__);
 }
