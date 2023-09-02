@@ -141,8 +141,7 @@ zen::string to_string(const T& x) {
             ss << ", " << *it;
         }
         ss << "]";
-    }
-    else { // not iterable, single item
+    } else { // not iterable, single item
         ss << x;
     }
     return ss.str();
