@@ -123,7 +123,7 @@ struct string : std::string // read 'struct' as "extend the interface"
     }
 
     auto substring(int indx_1, int indx_2) const {
-        int sz = static_cast<int>(size());
+        const int sz = static_cast<int>(size());
 
         // Convert negative indices to positive, if necessary
         if (indx_1 < 0) indx_1 += sz;
