@@ -121,6 +121,13 @@ struct string : std::string // read 'struct' as "extend the interface"
         return *this; // for natural chaining
     }
 
+    auto substring(size_t from, size_t to) const {
+        if (from > to || size() < to) {
+            return zen::string(""); // empty string harmlessly signals a negative result
+        }
+        return zen::string(substr(from, to - from));
+    }
+
     // TODO: Implement these
     // From Deel:
     // deflate()

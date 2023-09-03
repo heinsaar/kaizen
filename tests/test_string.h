@@ -60,6 +60,10 @@ void sanitest_string()
     assert(s == ".jpeg");
     s = z.extract_pattern(R"((\.\w+$))");
     assert(s == ".jpeg");
+    assert(z.substring(0,     3) == "The");
+    assert(z.substring(10,    3) == ""); // from > to
+    assert(z.substring(100, 300) == ""); // size() < from < to
+    assert(z.substring(300, 100) == ""); // size() < to < from
 
     // Trim a string from leading & trailing empty spaces
     z = "   Trim   me  ";
