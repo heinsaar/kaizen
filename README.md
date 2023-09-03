@@ -4,11 +4,14 @@ Utility code for C++ projects in a single header file ```kaizen.h```.
 
 **AT THE MOMENT IN ACTIVE DEVELOPMENT, WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
 
+## How to contribute
+
+1. **Review code & commits.** Our commits follow [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) principles and are very easy to follow.
+2. **Suggest a utility** If you have an idea for a useful data structure, a member function, or an independent function, feel free to suggest.
+3. **Implement an issue or a TODO in code.**
+4. **Add more tests.** There can never be enough tests as long as they're independent and cover anything not previously covered.
+
 See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
-
-This project assumes that you have Python installed on your system.
-
-The ```main()``` function simply runs the tests.
 
 ## Prerequisites for building
 
@@ -21,7 +24,7 @@ The project is probably more backward-compatible, but at the moment is being dev
 1. GCC 9.4.0
 
 Open the repo folder in your favorite IDE (on Windows, if you're not very used to Visual Studio,
-I recommend using Visual Studio Code) and follow the steps described below to run it on your system.
+I recommend using Visual Studio Code) and follow the steps described below to run it on your system. The ```main()``` function simply runs the tests.
 
 ## Build & Run on Windows & Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 
