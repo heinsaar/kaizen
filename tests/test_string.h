@@ -16,21 +16,29 @@ void sanitest_string()
 
     // Extract software version
     z = "Software Version 1.2.3";
+    s = z.extract_version();
+    assert(s == "1.2.3");
     s = z.extract_pattern(R"((\d+\.\d+\.\d+))");
     assert(s == "1.2.3");
 
     // Extract date
     z = "Some Date 1/2/2023";
+    s = z.extract_date();
+    assert(s == "1/2/2023");
     s = z.extract_pattern(R"((\d+\/\d+\/\d+))");
     assert(s == "1/2/2023");
 
     // Extract email address
     z = "Contact us at: support@example.com for more details.";
+    s = z.extract_email();
+    assert(s == "support@example.com");
     s = z.extract_pattern(R"((\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b))");
     assert(s == "support@example.com");
 
     // Extract URL
     z = "Our website is http://www.example.com";
+    s = z.extract_url();
+    assert(s == "http://www.example.com");
     s = z.extract_pattern(R"((https?://[^\s]+))");
     assert(s == "http://www.example.com");
 
@@ -41,11 +49,15 @@ void sanitest_string()
 
     // Extract hashtags
     z = "Trending topics are #Tech #AI";
+    s = z.extract_hashtag();
+    assert(s == "#Tech"); // first hashtag
     s = z.extract_pattern(R"((#\w+))");
     assert(s == "#Tech"); // first hashtag
     
     // Extract file extension
     z = "The file is image.jpeg";
+    s = z.extract_extension();
+    assert(s == ".jpeg");
     s = z.extract_pattern(R"((\.\w+$))");
     assert(s == ".jpeg");
 

@@ -77,6 +77,13 @@ struct string : std::string // read 'struct' as "extend the interface"
         return ""; // signals 'no match'
     }
 
+    auto extract_version()   { return extract_pattern(R"((\d+\.\d+\.\d+))"                                     ); } // Like "X.Y.Z"
+    auto extract_date()      { return extract_pattern(R"((\d+\/\d+\/\d+))"                                     ); } // Like "31/12/2021"
+    auto extract_email()     { return extract_pattern(R"((\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b))"); }
+    auto extract_url()       { return extract_pattern(R"((https?://[^\s]+))"                                   ); }
+    auto extract_hashtag()   { return extract_pattern(R"((#\w+))"                                              ); } // Like "#event"
+    auto extract_extension() { return extract_pattern(R"((\.\w+$))"                                            ); }
+
     // Modifying functions
     zen::string& prefix(const std::string_view s)
     {
