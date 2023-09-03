@@ -6,7 +6,7 @@ Utility code for C++ projects in a single header file ```kaizen.h```.
 
 ## How to contribute
 
-1. **Review code & commits.** Our commits follow [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) principles and are very easy to follow.
+1. **Review code & commits.** Our commits follow the [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) and are very easy to review.
 2. **Suggest a utility** If you have an idea for a useful data structure, a member function, or an independent function, feel free to suggest.
 3. **Implement an issue or a TODO in code.**
 4. **Add more tests.** There can never be enough tests as long as they're independent and cover anything not previously covered.
