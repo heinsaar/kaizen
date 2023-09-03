@@ -24,6 +24,7 @@
 
 int main()
 {
+	// Extract Kaizen version from the license file
 	zen::filestring		  textfile("../LICENSE.txt");
 	zen::string	line    = textfile.getline(1);
 	const zen::string v = line.extract_pattern(R"((\d+\.\d+\.\d+))"); // version
