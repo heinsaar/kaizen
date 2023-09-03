@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <string>
 #include <regex>
 
@@ -121,11 +122,22 @@ struct string : std::string // read 'struct' as "extend the interface"
         return *this; // for natural chaining
     }
 
-    auto substring(size_t from, size_t to) const {
-        if (from > to || size() < to) {
+    auto substring(int indx_1, int indx_2) const {
+        int sz = static_cast<int>(size());
+
+        // Convert negative indices to positive, if necessary
+        if (indx_1 < 0) indx_1 += sz;
+        if (indx_2 < 0) indx_2 += sz;
+
+        // Clamp indices to valid range
+        indx_1 = std::clamp<int>(indx_1, 0, sz);
+        indx_2 = std::clamp<int>(indx_2, 0, sz);
+
+        if (indx_2 <= indx_1) {
             return zen::string(""); // empty string harmlessly signals a negative result
         }
-        return zen::string(substr(from, to - from));
+
+        return zen::string(substr(indx_1, indx_2 - indx_1));
     }
 
     // TODO: Implement these
