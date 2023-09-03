@@ -28,6 +28,7 @@ int main()
 	zen::string	line    = textfile.getline(1);
 	const zen::string v = line.extract_pattern(R"((\d+\.\d+\.\d+))"); // version
 	
+	// Print the Kaizen preamble
 	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
 	zen::print(zen::color::blue("|||||||||||||||||||||||||||| KAIZEN"), v, zen::color::blue("||||||||||||||||||||||||||||\n"));
 	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
