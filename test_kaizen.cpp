@@ -24,8 +24,8 @@
 
 int main()
 {
-	zen::filestring		  filestr("../LICENSE.txt");
-	zen::string	first   = filestr.getline(1);
+	zen::filestring		  textfile("../LICENSE.txt");
+	zen::string	first   = textfile.getline(1);
 	const zen::string v = first.extract_pattern(R"((\d+\.\d+\.\d+))"); // version
 	
 	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
