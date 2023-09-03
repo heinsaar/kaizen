@@ -61,8 +61,8 @@ void sanitest_string()
     s = z.extract_pattern(R"((\.\w+$))");
     assert(s == ".jpeg");
 
-    //   01234567891234567891 
-    z = "Test some substrings";
+    //   012345678912345 
+    z = "Test substrings";
     assert(z.substring(0,     4) == "Test");
     assert(z.substring(10,    3) == ""); // from > to
     assert(z.substring(100, 300) == ""); // size() < from < to
