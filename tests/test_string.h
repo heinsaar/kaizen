@@ -14,10 +14,12 @@ void sanitest_string()
 
     std::string x = z; z = x;
 
+    // Extract software version
     z = "Software Version 1.2.3";
     s = z.extract_pattern(R"((\d+\.\d+\.\d+))");
     assert(s == "1.2.3");
 
+    // Extract date
     z = "Some Date 1/2/2023";
     s = z.extract_pattern(R"((\d+\/\d+\/\d+))");
     assert(s == "1/2/2023");
