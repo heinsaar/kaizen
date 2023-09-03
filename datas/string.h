@@ -85,13 +85,13 @@ struct string : std::string // read 'struct' as "extend the interface"
     auto extract_extension() { return extract_pattern(R"((\.\w+$))"                                            ); }
 
     // Modifying functions
-    zen::string& prefix(const std::string_view s)
+    auto& prefix(const std::string_view s)
     {
         insert(0, s);
         return *this;
     }
 
-    zen::string& replace_all(const std::string_view oldStr, const std::string_view newStr)
+    auto& replace_all(const std::string_view oldStr, const std::string_view newStr)
     {
         size_t startPos = 0;
         while ((startPos = find(oldStr, startPos)) != std::string::npos) {
@@ -101,20 +101,20 @@ struct string : std::string // read 'struct' as "extend the interface"
         return *this;
     }
 
-    zen::string& trim_from_last(const std::string_view str)
+    auto& trim_from_last(const std::string_view str)
     {
         *this = substr(0, rfind(str));
         return *this;
     }
 
-    zen::string& trim()
+    auto& trim()
     {
         // Trim leading and trailing spaces
         my::assign(std::regex_replace(*this, std::regex("^\\s+|\\s+$"), std::string("")));
         return *this; // for natural chaining
     }
 
-    zen::string& deflate()
+    auto& deflate()
     {
         // Replace any & all multiple spaces with a single space
         my::assign(std::regex_replace(my::trim(), std::regex("\\s+"), " "));
