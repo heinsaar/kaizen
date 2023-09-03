@@ -63,7 +63,7 @@ void sanitest_string()
 
     // Test some substrings
     z = "Test some substrings";
-    assert(z.substring(0,     3) == "The");
+    assert(z.substring(0,     4) == "The");
     assert(z.substring(10,    3) == ""); // from > to
     assert(z.substring(100, 300) == ""); // size() < from < to
     assert(z.substring(300, 100) == ""); // size() < to < from
