@@ -60,6 +60,8 @@ void sanitest_string()
     assert(s == ".jpeg");
     s = z.extract_pattern(R"((\.\w+$))");
     assert(s == ".jpeg");
+
+    // Test some substrings
     assert(z.substring(0,     3) == "The");
     assert(z.substring(10,    3) == ""); // from > to
     assert(z.substring(100, 300) == ""); // size() < from < to
