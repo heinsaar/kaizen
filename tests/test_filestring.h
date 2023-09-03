@@ -10,8 +10,8 @@ void sanitest_filestring()
     zen::string version = filestr.getline(1);
     zen::string license = filestr.getline(3);
 
-    zen::log("LINE 1: ", version);
-    zen::log("LINE 3: ", license);
+    zen::log("LINE 1:", version);
+    zen::log("LINE 3:", license);
 
     zen::log(zen::color::green("TEST PASS:"), __func__);
 }
