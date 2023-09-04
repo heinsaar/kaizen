@@ -12,7 +12,7 @@ Here's a taste if what you can do with Kaizen right out of the box:
 ```cpp
 #include "kaizen.h"
 
-// Many useful functions
+// Richer containers with many useful functions
 zen::vector<int> v(15);
 zen::populate_random(v);
 if (v.contains(42)) {
