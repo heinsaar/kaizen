@@ -6,9 +6,10 @@ Utility code for C++ projects in a single header file ```kaizen.h```
 
 **AT THE MOMENT IN ACTIVE DEVELOPMENT, WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
 
-Inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), this
-library aims to provide a set of practical and simple tools that can benefit a broad range
-of C++ projects through a single header file that includes all those tools, like a Swiss army knife.
+Kaizen 1.0 does not aim to be radiation-hardened, like STL or Boost, for all imaginable scenarios and use cases.
+Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), this library
+aims to provide a malleable set of practical and simple tools through a single header file that, like a Swiss army
+knife, includes just enough of everything that can be useful for a broad range of C++ projects.
 
 Here's a taste if what you can do with Kaizen right out of the box:
 
