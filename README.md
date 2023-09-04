@@ -48,6 +48,7 @@ I recommend using Visual Studio Code) and follow the steps described below to ru
    ```bash
    cmake ..
    ```
+This will generate convenience utility scripts `runbuild_win.bat` and `runbuild_linx.sh` that combine the next steps 5 and 6, so you can only call the corresponding script for your environment.
 
    *Advanced*: If you need to specify a particular version of g++ or any other build options, you can do so with additional arguments. For example, to set the C++ compiler to g++, you could use:
 
@@ -75,7 +76,6 @@ I recommend using Visual Studio Code) and follow the steps described below to ru
    .\kaizen.exe
    ```
 
-There are also utility scripts `runbuild_win.bat` and `runbuild_linx.sh` that combine steps 5 and 6, so you can only call the corresponding script.
 The tests will run and show their outputs in the console that will begin like this:
 ```
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
