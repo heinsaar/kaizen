@@ -20,8 +20,8 @@ if (v.contains(42)) {
 }
 
 // Python-like string manupulations
-zen::string z = "[Hello World] 1.2.3";
-z.starts_with("Hello"))                  // true
+zen::string z = "Hey, [Hello World] 1.2.3";
+z.starts_with("Hey"))                    // true
 z.extract_between('[', ']');             // "Hello World"
 z.extract_version();                     // "1.2.3"
 z.extract_pattern(R"((\d+\.\d+\.\d+))"); // "1.2.3"
