@@ -7,6 +7,7 @@ Utility code for C++ projects in a single header file ```kaizen.h```
 Inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), this
 library aims to provide a set of practical and simple tools that can benefit a broad range
 of C++ projects through a single header file that includes all those tools, like a Swiss army knife.
+
 Here's a taste if what you can do with Kaizen right out of the box:
 
 ```cpp
