@@ -20,14 +20,14 @@ if (v.contains(42)) {
 }
 
 // Python-like string manupulations
-zen::string z = "Hey, [Hello World] 1.2.3";
+zen::string z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
+
 z.starts_with("Hey"))                    // true
 z.extract_between('[', ']');             // "Hello World"
 z.extract_version();                     // "1.2.3"
 z.extract_pattern(R"((\d+\.\d+\.\d+))"); // "1.2.3"
-
-z = "Some Date 1/2/2023";
 z.extract_date();                        // "1/2/2023"
+z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
 
 //   012345678912345 <-- indices into the string below
 z = "Test substrings";
