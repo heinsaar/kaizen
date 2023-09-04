@@ -5,5 +5,10 @@
 
 void sanitest_utils()
 {
+    zen::vector<int> v = {1, 2, 3, 4, 5};
+
+    std::string s = zen::to_string(v);
+    assert(s == "[1, 2, 3, 4, 5]");
+
     zen::log(zen::color::green("TEST PASS:"), __func__);
 }
