@@ -1,3 +1,5 @@
+![CMake Multi Platform Build](https://github.com/heinsaar/kaizen/actions/workflows/cmake-multi-platform.yml/badge.svg)
+
 # Kaizen
 
 Utility code for C++ projects in a single header file ```kaizen.h```
