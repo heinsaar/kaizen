@@ -91,9 +91,9 @@ void sanitest_string()
     assert(z.substring(  0, 50)  == "Test substrings");
     assert(z.substring(-30, 50)  == "Test substrings");
 
-    // Trim a string from leading & trailing empty spaces
+    // Trim and deflate a string
     z = "   Trim   me  ";
-    s = z.trim();
+    s = z.trim(); // from leading & trailing empty spaces
     assert(!::isspace(s.front()));
     assert(!::isspace(s.back()));
     assert(!::isspace(z.deflate()[5])); // Expect: "Trim me" // TODO: Replace with s.is_deflated()
