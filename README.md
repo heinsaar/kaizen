@@ -16,6 +16,9 @@ Here's a taste if what you can do with Kaizen right out of the box:
 ```cpp
 #include "kaizen.h"
 
+// For Christ's sake, just give me a simple random number
+int n = zen::random_int(); // by default between 0 and 10
+
 // Richer containers with many useful functions
 zen::vector<int> v(15);
 zen::populate_random(v);
