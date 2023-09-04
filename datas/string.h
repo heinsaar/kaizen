@@ -122,6 +122,12 @@ struct string : std::string // read 'struct' as "extend the interface"
         return *this; // for natural chaining
     }
 
+    bool is_deflated() const
+    {
+        auto neighbor_spaces = [](char a, char b) { return std::isspace(a) && std::isspace(b); };
+        return my::end() == std::adjacent_find(my::begin(), my::end(), neighbor_spaces);
+    }
+
     auto substring(int indx_1, int indx_2) const {
         const int sz = static_cast<int>(size());
 

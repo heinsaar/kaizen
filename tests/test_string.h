@@ -95,7 +95,7 @@ void sanitest_string()
     s = z.trim(); // from leading & trailing empty spaces
     assert(!::isspace(s.front()));
     assert(!::isspace(s.back()));
-    assert(!::isspace(z.deflate()[5])); // Expect: "Trim me" // TODO: Replace with s.is_deflated()
+    assert(z.deflate().is_deflated());
 
     zen::log(zen::color::green("TEST PASS:"), __func__);
 }
