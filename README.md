@@ -1,8 +1,45 @@
 # Kaizen
 
-Utility code for C++ projects in a single header file ```kaizen.h```.
+Utility code for C++ projects in a single header file ```kaizen.h```
 
 **AT THE MOMENT IN ACTIVE DEVELOPMENT, WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
+
+Inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), this
+library aims to provide a set of practical and simple tools that can benefit a broad range
+of C++ projects through a single header file that includes all those tools, like a Swiss army knife.
+Here's a taste if what you can do with Kaizen right out of the box:
+
+```cpp
+// Many useful functions
+zen::vector<int> v(15);
+zen::populate_random(v);
+if (v.contains(42)) {
+    // ...
+}
+
+// Python-like string manupulations
+zen::string z = "[Hello World] 1.2.3";
+z.starts_with("Hello"))                  // true
+z.extract_between('[', ']');             // "Hello World"
+z.extract_version();                     // "1.2.3"
+z.extract_pattern(R"((\d+\.\d+\.\d+))"); // "1.2.3"
+
+z = "Some Date 1/2/2023";
+z.extract_date();                        // "1/2/2023"
+
+//   012345678912345 
+z = "Test substrings";
+z.substring(  0,   4) == "Test");        // both arguments are indices
+z.substring(-20,   4) == "Test");        // negative indices are okay
+z.substring(  0,  -5) == "Test subst");  // just like in Python
+z.substring(100, 300) == "");            // out-of-bounds indices are okay too
+z.substring(  5,  50) == "substrings");  // just like in Python
+
+// Open a file and read right away
+zen::filestring       filestr("../LICENSE.txt");
+zen::string version = filestr.getline(1);
+zen::string license = filestr.getline(3);
+```
 
 ## Ways to contribute
 
