@@ -63,13 +63,13 @@ void sanitest_string()
 
     //   012345678912345 
     z = "Test substrings";
-    assert(z.substring(0,     4) == "Test");
-    assert(z.substring(10,    3) == ""); // from > to
+    assert(z.substring(  0,   4) == "Test");
+    assert(z.substring( 10,   3) == ""); // from > to
     assert(z.substring(100, 300) == ""); // size() < from < to
     assert(z.substring(300, 100) == ""); // size() < to < from
     assert(z.substring(  5,   5) == ""); // empty string if indices are same
     assert(z.substring(-20,   4) == "Test");
-    assert(z.substring(0,    -5) == "Test subst");
+    assert(z.substring(  0,  -5) == "Test subst");
     // Negative start, negative end
     assert(z.substring(-5,   -2) == "rin");
     assert(z.substring(-2,   -5) == ""); // unnatural edge case
@@ -85,8 +85,8 @@ void sanitest_string()
     assert(z.substring(  0,  30) == "Test substrings"); // end out of bounds
     assert(z.substring(-30,   4) == "Test");            // start out of bounds
     // Various combinations
-    assert(z.substring(-5, 5)    == "");      // negative to positive that precedes it
-    assert(z.substring( 5,-5)    == "subst"); // positive to negative that follows it
+    assert(z.substring(-5,   5)  == "");      // negative to positive that precedes it
+    assert(z.substring( 5,  -5)  == "subst"); // positive to negative that follows it
     // Full string
     assert(z.substring(  0, 50)  == "Test substrings");
     assert(z.substring(-30, 50)  == "Test substrings");
