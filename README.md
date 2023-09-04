@@ -4,7 +4,7 @@ Utility code for C++ projects in a single header file ```kaizen.h```.
 
 **AT THE MOMENT IN ACTIVE DEVELOPMENT, WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
 
-## How to contribute
+## Ways to contribute
 
 1. **Review code & commits.** Our commits follow the [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) and are very easy to review.
 2. **Suggest a utility** If you have an idea for a useful data structure, a member function, or an independent function, feel free to suggest.
