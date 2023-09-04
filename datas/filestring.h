@@ -50,7 +50,7 @@ struct filestring
         }
     }
 
-    // Method to get line n from the file (indexint starts from 1, not 0)
+    // Method to get line n from the file (indexing starts from 1, not 0)
     std::string getline(const int nth) {
         filestream_.clear();                 // clear any error state
         filestream_.seekg(0, std::ios::beg); // reset back to the beginning of the file
