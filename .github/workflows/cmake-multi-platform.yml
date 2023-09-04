@@ -13,8 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
-      # Set fail-fast to false to ensure that feedback is delivered for all matrix combinations. Consider changing this to true when your workflow is stable.
-      fail-fast: false
+      fail-fast: false # to ensure that feedback is delivered for all matrix combinations; consider changing this to true when your workflow is stable
 
       # Set up a matrix to run the following 3 configurations:
       # 1. <Windows, Release, latest MSVC  compiler toolchain on the default runner image, default generator>
