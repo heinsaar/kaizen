@@ -10,6 +10,8 @@ of C++ projects through a single header file that includes all those tools, like
 Here's a taste if what you can do with Kaizen right out of the box:
 
 ```cpp
+#include "kaizen.h"
+
 // Many useful functions
 zen::vector<int> v(15);
 zen::populate_random(v);
