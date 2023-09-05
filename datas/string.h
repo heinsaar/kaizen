@@ -146,11 +146,7 @@ struct string : std::string // read 'struct' as "extend the interface"
         return zen::string(substr(indx_1, indx_2 - indx_1));
     }
 
-    // TODO: Implement these
-    // From Deel:
-    // deflate()
-    // 
-    // From Python string
+    // TODO: Implement these (from Python string)
     // capitalize()	    Converts the first character to upper case
     // tolower()	    Converts string into lower case
     // center()	        Returns a centered string
