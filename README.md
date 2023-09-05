@@ -58,7 +58,7 @@ z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
 
-// Open a file and read right away
+// Open a file and read any line right away
 zen::filestring       filestr("../LICENSE.txt");
 zen::string version = filestr.getline(1);
 zen::string license = filestr.getline(3);
