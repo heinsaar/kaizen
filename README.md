@@ -38,10 +38,10 @@ Here's a taste of what you can do with Kaizen right out of the box:
 int n = zen::random_int(); // by default between 0 and 10
 
 // Richer containers with many useful functions
-zen::vector<int> v(15);
+zen::vector<int> v(5);
 zen::populate_random(v);
 if (v.contains(42)) {
-    // ...
+    zen::print(v); // will print the contents, like [4, 2, 5, 7, 6]
 }
 
 // Python-like string manupulations
