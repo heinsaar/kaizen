@@ -6,12 +6,25 @@ Utility code for C++ projects in a single header file ```kaizen.h```
 
 **AT THE MOMENT IN ACTIVE DEVELOPMENT, WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
 
-Kaizen 1.0 does not aim to be radiation-hardened, like STL or Boost, for all imaginable scenarios and use cases.
-Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), this library
-aims to provide a malleable set of practical and simple tools through a single header file that, like a Swiss army
-knife, includes just enough of everything that can be useful for a broad range of C++ projects.
+## Philosophy
 
-Here's a taste if what you can do with Kaizen right out of the box:
+Kaizen 1.0 does not aim to be radiation-hardened, like STL or Boost, for all imaginable scenarios and use cases.
+Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), this library aims
+to provide a malleable and growing set of practical and simple tools through a single header file that, like a
+Swiss army knife, includes just enough of everything that can be useful for a broad range of C++ projects.
+
+So, for example, even though STL containers were not meant to be derived from (in particular, their destructors
+are not virtual), `zen::string` derives from `std::string` in order to quickly, without having to implement all
+the conversion operators and delegate functions that a composition-based approach would require, provide the ability
+to convert to and from `std::string` at any point and place in the codebase whenever there's need for the richer
+interface of working with strings that `zen::string` provides.
+
+This approach is rooted in the philosophy that in the vast majority of cases and projects, the benefits from these
+utilities far outweigh any theoretical dangers of for some reason allocating `zen::string` itself dynamically and
+then deleting it through a pointer to base `std::string`, whether accidentally or on purpose — any codebase is far more
+likely to experience problems and corrosion from the regular population of bugs that are much easier to make accidentally.
+
+Here's a taste of what you can do with Kaizen right out of the box:
 
 ```cpp
 #include "kaizen.h"
