@@ -140,7 +140,7 @@ struct string : std::string // read 'struct' as "extend the interface"
         indx_2 = std::clamp<int>(indx_2, 0, sz);
 
         if (indx_2 <= indx_1) {
-            return zen::string(""); // empty string harmlessly signals a negative result
+            return zen::string(""); // empty string signals a negative result and is harmless
         }
 
         return zen::string(substr(indx_1, indx_2 - indx_1));
