@@ -34,7 +34,7 @@ Here's a taste of what you can do with Kaizen right out of the box:
 ```cpp
 #include "kaizen.h"
 
-// For Christ's sake, just give me a simple random number
+// Just give me a simple random number for everyday use
 int n = zen::random_int(); // by default between 0 and 10
 
 // Richer containers with many useful functions
