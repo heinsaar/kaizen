@@ -51,8 +51,10 @@ namespace zen {
     template <class T> constexpr bool is_iterable_v = is_iterable<T>::value;
 #endif
 
+// ------------------------------------------------------------------------------------------ is_string_like
+
     template<class T>
-    constexpr bool is_string_like() {
+    constexpr bool is_string_like() { // TODO: Make this like the is_iterable_v above for consistency
         return std::is_convertible<T, std::string>::value
             || std::is_convertible<T, const char*>::value;
     }
