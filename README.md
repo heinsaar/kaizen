@@ -16,8 +16,8 @@ Swiss army knife, includes just enough of everything that can be useful for a br
 So, for example, even though STL containers were not meant to be derived from (in particular, their destructors
 are not virtual), `zen::string` derives from `std::string` in order to quickly, without having to implement all
 the conversion operators and delegate functions that a composition-based approach would require, provide the ability
-to convert to and from `std::string` at any point and place in the codebase whenever there's need for the richer
-interface of working with strings that `zen::string` provides.
+to convert to and from `std::string` at any point in the codebase whenever there's need for the richer interface
+of working with strings that `zen::string` provides.
 
 This approach is rooted in the philosophy that in the vast majority of cases and projects, the benefits from these
 utilities far outweigh any theoretical dangers of for some reason allocating `zen::string` itself dynamically and
