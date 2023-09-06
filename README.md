@@ -2,7 +2,7 @@
 
 # Kaizen
 
-Utility code for C++ projects in a single header file ```kaizen.h```
+Collection of utilities and enhanced data structures for a wide range of C++ projects in a single header file ```kaizen.h```
 
 =====================================================================
 
