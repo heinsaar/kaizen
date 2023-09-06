@@ -100,3 +100,19 @@ void sanitest_string()
 
     zen::log(zen::color::green("TEST PASS:"), __func__);
 }
+
+void test_string_ends_with()
+{
+    zen::string z = "Hello";
+    assert( z.ends_with(""));            // string is not empty, substring is empty
+    assert( z.ends_with("lo"));          // string ends with the given substring
+    assert(!z.ends_with("Hel"));         // string does not end with the given substring
+    assert(!z.ends_with("Hello World")); // substring is longer than the string
+    assert( z.ends_with("Hello"));       // string and substring are the same
+
+    z = "";
+    assert( z.ends_with(""));            // string is empty, substring is empty
+    assert(!z.ends_with("test"));        // string is empty, substring is not empty
+
+    zen::log(zen::color::green("TEST PASS:"), __func__);
+}
