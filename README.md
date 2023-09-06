@@ -151,15 +151,8 @@ This will generate convenience utility scripts `runbuild_win.bat` and `runbuild_
    .\kaizen.exe
    ```
 
-The tests will run and show their outputs in the console that will begin like this:
-```
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-|||||||||||||||||||||||||||| KAIZEN 1.0.0 ||||||||||||||||||||||||||||
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-RUNNING TESTS...
-TEST PASS: ...
-TEST PASS: ...
-TEST PASS: ...
-TEST FAIL: ...
-TEST PASS: ...
-```
+A sample build and run will produce a console output that will look like this:
+
+![image](https://github.com/heinsaar/kaizen/assets/14178490/7a8d4e2a-c97c-41a5-ac35-3f666d1eb2ee)
+
+
