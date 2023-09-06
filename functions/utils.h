@@ -34,6 +34,19 @@ namespace zen {
 
 #define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN: " M)
 
+// The do { } while (0) construct ensures that the macro behaves as a single statement.
+// This allows it to be used safely in contexts like if-else statements without braces,
+// preventing syntax errors or unexpected behavior due to dangling elses.
+#define ZEN_EXPECT(cond) \
+    do { \
+        if (cond) { \
+            zen::log(zen::color::green("CASE PASS:"), #cond); \
+        } \
+        if (!(cond)) { \
+            zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #cond); \
+        } \
+    } while (0)
+
 inline auto quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
 inline auto timestamp() {
