@@ -84,11 +84,11 @@ void sanitest_string()
     assert(z.substring(-25, -30) == "");           // both out of bounds
     assert(z.substring(-30,   4) == "Test");       // start out of bounds
     // Various combinations
-    assert(z.substring(-5,   5)  == "");           // negative to positive that precedes it
-    assert(z.substring( 5,  -5)  == "subst");      // positive to negative that follows it
-    // Full string
-    assert(z.substring(  0, 50)  == "Test substrings");
-    assert(z.substring(-30, 50)  == "Test substrings");
+    assert(z.substring(-5,    5) == "");           // negative to positive that precedes it
+    assert(z.substring( 5,   -5) == "subst");      // positive to negative that follows it
+    // Full string           
+    assert(z.substring(  0,  50) == "Test substrings");
+    assert(z.substring(-30,  50) == "Test substrings");
 
     // Trim and deflate a string
     z = "   Trim   me  ";
