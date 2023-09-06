@@ -8,7 +8,7 @@ void sanitest_string()
     zen::log("BEGIN TEST------------------------------------------------", __func__);
 
     std::string s = "[Hello World] 1.2.3";
-    zen::string z = s;
+    zen::string z = s; s = z; z = s; // check basic interchangability
 
     ZEN_EXPECT(z.contains("World"));
     ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
