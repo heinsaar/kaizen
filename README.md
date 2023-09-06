@@ -46,7 +46,7 @@ if (v.contains(42)) {
     zen::print("Contents:", v); // any number of arguments, like in Python
 }
 
-// Fully interchangeable with std::vector:
+// Fully interchangeable with std::vector
 std::vector x = v; v = x; // and so on
 ```
 Python-like string manupulations:
@@ -68,7 +68,7 @@ z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
 
-// Fully interchangeable with std::string:
+// Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
 ```
 Open a file and read any line right away:
@@ -82,7 +82,7 @@ zen::string license = filestr.getline(3);
 
 1. **Review code & commits.** Our commits follow the [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) and therefore are very easy to review.
 1. **Suggest a utility.** If you have an idea for a useful piece of C++ code, feel free to suggest in [our discussions](https://github.com/heinsaar/kaizen/discussions).
-1. **Generalize a utility.** Or if you see how to easily generalize a type or a function in a meaningful way.
+1. **Generalize a utility.** If you see how to easily generalize a type or a function in a meaningful way.
 1. **Implement an [issue](https://github.com/heinsaar/kaizen/issues) or any "TODO" in code.**
 1. **Add more tests.** There can never be enough tests as long as they're more or less independent and cover anything not previously covered.
 
