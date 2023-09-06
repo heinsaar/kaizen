@@ -36,15 +36,17 @@ Here's a taste of what you can do with Kaizen right out of the box:
 
 // Just give me a simple random number for everyday use
 int n = zen::random_int(); // by default between 0 and 10
-
-// Richer containers with many useful functions
+```
+Richer containers with many useful functions:
+```cpp
 zen::vector<int> v(5);
 zen::populate_random(v);
 if (v.contains(42)) {
     zen::print(v); // will print the contents, like [4, 2, 5, 7, 6]
 }
-
-// Python-like string manupulations
+```
+Python-like string manupulations:
+```cpp
 zen::string z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
 
 z.starts_with("Hey"))                    // true
@@ -62,10 +64,11 @@ z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
 
-// Fully interchangeable with std::string
+// Fully interchangeable with `std::string`:
 std::string x = z; z = x; // and so on
-
-// Open a file and read any line right away
+```
+Open a file and read any line right away:
+```cpp
 zen::filestring       filestr("../LICENSE.txt");
 zen::string version = filestr.getline(1);
 zen::string license = filestr.getline(3);
