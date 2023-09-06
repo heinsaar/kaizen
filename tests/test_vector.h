@@ -13,4 +13,5 @@ void sanitest_vector()
     zen::log("RANDOM VECTOR:", v);
 
     ZEN_EXPECT(v.contains(777));
+    ZEN_EXPECT(zen::is_empty(v) == v.is_empty());
 }

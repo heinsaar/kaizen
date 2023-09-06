@@ -14,4 +14,5 @@ void sanitest_deque()
     zen::log("RANDOM DEQUE", q);
 
     ZEN_EXPECT(q.contains(777));
+    ZEN_EXPECT(zen::is_empty(q) == q.is_empty());
 }

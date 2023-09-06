@@ -12,4 +12,5 @@ void sanitest_array()
     zen::log("ARRAY:", a);
 
     ZEN_EXPECT(a.contains(5));
+    ZEN_EXPECT(zen::is_empty(a) == a.is_empty());
 }
