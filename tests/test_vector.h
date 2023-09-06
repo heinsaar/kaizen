@@ -5,7 +5,7 @@
 
 void sanitest_vector()
 {
-    zen::log(zen::color::yellow("BEGIN TEST------------------------------------------------"), __func__);
+    zen::log("BEGIN TEST------------------------------------------------", __func__);
     zen::vector<int> v(15);
     zen::populate_random(v);
 

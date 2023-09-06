@@ -5,7 +5,7 @@
 
 void sanitest_list()
 {
-    zen::log(zen::color::yellow("BEGIN TEST------------------------------------------------"), __func__);
+    zen::log("BEGIN TEST------------------------------------------------", __func__);
 
     zen::list<int> x;
     zen::populate_random(x);
