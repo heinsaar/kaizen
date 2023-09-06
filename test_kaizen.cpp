@@ -35,6 +35,8 @@ int main()
 	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
 	zen::print(zen::color::blue("RUNNING TESTS...\n"));
 
+///////////////////////////////////////////////////////////////////////////////////////////// SANITY TESTS
+
 	// Test data structures
 	sanitest_filestring();
 	sanitest_string();
@@ -45,4 +47,6 @@ int main()
 
 	// Test utilities
 	sanitest_utils();
+
+///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
 }
