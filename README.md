@@ -29,7 +29,9 @@ utilities far outweigh any theoretical dangers of for some reason allocating `ze
 then deleting it through a pointer to base `std::string`, whether accidentally or on purpose. Any codebase is far more
 likely to experience problems and corrosion from the regular population of bugs that are much easier to make accidentally.
 
-Here's a taste of what you can do with Kaizen right out of the box (the `kaizen.h` header is generated during build):
+The `kaizen.h` header is generated during build (see below for building).
+
+Here's a taste of what you can do with Kaizen right out of the box:
 
 ```cpp
 #include "kaizen.h"
