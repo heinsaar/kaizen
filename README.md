@@ -42,7 +42,8 @@ Richer containers with many useful functions:
 zen::vector<int> v(5);
 zen::populate_random(v);
 if (v.contains(42)) {
-    zen::print(v); // will print the contents, like [4, 2, 5, 7, 6]
+    zen::print(v);              // will print the contents, like [4, 2, 5, 7, 6]
+    zen::print("Contents:", v); // any number of arguments, like in Python
 }
 
 // Fully interchangeable with std::vector:
