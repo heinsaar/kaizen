@@ -44,6 +44,8 @@ struct array : std::array<T, N> // read 'struct' as "extend the interface"
     bool contains( Pred p)    const { return std::find_if(my::begin(), my::end(), p) != my::end(); }
     bool contains(const T& x) const { return std::find(   my::begin(), my::end(), x) != my::end(); }
 
+    bool is_empty() const { return my::empty(); }
+
 private:
     using my = array;
 };
