@@ -51,22 +51,23 @@ std::vector x = v; v = x; // and so on
 ```
 Python-like string manupulations:
 ```cpp
-zen::string z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
-
+//   012345678912345 <-- indices into the string below
+zen::string z = "Test substrings";
+z.substring(  0,   4) == "Test");        // both arguments are indices
+z.substring(-20,   4) == "Test");        // negative indices are okay
+z.substring(  0,  -5) == "Test subst");  // just like in Python
+z.substring(100, 300) == "");            // out-of-bounds indices are okay too
+z.substring(  5,  50) == "substrings");  // just like in Python
+```
+And more:
+```cpp
+z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
 z.starts_with("Hey"))                    // true
 z.extract_between('[', ']');             // "Hello World"
 z.extract_version();                     // "1.2.3"
 z.extract_pattern(R"((\d+\.\d+\.\d+))"); // "1.2.3"
 z.extract_date();                        // "1/2/2023"
 z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
-
-//   012345678912345 <-- indices into the string below
-z = "Test substrings";
-z.substring(  0,   4) == "Test");        // both arguments are indices
-z.substring(-20,   4) == "Test");        // negative indices are okay
-z.substring(  0,  -5) == "Test subst");  // just like in Python
-z.substring(100, 300) == "");            // out-of-bounds indices are okay too
-z.substring(  5,  50) == "substrings");  // just like in Python
 
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
