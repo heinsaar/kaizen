@@ -63,8 +63,19 @@ void sanitest_string()
     s = z.extract_pattern(R"((\.\w+$))");
     ZEN_EXPECT(s == ".jpeg");
 
-    //   012345678912345 
-    z = "Test substrings";
+    // Trim and deflate a string
+    z = "   Trim   me  ";
+    s = z.trim(); // from leading & trailing empty spaces
+    ZEN_EXPECT(!::isspace(s.front()));
+    ZEN_EXPECT(!::isspace(s.back()));
+    ZEN_EXPECT(z.deflate().is_deflated());
+}
+
+void test_string_substring()
+{
+    zen::log("BEGIN TEST------------------------------------------------", __func__);
+    //               012345678912345 
+    zen::string z = "Test substrings";
     ZEN_EXPECT(z.substring(  0,   4) == "Test");
     ZEN_EXPECT(z.substring( 10,   3) == "");           // from > to
     ZEN_EXPECT(z.substring(100, 300) == "");           // size() < from < to
@@ -91,13 +102,6 @@ void sanitest_string()
     // Full string           
     ZEN_EXPECT(z.substring(  0,  50) == "Test substrings");
     ZEN_EXPECT(z.substring(-30,  50) == "Test substrings");
-
-    // Trim and deflate a string
-    z = "   Trim   me  ";
-    s = z.trim(); // from leading & trailing empty spaces
-    ZEN_EXPECT(!::isspace(s.front()));
-    ZEN_EXPECT(!::isspace(s.back()));
-    ZEN_EXPECT(z.deflate().is_deflated());
 }
 
 void test_string_ends_with()
