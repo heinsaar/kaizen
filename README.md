@@ -39,7 +39,7 @@ int n = zen::random_int(); // by default between 0 and 10
 ```
 Richer containers with many useful functions:
 ```cpp
-zen::vector<int> v(5);
+zen::vector<int> v;
 zen::populate_random(v);
 if (v.contains(42)) {
     zen::print(v);              // will print the contents, like [4, 2, 5, 7, 6]
