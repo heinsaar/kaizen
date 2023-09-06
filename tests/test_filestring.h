@@ -5,6 +5,8 @@
 
 void sanitest_filestring()
 {
+    zen::log(zen::color::yellow("BEGIN TEST:"), __func__);
+
     zen::filestring filestr("../LICENSE.txt");
 
     zen::string version = filestr.getline(1);

@@ -5,11 +5,11 @@
 
 void sanitest_deque()
 {
+    zen::log(zen::color::yellow("BEGIN TEST:"), __func__);
+
     zen::deque<int> q;
     zen::populate_random(q);
 
     q.push_back(777);
     assert(q.contains(777));
-
-    zen::log(zen::color::green("TEST PASS:"), __func__, " CONTENT", q);
 }

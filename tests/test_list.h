@@ -5,11 +5,11 @@
 
 void sanitest_list()
 {
+    zen::log(zen::color::yellow("BEGIN TEST:"), __func__);
+
     zen::list<int> x;
     zen::populate_random(x);
 
     x.push_back(777);
     assert(x.contains(777));
-
-    zen::log(zen::color::green("TEST PASS:"), __func__, " CONTENT", x);
 }

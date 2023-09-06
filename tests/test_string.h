@@ -5,6 +5,8 @@
 
 void sanitest_string()
 {
+    zen::log(zen::color::yellow("BEGIN TEST:"), __func__);
+
     std::string s = "[Hello World] 1.2.3";
     zen::string z = s;
 
@@ -97,12 +99,12 @@ void sanitest_string()
     assert(!::isspace(s.front()));
     assert(!::isspace(s.back()));
     assert(z.deflate().is_deflated());
-
-    zen::log(zen::color::green("TEST PASS:"), __func__);
 }
 
 void test_string_ends_with()
 {
+    zen::log(zen::color::yellow("BEGIN TEST:"), __func__);
+
     zen::string z = "Hello";
     assert( z.ends_with(""));            // string is not empty, substring is empty
     assert( z.ends_with("lo"));          // string ends with the given substring
@@ -113,6 +115,4 @@ void test_string_ends_with()
     z = "";
     assert( z.ends_with(""));            // string is empty, substring is empty
     assert(!z.ends_with("test"));        // string is empty, substring is not empty
-
-    zen::log(zen::color::green("TEST PASS:"), __func__);
 }
