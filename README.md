@@ -44,6 +44,9 @@ zen::populate_random(v);
 if (v.contains(42)) {
     zen::print(v); // will print the contents, like [4, 2, 5, 7, 6]
 }
+
+// Fully interchangeable with std::vector:
+std::vector x = v; v = x; // and so on
 ```
 Python-like string manupulations:
 ```cpp
@@ -64,7 +67,7 @@ z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
 
-// Fully interchangeable with `std::string`:
+// Fully interchangeable with std::string:
 std::string x = z; z = x; // and so on
 ```
 Open a file and read any line right away:
