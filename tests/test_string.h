@@ -10,7 +10,6 @@ void sanitest_string()
     std::string s = "[Hello World] 1.2.3";
     zen::string z = s;
 
-    // TODO: Find a better way than asserting: show red FAIL
     ZEN_EXPECT(z.contains("World"));
     ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
 
