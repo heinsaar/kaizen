@@ -76,7 +76,7 @@ zen::string license = filestr.getline(3);
 1. **Review code & commits.** Our commits follow the [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) and therefore are very easy to review.
 3. **Suggest a utility.** If you have an idea for a useful piece of C++ code, feel free to suggest in [our discussions](https://github.com/heinsaar/kaizen/discussions).
 4. **Implement an [issue](https://github.com/heinsaar/kaizen/issues) or any "TODO" in code.**
-5. **Add more tests.** There can never be enough tests as long as they're independent and cover anything not previously covered.
+5. **Add more tests.** There can never be enough tests as long as they're more or less independent and cover anything not previously covered.
 
 See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
 
