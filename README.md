@@ -51,7 +51,7 @@ std::vector x = v; v = x; // and so on
 ```
 Python-like string manupulations:
 ```cpp
-//   012345678912345 <-- indices into the string below
+// indices ----> 012345678912345
 zen::string z = "Test substrings";
 z.substring(  0,   4) == "Test");        // both arguments are indices
 z.substring(-20,   4) == "Test");        // negative indices are okay
