@@ -125,7 +125,22 @@ I recommend using Visual Studio Code) and follow the steps described below to ru
    ```
 This will generate convenience utility scripts `runbuild_win.bat` and `runbuild_linx.sh` that combine the next steps 5 and 6, so you can simply call the corresponding script for your environment.
 
-   *Advanced*: If you need to specify a particular version of g++ or any other build options, you can do so with additional arguments. For example, to set the C++ compiler to g++, you could use:
+**NOTE:** This will only work smoothly either on Linux or from within a Windows terminal that's integrated into Visual Studio (not Visual Studio Code), where the integrated terminal automatically sets up all the necessary environment variables (pointing to the MSVC compiler `cl.exe`, etc.) that are automatically configured when you run Visual Studio's own developer command prompt. If you run this from a Windows terminal inside another IDE like Visual Studio Code, you will probably get an error that looks like this:
+
+```bash
+-- Building for: NMake Makefiles
+-- The C compiler identification is unknown
+-- The CXX compiler identification is unknown
+CMake Error at CMakeLists.txt:11 (project):
+  The CMAKE_C_COMPILER:
+
+    cl
+
+  is not a full path and was not found in the PATH.
+```
+If you want to develop using MSVC compiler from Visual Studio Code, there are various ways of setting that up, please see online.
+
+   If you need to specify a particular version of g++ or any other build options, you can do so with additional arguments. For example, to set the C++ compiler to g++, you could use:
 
    ```bash
    cmake -DCMAKE_CXX_COMPILER=g++ ..
