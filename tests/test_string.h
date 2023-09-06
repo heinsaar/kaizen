@@ -5,7 +5,7 @@
 
 void sanitest_string()
 {
-    zen::log(zen::color::yellow("BEGIN TEST:"), __func__);
+    zen::log(zen::color::yellow("BEGIN TEST------------------------------------------------"), __func__);
 
     std::string s = "[Hello World] 1.2.3";
     zen::string z = s;
@@ -103,7 +103,7 @@ void sanitest_string()
 
 void test_string_ends_with()
 {
-    zen::log(zen::color::yellow("BEGIN TEST:"), __func__);
+    zen::log(zen::color::yellow("BEGIN TEST------------------------------------------------"), __func__);
 
     zen::string z = "Hello";
     assert( z.ends_with(""));            // string is not empty, substring is empty

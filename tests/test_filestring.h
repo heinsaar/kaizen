@@ -5,7 +5,7 @@
 
 void sanitest_filestring()
 {
-    zen::log(zen::color::yellow("BEGIN TEST:"), __func__);
+    zen::log(zen::color::yellow("BEGIN TEST------------------------------------------------"), __func__);
 
     zen::filestring filestr("../LICENSE.txt");
 
