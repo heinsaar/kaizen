@@ -12,6 +12,7 @@ void sanitest_string()
     assert(z.contains("World"));
     assert(z.extract_between("[", "]").starts_with("Hello"));
 
+    // Check interchangeability with std::string // TODO: Cover more cases?
     std::string x = z; z = x;
 
     // Extract software version
