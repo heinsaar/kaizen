@@ -11,5 +11,5 @@ void sanitest_list()
     zen::populate_random(x);
 
     x.push_back(777);
-    assert(x.contains(777));
+    ZEN_EXPECT(x.contains(777));
 }

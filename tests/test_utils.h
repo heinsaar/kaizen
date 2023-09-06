@@ -9,7 +9,7 @@ void sanitest_utils()
     zen::vector<int> v = {1, 2, 3, 4, 5};
 
     std::string s = zen::to_string(v);
-    assert(s == "[1, 2, 3, 4, 5]");
+    ZEN_EXPECT(s == "[1, 2, 3, 4, 5]");
 
-    assert(zen::random_int() <= 10);
+    ZEN_EXPECT(zen::random_int() <= 10);
 }
