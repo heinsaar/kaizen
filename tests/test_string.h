@@ -23,7 +23,7 @@ void sanitest_string()
     ZEN_EXPECT(!::isspace(s.front()));
     ZEN_EXPECT(!::isspace(s.back()));
     ZEN_EXPECT(z.deflate().is_deflated());
-    ZEN_EXPECT(zen::is_empty(z) == z.is_empty());
+    ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
 }
 
 void test_string_extract()
