@@ -51,8 +51,8 @@ inline auto quote(const std::string_view s) { return '\"' + std::string(s) + '\"
 
 inline auto timestamp() {
     std::time_t result  = std::time(nullptr);
-    std::string timeStr = std::asctime(std::localtime(&result));
-    return timeStr.substr(0, timeStr.length() - 1);
+    std::string timestr = std::asctime(std::localtime(&result));
+    return timestr.substr(0, timestr.length() - 1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
