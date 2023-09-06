@@ -62,6 +62,9 @@ z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
 
+// Fully interchangeable with std::string
+std::string x = z; z = x; // and so on
+
 // Open a file and read any line right away
 zen::filestring       filestr("../LICENSE.txt");
 zen::string version = filestr.getline(1);
