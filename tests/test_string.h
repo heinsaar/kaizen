@@ -16,9 +16,26 @@ void sanitest_string()
     // Check interchangeability with std::string // TODO: Cover more cases?
     std::string x = z; z = x;
 
+    // Trim and deflate a string
+    z = "   Trim   me  ";
+    s = z.trim(); // from leading & trailing empty spaces
+    ZEN_EXPECT(!::isspace(s.front()));
+    ZEN_EXPECT(!::isspace(s.back()));
+    ZEN_EXPECT(z.deflate().is_deflated());
+}
+
+void test_string_extract()
+{
+    zen::log("BEGIN TEST------------------------------------------------", __func__);
+
+    zen::string z = "[Hello World] 1.2.3";
+
+    ZEN_EXPECT(z.contains("World"));
+    ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
+
     // Extract software version
     z = "Software Version 1.2.3";
-    s = z.extract_version();
+    std::string s = z.extract_version();
     ZEN_EXPECT(s == "1.2.3");
     s = z.extract_pattern(R"((\d+\.\d+\.\d+))");
     ZEN_EXPECT(s == "1.2.3");
@@ -62,13 +79,6 @@ void sanitest_string()
     ZEN_EXPECT(s == ".jpeg");
     s = z.extract_pattern(R"((\.\w+$))");
     ZEN_EXPECT(s == ".jpeg");
-
-    // Trim and deflate a string
-    z = "   Trim   me  ";
-    s = z.trim(); // from leading & trailing empty spaces
-    ZEN_EXPECT(!::isspace(s.front()));
-    ZEN_EXPECT(!::isspace(s.back()));
-    ZEN_EXPECT(z.deflate().is_deflated());
 }
 
 void test_string_substring()
