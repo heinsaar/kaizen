@@ -9,7 +9,9 @@ void sanitest_list()
 
     zen::list<int> x;
     zen::populate_random(x);
-
     x.push_back(777);
+
+    zen::log(x);
+
     ZEN_EXPECT(x.contains(777));
 }

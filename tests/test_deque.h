@@ -9,7 +9,9 @@ void sanitest_deque()
 
     zen::deque<int> q;
     zen::populate_random(q);
-
     q.push_back(777);
+
+    zen::log(q);
+
     ZEN_EXPECT(q.contains(777));
 }
