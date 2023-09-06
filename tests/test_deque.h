@@ -11,7 +11,7 @@ void sanitest_deque()
     zen::populate_random(q);
     q.push_back(777);
 
-    zen::log(q);
+    zen::log("RANDOM DEQUE", q);
 
     ZEN_EXPECT(q.contains(777));
 }
