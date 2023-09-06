@@ -105,10 +105,10 @@ I recommend using Visual Studio Code) and follow the steps described below to ru
 
 1. **Open a Terminal:** You can open a terminal window by searching for "Terminal" in your Linux desktop's application menu or by using the keyboard shortcut (usually `Ctrl+Alt+T`).
 
-2. **Navigate to Project Directory:** Use the `cd` command to navigate to the directory where your project's `CMakeLists.txt` file is located. Replace `path/to/your/project` with the actual path:
+2. **Navigate to Project Directory:** Use the `cd` command to navigate to the directory where your project's `CMakeLists.txt` file is located. Replace `path/to/your/cloned/kaizen` with the actual path:
 
    ```bash
-   cd path/to/your/project
+   cd path/to/your/cloned/kaizen
    ```
 
 3. **Create a Build Directory:** It's a good practice to create a separate directory for the build files to keep them isolated from the source files. Inside your project directory, run:
