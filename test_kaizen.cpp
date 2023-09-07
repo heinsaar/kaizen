@@ -39,12 +39,12 @@ int main()
 
 	// Test data structures
 	sanitest_filestring();
+    sanitest_version();
 	sanitest_string();
 	sanitest_vector();
 	sanitest_array();
 	sanitest_deque();
 	sanitest_list();
-    sanitest_version();
 
 	// Test utilities
 	sanitest_utils();
