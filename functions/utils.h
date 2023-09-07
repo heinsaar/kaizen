@@ -26,11 +26,15 @@
 #include <iostream>
 #include <sstream>
 #include <random>
+#include <atomic>
 #include <ctime>
 
 namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// USEFUL TRIVIA
+
+std::atomic<int> TEST_CASE_PASS_COUNT = 0;
+std::atomic<int> TEST_CASE_FAIL_COUNT = 0;
 
 #define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN: " M)
 
@@ -42,9 +46,11 @@ namespace zen {
     do { \
         if (cond) { \
             zen::log(zen::color::green("CASE PASS:"), #cond); \
+            ++zen::TEST_CASE_PASS_COUNT; \
         } \
         if (!(cond)) { \
             zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #cond); \
+            ++zen::TEST_CASE_FAIL_COUNT; \
         } \
     } while (0)
 
