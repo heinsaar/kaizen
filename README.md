@@ -80,6 +80,7 @@ zen::filestring       filestr("../LICENSE.txt");
 zen::string version = filestr.getline(1);
 zen::string license = filestr.getline(3);
 ```
+More examples can be found [here](https://github.com/heinsaar/kaizen/blob/master/Examples.md).
 
 ## Ways to contribute
 
