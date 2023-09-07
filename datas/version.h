@@ -30,10 +30,10 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::version
 
-class version : public zen::array<int,4> {
+class version : public std::array<int,4> {
 public:
     version(int major, int minor, int patch, int build)
-        : zen::array<int,4>{major, minor, patch, build}
+        : std::array<int,4>{major, minor, patch, build}
     {}
 
     explicit version(const zen::string& text)
