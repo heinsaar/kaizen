@@ -1,8 +1,8 @@
 # Examples
 
-The `kaizen.h` header is generated during build (see below for building).
+Below you can find various examples of code snippets that demonstrate the capabilities of Kaizen.
 
-Here's a taste of what you can do with Kaizen right out of the box:
+Simply include the `kaizen.h` header. No additional setup is required.
 
 ## Random numbers
 ```cpp
