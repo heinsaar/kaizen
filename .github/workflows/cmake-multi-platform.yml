@@ -7,12 +7,12 @@ on:
   push:
     branches: [ "master" ]
     paths-ignore:
-      - 'README.md'
+      - '*.md'
       - '.gitignore'
   pull_request:
     branches: [ "master" ]
     paths-ignore:
-      - 'README.md'
+      - '*.md'
       - '.gitignore'
 
 jobs:
