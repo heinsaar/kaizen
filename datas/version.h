@@ -28,6 +28,8 @@
 
 namespace zen {
 
+///////////////////////////////////////////////////////////////////////////////////////////// zen::version
+
 class version : public zen::array<int,4> {
 public:
     version(int major, int minor, int patch, int build)
