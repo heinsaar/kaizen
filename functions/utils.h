@@ -33,8 +33,8 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// USEFUL MISC
 
-std::atomic<int> TEST_CASE_PASS_COUNT = 0;
-std::atomic<int> TEST_CASE_FAIL_COUNT = 0;
+std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
+std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
 
 #define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN: " M)
 
