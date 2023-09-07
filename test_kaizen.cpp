@@ -52,4 +52,16 @@ int main()
 	test_string_substring();
 	test_string_ends_with();
 	test_string_extract();
+	
+	const bool        all_tests_pass = !zen::TEST_CASE_FAIL_COUNT.load();
+	const auto FAIL = all_tests_pass ? zen::color::nocolor("FAIL:") : zen::color::red("FAIL:");
+
+	zen::log("TOTAL TEST CASES", zen::color::green("PASS:"), zen::TEST_CASE_PASS_COUNT.load());
+	zen::log("TOTAL TEST CASES",                    FAIL,    zen::TEST_CASE_FAIL_COUNT.load());
+	
+	if (all_tests_pass) {
+		zen::log(zen::color::green("--------------------"));
+		zen::log(zen::color::green("  ALL TESTS PASS "   ));
+		zen::log(zen::color::green("--------------------"));
+	}
 }
