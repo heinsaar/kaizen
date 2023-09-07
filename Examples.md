@@ -1,3 +1,5 @@
+# Examples
+
 The `kaizen.h` header is generated during build (see below for building).
 
 Here's a taste of what you can do with Kaizen right out of the box:
