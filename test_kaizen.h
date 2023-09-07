@@ -28,5 +28,6 @@
 #include "tests/test_array.h"
 #include "tests/test_deque.h"
 #include "tests/test_list.h"
+#include "tests/test_version.h"
 
 #include "tests/test_utils.h"
