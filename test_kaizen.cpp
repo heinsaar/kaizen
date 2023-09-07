@@ -56,7 +56,7 @@ int main()
 	ZEN_EXPECT(!"DEMO FAIL"); // comment & uncomment this to see a fail
 
 	const bool        all_tests_pass = !zen::TEST_CASE_FAIL_COUNT.load();
-	const auto FAIL = all_tests_pass ? zen::color::nocolor("FAIL:") : zen::color::red("FAIL:");
+	const auto FAIL = all_tests_pass ?  zen::color::nocolor("FAIL:") : zen::color::red("FAIL:");
 
 	zen::log("TOTAL TEST CASES", zen::color::green("PASS:"), zen::TEST_CASE_PASS_COUNT.load());
 	zen::log("TOTAL TEST CASES",                    FAIL,    zen::TEST_CASE_FAIL_COUNT.load());
