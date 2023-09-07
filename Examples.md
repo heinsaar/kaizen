@@ -75,3 +75,14 @@ zen::filestring       filestr("../LICENSE.txt");
 zen::string version = filestr.getline(1);
 zen::string license = filestr.getline(3);
 ```
+
+## Versions
+Semantic versioning:
+```cpp
+zen::version v(1, 2, 3, 4567);
+
+ZEN_EXPECT(v.major() ==    1);
+ZEN_EXPECT(v.minor() ==    2);
+ZEN_EXPECT(v.patch() ==    3);
+ZEN_EXPECT(v.build() == 4567);
+```
