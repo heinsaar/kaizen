@@ -128,6 +128,7 @@ namespace color {
         }
     };
 
+    color_string nocolor(const std::string_view s) { return color_string(s,  0); }
     color_string red    (const std::string_view s) { return color_string(s, 31); }
     color_string blue   (const std::string_view s) { return color_string(s, 34); }
     color_string green  (const std::string_view s) { return color_string(s, 32); }
