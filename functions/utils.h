@@ -34,6 +34,7 @@ namespace zen {
 
 #define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN: " M)
 
+// ZEN_EXPECT checks its condition parameter and prints the condition statement if it fails.
 // The do { } while (0) construct ensures that the macro behaves as a single statement.
 // This allows it to be used safely in contexts like if-else statements without braces,
 // preventing syntax errors or unexpected behavior due to dangling elses.
