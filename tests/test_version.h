@@ -5,6 +5,8 @@
 
 void sanitest_version()
 {
+    zen::log("BEGIN TEST------------------------------------------------", __func__);
+
     zen::version v0(1, 2, 3, 4567);
     ZEN_EXPECT(v0.major() ==    1);
     ZEN_EXPECT(v0.minor() ==    2);
@@ -24,6 +26,4 @@ void sanitest_version()
     using namespace zen::version_literals;
     auto v2 = "7.6.5.4321"_version;
     ZEN_EXPECT(v2.build() == 4321);
-
-    zen::log(zen::color::green("TEST PASS:"), __func__);
 }
