@@ -30,7 +30,7 @@ if (v.is_empty()) {     // same as v.empty()
     // ...
 }
 
-if (zen::is_empty(c)) { // works with any iterable container c
+if (zen::is_empty(c)) { // same as c.empty(), works with any iterable container c
     // ...
 }
 
