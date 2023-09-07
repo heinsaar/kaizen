@@ -62,13 +62,6 @@ inline auto timestamp() {
     return timestr.substr(0, timestr.length() - 1);
 }
 
-template<class C>
-bool is_empty(const C& c)
-{
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<C>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
-    return c.empty();
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
 
 template<class T = int>
@@ -118,6 +111,13 @@ void populate_random(C& c, int size = 10)
         c.resize(size);
 
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
+}
+
+template<class C>
+bool is_empty(const C& c)
+{
+    ZEN_STATIC_ASSERT(zen::is_iterable_v<C>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
+    return c.empty();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// COLORS
