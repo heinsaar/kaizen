@@ -44,8 +44,7 @@ public:
             at(1) = std::stoi(sm[2]);
             at(2) = std::stoi(sm[3]);
             at(3) = std::stoi(sm[4]);
-        }
-        else {
+        } else {
             throw std::invalid_argument{"The given text does not match the version string pattern."};
         }
     }
