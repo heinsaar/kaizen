@@ -24,7 +24,7 @@ if (v.contains(42)) {
 // Fully interchangeable with std::vector
 std::vector x = v; v = x; // and so on
 ```
-The standard `container::empty()` can seem a verb, so Kaizen provides `is_empty()`:
+The standard `container::empty()` can ambiguously be read as a verb, so Kaizen provides `is_empty()`:
 ```cpp
 if (v.is_empty()) {     // same as v.empty()
     // ...
