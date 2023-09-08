@@ -105,7 +105,7 @@ T random_int(const T min = 0, const T max = 10) {
 template<class Iterable>
 void populate_random(Iterable& c, int size = 10)
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE ITERABLE, BUT IS NOT");
 
     if (!std::size(c))
         c.resize(size);
@@ -116,7 +116,7 @@ void populate_random(Iterable& c, int size = 10)
 template<class Iterable>
 bool is_empty(const Iterable& c)
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE ITERABLE, BUT IS NOT");
     return c.empty();
 }
 
