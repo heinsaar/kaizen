@@ -42,7 +42,7 @@ z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
 ```
-And more:
+Rich extraction methods from strings, both arbitrary patterns and common cases:
 ```cpp
 z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
 z.starts_with("Hey"))                    // true
