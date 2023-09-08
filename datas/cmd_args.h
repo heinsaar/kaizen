@@ -48,8 +48,8 @@ struct cmd_args {
         return *this;
     }
 
-    // Returns true if the last argument added by accept() is present in
-    // the command line (with which the program was presumably launched)
+    // Returns true if either the provided argument 'a' or the last argument added by accept()
+    // is present in the command line (with which the program was presumably launched)
     bool is_present(const std::string& a = "") const
     {
         if (a.empty())
