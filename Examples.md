@@ -5,11 +5,12 @@ Below you can find various examples of code snippets that demonstrate the capabi
 Simply include the `kaizen.h` header. No additional setup is required.
 During development, the `kaizen.h` header is generated during build (see below for building).
 
-### Parse program arguments:
+### Program arguments
+Parse program arguments declaratively:
 ```cpp
 #include "kaizen.h"
 
-int(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
     zen::cmd_args   cmd_args(argv, argc);
     bool small    = cmd_args.accept("-verbose").is_present();
