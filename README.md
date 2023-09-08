@@ -66,23 +66,9 @@ z.substring(-20,   4) == "Test");        // negative indices are okay
 z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
-```
-Rich extraction methods from strings, both arbitrary patterns and common cases:
-```cpp
-z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
-z.starts_with("Hey"))                    // true
-z.extract_between('[', ']');             // "Hello World"
-z.extract_version();                     // "1.2.3"
-z.extract_pattern(R"((\d+\.\d+\.\d+))"); // "1.2.3"
-z.extract_date();                        // "1/2/2023"
-z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
 
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
-```
-Just give me a simple random number for everyday use:
-```cpp
-int n = zen::random_int(); // by default between 0 and 10
 ```
 Richer containers with many useful functions:
 ```cpp
@@ -96,7 +82,7 @@ if (v.contains(42)) {
 // Fully interchangeable with std::vector
 std::vector x = v; v = x; // and so on
 ```
-More examples can be found [here](https://github.com/heinsaar/kaizen/blob/master/Examples.md).
+Many more examples can be found [here](https://github.com/heinsaar/kaizen/blob/master/Examples.md).
 
 ## Ways to contribute
 
