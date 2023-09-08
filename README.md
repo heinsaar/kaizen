@@ -38,7 +38,7 @@ Parse program arguments declaratively:
 ```cpp
 #include "kaizen.h"
 
-int(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
     zen::cmd_args   cmd_args(argv, argc);
     bool small    = cmd_args.accept("-verbose").is_present();
