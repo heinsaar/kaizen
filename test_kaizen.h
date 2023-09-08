@@ -31,3 +31,4 @@
 #include "tests/test_deque.h"
 #include "tests/test_utils.h"
 #include "tests/test_list.h"
+#include "tests/test_in.h"

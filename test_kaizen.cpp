@@ -46,6 +46,7 @@ int main(int argc, char* argv[])
 	sanitest_array();
 	sanitest_deque();
 	sanitest_list();
+	sanitest_in();
 
 	// Test utilities
 	sanitest_utils();
