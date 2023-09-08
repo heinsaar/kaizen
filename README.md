@@ -34,7 +34,7 @@ During development, the `kaizen.h` header is generated during build (see below f
 ## Examples
 Here's a taste of what you can do with Kaizen right out of the box:
 
-Parse program arguments:
+Parse program arguments declaratively:
 ```cpp
 #include "kaizen.h"
 
@@ -44,6 +44,41 @@ int(int argc, char* argv[])
     bool small    = cmd_args.accept("-verbose").is_present();
     bool ignore   = cmd_args.accept("-ignore" ).is_present();
 }
+```
+Open a file and read any line right away:
+```cpp
+zen::filestring       filestr("../LICENSE.txt");
+zen::string version = filestr.getline(1);
+zen::string license = filestr.getline(3);
+```
+Python-like range notation:
+```cpp
+for (int i : zen::in(5))        // i from 0 to 4
+for (int i : zen::in(1, 10))    // i from 1 to 9
+for (int i : zen::in(0, 10, 2)) // i from 0 to 8, step 2
+```
+As well as Python-like string manupulations:
+```cpp
+// indices ----> 012345678912345
+zen::string z = "Test substrings";
+z.substring(  0,   4) == "Test");        // both arguments are indices
+z.substring(-20,   4) == "Test");        // negative indices are okay
+z.substring(  0,  -5) == "Test subst");  // just like in Python
+z.substring(100, 300) == "");            // out-of-bounds indices are okay too
+z.substring(  5,  50) == "substrings");  // just like in Python
+```
+Rich extraction methods from strings, both arbitrary patterns and common cases:
+```cpp
+z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
+z.starts_with("Hey"))                    // true
+z.extract_between('[', ']');             // "Hello World"
+z.extract_version();                     // "1.2.3"
+z.extract_pattern(R"((\d+\.\d+\.\d+))"); // "1.2.3"
+z.extract_date();                        // "1/2/2023"
+z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
+
+// Fully interchangeable with std::string
+std::string x = z; z = x; // and so on
 ```
 Just give me a simple random number for everyday use:
 ```cpp
@@ -60,41 +95,6 @@ if (v.contains(42)) {
 
 // Fully interchangeable with std::vector
 std::vector x = v; v = x; // and so on
-```
-Python-like string manupulations:
-```cpp
-// indices ----> 012345678912345
-zen::string z = "Test substrings";
-z.substring(  0,   4) == "Test");        // both arguments are indices
-z.substring(-20,   4) == "Test");        // negative indices are okay
-z.substring(  0,  -5) == "Test subst");  // just like in Python
-z.substring(100, 300) == "");            // out-of-bounds indices are okay too
-z.substring(  5,  50) == "substrings");  // just like in Python
-```
-As well as Python-like range notation:
-```cpp
-for (int i : zen::in(5))        // i from 0 to 4
-for (int i : zen::in(1, 10))    // i from 1 to 9
-for (int i : zen::in(0, 10, 2)) // i from 0 to 8, step 2
-```
-Rich extraction methods from strings, both arbitrary patterns and common cases:
-```cpp
-z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
-z.starts_with("Hey"))                    // true
-z.extract_between('[', ']');             // "Hello World"
-z.extract_version();                     // "1.2.3"
-z.extract_pattern(R"((\d+\.\d+\.\d+))"); // "1.2.3"
-z.extract_date();                        // "1/2/2023"
-z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
-
-// Fully interchangeable with std::string
-std::string x = z; z = x; // and so on
-```
-Open a file and read any line right away:
-```cpp
-zen::filestring       filestr("../LICENSE.txt");
-zen::string version = filestr.getline(1);
-zen::string license = filestr.getline(3);
 ```
 More examples can be found [here](https://github.com/heinsaar/kaizen/blob/master/Examples.md).
 
