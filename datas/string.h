@@ -187,4 +187,26 @@ private:
     using my = zen::string;
 };
 
+// Allows replicating string patterns. Usually used like so:
+// replicate("*", 10) // "**********"
+// This is the symmetrical complement of replicate(int, str)
+zen::string replicate(const std::string_view s, const int n) {
+    std::string result;
+    for (int i = 0; i < n; i++) {
+        result += s;
+    }
+    return result;
+}
+
+// Allows replicating string patterns. Usually used like so:
+// replicate(10, "*") // "**********"
+// This is the symmetrical complement of replicate(str, int)
+zen::string replicate(const int n, const std::string_view s) {
+    std::string result;
+    for (int i = 0; i < n; i++) {
+        result += s;
+    }
+    return result;
+}
+
 } // namespace zen
