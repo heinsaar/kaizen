@@ -102,10 +102,10 @@ T random_int(const T min = 0, const T max = 10) {
     return dis(gen);
 }
 
-template<class C>
-void populate_random(C& c, int size = 10)
+template<class Iterable>
+void populate_random(Iterable& c, int size = 10)
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<C>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
 
     if (!std::size(c))
         c.resize(size);
@@ -113,8 +113,8 @@ void populate_random(C& c, int size = 10)
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
 
-template<class C>
-bool is_empty(const C& c)
+template<class Iterable>
+bool is_empty(const Iterable& c)
 {
     ZEN_STATIC_ASSERT(zen::is_iterable_v<C>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
     return c.empty();
