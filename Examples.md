@@ -87,6 +87,12 @@ const zen::vector v = {1, 2, 3, 4};
 ZEN_EXPECT(z.ends_with("Case"));     // pass
 ZEN_EXPECT(v.contains(7));           // fails, prints: CASE FAIL: ... EXPECTED: v.contains(7)
 ```
+A static assert that shows the expression that failed:
+```cpp
+// Will show something like:
+// 'ZEN STATIC ASSERTION FAILED. "FAILED EXPRESSION:": zen::is_iterable_v<int>'
+ZEN_STATIC_ASSERT(zen::is_iterable_v<int>, "FAILED EXPRESSION:");
+```
 ### Versions
 Semantic versioning:
 ```cpp
