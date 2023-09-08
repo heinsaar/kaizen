@@ -41,8 +41,8 @@ int n = zen::random_int(); // by default between 0 and 10
 ```
 Richer containers with many useful functions:
 ```cpp
-zen::vector<int> v;
-zen::populate_random(v);
+zen::vector<int> v;             // declare & use just like std::vector
+zen::populate_random(v);        // populate anything iterable
 if (v.contains(42)) {
     zen::print(v);              // will print the contents, like [4, 2, 5, 7, 6]
     zen::print("Contents:", v); // any number of arguments, like in Python
@@ -61,7 +61,7 @@ z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
 ```
-And more:
+Rich extraction methods from strings, both arbitrary patterns and common cases:
 ```cpp
 z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
 z.starts_with("Hey"))                    // true
@@ -88,7 +88,7 @@ More examples can be found [here](https://github.com/heinsaar/kaizen/blob/master
 1. **Suggest a utility.** If you have an idea for a useful piece of C++ code, feel free to suggest in [our discussions](https://github.com/heinsaar/kaizen/discussions).
 1. **Generalize a utility.** If you see how to easily generalize a type or a function in a meaningful way.
 1. **Optimize.** If you see how to easily optimize a type or a function in a meaningful way.
-1. **Reduce LOC.** If you see ways to reduce lines of code (common sense - with no loss of readability)
+1. **Reduce LOC.** If you see ways to reduce lines of code (common sense - with no loss of readability).
 1. **Implement an [issue](https://github.com/heinsaar/kaizen/issues) or any "TODO" in code.**
 1. **Add more tests.** There can never be enough tests as long as they're more or less independent and cover anything not previously covered.
 1. **Automate.** If you see ways to automate any process and thus save iteration time.
@@ -106,7 +106,8 @@ The project is probably more backward-compatible, but at the moment is being dev
 1. GCC 9.4.0
 
 Open the repo folder in your favorite IDE (on Windows, if you're not very used to Visual Studio,
-I recommend using Visual Studio Code) and follow the steps described below to run it on your system. The ```main()``` function simply runs the tests.
+I recommend using Visual Studio Code with [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)) and follow the steps described below to run it on your system.
+The ```main()``` function simply runs the tests and print out the report.
 
 ## Build & Run on Windows & Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 
@@ -132,7 +133,11 @@ I recommend using Visual Studio Code) and follow the steps described below to ru
    ```
 This will generate convenience utility scripts `runbuild_win.bat` and `runbuild_linx.sh` that combine the next steps 5 and 6, so you can simply call the corresponding script for your environment.
 
-**NOTE:** This will only work smoothly either on Linux or from within a Windows terminal that's integrated into Visual Studio (not Visual Studio Code), where the integrated terminal automatically sets up all the necessary environment variables (pointing to the MSVC compiler `cl.exe`, etc.) that are automatically configured when you run Visual Studio's own developer command prompt. If you run this from a Windows terminal inside another IDE like Visual Studio Code, you will probably get an error that looks like this:
+**NOTE:** This will only work smoothly either within a Linux environment (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)) or from within a Windows terminal that's integrated
+into Visual Studio (not Visual Studio Code), where the integrated terminal automatically sets up all the necessary environment variables (pointing to the MSVC compiler `cl.exe`, etc.) that are
+automatically configured when you run Visual Studio's own developer command prompt.
+
+If you run this from a Windows terminal inside another IDE like Visual Studio Code, you will probably get an error that looks like this:
 
 ```bash
 -- Building for: NMake Makefiles
