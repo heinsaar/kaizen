@@ -116,7 +116,7 @@ void populate_random(Iterable& c, int size = 10)
 template<class Iterable>
 bool is_empty(const Iterable& c)
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<C>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
     return c.empty();
 }
 
