@@ -3,15 +3,26 @@
 Below you can find various examples of code snippets that demonstrate the capabilities of Kaizen.
 
 Simply include the `kaizen.h` header. No additional setup is required.
+During development, the `kaizen.h` header is generated during build (see below for building).
 
-## Random numbers
+### Parse program arguments:
 ```cpp
 #include "kaizen.h"
 
-// Just give me a simple random number for everyday use
-int n = zen::random_int(); // by default between 0 and 10
+int(int argc, char* argv[])
+{
+    zen::cmd_args   cmd_args(argv, argc);
+    bool small    = cmd_args.accept("-verbose").is_present();
+    bool ignore   = cmd_args.accept("-ignore" ).is_present();
+}
 ```
-## Containers
+### Random numbers
+Just give me a simple random number for everyday use
+```cpp
+int n = zen::random_int();    // by default between 0 and 10
+int m = zen::random_int(1, 5) // or specify another range
+```
+### Containers
 Richer containers with many useful functions:
 ```cpp
 zen::vector<int> v;
@@ -35,7 +46,7 @@ if (zen::is_empty(c)) { // same as c.empty(), works with any iterable container 
 }
 
 ```
-## Strings
+### Strings
 Python-like string manupulations:
 ```cpp
 // indices ----> 012345678912345
@@ -59,7 +70,7 @@ z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
 ```
-## Quick test cases
+### Quick test cases
 Sprinkle around some test cases with `ZEN_EXPECT` accepting any expression and reporting it if it fails:
 ```cpp
 const zen::string z = "Test Case";
@@ -68,7 +79,7 @@ ZEN_EXPECT(z.ends_with("Case"));     // pass
 ZEN_EXPECT(v.contains(7));           // fails, prints: CASE FAIL: ... EXPECTED: v.contains(7)
 ```
 
-## Working with files
+### Working with files
 Open a file and read any line right away:
 ```cpp
 zen::filestring       filestr("../LICENSE.txt");
@@ -76,7 +87,7 @@ zen::string version = filestr.getline(1);
 zen::string license = filestr.getline(3);
 ```
 
-## Versions
+### Versions
 Semantic versioning:
 ```cpp
 zen::version v(1, 2, 3, 4567);
