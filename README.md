@@ -71,6 +71,12 @@ z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
 ```
+As well as Python-like range notation:
+```cpp
+for (int i : zen::in(5))        // i from 0 to 4
+for (int i : zen::in(1, 10))    // i from 1 to 9
+for (int i : zen::in(0, 10, 2)) // i from 0 to 8, step 2
+```
 Rich extraction methods from strings, both arbitrary patterns and common cases:
 ```cpp
 z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
