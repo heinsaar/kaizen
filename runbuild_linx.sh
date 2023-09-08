@@ -2,7 +2,7 @@
 
 cmake --build .       # build the project
 if [ $? -eq 0 ]; then # check if build succeeded
-  ./kaizen            # run the executable (will run the tests)
+  ./kaizen -verbose   # run the executable (will run the tests)
 else
   echo "Build failed. Exiting."
   exit 1

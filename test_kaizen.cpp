@@ -22,7 +22,7 @@
 
 #include "test_kaizen.h"
 
-int main()
+int main(int argc, char* argv[])
 {
 	// Extract Kaizen version from the license file
 	zen::filestring		  textfile("../LICENSE.txt");
@@ -36,6 +36,7 @@ int main()
 	zen::print(zen::color::blue("RUNNING TESTS...\n"));
 
 ///////////////////////////////////////////////////////////////////////////////////////////// SANITY TESTS
+	sanitest_cmd_args(argc, argv);
 
 	// Test data structures
 	sanitest_filestring();

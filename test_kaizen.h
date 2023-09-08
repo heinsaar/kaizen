@@ -23,6 +23,7 @@
 #pragma once
 
 #include "tests/test_filestring.h"
+#include "tests/test_cmd_args.h"
 #include "tests/test_version.h"
 #include "tests/test_string.h"
 #include "tests/test_vector.h"

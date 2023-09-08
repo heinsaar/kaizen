@@ -8,4 +8,4 @@ if ERRORLEVEL 1 (
 )
 
 :: Run the executable (will run the tests)
-.\kaizen.exe
+.\kaizen.exe -verbose
