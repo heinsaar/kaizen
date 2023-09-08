@@ -17,7 +17,7 @@ int(int argc, char* argv[])
 }
 ```
 ### Random numbers
-Just give me a simple random number for everyday use
+Just give me a simple random number for everyday use:
 ```cpp
 int n = zen::random_int();    // by default between 0 and 10
 int m = zen::random_int(1, 5) // or specify another range
