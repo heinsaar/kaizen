@@ -76,14 +76,8 @@ std::vector x = v; v = x; // and so on
 ```
 The standard `container::empty()` can ambiguously be read as a verb, so Kaizen provides `is_empty()`:
 ```cpp
-if (v.is_empty()) {     // same as v.empty()
-    // ...
-}
-
-if (zen::is_empty(c)) { // same as c.empty(), works with any iterable container c
-    // ...
-}
-
+if (v.is_empty())     // same as v.empty()
+if (zen::is_empty(c)) // same as c.empty(), works with any iterable container c
 ```
 ### Quick test cases
 Sprinkle around some test cases with `ZEN_EXPECT` accepting any expression and reporting it if it fails:
