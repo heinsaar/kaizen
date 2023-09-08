@@ -36,7 +36,7 @@ namespace zen {
 std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
 std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
 
-#define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN: " M)
+#define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN STATIC ASSERTION FAILED. "#M ": " #X)
 
 // ZEN_EXPECT checks its condition parameter and spits out the condition statement if it fails.
 // The do { } while (0) construct ensures that the macro behaves as a single statement.
