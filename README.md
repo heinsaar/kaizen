@@ -29,14 +29,24 @@ utilities far outweigh any theoretical dangers of for some reason allocating `ze
 then deleting it through a pointer to base `std::string`, whether accidentally or on purpose. Any codebase is far more
 likely to experience problems and corrosion from the regular population of bugs that are much easier to make accidentally.
 
-The `kaizen.h` header is generated during build (see below for building).
+During development, the `kaizen.h` header is generated during build (see below for building).
 
+## Examples
 Here's a taste of what you can do with Kaizen right out of the box:
 
+Parse program arguments:
 ```cpp
 #include "kaizen.h"
 
-// Just give me a simple random number for everyday use
+int(int argc, char* argv[])
+{
+    zen::cmd_args   cmd_args(argv, argc);
+    bool small    = cmd_args.accept("-verbose").is_present();
+    bool ignore   = cmd_args.accept("-ignore" ).is_present();
+}
+```
+Just give me a simple random number for everyday use:
+```cpp
 int n = zen::random_int(); // by default between 0 and 10
 ```
 Richer containers with many useful functions:
