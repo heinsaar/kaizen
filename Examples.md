@@ -58,7 +58,7 @@ z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
 ```
-Replicate a pattern of a sring:
+Replicate a pattern of a string:
 ```cpp
 zen::replicate("/", 10) == "//////////";
 zen::replicate(10, "*") == "**********";
