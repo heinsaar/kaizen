@@ -3,32 +3,6 @@
 #include <cassert>
 #include "../build/kaizen.h" // test using generated header
 
-void main_test_string()
-{
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
-
-    std::string s = "[Hello World] 1.2.3";
-    zen::string z = s; s = z; z = s; // check basic interchangability
-
-    ZEN_EXPECT(z.contains("World"));
-    ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
-    ZEN_EXPECT(z.extract_between("[", "]").ends_with(  "World"));
-
-    // Check interchangeability with std::string // TODO: Cover more cases?
-    std::string x = z; z = x;
-
-    // Trim and deflate a string
-    z = "   Trim   me  ";
-    s = z.trim(); // from leading & trailing empty spaces
-    ZEN_EXPECT(!::isspace(s.front()));
-    ZEN_EXPECT(!::isspace(s.back()));
-    ZEN_EXPECT(z.deflate().is_deflated());
-    ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
-
-    ZEN_EXPECT(zen::replicate("*", 10) == "**********");
-    ZEN_EXPECT(zen::replicate(10, "*") == "**********");
-}
-
 void test_string_extract()
 {
     zen::log("BEGIN TEST ------------------------------------------------", __func__);
@@ -133,4 +107,30 @@ void test_string_ends_with()
     z = "";
     ZEN_EXPECT( z.ends_with(""));            // string is empty, substring is empty
     ZEN_EXPECT(!z.ends_with("test"));        // string is empty, substring is not empty
+}
+
+void main_test_string()
+{
+    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+
+    std::string s = "[Hello World] 1.2.3";
+    zen::string z = s; s = z; z = s; // check basic interchangability
+
+    ZEN_EXPECT(z.contains("World"));
+    ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
+    ZEN_EXPECT(z.extract_between("[", "]").ends_with(  "World"));
+
+    // Check interchangeability with std::string // TODO: Cover more cases?
+    std::string x = z; z = x;
+
+    // Trim and deflate a string
+    z = "   Trim   me  ";
+    s = z.trim(); // from leading & trailing empty spaces
+    ZEN_EXPECT(!::isspace(s.front()));
+    ZEN_EXPECT(!::isspace(s.back()));
+    ZEN_EXPECT(z.deflate().is_deflated());
+    ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
+
+    ZEN_EXPECT(zen::replicate("*", 10) == "**********");
+    ZEN_EXPECT(zen::replicate(10, "*") == "**********");
 }
