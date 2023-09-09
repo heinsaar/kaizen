@@ -5,7 +5,7 @@
 
 void main_test_filestring()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     zen::filestring filestr("../LICENSE.txt");
 

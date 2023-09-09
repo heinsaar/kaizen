@@ -5,7 +5,7 @@
 
 void main_test_list()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     zen::list<int> x;
     zen::populate_random(x);

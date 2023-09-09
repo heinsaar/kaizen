@@ -4,7 +4,7 @@
 #include "../build/kaizen.h" // test using generated header
 
 void test_empty_args() {
-    BEGIN_TEST
+    BEGIN_TEST;
     const char* args[] = { "exename" };
     zen::cmd_args cmdargs(args, 1);
     ZEN_EXPECT(!cmdargs.is_present("-verbose"));
@@ -12,7 +12,7 @@ void test_empty_args() {
 }
 
 void test_single_arg_present() {
-    BEGIN_TEST
+    BEGIN_TEST;
     const char* args[] = { "exename", "-verbose" };
     zen::cmd_args cmdargs(args, 2);
     cmdargs.accept("-verbose");
@@ -20,7 +20,7 @@ void test_single_arg_present() {
 }
 
 void test_single_arg_not_present() {
-    BEGIN_TEST
+    BEGIN_TEST;
     const char* args[] = { "exename", "-verbose" };
     zen::cmd_args cmdargs(args, 2);
     cmdargs.accept("-ignore");
@@ -28,7 +28,7 @@ void test_single_arg_not_present() {
 }
 
 void test_multiple_args_present() {
-    BEGIN_TEST
+    BEGIN_TEST;
     const char* args[] = { "exename", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(args, 3);
     cmdargs.accept("-verbose").accept("-ignore");
@@ -37,7 +37,7 @@ void test_multiple_args_present() {
 }
 
 void test_multiple_args_one_missing() {
-    BEGIN_TEST
+    BEGIN_TEST;
     const char* args[] = { "exename", "-verbose" };
     zen::cmd_args cmdargs(args, 2);
     cmdargs.accept("-verbose").accept("-ignore");
@@ -46,7 +46,7 @@ void test_multiple_args_one_missing() {
 }
 
 void test_arg_at() {
-    BEGIN_TEST
+    BEGIN_TEST;
     const char* args[] = { "exename", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(args, 3);
     ZEN_EXPECT(   cmdargs.arg_at(0) == "exename");
@@ -55,7 +55,7 @@ void test_arg_at() {
 }
 
 void test_first_last_arg() {
-    BEGIN_TEST
+    BEGIN_TEST;
     const char* args[] = { "exename", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(args, 3);
     ZEN_EXPECT(   cmdargs.first_arg() == "exename");
@@ -64,7 +64,7 @@ void test_first_last_arg() {
 
 void main_test_cmd_args(int argc, char* argv[])
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
     
     zen::cmd_args        cmdargs(argv, argc);
     const bool verbose = cmdargs.accept("-verbose").is_present();

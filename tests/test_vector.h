@@ -5,7 +5,7 @@
 
 void main_test_vector()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
     zen::vector<int> v(10);
     zen::populate_random(v);
     v.push_back(777);

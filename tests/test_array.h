@@ -5,7 +5,7 @@
 
 void main_test_array()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     zen::array<int, 5> a = { 1, 2, 3, 4, 5 };
 

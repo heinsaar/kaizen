@@ -5,7 +5,7 @@
 
 void test_string_extract()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     zen::string z = "[Hello World] 1.2.3";
 
@@ -62,7 +62,7 @@ void test_string_extract()
 
 void test_string_substring()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
     //               012345678912345 
     zen::string z = "Test substrings";
     ZEN_EXPECT(z.substring(  0,   4) == "Test");
@@ -95,7 +95,7 @@ void test_string_substring()
 
 void test_string_ends_with()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     zen::string z = "Hello";
     ZEN_EXPECT( z.ends_with(""));            // string is not empty, substring is empty
@@ -111,7 +111,7 @@ void test_string_ends_with()
 
 void main_test_string()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     std::string s = "[Hello World] 1.2.3";
     zen::string z = s; s = z; z = s; // check basic interchangability

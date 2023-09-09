@@ -5,7 +5,7 @@
 
 void main_test_in()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     std::string s = "(5): ";
     for (int i : zen::in(5))

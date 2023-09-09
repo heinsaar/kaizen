@@ -5,7 +5,7 @@
 
 void main_test_utils()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
     zen::vector<int> v = {1, 2, 3, 4, 5};
 
     std::string s = zen::to_string(v);

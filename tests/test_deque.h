@@ -5,7 +5,7 @@
 
 void main_test_deque()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     zen::deque<int> q;
     zen::populate_random(q);

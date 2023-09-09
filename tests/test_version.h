@@ -5,7 +5,7 @@
 
 void main_test_version()
 {
-    zen::log("BEGIN TEST ------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     zen::version v1(1, 2, 3, 4567);
     ZEN_EXPECT(v1.major() ==    1);
