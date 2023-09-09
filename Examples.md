@@ -15,6 +15,9 @@ int main(int argc, char* argv[])
     zen::cmd_args   cmd_args(argv, argc);
     bool small    = cmd_args.accept("-verbose").is_present();
     bool ignore   = cmd_args.accept("-ignore" ).is_present();
+        
+    // Or sometime later
+    if (cmd_args.is_present("-ignore"))
 }
 ```
 ### Working with files
