@@ -35,6 +35,9 @@ namespace zen {
 // const bool verbose = cmd_args.accept("-verbose").is_present();
 // const bool ignore  = cmd_args.accept("-ignore" ).is_present();
 
+// TODO: Enhance with support for:
+// - Help strings
+// - arg arguments (like -path "/to/some/dir"
 struct cmd_args {
     cmd_args() : argv_(nullptr), argc_(0) {}
 
@@ -73,7 +76,7 @@ struct cmd_args {
     std::string  last_arg() const { return arg_at(argc_ - 1); }
 
 private:
-    using arguments = std::vector<std::string>; // TODO: Enhance with support for help strings, etc.
+    using arguments = std::vector<std::string>;
 
     char* const* argv_;
     const int    argc_;
