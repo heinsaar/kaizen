@@ -112,23 +112,26 @@ Semantic versioning:
 ```cpp
 zen::version v1(1, 2, 3, 4567); // construct from numbers
 
-ZEN_EXPECT(v1.major() ==    1);
-ZEN_EXPECT(v1.minor() ==    2);
-ZEN_EXPECT(v1.patch() ==    3);
-ZEN_EXPECT(v1.build() == 4567);
+// Expect
+v1.major() ==    1;
+v1.minor() ==    2;
+v1.patch() ==    3;
+v1.build() == 4567;
 
 zen::version  v8("8.2.3.4567"); // construct from a string
-ZEN_EXPECT(v8.major() ==    8);
-ZEN_EXPECT(v8.minor() ==    2);
-ZEN_EXPECT(v8.patch() ==    3);
-ZEN_EXPECT(v8.build() == 4567);
 
-// Compare versions
-ZEN_EXPECT(v1 != v8);
-ZEN_EXPECT(v1 <  v8);
-ZEN_EXPECT(v8 >  v1);
+// Expect
+v8.major() ==    8;
+v8.minor() ==    2;
+v8.patch() ==    3;
+v8.build() == 4567;
+
+// Expect
+v1 != v8;
+v1 <  v8;
+v8 >  v1;
 
 using namespace zen::version_literals;
 auto v7 = "7.6.5.4321"_version; // construct using string literals
-ZEN_EXPECT(v7.build() == 4321);
+v7.build()    == 4321;
 ```
