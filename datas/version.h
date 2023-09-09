@@ -44,7 +44,10 @@ struct version : std::array<int, 4> {  // read 'struct' as "extend the interface
             at(2) = std::stoi(sm[3]);
             at(3) = std::stoi(sm[4]);
         } else {
-            throw std::invalid_argument{"The given text does not match the version string pattern."};
+            throw std::invalid_argument{
+                // Any cost of typeid is likely to be dwarfed by the cost of the exception anyway
+                std::string(typeid(*this).name()) + " CONSTRUCTOR ARGUMENT STRING DOESN'T MATCH THE EXPECTED M.M.P.B PATTERN."
+            };
         }
     }
 
