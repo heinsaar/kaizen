@@ -79,8 +79,8 @@ private:
     using arguments = std::vector<std::string>;
 
     const char* const* argv_;
-    const int    argc_;
-    arguments    args_accepted_;
+    const int          argc_;
+    arguments          args_accepted_;
 };
 
 } // namespace zen
