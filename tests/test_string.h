@@ -133,4 +133,8 @@ void main_test_string()
 
     ZEN_EXPECT(zen::replicate("*", 10) == "**********");
     ZEN_EXPECT(zen::replicate(10, "*") == "**********");
+
+    test_string_substring();
+    test_string_ends_with();
+    test_string_extract();
 }

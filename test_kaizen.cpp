@@ -55,9 +55,7 @@ int main(int argc, char* argv[])
 	main_test_utils();
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
-	test_string_substring();
-	test_string_ends_with();
-	test_string_extract();
+	
 
 	zen::log(" END TESTS ------------------------------------------------", __func__);
 
