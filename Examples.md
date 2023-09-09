@@ -58,6 +58,12 @@ z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
 ```
+Trim whitespaces:
+```cpp
+z =         "   Trim   me  ";
+z.trim();   // "Trim   me" - from leading & trailing empty spaces
+z.deflate() // "Trim me"   - any adjacent spaces are removed
+```
 Replicate a pattern of a string:
 ```cpp
 zen::replicate("/", 10) == "//////////";
