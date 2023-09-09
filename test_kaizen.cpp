@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 	// Test functions
 	main_test_utils();
 
-	zen::log(" END TESTS ------------------------------------------------", __func__);
+	END_TESTS;
 
 	//ZEN_EXPECT(!"DEMO FAIL 1"); // comment & uncomment this to see a fail
 	//ZEN_EXPECT(!"DEMO FAIL 2"); // comment & uncomment this to see a fail

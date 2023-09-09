@@ -35,6 +35,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// USEFUL MISC
 
 #define BEGIN_TEST zen::log("BEGIN TEST ------------------------------------------------", __func__)
+#define END_TESTS  zen::log(" END TESTS ------------------------------------------------", __func__);
 
 std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
 std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
