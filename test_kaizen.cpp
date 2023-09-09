@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 	zen::log(zen::color::blue(zen::replicate("|", 70)));
 	zen::log(zen::color::blue("RUNNING TESTS..."));
 
-///////////////////////////////////////////////////////////////////////////////////////////// SANITY TESTS
+///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
 	main_test_cmd_args(argc, argv);
 
 	zen::cmd_args cmd_args(argv, argc);
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 	main_test_list();
 	main_test_in();
 
-	// Test utilities
+	// Test functions
 	main_test_utils();
 
 	zen::log(" END TESTS ------------------------------------------------", __func__);
