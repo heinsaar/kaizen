@@ -12,6 +12,6 @@ void main_test_filestring()
     zen::string license = filestr.getline(3);
 
     // TODO: Add cases here
-    ZEN_EXPECT(version.contains("1.0.0"));
+    ZEN_EXPECT(version.contains("1.0.0.0"));
     ZEN_EXPECT(license.contains("MIT"));
 }
