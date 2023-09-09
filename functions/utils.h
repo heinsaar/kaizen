@@ -36,6 +36,9 @@ namespace zen {
 std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
 std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
 
+bool REPORT_TC_PASS = false; // by default, don't report passes to avoid chatter
+bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
+
 #define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN STATIC ASSERTION FAILED. "#M ": " #X)
 
 // ZEN_EXPECT checks its condition parameter and spits out the condition statement if it fails.
@@ -45,11 +48,13 @@ std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever para
 #define ZEN_EXPECT(cond) \
     do { \
         if (cond) { \
-            zen::log(zen::color::green("CASE PASS:"), #cond); \
+            if (zen::REPORT_TC_PASS) \
+                zen::log(zen::color::green("CASE PASS:"), #cond); \
             ++zen::TEST_CASE_PASS_COUNT; \
         } \
         if (!(cond)) { \
-            zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #cond); \
+            if (zen::REPORT_TC_FAIL) \
+                zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #cond); \
             ++zen::TEST_CASE_FAIL_COUNT; \
         } \
     } while (0)
