@@ -22,9 +22,9 @@
 
 #pragma once
 
+#include <stdexcept>
 #include <ostream>
 #include <regex>
-#include <stdexcept>
 
 namespace zen {
 
