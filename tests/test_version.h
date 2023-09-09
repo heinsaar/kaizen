@@ -7,11 +7,11 @@ void sanitest_version()
 {
     zen::log("BEGIN TEST ------------------------------------------------", __func__);
 
-    zen::version v0(1, 2, 3, 4567);
-    ZEN_EXPECT(v0.major() ==    1);
-    ZEN_EXPECT(v0.minor() ==    2);
-    ZEN_EXPECT(v0.patch() ==    3);
-    ZEN_EXPECT(v0.build() == 4567);
+    zen::version v1(1, 2, 3, 4567);
+    ZEN_EXPECT(v1.major() ==    1);
+    ZEN_EXPECT(v1.minor() ==    2);
+    ZEN_EXPECT(v1.patch() ==    3);
+    ZEN_EXPECT(v1.build() == 4567);
 
     zen::version v8("8.2.3.4567");
     ZEN_EXPECT(v8.major() ==    8);
@@ -19,9 +19,9 @@ void sanitest_version()
     ZEN_EXPECT(v8.patch() ==    3);
     ZEN_EXPECT(v8.build() == 4567);
 
-    ZEN_EXPECT(v0 != v8);
-    ZEN_EXPECT(v0 <  v8);
-    ZEN_EXPECT(v8 >  v0);
+    ZEN_EXPECT(v1 != v8);
+    ZEN_EXPECT(v1 <  v8);
+    ZEN_EXPECT(v8 >  v1);
 
     using namespace zen::version_literals;
     auto v2 = "7.6.5.4321"_version;
