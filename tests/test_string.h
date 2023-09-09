@@ -12,9 +12,9 @@ void test_string_extract()
     ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
 
     // Extract software version
-    z = "Software Version 1.2.3";
+    z = "Software Version 1.2.3.4";
     std::string s = z.extract_version();
-    ZEN_EXPECT(s == "1.2.3");
+    ZEN_EXPECT(s == "1.2.3.4");
     s = z.extract_pattern(R"((\d+\.\d+\.\d+))");
     ZEN_EXPECT(s == "1.2.3");
 
