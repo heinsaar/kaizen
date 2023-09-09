@@ -25,6 +25,7 @@
 #include <string_view>
 #include <iostream>
 #include <sstream>
+#include <cassert>
 #include <random>
 #include <atomic>
 #include <ctime>

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cassert>
 #include "../build/kaizen.h" // test using generated header
 
 void test_empty_args() {
