@@ -30,10 +30,10 @@ int main(int argc, char* argv[])
 	const zen::string v = line.extract_pattern(R"((\d+\.\d+\.\d+))"); // version
 	
 	// Print the Kaizen preamble
-	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
-	zen::print(zen::color::blue("|||||||||||||||||||||||||||| KAIZEN"), v, zen::color::blue("||||||||||||||||||||||||||||\n"));
-	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
-	zen::print(zen::color::blue("RUNNING TESTS...\n"));
+	zen::log(zen::color::blue(zen::replicate("|", 70)));
+	zen::log(zen::color::blue(zen::replicate("|", 28) + " KAIZEN"), v, zen::color::blue(zen::replicate("|", 28)));
+	zen::log(zen::color::blue(zen::replicate("|", 70)));
+	zen::log(zen::color::blue("RUNNING TESTS..."));
 
 ///////////////////////////////////////////////////////////////////////////////////////////// SANITY TESTS
 	main_test_cmd_args(argc, argv);
