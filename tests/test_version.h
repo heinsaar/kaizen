@@ -24,6 +24,6 @@ void sanitest_version()
     ZEN_EXPECT(v8 >  v1);
 
     using namespace zen::version_literals;
-    auto v2 = "7.6.5.4321"_version;
-    ZEN_EXPECT(v2.build() == 4321);
+    auto v7 = "7.6.5.4321"_version;
+    ZEN_EXPECT(v7.build() == 4321);
 }
