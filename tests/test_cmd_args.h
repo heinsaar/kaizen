@@ -7,11 +7,11 @@ void sanitest_cmd_args(int argc, char* argv[])
 {
     zen::log("BEGIN TEST ------------------------------------------------", __func__);
     
-    zen::cmd_args        cmd_args(argv, argc);
-    const bool verbose = cmd_args.accept("-verbose").is_present();
-    const bool absent  = cmd_args.accept("-absent" ).is_present();
+    zen::cmd_args        cmdargs(argv, argc);
+    const bool verbose = cmdargs.accept("-verbose").is_present();
+    const bool absent  = cmdargs.accept("-absent" ).is_present();
 
-    ZEN_EXPECT( cmd_args.is_present("-verbose"));
-    ZEN_EXPECT(!cmd_args.is_present("-absent"));
-    ZEN_EXPECT(!cmd_args.is_present("-ignore"));
+    ZEN_EXPECT( cmdargs.is_present("-verbose"));
+    ZEN_EXPECT(!cmdargs.is_present("-absent"));
+    ZEN_EXPECT(!cmdargs.is_present("-ignore"));
 }
