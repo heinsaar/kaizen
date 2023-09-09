@@ -3,7 +3,7 @@
 #include <cassert>
 #include "../build/kaizen.h" // test using generated header
 
-void sanitest_utils()
+void main_test_utils()
 {
     zen::log("BEGIN TEST ------------------------------------------------", __func__);
     zen::vector<int> v = {1, 2, 3, 4, 5};

@@ -36,23 +36,23 @@ int main(int argc, char* argv[])
 	zen::print(zen::color::blue("RUNNING TESTS...\n"));
 
 ///////////////////////////////////////////////////////////////////////////////////////////// SANITY TESTS
-	sanitest_cmd_args(argc, argv);
+	main_test_cmd_args(argc, argv);
 
 	zen::cmd_args cmd_args(argv, argc);
 	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();
 
 	// Test data structures
-	sanitest_filestring();
-    sanitest_version();
-	sanitest_string();
-	sanitest_vector();
-	sanitest_array();
-	sanitest_deque();
-	sanitest_list();
-	sanitest_in();
+	main_test_filestring();
+    main_test_version();
+	main_test_string();
+	main_test_vector();
+	main_test_array();
+	main_test_deque();
+	main_test_list();
+	main_test_in();
 
 	// Test utilities
-	sanitest_utils();
+	main_test_utils();
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
 	test_string_substring();

@@ -62,7 +62,7 @@ void test_first_last_arg() {
     ZEN_EXPECT(   cmdargs.last_arg() == "-ignore");
 }
 
-void sanitest_cmd_args(int argc, char* argv[])
+void main_test_cmd_args(int argc, char* argv[])
 {
     zen::log("BEGIN TEST ------------------------------------------------", __func__);
     

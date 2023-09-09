@@ -3,7 +3,7 @@
 #include <cassert>
 #include "../build/kaizen.h" // test using generated header
 
-void sanitest_string()
+void main_test_string()
 {
     zen::log("BEGIN TEST ------------------------------------------------", __func__);
 
