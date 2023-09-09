@@ -156,7 +156,6 @@ struct string : std::string // read 'struct' as "extend the interface"
     // capitalize()	    Converts the first character to upper case
     // tolower()	    Converts string into lower case
     // center()	        Returns a centered string
-    // endswith()	    Returns true if the string ends with the specified value
     // isalnum()	    Returns True if all characters in the string are alphanumeric
     // isalpha()	    Returns True if all characters in the string are in the alphabet
     // isascii()	    Returns True if all characters in the string are ascii characters
