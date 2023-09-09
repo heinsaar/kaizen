@@ -154,22 +154,21 @@ struct string : std::string // read 'struct' as "extend the interface"
 
     // TODO: Implement these (from Python string)
     // capitalize()	    Converts the first character to upper case
-    // tolower()	    Converts string into lower case
+    // to_lower()	    Converts string into lower case
     // center()	        Returns a centered string
-    // isalnum()	    Returns True if all characters in the string are alphanumeric
-    // isalpha()	    Returns True if all characters in the string are in the alphabet
-    // isascii()	    Returns True if all characters in the string are ascii characters
-    // isdecimal()	    Returns True if all characters in the string are decimals
-    // isdigit()	    Returns True if all characters in the string are digits
-    // isidentifier()	Returns True if the string is an identifier
-    // islower()	    Returns True if all characters in the string are lower case
-    // isnumeric()	    Returns True if all characters in the string are numeric
-    // isprintable()	Returns True if all characters in the string are printable
-    // isspace()	    Returns True if all characters in the string are whitespaces
-    // isupper()	    Returns True if all characters in the string are upper case
+    // is_alnum()	    Returns True if all characters in the string are alphanumeric
+    // is_alpha()	    Returns True if all characters in the string are in the alphabet
+    // is_ascii()	    Returns True if all characters in the string are ascii characters
+    // is_decimal()	    Returns True if all characters in the string are decimals
+    // is_digit()	    Returns True if all characters in the string are digits
+    // is_identifier()	Returns True if the string is an identifier
+    // is_lower()	    Returns True if all characters in the string are lower case
+    // is_numeric()	    Returns True if all characters in the string are numeric
+    // is_printable()	Returns True if all characters in the string are printable
+    // is_space()	    Returns True if all characters in the string are whitespaces
+    // is_upper()	    Returns True if all characters in the string are upper case
     // ljust()	        Returns a left justified version of the string
     // lstrip()	        Returns a left trim version of the string
-    // maketrans()	    Returns a translation table to be used in translations
     // partition()	    Returns a tuple where the string is parted into three parts
     // rfind()	        Searches the string for a specified value and returns the last position of where it was found
     // rjust()	        Returns a right justified version of the string
@@ -177,10 +176,10 @@ struct string : std::string // read 'struct' as "extend the interface"
     // rsplit()	        Splits the string at the specified separator, and returns a list
     // rstrip()	        Returns a right trim version of the string
     // split()	        Splits the string at the specified separator, and returns a list
-    // splitlines()	    Splits the string at line breaks and returns a list
+    // split_lines()	Splits the string at line breaks and returns a list
     // strip()	        Returns a trimmed version of the string
     // swapcase()	    Swaps cases, lower case becomes upper case and vice versa
-    // toupper()	    Converts a string into upper case
+    // to_upper()	    Converts a string into upper case
 
 private:
     using my = zen::string;
