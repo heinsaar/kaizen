@@ -38,6 +38,10 @@ int main(int argc, char* argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////// SANITY TESTS
 	sanitest_cmd_args(argc, argv);
 
+	zen::cmd_args cmd_args(argv, argc);
+	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();
+	zen::REPORT_TC_FAIL = cmd_args.accept("-report_tc_fail").is_present();
+
 	// Test data structures
 	sanitest_filestring();
     sanitest_version();
@@ -55,7 +59,7 @@ int main(int argc, char* argv[])
 	test_string_substring();
 	test_string_ends_with();
 	test_string_extract();
-	
+
 	zen::log(" END TESTS ------------------------------------------------", __func__);
 
 	//ZEN_EXPECT(!"DEMO FAIL 1"); // comment & uncomment this to see a fail
