@@ -15,7 +15,7 @@ Collection of utilities and enhanced data structures for a wide range of C++ pro
 
 Kaizen 1.0 does not aim to be radiation-hardened, like STL or Boost, for all imaginable scenarios and use cases.
 Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), emphasizing gradual
-improvement over attempts of immediately perfect designs, this library aims to provide a malleable and growing set
+improvement over attempts of ideally perfect designs, this library aims to provide a malleable and growing set
 of practical and simple tools through a single header file that, like a Swiss army knife, includes just enough of
 everything that can be useful for a broad range of C++ projects right off the bat.
 
