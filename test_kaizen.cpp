@@ -40,7 +40,6 @@ int main(int argc, char* argv[])
 
 	zen::cmd_args cmd_args(argv, argc);
 	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();
-	zen::REPORT_TC_FAIL = cmd_args.accept("-report_tc_fail").is_present();
 
 	// Test data structures
 	sanitest_filestring();
