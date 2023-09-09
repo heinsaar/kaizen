@@ -56,7 +56,8 @@ int main(int argc, char* argv[])
 	test_string_ends_with();
 	test_string_extract();
 	
-	//ZEN_EXPECT(!"DEMO FAIL"); // comment & uncomment this to see a fail
+	//ZEN_EXPECT(!"DEMO FAIL 1"); // comment & uncomment this to see a fail
+	//ZEN_EXPECT(!"DEMO FAIL 2"); // comment & uncomment this to see a fail
 
 	const bool        all_tests_pass = !zen::TEST_CASE_FAIL_COUNT.load();
 	const auto FAIL = all_tests_pass ?  zen::color::nocolor("FAIL:") : zen::color::red("FAIL:");
