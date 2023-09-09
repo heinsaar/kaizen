@@ -24,6 +24,9 @@ void sanitest_string()
     ZEN_EXPECT(!::isspace(s.back()));
     ZEN_EXPECT(z.deflate().is_deflated());
     ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
+
+    ZEN_EXPECT(zen::replicate("*", 10) == "**********");
+    ZEN_EXPECT(zen::replicate(10, "*") == "**********");
 }
 
 void test_string_extract()
