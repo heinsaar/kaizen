@@ -58,6 +58,11 @@ z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
 ```
+Replicate a pattern of a sring:
+```cpp
+zen::replicate("/", 10) == "//////////";
+zen::replicate(10, "*") == "**********";
+```
 ### Random numbers
 Just give me a simple random number for everyday use:
 ```cpp
