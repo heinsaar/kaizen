@@ -134,22 +134,22 @@ struct string : std::string // read 'struct' as "extend the interface"
         return my::end() == std::adjacent_find(my::begin(), my::end(), neighbor_spaces);
     }
 
-    auto substring(int indx_1, int indx_2) const {
+    auto substring(int i1, int i2) const {
         const int sz = static_cast<int>(size());
 
         // Convert negative indices to positive, if necessary
-        if (indx_1 < 0) indx_1 += sz;
-        if (indx_2 < 0) indx_2 += sz;
+        if (i1 < 0) i1 += sz;
+        if (i2 < 0) i2 += sz;
 
         // Clamp indices to valid range
-        indx_1 = std::clamp<int>(indx_1, 0, sz);
-        indx_2 = std::clamp<int>(indx_2, 0, sz);
+        i1 = std::clamp<int>(i1, 0, sz);
+        i2 = std::clamp<int>(i2, 0, sz);
 
-        if (indx_2 <= indx_1) {
+        if (i2 <= i1) {
             return zen::string(""); // empty string signals a negative result and is harmless
         }
 
-        return zen::string(substr(indx_1, indx_2 - indx_1));
+        return zen::string(substr(i1, i2 - i1));
     }
 
     // TODO: Implement these (from Python string)
