@@ -54,9 +54,6 @@ int main(int argc, char* argv[])
 	// Test utilities
 	main_test_utils();
 
-///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
-	
-
 	zen::log(" END TESTS ------------------------------------------------", __func__);
 
 	//ZEN_EXPECT(!"DEMO FAIL 1"); // comment & uncomment this to see a fail
