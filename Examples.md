@@ -49,6 +49,7 @@ z.substring(  5,  50) == "substrings");  // just like in Python
 Rich extraction methods from strings, both arbitrary patterns and common cases:
 ```cpp
 z = "Hey, [Hello World] 1.2.3 amazing 1/2/2023";
+
 z.starts_with("Hey"))                    // true
 z.extract_between('[', ']');             // "Hello World"
 z.extract_version();                     // "1.2.3"
