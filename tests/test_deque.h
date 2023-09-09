@@ -5,7 +5,7 @@
 
 void sanitest_deque()
 {
-    zen::log("BEGIN TEST------------------------------------------------", __func__);
+    zen::log("BEGIN TEST ------------------------------------------------", __func__);
 
     zen::deque<int> q;
     zen::populate_random(q);

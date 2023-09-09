@@ -5,7 +5,7 @@
 
 void sanitest_version()
 {
-    zen::log("BEGIN TEST------------------------------------------------", __func__);
+    zen::log("BEGIN TEST ------------------------------------------------", __func__);
 
     zen::version v0(1, 2, 3, 4567);
     ZEN_EXPECT(v0.major() ==    1);

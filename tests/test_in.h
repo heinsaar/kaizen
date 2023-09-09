@@ -5,7 +5,7 @@
 
 void sanitest_in()
 {
-    zen::log("BEGIN TEST------------------------------------------------", __func__);
+    zen::log("BEGIN TEST ------------------------------------------------", __func__);
 
     std::string s = "(5): ";
     for (int i : zen::in(5))

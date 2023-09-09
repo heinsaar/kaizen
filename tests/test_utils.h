@@ -5,7 +5,7 @@
 
 void sanitest_utils()
 {
-    zen::log("BEGIN TEST------------------------------------------------", __func__);
+    zen::log("BEGIN TEST ------------------------------------------------", __func__);
     zen::vector<int> v = {1, 2, 3, 4, 5};
 
     std::string s = zen::to_string(v);
