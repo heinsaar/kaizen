@@ -66,9 +66,12 @@ int main(int argc, char* argv[])
 
 	const bool        all_tests_pass = !zen::TEST_CASE_FAIL_COUNT.load();
 	const auto FAIL = all_tests_pass ?  zen::color::nocolor("FAIL:") : zen::color::red("FAIL:");
+	const auto FAILCOUNT = all_tests_pass
+		? zen::color::nocolor(std::to_string(zen::TEST_CASE_FAIL_COUNT.load()))
+		: zen::color::red(	  std::to_string(zen::TEST_CASE_FAIL_COUNT.load()));
 
-	zen::log("TOTAL TEST CASES", zen::color::green("PASS:"), zen::TEST_CASE_PASS_COUNT.load());
-	zen::log("TOTAL TEST CASES",                    FAIL,    zen::TEST_CASE_FAIL_COUNT.load());
+	zen::log("TOTAL TEST CASES", zen::color::green("PASS:"), zen::color::green(std::to_string(zen::TEST_CASE_PASS_COUNT.load())));
+	zen::log("TOTAL TEST CASES", FAIL, FAILCOUNT);
 	
 	if (all_tests_pass) {
 		zen::log(zen::color::green("--------------------"));
