@@ -41,7 +41,7 @@ namespace zen {
 struct cmd_args {
     cmd_args() : argv_(nullptr), argc_(0) {}
 
-    cmd_args(char* const* argv, int argc)
+    cmd_args(const char* const* argv, int argc)
         : argv_(argv), argc_(argc)
     {}
 
@@ -78,7 +78,7 @@ struct cmd_args {
 private:
     using arguments = std::vector<std::string>;
 
-    char* const* argv_;
+    const char* const* argv_;
     const int    argc_;
     arguments    args_accepted_;
 };
