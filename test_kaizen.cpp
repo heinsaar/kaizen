@@ -31,7 +31,8 @@ int main(int argc, char* argv[])
 	
 	// Print the Kaizen preamble
 	zen::log(zen::color::blue(zen::replicate("|", 70)));
-	zen::log(zen::color::blue(zen::replicate("|", 28) + " KAIZEN"), v, zen::color::blue(zen::replicate("|", 28)));
+	zen::log(zen::color::blue(zen::replicate("|", 28) + " KAIZEN"), v,
+		     zen::color::blue(zen::replicate("|", 28)));
 	zen::log(zen::color::blue(zen::replicate("|", 70)));
 	zen::log(zen::color::blue("RUNNING TESTS..."));
 
