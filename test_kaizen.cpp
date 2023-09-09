@@ -56,6 +56,8 @@ int main(int argc, char* argv[])
 	test_string_ends_with();
 	test_string_extract();
 	
+	zen::log(" END TESTS ------------------------------------------------", __func__);
+
 	//ZEN_EXPECT(!"DEMO FAIL 1"); // comment & uncomment this to see a fail
 	//ZEN_EXPECT(!"DEMO FAIL 2"); // comment & uncomment this to see a fail
 
