@@ -25,4 +25,16 @@ void main_test_version()
     using namespace zen::version_literals;
     auto v7 = "7.6.5.4321"_version;
     ZEN_EXPECT(v7.build() == 4321);
+
+    std::ostringstream os;
+    zen::version v(1, 2, 3, 4);
+    os << v;
+    ZEN_EXPECT(os.str() == "1.2.3.4");
+
+    try {
+        zen::version vi("invalid.version");
+    }
+    catch (const std::invalid_argument& e) {
+        ZEN_EXPECT(zen::string(e.what()) == "The given text does not match the version string pattern.");
+    }
 }
