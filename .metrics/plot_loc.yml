@@ -1,0 +1,37 @@
+# This file is to be used with plot_loc.py script. Hasn't been tested.
+# Eventually both should work to show a history plot of LOC size of the codebase.
+
+name: LOC Analysis & Plot
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install pandas matplotlib
+
+    - name: Run cloc to count lines of code
+      run: sudo apt-get install cloc && cloc . --csv --out=loc.csv
+
+    - name: Generate LOC plot
+      run: python ./metrics/plot_loc.py
+
+    - name: Commit and push the changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add loc.csv plot.png
+        git commit -m "Update LOC data and plot" || echo "No changes to commit"
+        git push
