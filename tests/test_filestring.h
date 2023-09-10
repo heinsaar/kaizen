@@ -14,6 +14,11 @@ void main_test_filestring()
     using namespace zen::literals::path;
     zen::filestring test_literal("../LICENSE.txt"_path);
 
+    // TODO: This shouldn't compile, zen::filestring constructor only
+    // accepts std::filesystem::path, but it compiles. Why? It was failing
+    // to compile, as expected, just a few hours ago. May be a Heisenbug.
+    zen::filestring test_string("../LICENSE.txt");
+
     zen::string version = filestr.getline(1);
     zen::string license = filestr.getline(3);
 
