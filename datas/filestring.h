@@ -74,4 +74,14 @@ private:
     std::ifstream                filestream_;
 };
 
+namespace literals {
+namespace path {
+
+std::filesystem::path operator "" _path(const char* str, std::size_t length)
+{
+    return std::filesystem::path(std::string(str, length));
+}
+
+}}
+
 } // namespace zen

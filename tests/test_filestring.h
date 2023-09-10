@@ -11,6 +11,9 @@ void main_test_filestring()
 
     zen::filestring filestr(project_dir / "LICENSE.txt");
 
+    using namespace zen::literals::path;
+    zen::filestring test_literal("../LICENSE.txt"_path);
+
     zen::string version = filestr.getline(1);
     zen::string license = filestr.getline(3);
 
