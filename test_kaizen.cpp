@@ -24,6 +24,9 @@
 
 int main(int argc, char* argv[])
 {
+	zen::cmd_args		  cmd_args(argv, argc);
+	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();
+
 	// Extract Kaizen version from the license file
 	zen::filestring		  textfile("../LICENSE.txt");
 	zen::string	line    = textfile.getline(1);
@@ -38,9 +41,6 @@ int main(int argc, char* argv[])
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
 	main_test_cmd_args(argc, argv);
-
-	zen::cmd_args cmd_args(argv, argc);
-	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();
 
 	// Test data structures
 	main_test_filestring();
