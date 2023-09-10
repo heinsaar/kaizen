@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cassert>
-#include "kaizen.h" // test using generated header
+#include "kaizen.h" // test using generated header: jump with the parachute you folded
 
 void main_test_filestring()
 {
