@@ -8,6 +8,7 @@ void main_test_filestring()
     BEGIN_TEST;
 
     const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
+
     zen::filestring filestr(project_dir / "LICENSE.txt");
 
     zen::string version = filestr.getline(1);
