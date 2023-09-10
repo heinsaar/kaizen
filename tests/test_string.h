@@ -4,7 +4,7 @@
 
 void test_string_extract()
 {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
 
     zen::string z = "[Hello World] 1.2.3";
 
@@ -61,7 +61,7 @@ void test_string_extract()
 
 void test_string_substring()
 {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
     //               012345678912345 
     zen::string z = "Test substrings";
     ZEN_EXPECT(z.substring(  0,   4) == "Test");
@@ -94,7 +94,7 @@ void test_string_substring()
 
 void test_string_ends_with()
 {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
 
     zen::string z = "Hello";
     ZEN_EXPECT( z.ends_with(""));            // string is not empty, substring is empty
@@ -110,6 +110,7 @@ void test_string_ends_with()
 
 void test_string_trimming()
 {
+    BEGIN_SUBTEST;
     // Trim and deflate a string
     zen::string z = "   Trim   me  ";
     std::string s = z.trim(); // from leading & trailing empty spaces

@@ -3,7 +3,7 @@
 #include "../build/kaizen.h" // test using generated header: jump with the parachute you folded
 
 void test_empty_args() {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
     const char* argv[] = { "exe" };
     zen::cmd_args cmdargs(argv, 1);
     ZEN_EXPECT(!cmdargs.is_present("-verbose"));
@@ -11,7 +11,7 @@ void test_empty_args() {
 }
 
 void test_single_arg_present() {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args cmdargs(argv, 2);
     cmdargs.accept("-verbose");
@@ -19,7 +19,7 @@ void test_single_arg_present() {
 }
 
 void test_single_arg_not_present() {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args cmdargs(argv, 2);
     cmdargs.accept("-ignore");
@@ -27,7 +27,7 @@ void test_single_arg_not_present() {
 }
 
 void test_multiple_args_present() {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(argv, 3);
     cmdargs.accept("-verbose").accept("-ignore");
@@ -36,7 +36,7 @@ void test_multiple_args_present() {
 }
 
 void test_multiple_args_one_missing() {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args cmdargs(argv, 2);
     cmdargs.accept("-verbose").accept("-ignore");
@@ -45,7 +45,7 @@ void test_multiple_args_one_missing() {
 }
 
 void test_arg_at() {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(argv, 3);
     ZEN_EXPECT(   cmdargs.arg_at(0) == "exe");
@@ -54,7 +54,7 @@ void test_arg_at() {
 }
 
 void test_first_last_arg() {
-    BEGIN_TEST;
+    BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(argv, 3);
     ZEN_EXPECT(   cmdargs.first_arg() == "exe");
@@ -62,6 +62,7 @@ void test_first_last_arg() {
 }
 
 void test_constructor_exceptions() {
+    BEGIN_SUBTEST;
     // Test negative argc
     try {
         zen::cmd_args cmdargs(nullptr, -1);       // expect an exception thrown from ctor
