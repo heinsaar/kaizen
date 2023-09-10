@@ -4,7 +4,7 @@
 
 void test_empty_args() {
     BEGIN_TEST;
-    const char* argv[] = { "exename" };
+    const char* argv[] = { "exe" };
     zen::cmd_args cmdargs(argv, 1);
     ZEN_EXPECT(!cmdargs.is_present("-verbose"));
     ZEN_EXPECT(!cmdargs.is_present("-ignore"));
@@ -12,7 +12,7 @@ void test_empty_args() {
 
 void test_single_arg_present() {
     BEGIN_TEST;
-    const char* argv[] = { "exename", "-verbose" };
+    const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args cmdargs(argv, 2);
     cmdargs.accept("-verbose");
     ZEN_EXPECT(cmdargs.is_present());
@@ -20,7 +20,7 @@ void test_single_arg_present() {
 
 void test_single_arg_not_present() {
     BEGIN_TEST;
-    const char* argv[] = { "exename", "-verbose" };
+    const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args cmdargs(argv, 2);
     cmdargs.accept("-ignore");
     ZEN_EXPECT(!cmdargs.is_present());
@@ -28,7 +28,7 @@ void test_single_arg_not_present() {
 
 void test_multiple_args_present() {
     BEGIN_TEST;
-    const char* argv[] = { "exename", "-verbose", "-ignore" };
+    const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(argv, 3);
     cmdargs.accept("-verbose").accept("-ignore");
     ZEN_EXPECT(cmdargs.is_present("-verbose"));
@@ -37,7 +37,7 @@ void test_multiple_args_present() {
 
 void test_multiple_args_one_missing() {
     BEGIN_TEST;
-    const char* argv[] = { "exename", "-verbose" };
+    const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args cmdargs(argv, 2);
     cmdargs.accept("-verbose").accept("-ignore");
     ZEN_EXPECT( cmdargs.is_present("-verbose"));
@@ -46,18 +46,18 @@ void test_multiple_args_one_missing() {
 
 void test_arg_at() {
     BEGIN_TEST;
-    const char* argv[] = { "exename", "-verbose", "-ignore" };
+    const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(argv, 3);
-    ZEN_EXPECT(   cmdargs.arg_at(0) == "exename");
+    ZEN_EXPECT(   cmdargs.arg_at(0) == "exe");
     ZEN_EXPECT(   cmdargs.arg_at(1) == "-verbose");
     ZEN_EXPECT(   cmdargs.arg_at(2) == "-ignore");
 }
 
 void test_first_last_arg() {
     BEGIN_TEST;
-    const char* argv[] = { "exename", "-verbose", "-ignore" };
+    const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(argv, 3);
-    ZEN_EXPECT(   cmdargs.first_arg() == "exename");
+    ZEN_EXPECT(   cmdargs.first_arg() == "exe");
     ZEN_EXPECT(   cmdargs.last_arg() == "-ignore");
 }
 
