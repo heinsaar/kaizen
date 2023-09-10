@@ -104,7 +104,7 @@ Yellow circles signify a potential need to code, although quite often a suggesti
 1. 🔴 **Add tests.** There can never be enough tests that cover anything previously not covered.
 1. 🔴 **Automate.** If you see ways to automate any process and thus save iteration time.
 
-See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
+See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages that this repository follows.
 
 ## Prerequisites for building
 
