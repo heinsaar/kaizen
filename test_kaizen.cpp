@@ -28,9 +28,9 @@ int main(int argc, char* argv[])
 	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();
 
 	// Extract Kaizen version from the license file
-	zen::filestring		  textfile("../LICENSE.txt");
-	zen::string	line    = textfile.getline(1);
-	const zen::string vers = line.extract_version();
+	zen::filestring	   textfile("../LICENSE.txt");
+	zen::string	line = textfile.getline(1);
+	zen::string vers = line.extract_version();
 	
 	// Print the Kaizen preamble
 	zen::log(zen::color::blue(zen::replicate("|", 79)));
