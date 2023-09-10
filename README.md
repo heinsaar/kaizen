@@ -188,7 +188,8 @@ If you want to develop using MSVC compiler from Visual Studio Code, there are va
 
 A build and run will produce a console output that will look like this:
 
-![image](https://github.com/heinsaar/kaizen/assets/14178490/35dccde6-f70b-47d6-9fcc-8cdd02ef803f)
+![image](https://github.com/heinsaar/kaizen/assets/14178490/a8313757-140d-4112-99f9-2ddbb36c5041)
+
 
 
 
