@@ -61,6 +61,25 @@ void test_first_last_arg() {
     ZEN_EXPECT(   cmdargs.last_arg()  == "-ignore");
 }
 
+void test_constructor_exceptions() {
+    // Test negative argc
+    try {
+        zen::cmd_args cmdargs(nullptr, -1);       // expect an exception thrown from ctor
+        ZEN_EXPECT("SHOULD NOT REACH THIS LINE");
+    } catch (const std::invalid_argument& e) {
+        ZEN_EXPECT(std::string(e.what()) == "CONSTRUCTOR ARGUMENT argc MUST BE NON-NEGATIVE");
+    }
+
+    // Test nullptr in argv
+    const char* args_with_null[] = { "valid", nullptr };
+    try {
+        zen::cmd_args cmdargs(args_with_null, 2); // expect an exception thrown from ctor
+        ZEN_EXPECT(false); // Should not reach this line
+    } catch (const std::invalid_argument& e) {
+        ZEN_EXPECT(std::string(e.what()) == "CONSTRUCTOR ARGUMENT argv CONTAINS nullptr ELEMENT(S)");
+    }
+}
+
 void main_test_cmd_args(int argc, char* argv[])
 {
     BEGIN_TEST;
@@ -75,6 +94,7 @@ void main_test_cmd_args(int argc, char* argv[])
 
     test_multiple_args_one_missing();
     test_single_arg_not_present();
+    test_constructor_exceptions();
     test_multiple_args_present();
     test_single_arg_present();
     test_first_last_arg();

@@ -23,6 +23,7 @@
 #pragma once
 
 #include <algorithm>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -45,7 +46,18 @@ struct cmd_args {
 
     cmd_args(const char* const* argv, int argc)
         : argv_(argv), argc_(argc)
-    {}
+    {
+        // Check for consistency between argv and argc for
+        // the rare cases when they do not come from main()
+        if (argc < 0) {
+            throw std::invalid_argument("CONSTRUCTOR ARGUMENT argc MUST BE NON-NEGATIVE");
+        }
+        for (int i = 0; i < argc; ++i) {
+            if (argv[i] == nullptr) {
+                throw std::invalid_argument("CONSTRUCTOR ARGUMENT argv CONTAINS nullptr ELEMENT(S)");
+            }
+        }
+    }
 
     cmd_args& accept(const std::string& a)
     {
