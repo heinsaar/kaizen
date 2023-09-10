@@ -24,8 +24,10 @@
 
 int main()
 {
+	const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
+
 	// Extract Kaizen version from the license file
-	zen::filestring		  textfile("../LICENSE.txt");
+	zen::filestring		  textfile(project_dir / "LICENSE.txt");
 	zen::string	line    = textfile.getline(1);
 	const zen::string v = line.extract_pattern(R"((\d+\.\d+\.\d+))"); // version
 	

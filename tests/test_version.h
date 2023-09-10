@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cassert>
-#include "../build/kaizen.h" // test using generated header
+#include "kaizen.h" // test using generated header
 
 void sanitest_version()
 {

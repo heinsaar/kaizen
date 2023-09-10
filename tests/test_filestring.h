@@ -1,13 +1,14 @@
 #pragma once
 
 #include <cassert>
-#include "../build/kaizen.h" // test using generated header
+#include "kaizen.h" // test using generated header
 
 void sanitest_filestring()
 {
     zen::log("BEGIN TEST------------------------------------------------", __func__);
 
-    zen::filestring filestr("../LICENSE.txt");
+    const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
+    zen::filestring filestr(project_dir / "LICENSE.txt");
 
     zen::string version = filestr.getline(1);
     zen::string license = filestr.getline(3);

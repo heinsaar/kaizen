@@ -59,9 +59,15 @@ def write_output_file(filename, license_text, include_directives, code_content):
         os.chmod(filename, 0o444) # make readonly
 
 if __name__ == '__main__':
-    dirs = ['../datas', '../functions']
-    header_files = collect_header_files(dirs)
-    license_text = read_license('../LICENSE.txt')
+    project_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    datas_dir = os.path.join(project_dir, 'datas')
+    function_dir = os.path.join(project_dir, 'functions')
+    
+    license_file = os.path.join(project_dir, 'LICENSE.txt')
+
+    header_files = collect_header_files([datas_dir, function_dir])
+    license_text = read_license(license_file)
 
     all_include_directives = set()
     all_code_content = []
