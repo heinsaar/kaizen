@@ -192,9 +192,13 @@ namespace color {
 template<class T>
 std::string to_string(const T& x) {
     std::stringstream ss;
-    if constexpr (is_string_like<T>()) { // so that zen::pring("abc") prints "abc" and not [a, b, c]
-       return x;                         // as a result of considering strings as iterable below
+    
+    // First check for string-likeness so that zen::pring("abc") prints "abc"
+    // and not [a, b, c] as a result of considering strings as iterable below
+    if constexpr (is_string_like<T>()) {
+       return x;
     }
+
     if constexpr (is_iterable_v<T>) {
         ss << "[";
         auto it = std::begin(x);
