@@ -33,10 +33,10 @@ int main(int argc, char* argv[])
 	const zen::string v = line.extract_version();
 	
 	// Print the Kaizen preamble
-	zen::log(zen::color::blue(zen::replicate("|", 70)));
-	zen::log(zen::color::blue(zen::replicate("|", 28) + " KAIZEN"), v,
-		     zen::color::blue(zen::replicate("|", 28)));
-	zen::log(zen::color::blue(zen::replicate("|", 70)));
+	zen::log(zen::color::blue(zen::replicate("|", 79)));
+	zen::log(zen::color::blue(zen::replicate("|", 30) + " KAIZEN"), v,
+		     zen::color::blue(zen::replicate("|", 30)));
+	zen::log(zen::color::blue(zen::replicate("|", 79)));
 	zen::log(zen::color::blue("RUNNING TESTS..."));
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
