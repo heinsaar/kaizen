@@ -37,7 +37,7 @@ namespace zen {
 
 #define BEGIN_TEST    zen::log("BEGIN", zen::replicate("-", 50), __func__)
 #define BEGIN_SUBTEST zen::log(         zen::replicate("-", 61), __func__)
-#define END_TESTS     zen::log("END  ", zen::replicate("-", 50), __func__);
+#define END_TESTS     zen::log("END  ", zen::replicate("-", 50), __func__)
 
 std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
 std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
