@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 	// Extract Kaizen version from the license file
 	zen::filestring		  textfile("../LICENSE.txt");
 	zen::string	line    = textfile.getline(1);
-	const zen::string v = line.extract_pattern(R"((\d+\.\d+\.\d+))"); // version
+	const zen::string v = line.extract_version();
 	
 	// Print the Kaizen preamble
 	zen::log(zen::color::blue(zen::replicate("|", 70)));
