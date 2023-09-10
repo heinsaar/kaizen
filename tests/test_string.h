@@ -108,6 +108,21 @@ void test_string_ends_with()
     ZEN_EXPECT(!z.ends_with("test"));        // string is empty, substring is not empty
 }
 
+void test_string_trimming()
+{
+    // Trim and deflate a string
+    zen::string z = "   Trim   me  ";
+    std::string s = z.trim(); // from leading & trailing empty spaces
+    ZEN_EXPECT(!::isspace(s.front()));
+    ZEN_EXPECT(!::isspace(s.back()));
+    ZEN_EXPECT(z.deflate().is_deflated());
+    ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
+
+    ZEN_EXPECT(zen::replicate("*", 10) == "**********");
+    ZEN_EXPECT(zen::replicate(10, "*") == "**********");
+
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -122,18 +137,8 @@ void main_test_string()
     // Check interchangeability with std::string // TODO: Cover more cases?
     std::string x = z; z = x;
 
-    // Trim and deflate a string
-    z = "   Trim   me  ";
-    s = z.trim(); // from leading & trailing empty spaces
-    ZEN_EXPECT(!::isspace(s.front()));
-    ZEN_EXPECT(!::isspace(s.back()));
-    ZEN_EXPECT(z.deflate().is_deflated());
-    ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
-
-    ZEN_EXPECT(zen::replicate("*", 10) == "**********");
-    ZEN_EXPECT(zen::replicate(10, "*") == "**********");
-
     test_string_substring();
     test_string_ends_with();
+    test_string_trimming();
     test_string_extract();
 }
