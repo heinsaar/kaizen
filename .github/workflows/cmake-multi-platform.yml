@@ -6,12 +6,12 @@ name: CMake Multi Platform Build
 on:
   push:
     branches: [ "master" ]
-    paths-ignore:
+    paths-ignore: # careful not to ignore non-code files that are parsed by code
       - '*.md'
       - '.gitignore'
   pull_request:
     branches: [ "master" ]
-    paths-ignore:
+    paths-ignore: # careful not to ignore non-code files that are parsed by code
       - '*.md'
       - '.gitignore'
 
