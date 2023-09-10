@@ -10,7 +10,7 @@ void main_test_list()
     zen::populate_random(x);
     x.push_back(777);
 
-    zen::log("RANDOM LIST:", x);
+    //zen::log("RANDOM LIST:", x);
 
     ZEN_EXPECT(x.contains(777));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());

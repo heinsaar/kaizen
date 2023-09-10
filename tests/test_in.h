@@ -24,7 +24,6 @@ void main_test_in()
     s = "[10, 1, -1): ";
     for (int i : zen::in(10, 1, -1))
         s += std::to_string(i) + " ";
-    zen::log(s);
     ZEN_EXPECT(s == "[10, 1, -1): 10 9 8 7 6 5 4 3 2 ");
 
     s = "[1, 10, -1): ";
