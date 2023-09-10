@@ -52,9 +52,9 @@ int main(int argc, char* argv[])
 	main_test_vector();
 	main_test_array();
 	main_test_deque();
+	main_test_utils();
 	main_test_list();
 	main_test_in();
-	main_test_utils();
 
 	END_TESTS;
 
