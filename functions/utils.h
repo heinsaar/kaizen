@@ -35,10 +35,17 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// USEFUL MISC
 
+#define BEGIN_TEST    zen::log("BEGIN", zen::replicate("-", 50), __func__)
+#define BEGIN_SUBTEST zen::log(         zen::replicate("-", 61), __func__)
+#define END_TESTS     zen::log("END  ", zen::replicate("-", 50), __func__);
+
 std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
 std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
 
-#define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN: " M)
+bool REPORT_TC_PASS = false; // by default, don't report passes to avoid chatter
+bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
+
+#define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN STATIC ASSERTION FAILED. "#M ": " #X)
 
 // ZEN_EXPECT checks its condition parameter and spits out the condition statement if it fails.
 // The do { } while (0) construct ensures that the macro behaves as a single statement.
@@ -47,11 +54,13 @@ std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever para
 #define ZEN_EXPECT(cond) \
     do { \
         if (cond) { \
-            zen::log(zen::color::green("CASE PASS:"), #cond); \
+            if (zen::REPORT_TC_PASS) \
+                zen::log(zen::color::green("CASE PASS:"), #cond); \
             ++zen::TEST_CASE_PASS_COUNT; \
         } \
         if (!(cond)) { \
-            zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #cond); \
+            if (zen::REPORT_TC_FAIL) \
+                zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #cond); \
             ++zen::TEST_CASE_FAIL_COUNT; \
         } \
     } while (0)
@@ -62,6 +71,28 @@ inline auto timestamp() {
     std::time_t result  = std::time(nullptr);
     std::string timestr = std::asctime(std::localtime(&result));
     return timestr.substr(0, timestr.length() - 1);
+}
+
+// Allows replicating string patterns. Usually used like so:
+// replicate("*", 10) // "**********"
+// This is the symmetrical complement of replicate(int, str)
+zen::string replicate(const std::string_view s, const int n) {
+    std::string result;
+    for (int i = 0; i < n; i++) {
+        result += s;
+    }
+    return result;
+}
+
+// Allows replicating string patterns. Usually used like so:
+// replicate(10, "*") // "**********"
+// This is the symmetrical complement of replicate(str, int)
+zen::string replicate(const int n, const std::string_view s) {
+    std::string result;
+    for (int i = 0; i < n; i++) {
+        result += s;
+    }
+    return result;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
@@ -104,10 +135,10 @@ T random_int(const T min = 0, const T max = 10) {
     return dis(gen);
 }
 
-template<class C>
-void populate_random(C& c, int size = 10)
+template<class Iterable>
+void populate_random(Iterable& c, int size = 10)
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<C>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE ITERABLE, BUT IS NOT");
 
     if (!std::size(c))
         c.resize(size);
@@ -115,10 +146,10 @@ void populate_random(C& c, int size = 10)
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
 
-template<class C>
-bool is_empty(const C& c)
+template<class Iterable>
+bool is_empty(const Iterable& c)
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<C>, "TEMPLATE PARAMETER C EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE ITERABLE, BUT IS NOT");
     return c.empty();
 }
 

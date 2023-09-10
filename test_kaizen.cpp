@@ -22,47 +22,59 @@
 
 #include "test_kaizen.h"
 
-int main()
+int main(int argc, char* argv[])
 {
 	const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
 
+	zen::cmd_args		  cmd_args(argv, argc);
+	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();
+
+///////////////////////////////////////////////////////////////////////////////////////////// PREAMBLE
+
 	// Extract Kaizen version from the license file
-	zen::filestring		  textfile(project_dir / "LICENSE.txt");
-	zen::string	line    = textfile.getline(1);
-	const zen::string v = line.extract_pattern(R"((\d+\.\d+\.\d+))"); // version
+	zen::filestring	   textfile(project_dir / "LICENSE.txt");
+	zen::string	line = textfile.getline(1);
+	zen::string vers = line.extract_version();
 	
 	// Print the Kaizen preamble
-	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
-	zen::print(zen::color::blue("|||||||||||||||||||||||||||| KAIZEN"), v, zen::color::blue("||||||||||||||||||||||||||||\n"));
-	zen::print(zen::color::blue("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
-	zen::print(zen::color::blue("RUNNING TESTS...\n"));
-
-///////////////////////////////////////////////////////////////////////////////////////////// SANITY TESTS
-
-	// Test data structures
-	sanitest_filestring();
-    sanitest_version();
-	sanitest_string();
-	sanitest_vector();
-	sanitest_array();
-	sanitest_deque();
-	sanitest_list();
-
-	// Test utilities
-	sanitest_utils();
+	zen::log(zen::color::blue(zen::replicate("|", 79)));
+	zen::log(zen::color::blue(zen::replicate("|", 30) + " KAIZEN"), vers,
+		     zen::color::blue(zen::replicate("|", 30)));
+	zen::log(zen::color::blue(zen::replicate("|", 79)));
+	zen::log(zen::color::blue("RUNNING TESTS..."));
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
-	test_string_substring();
-	test_string_ends_with();
-	test_string_extract();
-	
-	//ZEN_EXPECT(!"DEMO FAIL"); // comment & uncomment this to see a fail
 
-	const bool        all_tests_pass = !zen::TEST_CASE_FAIL_COUNT.load();
-	const auto FAIL = all_tests_pass ?  zen::color::nocolor("FAIL:") : zen::color::red("FAIL:");
+	main_test_cmd_args(argc, argv);
 
-	zen::log("TOTAL TEST CASES", zen::color::green("PASS:"), zen::TEST_CASE_PASS_COUNT.load());
-	zen::log("TOTAL TEST CASES",                    FAIL,    zen::TEST_CASE_FAIL_COUNT.load());
+	// Test data structures
+	main_test_filestring();
+    main_test_version();
+	main_test_string();
+	main_test_vector();
+	main_test_array();
+	main_test_deque();
+	main_test_list();
+	main_test_in();
+
+	// Test functions
+	main_test_utils();
+
+	END_TESTS;
+
+///////////////////////////////////////////////////////////////////////////////////////////// REPORT
+
+	//ZEN_EXPECT(!"DEMO FAIL 1"); // comment & uncomment this to see a fail
+	//ZEN_EXPECT(!"DEMO FAIL 2"); // comment & uncomment this to see a fail
+
+	const bool             all_tests_pass = !zen::TEST_CASE_FAIL_COUNT.load();
+	const auto FAIL      = all_tests_pass ?  zen::color::nocolor("FAIL:") : zen::color::red("FAIL:");
+	const auto FAILCOUNT = all_tests_pass
+		? zen::color::nocolor(std::to_string(zen::TEST_CASE_FAIL_COUNT.load()))
+		: zen::color::red(	  std::to_string(zen::TEST_CASE_FAIL_COUNT.load()));
+
+	zen::log("TOTAL TEST CASES", zen::color::green("PASS:"), zen::color::green(std::to_string(zen::TEST_CASE_PASS_COUNT.load())));
+	zen::log("TOTAL TEST CASES", FAIL, FAILCOUNT);
 	
 	if (all_tests_pass) {
 		zen::log(zen::color::green("--------------------"));

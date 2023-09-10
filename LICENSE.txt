@@ -1,4 +1,4 @@
-Kaizen Version 0.0.1
+Kaizen Version 1.0.0.0000
 
 MIT License
 

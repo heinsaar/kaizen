@@ -1,34 +1,10 @@
 #pragma once
 
-#include <cassert>
-#include "kaizen.h" // test using generated header
-
-void sanitest_string()
-{
-    zen::log("BEGIN TEST------------------------------------------------", __func__);
-
-    std::string s = "[Hello World] 1.2.3";
-    zen::string z = s; s = z; z = s; // check basic interchangability
-
-    ZEN_EXPECT(z.contains("World"));
-    ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
-    ZEN_EXPECT(z.extract_between("[", "]").ends_with(  "World"));
-
-    // Check interchangeability with std::string // TODO: Cover more cases?
-    std::string x = z; z = x;
-
-    // Trim and deflate a string
-    z = "   Trim   me  ";
-    s = z.trim(); // from leading & trailing empty spaces
-    ZEN_EXPECT(!::isspace(s.front()));
-    ZEN_EXPECT(!::isspace(s.back()));
-    ZEN_EXPECT(z.deflate().is_deflated());
-    ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
-}
+#include "kaizen.h" // test using generated header: jump with the parachute you folded
 
 void test_string_extract()
 {
-    zen::log("BEGIN TEST------------------------------------------------", __func__);
+    BEGIN_SUBTEST;
 
     zen::string z = "[Hello World] 1.2.3";
 
@@ -36,9 +12,9 @@ void test_string_extract()
     ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
 
     // Extract software version
-    z = "Software Version 1.2.3";
+    z = "Software Version 1.2.3.4";
     std::string s = z.extract_version();
-    ZEN_EXPECT(s == "1.2.3");
+    ZEN_EXPECT(s == "1.2.3.4");
     s = z.extract_pattern(R"((\d+\.\d+\.\d+))");
     ZEN_EXPECT(s == "1.2.3");
 
@@ -85,7 +61,7 @@ void test_string_extract()
 
 void test_string_substring()
 {
-    zen::log("BEGIN TEST------------------------------------------------", __func__);
+    BEGIN_SUBTEST;
     //               012345678912345 
     zen::string z = "Test substrings";
     ZEN_EXPECT(z.substring(  0,   4) == "Test");
@@ -118,7 +94,7 @@ void test_string_substring()
 
 void test_string_ends_with()
 {
-    zen::log("BEGIN TEST------------------------------------------------", __func__);
+    BEGIN_SUBTEST;
 
     zen::string z = "Hello";
     ZEN_EXPECT( z.ends_with(""));            // string is not empty, substring is empty
@@ -130,4 +106,40 @@ void test_string_ends_with()
     z = "";
     ZEN_EXPECT( z.ends_with(""));            // string is empty, substring is empty
     ZEN_EXPECT(!z.ends_with("test"));        // string is empty, substring is not empty
+}
+
+void test_string_trimming()
+{
+    BEGIN_SUBTEST;
+    // Trim and deflate a string
+    zen::string z = "   Trim   me  ";
+    std::string s = z.trim(); // from leading & trailing empty spaces
+    ZEN_EXPECT(!::isspace(s.front()));
+    ZEN_EXPECT(!::isspace(s.back()));
+    ZEN_EXPECT(z.deflate().is_deflated());
+    ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
+
+    ZEN_EXPECT(zen::replicate("*", 10) == "**********");
+    ZEN_EXPECT(zen::replicate(10, "*") == "**********");
+
+}
+
+void main_test_string()
+{
+    BEGIN_TEST;
+
+    std::string s = "[Hello World] 1.2.3";
+    zen::string z = s; s = z; z = s; // check basic interchangability
+
+    ZEN_EXPECT(z.contains("World"));
+    ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
+    ZEN_EXPECT(z.extract_between("[", "]").ends_with(  "World"));
+
+    // Check interchangeability with std::string // TODO: Cover more cases?
+    std::string x = z; z = x;
+
+    test_string_substring();
+    test_string_ends_with();
+    test_string_trimming();
+    test_string_extract();
 }

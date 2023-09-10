@@ -1,17 +1,16 @@
 #pragma once
 
-#include <cassert>
-#include "kaizen.h" // test using generated header
+#include "kaizen.h" // test using generated header: jump with the parachute you folded
 
-void sanitest_list()
+void main_test_list()
 {
-    zen::log("BEGIN TEST------------------------------------------------", __func__);
+    BEGIN_TEST;
 
     zen::list<int> x;
     zen::populate_random(x);
     x.push_back(777);
 
-    zen::log("RANDOM LIST:", x);
+    //zen::log("RANDOM LIST:", x);
 
     ZEN_EXPECT(x.contains(777));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());

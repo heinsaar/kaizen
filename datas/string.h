@@ -84,7 +84,7 @@ struct string : std::string // read 'struct' as "extend the interface"
         return ""; // signals 'no match'
     }
 
-    auto extract_version()   { return extract_pattern(R"((\d+\.\d+\.\d+))"                                     ); } // Like "X.Y.Z"
+    auto extract_version()   { return extract_pattern(R"((\d+)\.(\d+)\.(\d+)\.(\d+))"                          ); } // Like "X.Y.Z.B"
     auto extract_date()      { return extract_pattern(R"((\d+\/\d+\/\d+))"                                     ); } // Like "31/12/2021"
     auto extract_email()     { return extract_pattern(R"((\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b))"); }
     auto extract_url()       { return extract_pattern(R"((https?://[^\s]+))"                                   ); }
@@ -134,43 +134,41 @@ struct string : std::string // read 'struct' as "extend the interface"
         return my::end() == std::adjacent_find(my::begin(), my::end(), neighbor_spaces);
     }
 
-    auto substring(int indx_1, int indx_2) const {
+    auto substring(int i1, int i2) const {
         const int sz = static_cast<int>(size());
 
         // Convert negative indices to positive, if necessary
-        if (indx_1 < 0) indx_1 += sz;
-        if (indx_2 < 0) indx_2 += sz;
+        if (i1 < 0) i1 += sz;
+        if (i2 < 0) i2 += sz;
 
         // Clamp indices to valid range
-        indx_1 = std::clamp<int>(indx_1, 0, sz);
-        indx_2 = std::clamp<int>(indx_2, 0, sz);
+        i1 = std::clamp<int>(i1, 0, sz);
+        i2 = std::clamp<int>(i2, 0, sz);
 
-        if (indx_2 <= indx_1) {
+        if (i2 <= i1) {
             return zen::string(""); // empty string signals a negative result and is harmless
         }
 
-        return zen::string(substr(indx_1, indx_2 - indx_1));
+        return zen::string(substr(i1, i2 - i1));
     }
 
     // TODO: Implement these (from Python string)
     // capitalize()	    Converts the first character to upper case
-    // tolower()	    Converts string into lower case
+    // to_lower()	    Converts string into lower case
     // center()	        Returns a centered string
-    // endswith()	    Returns true if the string ends with the specified value
-    // isalnum()	    Returns True if all characters in the string are alphanumeric
-    // isalpha()	    Returns True if all characters in the string are in the alphabet
-    // isascii()	    Returns True if all characters in the string are ascii characters
-    // isdecimal()	    Returns True if all characters in the string are decimals
-    // isdigit()	    Returns True if all characters in the string are digits
-    // isidentifier()	Returns True if the string is an identifier
-    // islower()	    Returns True if all characters in the string are lower case
-    // isnumeric()	    Returns True if all characters in the string are numeric
-    // isprintable()	Returns True if all characters in the string are printable
-    // isspace()	    Returns True if all characters in the string are whitespaces
-    // isupper()	    Returns True if all characters in the string are upper case
+    // is_alnum()	    Returns True if all characters in the string are alphanumeric
+    // is_alpha()	    Returns True if all characters in the string are in the alphabet
+    // is_ascii()	    Returns True if all characters in the string are ascii characters
+    // is_decimal()	    Returns True if all characters in the string are decimals
+    // is_digit()	    Returns True if all characters in the string are digits
+    // is_identifier()	Returns True if the string is an identifier
+    // is_lower()	    Returns True if all characters in the string are lower case
+    // is_numeric()	    Returns True if all characters in the string are numeric
+    // is_printable()	Returns True if all characters in the string are printable
+    // is_space()	    Returns True if all characters in the string are whitespaces
+    // is_upper()	    Returns True if all characters in the string are upper case
     // ljust()	        Returns a left justified version of the string
     // lstrip()	        Returns a left trim version of the string
-    // maketrans()	    Returns a translation table to be used in translations
     // partition()	    Returns a tuple where the string is parted into three parts
     // rfind()	        Searches the string for a specified value and returns the last position of where it was found
     // rjust()	        Returns a right justified version of the string
@@ -178,10 +176,10 @@ struct string : std::string // read 'struct' as "extend the interface"
     // rsplit()	        Splits the string at the specified separator, and returns a list
     // rstrip()	        Returns a right trim version of the string
     // split()	        Splits the string at the specified separator, and returns a list
-    // splitlines()	    Splits the string at line breaks and returns a list
+    // split_lines()	Splits the string at line breaks and returns a list
     // strip()	        Returns a trimmed version of the string
     // swapcase()	    Swaps cases, lower case becomes upper case and vice versa
-    // toupper()	    Converts a string into upper case
+    // to_upper()	    Converts a string into upper case
 
 private:
     using my = zen::string;
