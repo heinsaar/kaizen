@@ -54,10 +54,10 @@ namespace zen {
 
 // ------------------------------------------------------------------------------------------ is_string_like
 
-    template<class T>
-    constexpr bool is_string_like() {
-        return std::is_convertible<T, std::string>::value
-            || std::is_convertible<T, const char*>::value;
-    }
+template<class T>
+constexpr bool is_string_like() {
+    return std::is_convertible<T, std::string>::value
+        || std::is_convertible<T, const char*>::value;
+}
 
 } // namespace zen
