@@ -46,8 +46,6 @@ int main(int argc, char* argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
 
 	main_test_cmd_args(argc, argv);
-
-	// Test data structures
 	main_test_filestring();
     main_test_version();
 	main_test_string();
@@ -56,8 +54,6 @@ int main(int argc, char* argv[])
 	main_test_deque();
 	main_test_list();
 	main_test_in();
-
-	// Test functions
 	main_test_utils();
 
 	END_TESTS;
