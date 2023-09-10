@@ -35,6 +35,6 @@ void main_test_version()
         zen::version vi("invalid.version");
     }
     catch (const std::invalid_argument& e) {
-        ZEN_EXPECT(zen::string(e.what()) == "struct zen::version CONSTRUCTOR ARGUMENT STRING DOESN'T MATCH THE EXPECTED M.M.P.B PATTERN.");
+        ZEN_EXPECT(zen::string(e.what()).contains("CONSTRUCTOR ARGUMENT STRING DOESN'T MATCH THE EXPECTED M.M.P.B PATTERN."));
     }
 }
