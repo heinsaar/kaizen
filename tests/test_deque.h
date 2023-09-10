@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../build/kaizen.h" // test using generated header: jump with the parachute you folded
+#include "kaizen.h" // test using generated header: jump with the parachute you folded
 
 void main_test_deque()
 {

@@ -59,4 +59,6 @@ if(WIN32)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
+target_include_directories(kaizen PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+
 # TODO: Add tests and install targets if needed.

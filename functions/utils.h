@@ -22,13 +22,14 @@
 
 #pragma once
 
-#include <string_view>
-#include <iostream>
-#include <sstream>
-#include <cassert>
-#include <random>
 #include <atomic>
 #include <ctime>
+#include <filesystem>
+#include <iostream>
+#include <optional>
+#include <random>
+#include <sstream>
+#include <string_view>
 
 namespace zen {
 
@@ -259,5 +260,18 @@ void log(T x, Args... args) {
 }
 // Base case for the recursive calls
 inline void log() {}
+
+///////////////////////////////////////////////////////////////////////////////////////////// PATHS
+
+std::optional<std::filesystem::path> search_upward(std::filesystem::path dir, std::string_view name) {
+    while (dir.filename() != name) {
+        dir = dir.parent_path();
+    }
+
+    if (dir.empty())
+        return std::nullopt;
+        
+    return dir;
+}
 
 } // namespace zen

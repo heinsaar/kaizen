@@ -1,12 +1,14 @@
 #pragma once
 
-#include "../build/kaizen.h" // test using generated header: jump with the parachute you folded
+#include <cassert>
+#include "kaizen.h" // test using generated header
 
 void main_test_filestring()
 {
     BEGIN_TEST;
 
-    zen::filestring filestr("../LICENSE.txt");
+    const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
+    zen::filestring filestr(project_dir / "LICENSE.txt");
 
     zen::string version = filestr.getline(1);
     zen::string license = filestr.getline(3);

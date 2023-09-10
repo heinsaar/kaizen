@@ -24,13 +24,15 @@
 
 int main(int argc, char* argv[])
 {
+	const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
+
 	zen::cmd_args		  cmd_args(argv, argc);
 	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();
 
 ///////////////////////////////////////////////////////////////////////////////////////////// PREAMBLE
 
 	// Extract Kaizen version from the license file
-	zen::filestring	   textfile("../LICENSE.txt");
+	zen::filestring	   textfile(project_dir / "LICENSE.txt");
 	zen::string	line = textfile.getline(1);
 	zen::string vers = line.extract_version();
 	
