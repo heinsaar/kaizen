@@ -91,15 +91,18 @@ Many more examples can be found [here](https://github.com/heinsaar/kaizen/blob/m
 
 ## Ways to contribute
 
-1. **Review code & commits.** Our commits follow the [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) and therefore are very easy to review.
-1. **Suggest a utility.** If you have an idea for a C++ utility code, feel free to suggest in [our discussions](https://github.com/heinsaar/kaizen/discussions).
-1. **Generalize a utility.** If you see how to generalize any code in a meaningful way.
-1. **Optimize.** If you see how to optimize any code in a meaningful way.
-1. **Harden.** If you see how to improve the robustness of any code.
-1. **Reduce LOC.** If you see ways to reduce lines of code (common sense - with no loss of readability).
-1. **Implement an [issue](https://github.com/heinsaar/kaizen/issues) or any "TODO" in code.**
-1. **Add more tests.** There can never be enough tests as long as they're more or less independent and cover anything not previously covered.
-1. **Automate.** If you see ways to automate any process and thus save iteration time.
+Circles signify a potential scale of involvement in terms of time and/or energy. Green circles signify the easy stuff, essentially requiring no coding.
+Yellow circles signify a potential need to code, although quite often a suggestion would do here as well. Red circles signify a clear need to code.
+
+1. 🟢 **Review code & commits.** Our commits follow the [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) and therefore are very easy to review.
+1. 🟢 **Suggest a utility.** If you have an idea for a C++ utility code, feel free to suggest in [our discussions](https://github.com/heinsaar/kaizen/discussions).
+1. 🟡 **Generalize a utility.** If you see how to generalize any code in a meaningful way.
+1. 🟡 **Optimize.** If you see how to optimize any code in a meaningful way.
+1. 🟡 **Harden.** If you see how to improve the robustness of any code.
+1. 🟡 **Reduce LOC.** If you see ways to reduce lines of code (common sense - with no loss of readability).
+1. 🔴 **Implement an [issue](https://github.com/heinsaar/kaizen/issues)**. Some are in the form of a "TODO" in code.
+1. 🔴 **Add tests.** There can never be enough tests that cover anything previously not covered.
+1. 🔴 **Automate.** If you see ways to automate any process and thus save iteration time.
 
 See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
 
