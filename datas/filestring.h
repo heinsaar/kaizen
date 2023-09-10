@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -34,7 +35,7 @@ template <class T, class... Args> void log(T x, Args... args); // forward declar
 
 struct filestring
 {
-    filestring(const std::string& path)
+    filestring(const std::filesystem::path& path)
         : filepath_(path), filestream_(path)
     {
         if (!filestream_.is_open()) {
@@ -69,8 +70,8 @@ struct filestring
 
 private:
     // TODO: Dynamically cache lines that are read the first time
-    std::string   filepath_;
-    std::ifstream filestream_;
+    const std::filesystem::path& filepath_;
+    std::ifstream                filestream_;
 };
 
 } // namespace zen
