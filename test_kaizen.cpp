@@ -60,6 +60,8 @@ int main(int argc, char* argv[])
 
 	END_TESTS;
 
+///////////////////////////////////////////////////////////////////////////////////////////// REPORT
+
 	//ZEN_EXPECT(!"DEMO FAIL 1"); // comment & uncomment this to see a fail
 	//ZEN_EXPECT(!"DEMO FAIL 2"); // comment & uncomment this to see a fail
 
