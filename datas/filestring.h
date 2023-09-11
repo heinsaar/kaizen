@@ -53,22 +53,55 @@ struct filestring
         }
     }
 
-    // Method to get line n from the file (indexing starts from 1, not 0)
-    std::string getline(const int nth) {
-        filestream_.clear();                 // clear any error state
-        filestream_.seekg(0, std::ios::beg); // reset back to the beginning of the file
-
-        std::string line;
-
-        for (int i = 0; i < nth - 1; ++i) {
-            std::getline(filestream_, line);
-            if (filestream_.eof()) {
-                throw std::out_of_range("END OF FILE REACHED");
+    class iterator {
+    public:
+        iterator(std::ifstream& is, bool end_marker = false)
+            : input_{is}, end_marker_{end_marker}
+        {
+            if (!end_marker_) {
+                input_.clear();
+                input_.seekg(0, std::ios::beg);
+                this->operator++();
             }
         }
 
-        std::getline(filestream_, line);
-        return line;
+        bool operator!=(const iterator& it) const {
+            return it.end_marker_ != end_marker_;
+        }
+        
+        const std::string& operator*() const {
+            return line_;
+        }
+
+        iterator& operator++() {
+            if (input_.eof())
+                end_marker_ = true;
+            else
+                std::getline(input_, line_, '\n');
+
+            return *this;
+        }
+
+    private:
+        std::ifstream& input_;
+        bool           end_marker_{false};
+        std::string    line_;
+    };
+
+    auto begin() { return iterator{filestream_}; }
+    auto end()   { return iterator{filestream_, true}; }
+
+    // Method to get line n from the file (indexing starts from 1, not 0)
+    std::string getline(int nth) {
+        auto iter = begin();
+        while (--nth > 0 && iter != end()) {
+            ++iter;
+        }
+
+        if (nth != 0)
+            throw std::out_of_range("END OF FILE REACHED");
+
+        return *iter;
     }
 
 private:
