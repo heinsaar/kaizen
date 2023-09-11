@@ -10,6 +10,8 @@
 
 void test_utils_sum()
 {
+    BEGIN_SUBTEST;
+
     zen::vector<int> v = { 1, 2, 3, 4, 5 };
 
     ZEN_EXPECT(zen::sum(v) == 15);
