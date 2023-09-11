@@ -140,7 +140,8 @@ void populate_random(Iterable& c, int size = 10)
 {
     ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
 
-    c.clear();
+    if (!std::size(c))
+        c.resize(size);
 
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
