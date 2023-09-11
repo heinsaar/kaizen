@@ -23,6 +23,7 @@
 #pragma once
 
 #include <forward_list>
+#include <type_traits>
 #include <algorithm>
 
 namespace zen {
@@ -35,7 +36,11 @@ struct forward_list : std::forward_list<T> // read 'struct' as "extend the inter
     using std::forward_list<T>::forward_list; // inherit constructors, has to be explicit
 
     template<class Pred>
-    bool contains( Pred p)    const { return std::find_if(my::begin(), my::end(), p) != my::end(); }
+    typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
+        contains(Pred p) const
+    {
+        return std::find_if(my::begin(), my::end(), p) != my::end();
+    }
     bool contains(const T& x) const { return std::find(   my::begin(), my::end(), x) != my::end(); }
 
     bool is_empty() const { return my::empty(); }

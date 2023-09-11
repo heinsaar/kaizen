@@ -2,6 +2,17 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+void test_array_of_strings()
+{
+    BEGIN_SUBTEST;
+    zen::array<zen::string, 4> a = { "1", "2", "3", "4" };
+
+    //zen::log(typeid(a).name(), a);
+
+    ZEN_EXPECT(a.contains("1"));
+    ZEN_EXPECT(zen::is_empty(a) == a.is_empty());
+}
+
 void main_test_array()
 {
     BEGIN_TEST;
@@ -13,4 +24,6 @@ void main_test_array()
     ZEN_EXPECT( a.contains(5));
     ZEN_EXPECT(!a.contains(7));
     ZEN_EXPECT(zen::is_empty(a) == a.is_empty());
+
+    test_array_of_strings();
 }

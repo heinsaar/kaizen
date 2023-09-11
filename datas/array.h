@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include <type_traits>
 #include <algorithm>
 #include <array>
 
@@ -41,7 +42,11 @@ struct array : std::array<T, N> // read 'struct' as "extend the interface"
     }
 
     template<class Pred>
-    bool contains( Pred p)    const { return std::find_if(my::begin(), my::end(), p) != my::end(); }
+    typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
+        contains(Pred p) const
+    {
+        return std::find_if(my::begin(), my::end(), p) != my::end();
+    }
     bool contains(const T& x) const { return std::find(   my::begin(), my::end(), x) != my::end(); }
 
     bool is_empty() const { return my::empty(); }
