@@ -88,10 +88,9 @@ zen::print(v, "4", 5);          // [1, 2, 3] 4 5
 Richer containers with many useful functions:
 ```cpp
 zen::vector<int> v;
-zen::populate_random(v);
-if (v.contains(42)) {
-    zen::print(v);              // will print the contents, like [4, 2, 5, 7, 6]
-    zen::print("Contents:", v); // any number of arguments, like in Python
+zen::populate_random(v);  // randomly populate anything resizable & iterable
+if (v.contains(42)) {     // easily check for containment
+    zen::sum(v);          // easily sum up anything iterable with addable elements
 }
 
 // Fully interchangeable with std::vector
