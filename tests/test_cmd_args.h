@@ -2,7 +2,7 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
-void test_empty_args() {
+void test_cmd_args_empty_args() {
     BEGIN_SUBTEST;
     const char* argv[] = { "exe" };
     zen::cmd_args cmdargs(argv, 1);
@@ -10,7 +10,7 @@ void test_empty_args() {
     ZEN_EXPECT(!cmdargs.is_present("-ignore"));
 }
 
-void test_single_arg_present() {
+void test_cmd_args_single_arg_present() {
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args cmdargs(argv, 2);
@@ -18,7 +18,7 @@ void test_single_arg_present() {
     ZEN_EXPECT(cmdargs.is_present());
 }
 
-void test_single_arg_not_present() {
+void test_cmd_args_single_arg_not_present() {
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args cmdargs(argv, 2);
@@ -26,7 +26,7 @@ void test_single_arg_not_present() {
     ZEN_EXPECT(!cmdargs.is_present());
 }
 
-void test_multiple_args_present() {
+void test_cmd_args_multiple_args_present() {
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(argv, 3);
@@ -35,7 +35,7 @@ void test_multiple_args_present() {
     ZEN_EXPECT(cmdargs.is_present("-ignore"));
 }
 
-void test_multiple_args_one_missing() {
+void test_cmd_args_multiple_args_one_missing() {
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args cmdargs(argv, 2);
@@ -44,7 +44,7 @@ void test_multiple_args_one_missing() {
     ZEN_EXPECT(!cmdargs.is_present("-ignore"));
 }
 
-void test_arg_at() {
+void test_cmd_args_arg_at() {
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(argv, 3);
@@ -53,7 +53,7 @@ void test_arg_at() {
     ZEN_EXPECT(   cmdargs.arg_at(2) == "-ignore");
 }
 
-void test_first_last_arg() {
+void test_cmd_args_first_last_arg() {
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args cmdargs(argv, 3);
@@ -61,7 +61,7 @@ void test_first_last_arg() {
     ZEN_EXPECT(   cmdargs.last_arg()  == "-ignore");
 }
 
-void test_constructor_exceptions() {
+void test_cmd_args_constructor_exceptions() {
     BEGIN_SUBTEST;
     // Test negative argc
     try {
@@ -93,12 +93,12 @@ void main_test_cmd_args(int argc, char* argv[])
     ZEN_EXPECT(!cmdargs.is_present("-absent"));
     ZEN_EXPECT(!cmdargs.is_present("-ignore"));
 
-    test_multiple_args_one_missing();
-    test_single_arg_not_present();
-    test_constructor_exceptions();
-    test_multiple_args_present();
-    test_single_arg_present();
-    test_first_last_arg();
-    test_empty_args();
-    test_arg_at();
+    test_cmd_args_multiple_args_one_missing();
+    test_cmd_args_single_arg_not_present();
+    test_cmd_args_constructor_exceptions();
+    test_cmd_args_multiple_args_present();
+    test_cmd_args_single_arg_present();
+    test_cmd_args_first_last_arg();
+    test_cmd_args_empty_args();
+    test_cmd_args_arg_at();
 }
