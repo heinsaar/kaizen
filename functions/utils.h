@@ -153,6 +153,30 @@ bool is_empty(const Iterable& c)
     return c.empty();
 }
 
+// TODO: Think of a way to use the Addable concept in addition
+// to Iterable that will not make the resulting code too ugly.
+template<class Iterable>
+auto sum(const Iterable& c)
+{
+    ZEN_STATIC_ASSERT(is_iterable_v<Iterable>,         "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
+    ZEN_STATIC_ASSERT(is_addable_v<decltype(*std::begin(c))>, "ELEMENT TYPE EXPECTED TO BE Addable, BUT IS NOT");
+
+    if (c.empty()) {
+        return decltype(*std::begin(c)){}; // zero-initialized value for empty containers
+    }
+
+    // By initializing 'sum' to the first element of the collection and not just the tempting 0,
+    // this function makes fewer assumptions about the type it's working with, thereby making
+    // this function more robust and generic since we're dealing with arbitrary addable types
+    // (which could be complex numbers, matrices, etc.).
+    auto sum = *std::begin(c);
+    for (auto it = std::next(std::begin(c)); it != std::end(c); ++it) {
+        sum += *it;
+    }
+
+    return sum;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////// COLORS
 
 namespace color {
