@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2023 Leo Heinsaar
 // 
@@ -22,14 +22,26 @@
 
 #pragma once
 
-#include "tests/test_forward_list.h"
-#include "tests/test_filestring.h"
-#include "tests/test_cmd_args.h"
-#include "tests/test_version.h"
-#include "tests/test_string.h"
-#include "tests/test_vector.h"
-#include "tests/test_array.h"
-#include "tests/test_deque.h"
-#include "tests/test_utils.h"
-#include "tests/test_list.h"
-#include "tests/test_in.h"
+#include <forward_list>
+#include <algorithm>
+
+namespace zen {
+
+///////////////////////////////////////////////////////////////////////////////////////////// zen::forward_list
+
+template<class T>
+struct forward_list : std::forward_list<T> // read 'struct' as "extend the interface"
+{
+    using std::forward_list<T>::forward_list; // inherit constructors, has to be explicit
+
+    template<class Pred>
+    bool contains( Pred p)    const { return std::find_if(my::begin(), my::end(), p) != my::end(); }
+    bool contains(const T& x) const { return std::find(   my::begin(), my::end(), x) != my::end(); }
+
+    bool is_empty() const { return my::empty(); }
+
+private:
+    using my = forward_list;
+};
+
+} // namespace zen

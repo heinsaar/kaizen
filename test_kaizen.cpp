@@ -46,6 +46,7 @@ int main(int argc, char* argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
 
 	main_test_cmd_args(argc, argv);
+	main_test_forward_list();
 	main_test_filestring();
     main_test_version();
 	main_test_string();
