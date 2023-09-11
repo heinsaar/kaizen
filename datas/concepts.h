@@ -52,6 +52,23 @@ namespace zen {
     template <class T> constexpr bool is_iterable_v = is_iterable<T>::value;
 #endif
 
+// ------------------------------------------------------------------------------------------ Addable
+
+#if __cpp_concepts >= 202002L
+    template <class T>
+    concept Addable = requires(T x, T y) { x + y; };
+    template <typename T> concept is_addable_v = Addable<T>;
+#else
+    template <class T, class = void> struct is_addable : std::false_type {};
+
+    template <class T>
+    struct is_addable<T,
+        std::void_t<decltype(std::declval<T>() + std::declval<T>())>
+    > : std::true_type {};
+
+    template <class T> constexpr bool is_addable_v = is_addable<T>::value;
+#endif
+
 // ------------------------------------------------------------------------------------------ is_string_like
 
 template<class T>
