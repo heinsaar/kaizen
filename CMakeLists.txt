@@ -31,7 +31,7 @@ add_dependencies(generate_kaizen_header delete_kaizen_header)
 
 ################################### Add source to this project's executable.
 add_executable(kaizen "test_kaizen.cpp"
-    "datas/type_traits.h" "datas/string.h" "datas/filestring.h" "datas/cmd_args.h"
+    "datas/concepts.h" "datas/string.h" "datas/filestring.h" "datas/cmd_args.h"
     "datas/vector.h" "datas/list.h" "datas/array.h" "datas/deque.h" "datas/in.h"
     "functions/utils.h"
     "test_kaizen.h" "tests/test_vector.h" "tests/test_list.h" "tests/test_deque.h" "tests/test_utils.h"
