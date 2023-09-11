@@ -61,7 +61,7 @@ for (int i : zen::in(5))        // i from 0 to 4
 for (int i : zen::in(1, 10))    // i from 1 to 9
 for (int i : zen::in(0, 10, 2)) // i from 0 to 8, step 2
 ```
-As well as Python-like string manupulations:
+Python-like string manupulations:
 ```cpp
 // indices ----> 012345678912345
 zen::string z = "Test substrings";
