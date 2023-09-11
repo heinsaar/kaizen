@@ -29,9 +29,12 @@
 
 namespace zen {
 
-///////////////////////////////////////////////////////////////////////////////////////////// zen::filestring
+// Forward declarations
+template <class T, class... Args> void log(T x, Args... args);
 
-template <class T, class... Args> void log(T x, Args... args); // forward declaration
+namespace filesystem {
+
+///////////////////////////////////////////////////////////////////////////////////////////// zen::filestring
 
 struct filestring
 {
@@ -84,4 +87,5 @@ std::filesystem::path operator "" _path(const char* str, std::size_t length)
 
 }}
 
+} // namespace filesystem
 } // namespace zen

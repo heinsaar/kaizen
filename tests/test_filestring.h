@@ -9,15 +9,15 @@ void main_test_filestring()
 
     const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
 
-    zen::filestring filestr(project_dir / "LICENSE.txt");
+    zen::filesystem::filestring filestr(project_dir / "LICENSE.txt");
 
-    using namespace zen::literals::path;
-    zen::filestring test_literal("../LICENSE.txt"_path);
+    using namespace zen::filesystem::literals::path;
+    zen::filesystem::filestring test_literal("../LICENSE.txt"_path);
 
     // TODO: This shouldn't compile, zen::filestring constructor only
     // accepts std::filesystem::path, but it compiles. Why? It was failing
     // to compile, as expected, just a few hours ago. May be a Heisenbug.
-    zen::filestring test_string("../LICENSE.txt");
+    zen::filesystem::filestring test_string("../LICENSE.txt");
 
     zen::string version = filestr.getline(1);
     zen::string license = filestr.getline(3);
