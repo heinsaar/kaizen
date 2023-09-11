@@ -77,6 +77,13 @@ Just give me a simple random number for everyday use:
 int n = zen::random_int();    // by default between 0 and 10
 int m = zen::random_int(1, 5) // or specify another range
 ```
+### Printing & Logging
+Python-like printing with additional logging utilities:
+```cpp
+std::vector<int> v = {1, 2, 3}
+zen::print(v);                  // [1, 2, 3]
+zen::print(v, "4", 5);          // [1, 2, 3] 4 5
+```
 ### Containers
 Richer containers with many useful functions:
 ```cpp

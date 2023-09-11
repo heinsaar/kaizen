@@ -75,6 +75,12 @@ z.substring(  5,  50) == "substrings");  // just like in Python
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
 ```
+Python-like printing:
+```cpp
+std::vector<int> v = {1, 2, 3}
+zen::print(v);                  // [1, 2, 3]
+zen::print(v, "4", 5);          // [1, 2, 3] 4 5
+```
 Richer containers with many useful functions:
 ```cpp
 zen::vector<int> v;             // declare & use just like std::vector
