@@ -139,7 +139,7 @@ v1 != v8;
 v1 <  v8;
 v8 >  v1;
 
-using namespace zen::version_literals;
+using namespace zen::literals::version;
 
 auto v7 = "7.6.5.4321"_version; // construct using string literals
 v7.build()    == 4321;
