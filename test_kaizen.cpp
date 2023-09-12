@@ -55,6 +55,7 @@ int main(int argc, char* argv[])
 	main_test_deque();
 	main_test_utils();
 	main_test_list();
+	main_test_cloc();
 	main_test_in();
 
 	END_TESTS;
@@ -63,6 +64,14 @@ int main(int argc, char* argv[])
 
 	//ZEN_EXPECT(!"DEMO FAIL 1"); // comment & uncomment this to see a fail
 	//ZEN_EXPECT(!"DEMO FAIL 2"); // comment & uncomment this to see a fail
+
+	zen::cloc cloc(zen::parent_path(), { "datas", "functions", "tests" });
+	int total_loc = cloc.count({ ".h", ".cpp", ".py" });
+
+	auto ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
+
+	zen::log("TOTAL LOC:", total_loc);
+	zen::log("LOC / TC: ", ratio);
 
 	const bool             all_tests_pass = !zen::TEST_CASE_FAIL_COUNT.load();
 	const auto FAIL      = all_tests_pass ?  zen::color::nocolor("FAIL:") : zen::color::red("FAIL:");
