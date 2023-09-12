@@ -65,7 +65,11 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
         } \
     } while (0)
 
-
+// ZEN_EXPECT_THROW checks its expression parameter to throw the expression_type exception
+// and spits out the expression statement if it encounters another exception type thrown.
+// The do { } while (0) construct ensures that the macro behaves as a single statement.
+// This allows it to be used safely in contexts like if-else statements without braces,
+// preventing syntax errors or unexpected behavior due to dangling elses.
 #define ZEN_EXPECT_THROW(expression, exception_type) \
     do { \
         bool exception_caught{false}; \
