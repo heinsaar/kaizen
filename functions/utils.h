@@ -68,19 +68,19 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 
 #define ZEN_EXPECT_THROW(expression, exception_type) \
     do { \
-        bool exception_cought{false}; \
+        bool exception_caught{false}; \
         try { \
             expression; \
         } \
         catch (const exception_type&) { \
-            exception_cought = true; \
+            exception_caught = true; \
             if (zen::REPORT_TC_PASS) \
                 zen::log(zen::color::green("CASE PASS:"), #expression); \
             ++zen::TEST_CASE_PASS_COUNT; \
             break; \
         } \
         catch (...) { \
-            exception_cought = true; \
+            exception_caught = true; \
             if (zen::REPORT_TC_FAIL) \
                 zen::log(zen::color::red("CASE FAIL:"), __func__, \
                         "EXPECTED THAT `" #expression \
@@ -89,7 +89,7 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
             ++zen::TEST_CASE_FAIL_COUNT; \
             break; \
         } \
-        if (!exception_cought) { \
+        if (!exception_caught) { \
             if (zen::REPORT_TC_FAIL) \
                 zen::log(zen::color::red("CASE FAIL:"), __func__, \
                         "EXPECTED THAT `" #expression \
