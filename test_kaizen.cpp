@@ -65,6 +65,8 @@ int main(int argc, char* argv[])
 	//ZEN_EXPECT(!"DEMO FAIL 1"); // comment & uncomment this to see a fail
 	//ZEN_EXPECT(!"DEMO FAIL 2"); // comment & uncomment this to see a fail
 
+// ------------------------------------------------------------------------------------------ LOC & LOC/TC ratio
+
 	zen::cloc cloc(zen::parent_path(), { "datas", "functions", "tests" });
 	int total_loc = cloc.count({ ".h", ".cpp", ".py" });
 
@@ -72,6 +74,8 @@ int main(int argc, char* argv[])
 
 	zen::log("TOTAL LOC:", total_loc);
 	zen::log("LOC / TC: ", ratio);
+
+// ------------------------------------------------------------------------------------------ Total PASS/FAIL
 
 	const bool             all_tests_pass = !zen::TEST_CASE_FAIL_COUNT.load();
 	const auto FAIL      = all_tests_pass ?  zen::color::nocolor("FAIL:") : zen::color::red("FAIL:");
