@@ -38,7 +38,7 @@ struct cloc {
     cloc(const std::filesystem::path& root, const std::vector<std::string>& dirs) 
         : root_(root), dirs_(dirs) {}
 
-    int count(const std::vector<std::string>& extensions) {
+    int count(const std::vector<std::string>& extensions) const {
         int total_loc = 0;
         for (const auto& dir : dirs_) {
             total_loc += count_in(root_ / dir, extensions);
@@ -46,7 +46,7 @@ struct cloc {
         return total_loc;
     }
 
-    int count_in(const std::filesystem::path& dir, const std::vector<std::string>& extensions) {
+    int count_in(const std::filesystem::path& dir, const std::vector<std::string>& extensions) const {
         int dir_loc = 0;
         for (const auto& file : std::filesystem::recursive_directory_iterator(dir)) {
             if (file.is_regular_file()) {
@@ -60,7 +60,7 @@ struct cloc {
         return dir_loc;
     }
 
-    int count_in_file(const std::filesystem::path& filename) {
+    int count_in_file(const std::filesystem::path& filename) const {
         std::ifstream file(filename.string());
         std::string line;
         int loc = 0;
@@ -73,7 +73,7 @@ struct cloc {
     }
 
 private:
-    bool matches_any(const std::string& ext, const std::vector<std::string>& extensions) {
+    bool matches_any(const std::string& ext, const std::vector<std::string>& extensions) const {
         for (const auto& pattern : extensions) {
             if (std::regex_match(ext, std::regex(pattern))) {
                 return true;
