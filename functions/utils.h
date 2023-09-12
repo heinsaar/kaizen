@@ -65,6 +65,39 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
         } \
     } while (0)
 
+
+#define ZEN_EXPECT_THROW(expression, exception_type) \
+    do { \
+        bool exception_cought{false}; \
+        try { \
+            expression; \
+        } \
+        catch (const exception_type&) { \
+            exception_cought = true; \
+            if (zen::REPORT_TC_PASS) \
+                zen::log(zen::color::green("CASE PASS:"), #expression); \
+            ++zen::TEST_CASE_PASS_COUNT; \
+            break; \
+        } \
+        catch (...) { \
+            exception_cought = true; \
+            if (zen::REPORT_TC_FAIL) \
+                zen::log(zen::color::red("CASE FAIL:"), __func__, \
+                        "EXPECTED THAT `" #expression \
+                        "` THROWS AN EXCEPTION OF TYPE `" #exception_type \
+                        "`, BUT IT THROWS OTHER TYPE."); \
+            ++zen::TEST_CASE_FAIL_COUNT; \
+            break; \
+        } \
+        if (!exception_cought) { \
+            if (zen::REPORT_TC_FAIL) \
+                zen::log(zen::color::red("CASE FAIL:"), __func__, \
+                        "EXPECTED THAT `" #expression \
+                        "` THROWS AN EXCEPTION, BUT IT DOES NOT."); \
+            ++zen::TEST_CASE_FAIL_COUNT; \
+        } \
+    } while(0)
+
 inline auto quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
 inline auto timestamp() {
