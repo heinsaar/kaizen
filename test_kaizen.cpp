@@ -72,8 +72,8 @@ int main(int argc, char* argv[])
 
 	auto ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
 
-	zen::log("TOTAL LOC:", total_loc);
-	zen::log("LOC / TC: ", ratio);
+	zen::log("kaizen.h LOC:", total_loc);
+	zen::log("kaizen.h LOC / TC: ", ratio);
 
 // ------------------------------------------------------------------------------------------ Total PASS/FAIL
 
