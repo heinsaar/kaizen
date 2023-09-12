@@ -331,7 +331,8 @@ inline void log() {}
 
 ///////////////////////////////////////////////////////////////////////////////////////////// PATHS
 
-std::optional<std::filesystem::path> search_upward(std::filesystem::path dir, std::string_view name) {
+std::optional<std::filesystem::path>
+search_upward(std::filesystem::path dir, std::string_view name) {
     while (dir.filename() != name) {
         dir = dir.parent_path();
     }
