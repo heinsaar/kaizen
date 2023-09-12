@@ -93,15 +93,15 @@ struct filestring
 
     // Method to get line n from the file (indexing starts from 1, not 0)
     std::string getline(int nth) {
-        auto iter = begin();
-        while (--nth > 0 && iter != end()) {
-            ++iter;
+        auto it = begin();
+        while (--nth > 0 && it != end()) {
+            ++it;
         }
 
         if (nth != 0)
             throw std::out_of_range("END OF FILE REACHED");
 
-        return *iter;
+        return *it;
     }
 
 private:
