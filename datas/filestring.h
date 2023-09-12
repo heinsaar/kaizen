@@ -32,7 +32,7 @@ namespace zen {
 // Forward declarations
 template <class T, class... Args> void log(T x, Args... args);
 
-namespace filesystem {
+namespace file {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::filestring
 
@@ -120,5 +120,5 @@ std::filesystem::path operator "" _path(const char* str, std::size_t length)
 
 }}
 
-} // namespace filesystem
+} // namespace file
 } // namespace zen
