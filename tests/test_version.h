@@ -31,10 +31,5 @@ void main_test_version()
     os << v;
     ZEN_EXPECT(os.str() == "1.2.3.4");
 
-    try {
-        zen::version vi("invalid.version");
-    }
-    catch (const std::invalid_argument& e) {
-        ZEN_EXPECT(zen::string(e.what()).contains("CONSTRUCTOR ARGUMENT STRING DOESN'T MATCH THE EXPECTED M.M.P.B PATTERN."));
-    }
+    ZEN_EXPECT_THROW(zen::version vi("invalid.version"), std::invalid_argument);
 }
