@@ -132,6 +132,9 @@ zen::string replicate(const int n, const std::string_view s) {
     return result;
 }
 
+std::filesystem::path current_path() { return std::filesystem::current_path();               }
+std::filesystem::path  parent_path() { return std::filesystem::current_path().parent_path(); }
+
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
 
 template<class T = int>
