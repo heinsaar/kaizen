@@ -30,9 +30,9 @@ add_custom_target(generate_kaizen_header ALL DEPENDS kaizen.h)
 add_dependencies(generate_kaizen_header delete_kaizen_header)
 
 ################################### Add source to this project's executable.
-file(GLOB datas datas/*.h)
+file(GLOB datas         datas/*.h)
 file(GLOB functions functions/*.h)
-file(GLOB tests tests/test_*.h)
+file(GLOB tests    tests/test_*.h)
 add_executable(kaizen "test_kaizen.cpp" ${datas} ${functions} ${tests})
 
 # Set a dependency on the custom target to ensure it runs before the kaizen executable is built
