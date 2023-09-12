@@ -67,8 +67,8 @@ int main(int argc, char* argv[])
 
 // ------------------------------------------------------------------------------------------ LOC & LOC/TC ratio
 
-	zen::cloc cloc(zen::parent_path(), { "datas", "functions", "tests" });
-	int total_loc = cloc.count({ ".h", ".cpp", ".py" });
+	const zen::cloc cloc(zen::parent_path(), { "build"});
+	int total_loc = cloc.count({ ".h" });
 
 	auto ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
 
