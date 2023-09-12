@@ -132,9 +132,6 @@ zen::string replicate(const int n, const std::string_view s) {
     return result;
 }
 
-std::filesystem::path current_path() { return std::filesystem::current_path();               }
-std::filesystem::path  parent_path() { return std::filesystem::current_path().parent_path(); }
-
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
 
 template<class T = int>
@@ -330,6 +327,9 @@ void log(T x, Args... args) {
 inline void log() {}
 
 ///////////////////////////////////////////////////////////////////////////////////////////// PATHS
+
+std::filesystem::path current_path() { return std::filesystem::current_path(); }
+std::filesystem::path  parent_path() { return std::filesystem::current_path().parent_path(); }
 
 std::optional<std::filesystem::path>
 search_upward(std::filesystem::path dir, std::string_view name) {
