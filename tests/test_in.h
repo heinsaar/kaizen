@@ -13,23 +13,12 @@ void main_test_in()
     std::string s5 = "[1, 10, -1): ";
     std::string s6 = "[-10, 10, 1): ";
 
-    for (int i : zen::in(5))
-        s1 += std::to_string(i) + " ";
-
-    for (int i : zen::in(1, 10))
-        s2 += std::to_string(i) + " ";
-
-    for (int i : zen::in(1, 10, 2))
-        s3 += std::to_string(i) + " ";
-
-    for (int i : zen::in(10, 1, -1))
-        s4 += std::to_string(i) + " ";
-
-    for (int i : zen::in(1, 10, -1))
-        s5 += std::to_string(i) + " ";
-
-    for (int i : zen::in(-10, 10, 1))
-        s6 += std::to_string(i) + " ";
+    for (int i : zen::in(5))          s1 += std::to_string(i) + " ";
+    for (int i : zen::in(1, 10))      s2 += std::to_string(i) + " ";
+    for (int i : zen::in(1, 10, 2))   s3 += std::to_string(i) + " ";
+    for (int i : zen::in(10, 1, -1))  s4 += std::to_string(i) + " ";
+    for (int i : zen::in(1, 10, -1))  s5 += std::to_string(i) + " ";
+    for (int i : zen::in(-10, 10, 1)) s6 += std::to_string(i) + " ";
 
     ZEN_EXPECT(s1 == "(5): 0 1 2 3 4 ");
     ZEN_EXPECT(s2 == "[1, 10): 1 2 3 4 5 6 7 8 9 ");
