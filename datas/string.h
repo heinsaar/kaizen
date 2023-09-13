@@ -86,7 +86,6 @@ struct string : std::string // read 'struct' as "extend the interface"
 
     zen::string& remove(const std::string& pattern)
     {
-        // Use regex_replace to remove all occurrences of the pattern
         *this = std::regex_replace(*this, std::regex(pattern), std::string(""));
         return *this; // for natural chaining
     }
