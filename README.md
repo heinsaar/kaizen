@@ -115,7 +115,7 @@ See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for
 
 ## Prerequisites for building
 
-You'll need GCC for Linux or MSVC (comes with Visual Studio) for Windows development.
+You'll need the GCC compiler for Linux or MSVC (comes with Visual Studio) for Windows development.
 
 The project is probably more backward-compatible, but at the moment is being developed and tested with the following tools: 
 
