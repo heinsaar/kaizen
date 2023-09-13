@@ -85,6 +85,14 @@ struct string : std::string // read 'struct' as "extend the interface"
         return ""; // signals 'no match'
     }
 
+    // TODO: Maybe replace the std::string argument with std::regex here?
+    zen::string& remove(const std::string& pattern)
+    {
+        // Use regex_replace to remove all occurrences of the pattern
+        *this = std::regex_replace(*this, std::regex(pattern), std::string(""));
+        return *this; // for natural chaining
+    }
+
     auto extract_version()   { return extract_pattern(R"((\d+)\.(\d+)\.(\d+)\.(\d+))"                          ); } // Like "X.Y.Z.B"
     auto extract_date()      { return extract_pattern(R"((\d+\/\d+\/\d+))"                                     ); } // Like "31/12/2021"
     auto extract_email()     { return extract_pattern(R"((\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b))"); }
