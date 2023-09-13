@@ -68,7 +68,6 @@ struct string : std::string // read 'struct' as "extend the interface"
         return substr(posBeg + 1, posEnd - posBeg - 1);
     }
 
-    // TODO: Maybe replace the std::string argument with std::regex here?
     zen::string extract_pattern(const std::string& pattern) {
         const std::regex regex_pattern(pattern);
         std::smatch match;
@@ -85,7 +84,6 @@ struct string : std::string // read 'struct' as "extend the interface"
         return ""; // signals 'no match'
     }
 
-    // TODO: Maybe replace the std::string argument with std::regex here?
     zen::string& remove(const std::string& pattern)
     {
         // Use regex_replace to remove all occurrences of the pattern
