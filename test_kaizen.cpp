@@ -36,10 +36,14 @@ int main(int argc, char* argv[])
 	zen::string	   line = textfile.getline(1);
 	zen::string	   vers = line.extract_version();
 	
+	std::string datestamp = zen::string(zen::timestamp()).remove(R"((\d+\:\d+\:\d+))").deflate();
+
 	// Print the Kaizen preamble
 	zen::log(zen::color::blue(zen::replicate("|", 79)));
 	zen::log(zen::color::blue(zen::replicate("|", 30) + " KAIZEN"), vers,
 		     zen::color::blue(zen::replicate("|", 30)));
+	zen::log(zen::color::blue(zen::replicate("|", 31) + " " + datestamp),
+		     zen::color::blue(zen::replicate("|", 31)));
 	zen::log(zen::color::blue(zen::replicate("|", 79)));
 	zen::log(zen::color::blue("RUNNING TESTS..."));
 
