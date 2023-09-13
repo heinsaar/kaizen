@@ -16,6 +16,10 @@ void main_test_cloc()
     zen::cloc clocC({ "." });                         // by default, root is current path; specify subdirs (in this case current as ".")
     int locC_kaizen_h = clocC.count({ ".h" });        // will pick up kaizen.h
 
+    // LATER: Tested code, so keeping. Uncomment if Kaizen becomes multithreaded.
+    // for (int i : zen::in(100))
+    //     zen::log(clocC.count_async({ ".h" }).get());
+
     ZEN_EXPECT(locA_kaizen_h == locB_kaizen_h);
     ZEN_EXPECT(locB_kaizen_h == locC_kaizen_h);
 

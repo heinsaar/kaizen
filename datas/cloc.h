@@ -49,6 +49,25 @@ struct cloc {
 
     cloc(const std::filesystem::path& root, const std::vector<std::string>& dirs) 
         : root_(root), dirs_(dirs) {}
+ 
+    // LATER: This will run cloc on multiple threads, but will require linking with a
+    // threading library. Seems to not be worth the cost just for this one. Maybe if
+    // there's a more compelling reason to make Kaizen require multithreading.
+    // Used like this to run on 10 threads:
+    // 
+    // zen::cloc cloc;
+    // for (int i : zen::in(10))
+    //    zen::log(cloc.count_async({ ".h" }).get());
+    // 
+    //std::future<int> count_async(const std::vector<std::string>& extensions) const {
+    //    std::promise<int> prom;
+    //    std::future<int> fut = prom.get_future();
+    //    std::jthread t([this, extensions, prom = std::move(prom)]() mutable
+    //                   {
+    //                       prom.set_value(count(extensions));
+    //                   });
+    //    return fut;
+    //}
 
     int count(const std::vector<std::string>& extensions) const {
         int total_loc = 0;
