@@ -39,9 +39,10 @@ namespace zen {
 // Name is based onthe popular utility cloc: https://github.com/AlDanial/cloc
 struct cloc {
 
-    cloc() // by default initialized with current dir
+    cloc() // by default initialized with current directory
         : root_(std::filesystem::current_path()), dirs_({ "." }) {}
 
+    // Will search in specified subdirectories of the current directory
     explicit
     cloc(const std::vector<std::string>& dirs)
         : root_(std::filesystem::current_path()), dirs_(dirs) {}
