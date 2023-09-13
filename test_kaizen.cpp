@@ -42,8 +42,8 @@ int main(int argc, char* argv[])
 	zen::log(zen::color::blue(zen::replicate("|", 79)));
 	zen::log(zen::color::blue(zen::replicate("|", 30) + " KAIZEN"), vers,
 		     zen::color::blue(zen::replicate("|", 30)));
-	zen::log(zen::color::blue(zen::replicate("|", 31) + " " + datestamp),
-		     zen::color::blue(zen::replicate("|", 31)));
+	zen::log(zen::color::blue(zen::replicate("|", 30) + "  " + datestamp + " "),
+		     zen::color::blue(zen::replicate("|", 30)));
 	zen::log(zen::color::blue(zen::replicate("|", 79)));
 	zen::log(zen::color::blue("RUNNING TESTS..."));
 
