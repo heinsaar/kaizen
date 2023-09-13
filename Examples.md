@@ -12,12 +12,12 @@ Parse program arguments declaratively:
 
 int main(int argc, char* argv[])
 {
-    zen::cmd_args cmdargs(argv, argc);
-    bool small  = cmdargs.accept("-verbose").is_present();
-    bool ignore = cmdargs.accept("-ignore" ).is_present();
-        
+    zen::cmd_args args(argv, argc);
+    bool small  = args.accept("-verbose").is_present();
+    bool ignore = args.accept("-ignore" ).is_present();
+    
     // Or sometime later
-    if (cmd_args.is_present("-ignore"))
+    if (args.is_present("-ignore"))
 }
 ```
 ### Working with files
