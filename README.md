@@ -104,7 +104,7 @@ Yellow circles signify a potential need to code, although quite often a suggesti
 1. 🟢 **Improve the documentation.** If you see any discrepancy in our documentation (wrong code, etc.).
 1. 🟡 **Generalize a utility.** If you see how to generalize any code in a meaningful way.
 1. 🟡 **Optimize.** If you see how to optimize any code in a meaningful way.
-1. 🟡 **Harden.** If you see how to improve the robustness of any code.
+1. 🟡 **Harden.** If you see how to improve the robustness of any code (unhandled edge cases, etc.).
 1. 🟡 **Reduce LOC.** If you see ways to reduce lines of code (common sense - with no loss of readability).
 1. 🔴 **Implement a utility**. If you have a commonly useful utility piece of code.
 1. 🔴 **Implement an [issue](https://github.com/heinsaar/kaizen/issues)**. Some are in the form of a "TODO" in code.
