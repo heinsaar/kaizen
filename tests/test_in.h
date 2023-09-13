@@ -7,26 +7,27 @@ void main_test_in()
     BEGIN_TEST;
 
     std::string s1 = "(5): ";
+    std::string s2 = "[1, 10): ";
+    std::string s3 = "[1, 10, 2): ";
+    std::string s4 = "[10, 1, -1): ";
+    std::string s5 = "[1, 10, -1): ";
+    std::string s6 = "[-10, 10, 1): ";
+
     for (int i : zen::in(5))
         s1 += std::to_string(i) + " ";
 
-    std::string s2 = "[1, 10): ";
     for (int i : zen::in(1, 10))
         s2 += std::to_string(i) + " ";
 
-    std::string s3 = "[1, 10, 2): ";
     for (int i : zen::in(1, 10, 2))
         s3 += std::to_string(i) + " ";
 
-    std::string s4 = "[10, 1, -1): ";
     for (int i : zen::in(10, 1, -1))
         s4 += std::to_string(i) + " ";
 
-    std::string s5 = "[1, 10, -1): ";
     for (int i : zen::in(1, 10, -1))
         s5 += std::to_string(i) + " ";
 
-    std::string s6 = "[-10, 10, 1): ";
     for (int i : zen::in(-10, 10, 1))
         s6 += std::to_string(i) + " ";
 
