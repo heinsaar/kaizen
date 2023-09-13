@@ -36,7 +36,8 @@ int main(int argc, char* argv[])
 	zen::string	   line = textfile.getline(1);
 	zen::string	   vers = line.extract_version();
 	
-	std::string datestamp = zen::string(zen::timestamp()).remove(R"((\d+\:\d+\:\d+))").deflate();
+	std::string time      = R"((\d+\:\d+\:\d+))";
+	std::string datestamp = zen::string(zen::timestamp()).remove(time).deflate();
 
 	// Print the Kaizen preamble
 	zen::log(zen::color::blue(zen::replicate("|", 79)));
