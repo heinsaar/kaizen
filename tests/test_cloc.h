@@ -15,5 +15,5 @@ void main_test_cloc()
 
     ZEN_EXPECT(locA_kaizen_h == locB_kaizen_h);
 
-    // TODO: Add tests with edge cases. First commit only self-tests this project.
+    // TODO: Add tests with edge cases
 }
