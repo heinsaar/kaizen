@@ -7,5 +7,8 @@ void main_test_cloc()
 {
     BEGIN_TEST;
 
+    zen::cloc cloc;
+    zen::log(cloc.count({ R"(\.h)" }));
+
     // TODO: Add tests with edge cases. First commit only self-tests this project.
 }

@@ -38,6 +38,10 @@ namespace zen {
 // 
 // Name is based onthe popular utility cloc: https://github.com/AlDanial/cloc
 struct cloc {
+
+    cloc()
+        : root_(std::filesystem::current_path()), dirs_({ "." }) {}
+
     cloc(const std::filesystem::path& root, const std::vector<std::string>& dirs) 
         : root_(root), dirs_(dirs) {}
 
