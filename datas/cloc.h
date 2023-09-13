@@ -31,9 +31,12 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::cloc
 
 // Counts lines of code, use like this:
+// 
 // zen::cloc cloc(zen::parent_path(), { "datas", "functions", "tests" });
 // cloc.count({    ".h",     ".cpp",     ".py" });
 // cloc.count({ R"(\.h)", R"(\.cpp)", R"(\.py)" };
+// 
+// Name is based onthe popular utility cloc: https://github.com/AlDanial/cloc
 struct cloc {
     cloc(const std::filesystem::path& root, const std::vector<std::string>& dirs) 
         : root_(root), dirs_(dirs) {}
