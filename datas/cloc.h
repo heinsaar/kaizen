@@ -60,7 +60,7 @@ struct cloc {
                 const std::string ext = file.path().extension().string();
                 if (matches_any(ext, extensions)) {
                     [[maybe_unused]] int loc = dir_loc += count_in_file(file.path());
-                    // std::cout << "LOC" << std::setw(5) << loc << " - " << file.path().string() << std::endl; // DEBUG
+                    //std::cout << "LOC" << std::setw(5) << loc << " - " << file.path().string() << std::endl; // DEBUG
                 }
             }
         }
