@@ -107,7 +107,7 @@ Yellow circles signify a potential need to code, although quite often a suggesti
 1. 🟡 **Harden.** If you see how to improve the robustness of any code (unhandled edge cases, etc.).
 1. 🟡 **Reduce LOC.** If you see ways to reduce lines of code (common sense - with no loss of readability).
 1. 🔴 **Implement a utility**. If you have a commonly useful utility piece of code.
-1. 🔴 **Implement an [issue](https://github.com/heinsaar/kaizen/issues)**. Some are in the form of a "TODO" in code.
+1. 🔴 **Resolve an [issue](https://github.com/heinsaar/kaizen/issues)**. Some are in the form of a "TODO" in code.
 1. 🔴 **Add tests.** There can never be enough tests that cover anything previously not covered.
 1. 🔴 **Automate.** If you see ways to automate any process and thus save iteration time.
 
