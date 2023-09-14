@@ -11,7 +11,7 @@ Collection of utilities and enhanced data structures for a wide range of C++ pro
 
 =====================================================================
 
-## Philosophy
+## Design Philosophy
 
 Kaizen 1.0 does not aim to be radiation-hardened, like STL or Boost, for all imaginable scenarios and use cases.
 Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), emphasizing gradual
