@@ -114,6 +114,7 @@ void test_string_trimming()
     // Trim and deflate a string
     zen::string z = "   Trim   me  ";
     std::string s = z.trim(); // from leading & trailing empty spaces
+    ZEN_EXPECT(z.is_trimmed());
     ZEN_EXPECT(!::isspace(s.front()));
     ZEN_EXPECT(!::isspace(s.back()));
     ZEN_EXPECT(z.deflate().is_deflated());

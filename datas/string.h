@@ -127,6 +127,11 @@ struct string : std::string // read 'struct' as "extend the interface"
         return *this; // for natural chaining
     }
 
+    bool is_trimmed()
+    {
+        return !::isspace(my::front()) &&!::isspace(my::back());
+    }
+
     auto& deflate()
     {
         // Replace any & all multiple spaces with a single space
