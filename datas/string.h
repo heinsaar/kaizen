@@ -168,14 +168,14 @@ public:
     {
         if (pad_string.empty()) return *this;
 
-        size_t current_length = my::size();
-        size_t total_padding_needed = target_length > current_length ? target_length - current_length : 0;
+        const size_t current_length = my::size();
+        const size_t total_padding_needed = target_length > current_length ? target_length - current_length : 0;
 
         // Full pad strings
-        size_t full_pads = total_padding_needed / pad_string.length();
+        const size_t full_pads = total_padding_needed / pad_string.length();
 
         // Remaining characters
-        size_t remaining = total_padding_needed % pad_string.length();
+        const size_t remaining = total_padding_needed % pad_string.length();
 
         // Generate the padding string
         std::string padding;
