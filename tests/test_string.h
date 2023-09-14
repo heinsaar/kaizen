@@ -128,68 +128,55 @@ void test_string_remove()
 {
     BEGIN_SUBTEST;
 
-    zen::string str1 = "Hello, world!";     // basic
-    str1.remove("world");
-    ZEN_EXPECT(str1 == "Hello, !");
-
-    zen::string str2 = "world world world"; // multiple occurrences
-    str2.remove("world");
-    ZEN_EXPECT(str2 == "  ");
-
-    zen::string str3 = "Hello, WORLD!";     // case sensitivity
-    str3.remove("world");
-    ZEN_EXPECT(str3 == "Hello, WORLD!");
-
-    zen::string str4 = "Hello, world!";     // no occurrences
-    str4.remove("earth");
-    ZEN_EXPECT(str4 == "Hello, world!");
-
-    zen::string str5 = "Hello  world!";     // remove spaces
-    str5.remove("  ");
-    ZEN_EXPECT(str5 == "Helloworld!");
-
-    zen::string str6 = "";                  // empty string
-    str6.remove("world");
-    ZEN_EXPECT(str6 == "");
-
-    zen::string str7 = "world";             // remove entire string
-    str7.remove("world");
-    ZEN_EXPECT(str7 == "");
-
-    zen::string str8 = "Hello, world! Have a good world!";
-    str8.remove("world");
-    ZEN_EXPECT(str8 == "Hello, ! Have a good !");   // pattern 'world' should be removed
-
-    zen::string str9 = "123 123 123";
-    str9.remove("\\d+");
-    ZEN_EXPECT(str9 == "  ");                       // pattern '\\d+' should remove all digits
-
+    zen::string  str1 = "Hello, world!";     // basic
+    zen::string  str2 = "world world world"; // multiple occurrences
+    zen::string  str3 = "Hello, WORLD!";     // case sensitivity
+    zen::string  str4 = "Hello, world!";     // no occurrences
+    zen::string  str5 = "Hello  world!";     // remove spaces
+    zen::string  str6 = "";                  // empty string
+    zen::string  str7 = "world";             // remove entire string
+    zen::string  str8 = "Hello, world! Have a good world!";
+    zen::string  str9 = "123 123 123";
     zen::string str10 = "aaabbaaa";
-    str10.remove("a*");
-    ZEN_EXPECT(str10 == "bb");                      // pattern 'a*' should remove all 'a'
-
     zen::string str12 = "Hello, world! 123";
-    str12.remove("[a-z]+");                         // all lowercase words
-    ZEN_EXPECT(str12 == "H, ! 123");                // pattern '[a-z]+' should remove all lowercase words
-
     zen::string str13 = "Hello, world! 123";
-    str13.remove("[a-zA-Z0-9]+");                   // all words and numbers
-    ZEN_EXPECT(str13 == ", ! ");                    // pattern '[a-zA-Z0-9]+' should remove all words and numbers
-
     zen::string str14 = "  extra  spaces  ";
-    str14.remove("\\s+");                           // all spaces
-    ZEN_EXPECT(str14 == "extraspaces");             // pattern '\\s+' should remove all extra spaces
-
     zen::string str15 = "<tag>content</tag>";
-    str15.remove("<.*>");                           // greedy match
-    ZEN_EXPECT(str15 == "");                        // pattern '<.*>' should remove everything
-
     zen::string str16 = "<tag>content</tag>";
-    str16.remove("<.*?>");                          // lazy match
-    ZEN_EXPECT(str16 == "content");                 // pattern '<.*?>' should remove all tags but leave content
-
     zen::string str17 = "Hello123World";
+        
+     str1.remove("world");
+     str2.remove("world");
+     str3.remove("world");
+     str4.remove("earth");
+     str5.remove("  ");
+     str6.remove("world");
+     str7.remove("world");
+     str8.remove("world");
+     str9.remove("\\d+");
+    str10.remove("a*");
+    str12.remove("[a-z]+");                        // all lowercase words
+    str13.remove("[a-zA-Z0-9]+");                  // all words and numbers
+    str14.remove("\\s+");                          // all spaces
+    str15.remove("<.*>");                          // greedy match
+    str16.remove("<.*?>");                         // lazy match
     str17.remove("\\d{2,3}");                      // 2 to 3 digits
+
+    ZEN_EXPECT(str1 == "Hello, !");
+    ZEN_EXPECT(str2 == "  ");
+    ZEN_EXPECT(str3 == "Hello, WORLD!");
+    ZEN_EXPECT(str4 == "Hello, world!");
+    ZEN_EXPECT(str5 == "Helloworld!");
+    ZEN_EXPECT(str6 == "");
+    ZEN_EXPECT(str7 == "");
+    ZEN_EXPECT(str8 == "Hello, ! Have a good !");  // pattern 'world' should be removed
+    ZEN_EXPECT(str9 == "  ");                      // pattern '\\d+' should remove all digits
+    ZEN_EXPECT(str10 == "bb");                     // pattern 'a*' should remove all 'a'
+    ZEN_EXPECT(str12 == "H, ! 123");               // pattern '[a-z]+' should remove all lowercase words
+    ZEN_EXPECT(str13 == ", ! ");                   // pattern '[a-zA-Z0-9]+' should remove all words and numbers
+    ZEN_EXPECT(str14 == "extraspaces");            // pattern '\\s+' should remove all extra spaces
+    ZEN_EXPECT(str15 == "");                       // pattern '<.*>' should remove everything
+    ZEN_EXPECT(str16 == "content");                // pattern '<.*?>' should remove all tags but leave content
     ZEN_EXPECT(str17 == "HelloWorld");             // pattern '\\d{2,3}' should remove 123
 }
 
