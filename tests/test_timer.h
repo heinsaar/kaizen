@@ -33,5 +33,4 @@ void main_test_timer()
     ZEN_EXPECT(zen::string(zen::adaptive_duration(seconds(       60))) ==   "1 minutes"      );
     ZEN_EXPECT(zen::string(zen::adaptive_duration(minutes(       59))) ==  "59 minutes"      );
     ZEN_EXPECT(zen::string(zen::adaptive_duration(minutes(       60))) ==   "1 hours"        );
-
 }
