@@ -41,7 +41,8 @@ namespace zen {
 // TODO: Enhance with support for:
 // - Help strings
 // - arg arguments (like -path "/to/some/dir"
-struct cmd_args {
+class cmd_args {
+public:
     cmd_args() : argv_(nullptr), argc_(0) {}
 
     cmd_args(const char* const* argv, int argc)

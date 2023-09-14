@@ -33,14 +33,16 @@ namespace zen {
 //
 // Note that apart from an intuitive reading, "in"
 // can also be thought of standing for "interval"
-struct in {
+class in {
+public:
     in(int end)
         : begin_(0), end_(end), step_(1) {}
 
     in(int begin, int end, int step = 1)
         : begin_(begin), end_(end), step_(step) {}
 
-    struct iterator {
+    class iterator {
+    public:
         iterator(int n = 0, int step = 1) : n_(n), step_(step) {}
         iterator& operator++() { n_ += step_; return *this; }
         const int& operator* ()            const { return n_; }

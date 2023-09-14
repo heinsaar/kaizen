@@ -30,8 +30,9 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::string
 
-struct string : std::string // read 'struct' as "extend the interface"
+class string : public std::string // read 'struct' as "extend the interface"
 {
+public:
     using std::string::string;    // inherit constructors, has to be explicit
     using std::string::operator=; // inherit assignment operators, has to be explicit
 

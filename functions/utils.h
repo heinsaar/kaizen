@@ -217,7 +217,8 @@ auto sum(const Iterable& c)
 ///////////////////////////////////////////////////////////////////////////////////////////// COLORS
 
 namespace color {
-    struct color_string {
+    class color_string {
+    public:
         color_string(const std::string_view s, int c) : text(s), code(c) {}
         const std::string text;
         const int /*col*/ code;

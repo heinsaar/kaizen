@@ -30,7 +30,8 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::version
 
-struct version : std::array<int, 4> {  // read 'struct' as "extend the interface"
+class version : public std::array<int, 4> {  // read 'struct' as "extend the interface"
+public:
     version(int major, int minor, int patch, int build)
         : std::array<int, 4>{major, minor, patch, build}
     {}

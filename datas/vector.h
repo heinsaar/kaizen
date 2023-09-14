@@ -31,8 +31,9 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::vector
 
 template<class T>
-struct vector : std::vector<T> // read 'struct' as "extend the interface"
+class vector : public std::vector<T> // read 'struct' as "extend the interface"
 {
+public:
     using std::vector<T>::vector; // inherit constructors, has to be explicit
 
     template<class Pred>

@@ -37,8 +37,8 @@ namespace zen {
 // cloc.count({ R"(\.h)", R"(\.cpp)", R"(\.py)" };
 // 
 // Name is based onthe popular utility cloc: https://github.com/AlDanial/cloc
-struct cloc {
-
+class cloc {
+public:
     cloc() // by default initialized with current directory
         : root_(std::filesystem::current_path()), dirs_({ "." }) {}
 

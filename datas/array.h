@@ -31,8 +31,9 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::array
 
 template<class T, size_t N>
-struct array : std::array<T, N> // read 'struct' as "extend the interface"
+class array : public std::array<T, N> // read 'struct' as "extend the interface"
 {
+public:
     using std::array<T, N>::array; // inherit constructors, has to be explicit
 
     // Custom constructor to handle initializer list

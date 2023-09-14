@@ -28,7 +28,8 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::timer
 
-struct timer {
+class timer {
+public:
     timer() : start_(std::chrono::high_resolution_clock::now()), 
                stop_(std::chrono::high_resolution_clock::now())
     {}

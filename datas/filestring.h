@@ -36,8 +36,8 @@ namespace file {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::filestring
 
-struct filestring
-{
+class filestring {
+public:
     filestring(const std::filesystem::path& path)
         : filepath_(path), filestream_(path)
     {
