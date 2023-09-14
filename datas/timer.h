@@ -38,7 +38,7 @@ public:
     void stop()  {  stop_ = std::chrono::high_resolution_clock::now(); }
 
     template<class Duration>
-    long long duration() const {
+    auto duration() const {
         return std::chrono::duration_cast<Duration>(stop_ - start_).count();
     }
 
