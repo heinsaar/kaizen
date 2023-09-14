@@ -83,9 +83,10 @@ int main(int argc, char* argv[])
 
 	auto ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
 
-	zen::log("TOTAL DURATION:", timer.duration<zen::timer::usec>(), "MICROSECONDS");
-	zen::log("TOTAL kaizen.h LOC:", total_loc);
-	zen::log("TOTAL kaizen.h LOC / TC: ", ratio);
+	zen::log(""); // new line
+	zen::log(zen::string("TOTAL DURATION (MILLIS):").pad_end(24), timer.duration<zen::timer::msec>());
+	zen::log(zen::string("TOTAL kaizen.h LOC:"     ).pad_end(24), total_loc);
+	zen::log(zen::string("TOTAL kaizen.h LOC / TC:").pad_end(24), ratio);
 
 // ------------------------------------------------------------------------------------------ Total PASS/FAIL
 
@@ -95,6 +96,7 @@ int main(int argc, char* argv[])
 		? zen::color::nocolor(std::to_string(zen::TEST_CASE_FAIL_COUNT.load()))
 		: zen::color::red(	  std::to_string(zen::TEST_CASE_FAIL_COUNT.load()));
 
+	zen::log(""); // new line
 	zen::log("TOTAL TEST CASES", zen::color::green("PASS:"), zen::color::green(std::to_string(zen::TEST_CASE_PASS_COUNT.load())));
 	zen::log("TOTAL TEST CASES", FAIL, FAILCOUNT);
 	
