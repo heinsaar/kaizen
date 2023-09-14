@@ -6,56 +6,56 @@ void test_string_extract()
 {
     BEGIN_SUBTEST;
 
-    zen::string z = "[Hello World] 1.2.3";
+    zen::string z1 = "[Hello World] 1.2.3";
 
-    ZEN_EXPECT(z.contains("World"));
-    ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
+    ZEN_EXPECT(z1.contains("World"));
+    ZEN_EXPECT(z1.extract_between("[", "]").starts_with("Hello"));
 
     // Extract software version
-    z = "Software Version 1.2.3.4";
-    std::string s = z.extract_version();
+    zen::string z2 = "Software Version 1.2.3.4";
+    std::string s = z2.extract_version();
     ZEN_EXPECT(s == "1.2.3.4");
-    s = z.extract_pattern(R"((\d+\.\d+\.\d+))");
+    s = z2.extract_pattern(R"((\d+\.\d+\.\d+))");
     ZEN_EXPECT(s == "1.2.3");
 
     // Extract date
-    z = "Some Date 1/2/2023";
-    s = z.extract_date();
+    zen::string z3 = "Some Date 1/2/2023";
+    s = z3.extract_date();
     ZEN_EXPECT(s == "1/2/2023");
-    s = z.extract_pattern(R"((\d+\/\d+\/\d+))");
+    s = z3.extract_pattern(R"((\d+\/\d+\/\d+))");
     ZEN_EXPECT(s == "1/2/2023");
 
     // Extract email address
-    z = "Contact us at: support@example.com for more details.";
-    s = z.extract_email();
+    zen::string z4 = "Contact us at: support@example.com for more details.";
+    s = z4.extract_email();
     ZEN_EXPECT(s == "support@example.com");
-    s = z.extract_pattern(R"((\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b))");
+    s = z4.extract_pattern(R"((\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b))");
     ZEN_EXPECT(s == "support@example.com");
 
     // Extract URL
-    z = "Our website is http://www.example.com";
-    s = z.extract_url();
+    zen::string z5 = "Our website is http://www.example.com";
+    s = z5.extract_url();
     ZEN_EXPECT(s == "http://www.example.com");
-    s = z.extract_pattern(R"((https?://[^\s]+))");
+    s = z5.extract_pattern(R"((https?://[^\s]+))");
     ZEN_EXPECT(s == "http://www.example.com");
 
     // Extract currency (price)
-    z = "The cost is $25.99";
-    s = z.extract_pattern(R"((\$\d+(\.\d{2})?))");
+    zen::string z6 = "The cost is $25.99";
+    s = z6.extract_pattern(R"((\$\d+(\.\d{2})?))");
     ZEN_EXPECT(s == "$25.99");
 
     // Extract hashtags
-    z = "Trending topics are #Tech #AI";
-    s = z.extract_hashtag();
+    zen::string z7 = "Trending topics are #Tech #AI";
+    s = z7.extract_hashtag();
     ZEN_EXPECT(s == "#Tech"); // first hashtag
-    s = z.extract_pattern(R"((#\w+))");
+    s = z7.extract_pattern(R"((#\w+))");
     ZEN_EXPECT(s == "#Tech"); // first hashtag
     
     // Extract file extension
-    z = "The file is image.jpeg";
-    s = z.extract_extension();
+    zen::string z8 = "The file is image.jpeg";
+    s = z8.extract_extension();
     ZEN_EXPECT(s == ".jpeg");
-    s = z.extract_pattern(R"((\.\w+$))");
+    s = z8.extract_pattern(R"((\.\w+$))");
     ZEN_EXPECT(s == ".jpeg");
 }
 
