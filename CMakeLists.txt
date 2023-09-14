@@ -8,9 +8,10 @@ if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
         OUTPUT_VARIABLE IS_WSL
     )
     if(IS_WSL)
-        # This is a solution to a problem originally seen on WSL when trying to use multiple g++ compilers:
-        # CMake started to fail its basic compiler checks and complaining that "The C compiler" path
-        # "is not able to compile a simple test program."
+        # This is a solution to a problem originally seen on WSL when trying to use multiple g++ compilers.
+        # CMake started to fail its basic compiler checks and complaining that:
+        #
+        # "The C compiler" [path] "is not able to compile a simple test program."
         #
         # Compiler checks can fail for various reasons, such as incorrect system paths, permission issues,
         # or, in this case, the intricate interplay between WSL, the native filesystem, and the toolchain.
