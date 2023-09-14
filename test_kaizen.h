@@ -31,6 +31,7 @@
 #include "tests/test_array.h"
 #include "tests/test_deque.h"
 #include "tests/test_utils.h"
+#include "tests/test_timer.h"
 #include "tests/test_list.h"
 #include "tests/test_cloc.h"
 #include "tests/test_in.h"

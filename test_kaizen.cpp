@@ -50,6 +50,8 @@ int main(int argc, char* argv[])
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
 
+	zen::timer timer;
+
 	main_test_cmd_args(argc, argv);
 	main_test_forward_list();
 	main_test_filestring();
@@ -59,10 +61,13 @@ int main(int argc, char* argv[])
 	main_test_array();
 	main_test_deque();
 	main_test_utils();
+	main_test_timer();
 	main_test_list();
 	main_test_in();
 
 	if (cmd_args.is_present("-cloc")) main_test_cloc();
+
+	timer.stop();
 
 	END_TESTS;
 
@@ -78,6 +83,7 @@ int main(int argc, char* argv[])
 
 	auto ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
 
+	zen::log("TOTAL DURATION:", timer.duration<zen::timer::usec>(), "MICROSECONDS");
 	zen::log("kaizen.h LOC:", total_loc);
 	zen::log("kaizen.h LOC / TC: ", ratio);
 
