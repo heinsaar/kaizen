@@ -213,6 +213,40 @@ void test_string_pad_end()
     ZEN_EXPECT(s8 == "AAA");
 }
 
+void test_string_pad_start()
+{
+    BEGIN_SUBTEST;
+
+    zen::string s1 = "Hey";
+    zen::string s2 = "Hey";
+    zen::string s3 = "Hey";
+    zen::string s4 = "Hey";
+    zen::string s5 = "Hey";
+    zen::string s6 = "Hey";
+    zen::string s7 = "Hey";
+    zen::string s8 = "";
+
+    s1.pad_start(5);          // padding with default space character
+    s2.pad_start(6, "AB");    // padding with a custom string
+    s3.pad_start(8, "ABCDE"); // padding with a longer custom string
+    s4.pad_start(2);          // target_length smaller than the string size
+    s5.pad_start(3);          // target_length equal to the string size
+    s6.pad_start(5, "");      // padding with an empty string
+    s7.pad_start(7, "AB");    // padding with multiple characters, but not enough to complete the next repeat
+    s8.pad_start(3, "A");     // padding an empty string
+
+    zen::log(s7);
+
+    ZEN_EXPECT(s1 == "  Hey");
+    ZEN_EXPECT(s2 == "ABAHey");
+    ZEN_EXPECT(s3 == "ABCDEHey");
+    ZEN_EXPECT(s4 == "Hey");
+    ZEN_EXPECT(s5 == "Hey");
+    ZEN_EXPECT(s6 == "Hey");
+    ZEN_EXPECT(s7 == "ABABHey");
+    ZEN_EXPECT(s8 == "AAA");
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -229,6 +263,7 @@ void main_test_string()
 
     test_string_substring();
     test_string_ends_with();
+    test_string_pad_start();
     test_string_trimming();
     test_string_extract();
     test_string_pad_end();

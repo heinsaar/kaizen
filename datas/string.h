@@ -164,7 +164,31 @@ public:
         return zen::string(substr(i1, i2 - i1));
     }
 
-    // TODO: Add pad_start()
+    auto& pad_start(size_t target_length, const std::string& pad_string = " ")
+    {
+        if (pad_string.empty()) return *this;
+
+        size_t current_length = my::size();
+        size_t total_padding_needed = target_length > current_length ? target_length - current_length : 0;
+
+        // Full pad strings
+        size_t full_pads = total_padding_needed / pad_string.length();
+
+        // Remaining characters
+        size_t remaining = total_padding_needed % pad_string.length();
+
+        // Generate the padding string
+        std::string padding;
+        for (size_t i = 0; i < full_pads; ++i) {
+            padding += pad_string;
+        }
+        padding += pad_string.substr(0, remaining);
+
+        my::insert(0, padding);
+
+        return *this;
+    }
+
     auto& pad_end(size_t target_length, const std::string& pad_string = " ")
     {
         if (pad_string.empty()) return *this;
