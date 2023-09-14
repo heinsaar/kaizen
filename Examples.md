@@ -84,6 +84,10 @@ std::vector<int> v = {1, 2, 3}
 zen::print(v);                  // [1, 2, 3]
 zen::print(v, "4", 5);          // [1, 2, 3] 4 5
 ```
+In addition, `zen::log()` is equivalent to `zen::print()` except that it will automatically append a new line:
+```cpp
+zen::log(v, "4", 5); // equivalent to zen::print(v, "4", 5, '\n');
+```
 ### Containers
 Richer containers with many useful functions:
 ```cpp
