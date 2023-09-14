@@ -85,12 +85,15 @@ jobs:
       run: ctest --build-config ${{ matrix.build_type }}
 
       # TODO: Seems like this step should be configured in CMake, but there it isn't picked up. See why.
-    - name: Run kaizen executable
-      if: success()
+    - name: Test by running kaizen executable (Linux)
+      if: success() && runner.os != 'Windows'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
-      run: |
-        if [[ "${{ runner.os }}" == "Windows" ]]; then
-          kaizen.exe -verbose
-        else
-          ./kaizen -verbose
-        fi
+      shell: bash
+      run: ./kaizen -verbose
+
+    - name: Test by running kaizen executable (Windows)
+      if: success() && runner.os == 'Windows'
+      working-directory: ${{ steps.strings.outputs.build-output-dir }}
+      shell: pwsh
+      run: .\kaizen.exe -verbose
+
