@@ -31,7 +31,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::forward_list
 
 template<class T>
-class forward_list : public std::forward_list<T> // read 'struct' as "extend the interface"
+class forward_list : public std::forward_list<T>
 {
 public:
     using std::forward_list<T>::forward_list; // inherit constructors, has to be explicit

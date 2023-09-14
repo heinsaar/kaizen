@@ -31,7 +31,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::list
 
 template<class T>
-class list : public std::list<T> // read 'struct' as "extend the interface"
+class list : public std::list<T>
 {
 public:
     using std::list<T>::list; // inherit constructors, has to be explicit
