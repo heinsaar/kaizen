@@ -20,6 +20,4 @@ void main_test_timer()
     }
 
     timer.stop();
-
-    zen::log("DURATION: ", timer.duration<zen::timer::usec>(), "MICROSECONDS");
 }
