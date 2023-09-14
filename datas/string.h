@@ -164,6 +164,19 @@ public:
         return zen::string(substr(i1, i2 - i1));
     }
 
+    // TODO: Add pad_start()
+    auto& pad_end(size_t target_length, const std::string& pad_string = " ")
+    {
+        if (pad_string.empty()) return *this;
+
+        while (my::size() < target_length) {
+            // Append as much of pad_string as will fit
+            my::append(pad_string, 0, std::min(pad_string.size(), target_length - my::size()));
+        }
+
+        return *this;
+    }
+
     // TODO: Implement these (from Python string)
     // capitalize()	    Converts the first character to upper case
     // to_lower()	    Converts string into lower case

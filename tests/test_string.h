@@ -181,6 +181,38 @@ void test_string_remove()
     ZEN_EXPECT(str17 == "HelloWorld");             // pattern '\\d{2,3}' should remove 123
 }
 
+void test_string_pad_end()
+{
+    BEGIN_SUBTEST;
+
+    zen::string s1 = "Hey";
+    zen::string s2 = "Hey";
+    zen::string s3 = "Hey";
+    zen::string s4 = "Hey";
+    zen::string s5 = "Hey";
+    zen::string s6 = "Hey";
+    zen::string s7 = "Hey";
+    zen::string s8 = "";
+
+    s1.pad_end(5);          // padding with default space character
+    s2.pad_end(6, "AB");    // padding with a custom string
+    s3.pad_end(8, "ABCDE"); // padding with a longer custom string
+    s4.pad_end(2);          // with a target_length smaller than the string size (no change expected)
+    s5.pad_end(3);          // with a target_length equal to the string size (no change expected)
+    s6.pad_end(5, "");      // padding with an empty string (no change expected)
+    s7.pad_end(7, "AB");    // padding with multiple characters, but not enough to complete the next repeat
+    s8.pad_end(3, "A");     // padding an empty string
+
+    ZEN_EXPECT(s1 == "Hey  ");
+    ZEN_EXPECT(s2 == "HeyABA");
+    ZEN_EXPECT(s3 == "HeyABCDE");
+    ZEN_EXPECT(s4 == "Hey");
+    ZEN_EXPECT(s5 == "Hey");
+    ZEN_EXPECT(s6 == "Hey");
+    ZEN_EXPECT(s7 == "HeyABAB");
+    ZEN_EXPECT(s8 == "AAA");
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -199,5 +231,6 @@ void main_test_string()
     test_string_ends_with();
     test_string_trimming();
     test_string_extract();
+    test_string_pad_end();
     test_string_remove();
 }
