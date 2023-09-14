@@ -20,4 +20,18 @@ void main_test_timer()
     }
 
     timer.stop();
+
+    using namespace std::chrono;
+
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(nanoseconds(  999))) == "999 nanoseconds"  );
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(nanoseconds( 1000))) ==   "1 microseconds" );
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(microseconds( 999))) == "999 microseconds" );
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(microseconds(1000))) ==   "1 milliseconds" );
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(milliseconds( 999))) == "999 milliseconds" );
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(milliseconds(1000))) ==   "1 seconds"      );
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(seconds(       59))) ==  "59 seconds"      );
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(seconds(       60))) ==   "1 minutes"      );
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(minutes(       59))) ==  "59 minutes"      );
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(minutes(       60))) ==   "1 hours"        );
+
 }
