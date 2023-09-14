@@ -36,7 +36,7 @@ public:
         : std::array<int, 4>{major, minor, patch, build}
     {}
 
-    explicit version(const zen::string& text)
+    explicit version(const std::string& text)
     {
         static const std::regex rx_version{R"((\d+)\.(\d+)\.(\d+)\.(\d+))"};
         if (std::smatch sm; std::regex_match(text, sm, rx_version)) {
