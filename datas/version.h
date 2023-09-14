@@ -70,6 +70,6 @@ zen::version operator""_version(const char* text, size_t)
     return zen::version{text};
 }
 
-}} // namespace literal::version
+}} // namespace literals::version
 
 } // namespace zen
