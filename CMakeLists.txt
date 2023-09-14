@@ -60,6 +60,7 @@ file(GLOB datas         datas/*.h)
 file(GLOB functions functions/*.h)
 file(GLOB tests    tests/test_*.h)
 add_executable(kaizen "test_kaizen.cpp" ${datas} ${functions} ${tests})
+add_test(NAME KaizenTest COMMAND kaizen -verbose)
 
 # Set a dependency on the custom target to ensure it runs before the kaizen executable is built
 add_dependencies(kaizen generate_kaizen_header)
