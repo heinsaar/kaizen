@@ -75,7 +75,7 @@ void test_cmd_args_constructor_exceptions() {
     const char* args_with_null[] = { "valid", nullptr };
     try {
         zen::cmd_args args(args_with_null, 2); // expect an exception thrown from ctor
-        ZEN_EXPECT(false); // Should not reach this line
+        ZEN_EXPECT(false);                     // should not reach this line
     } catch (const std::invalid_argument& e) {
         ZEN_EXPECT(std::string(e.what()) == "CONSTRUCTOR ARGUMENT argv CONTAINS nullptr ELEMENT(S)");
     }
