@@ -247,6 +247,47 @@ void test_string_pad_start()
     ZEN_EXPECT(s8 == "AAA");
 }
 
+void test_string_replace()
+{
+    zen::string s1  = "I love apples.";
+    zen::string s2  = "Replace me, replace me!";
+    zen::string s3  = "Nothing to replace here.";
+    zen::string s4  = "No change.";
+    zen::string s5  = "Remove me.";
+    zen::string s6  = "No change.";
+    zen::string s7  = "CaseSensitive";
+    zen::string s8  = "ReplaceAll";
+    zen::string s9  = "Short";
+    zen::string s10 = "Lengthy";
+    zen::string s11 = "EndReplace";
+
+    s1.replace("apples",     "oranges");
+    s2.replace("replace",    "REPLACED");
+    s3.replace("replace",    "REPLACED");
+    s4.replace("",           "REPLACED");
+    s5.replace("Remove ",    "");
+    s6.replace("",           "");
+    s7.replace("case",       "CASE");
+    s8.replace("ReplaceAll", "AllReplaced");
+    s9.replace("Short",      "Lengthy");
+    s10.replace("Lengthy",   "Short");
+    s11.replace("Replace",   "Replaced");
+
+    zen::log(s4);
+
+    ZEN_EXPECT(s1 == "I love oranges.");
+    ZEN_EXPECT(s2 == "Replace me, REPLACED me!");
+    ZEN_EXPECT(s3 == "Nothing to REPLACED here.");
+    ZEN_EXPECT(s4 == "REPLACEDNo change.");
+    ZEN_EXPECT(s5 == "me.");
+    ZEN_EXPECT(s6 == "No change.");
+    ZEN_EXPECT(s7 == "CaseSensitive");
+    ZEN_EXPECT(s8 == "AllReplaced");
+    ZEN_EXPECT(s9 == "Lengthy");
+    ZEN_EXPECT(s10 == "Short");
+    ZEN_EXPECT(s11 == "EndReplaced");
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -267,5 +308,6 @@ void main_test_string()
     test_string_trimming();
     test_string_extract();
     test_string_pad_end();
+    test_string_replace();
     test_string_remove();
 }

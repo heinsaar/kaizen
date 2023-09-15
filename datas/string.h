@@ -105,12 +105,11 @@ public:
         return *this;
     }
 
-    auto& replace(const std::string_view oldStr, const std::string_view newStr)
-    {
-        size_t startPos = 0;
-        while ((startPos = find(oldStr, startPos)) != std::string::npos) {
-            replace(startPos, oldStr.length(), newStr);
-            startPos += newStr.length(); // handles the case of 'newStr' being a substring of 'oldStr'
+    // Behaves like JavaScript's string.replace()
+    auto& replace(const std::string& search, const std::string& replacement) {
+        size_t position = std::string::find(search);
+        if (position != std::string::npos) {
+            std::string::replace(position, search.length(), replacement);
         }
         return *this;
     }
