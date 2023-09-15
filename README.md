@@ -42,8 +42,8 @@ Parse program arguments declaratively:
 int main(int argc, char* argv[])
 {
     zen::cmd_args args(argv, argc);
-    bool small  = args.accept("-verbose").is_present();
-    bool ignore = args.accept("-ignore" ).is_present();
+    bool verbose = args.accept("-verbose").is_present();
+    bool ignore  = args.accept("-ignore" ).is_present();
     
     // Or sometime later
     if (args.is_present("-ignore"))
