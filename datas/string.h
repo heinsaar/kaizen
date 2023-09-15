@@ -114,6 +114,18 @@ public:
         return *this;
     }
 
+    // Behaves like JavaScript's string.replaceAll()
+    auto& replace_all(const std::string& search, const std::string& replacement) {
+        if (search.empty()) return *this;
+
+        size_t pos = 0;
+        while ((pos = this->find(search, pos)) != std::string::npos) {
+            std::string::replace(pos, search.length(), replacement);
+            pos += replacement.length(); // move pos forward by the length of replace to prevent infinite loops
+        }
+        return *this;
+    }
+
     auto& trim_from_last(const std::string_view str)
     {
         *this = substr(0, rfind(str));

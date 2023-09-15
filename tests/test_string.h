@@ -247,6 +247,41 @@ void test_string_pad_start()
     ZEN_EXPECT(s8 == "AAA");
 }
 
+void test_string_replace_all()
+{
+    BEGIN_SUBTEST;
+
+    zen::string tc1 = "AAA";
+    zen::string tc2 = "abcabc";
+    zen::string tc3 = "abcabc";
+    zen::string tc4 = "abcabc";
+    zen::string tc5 = "abcabc";
+    zen::string tc6 = "abcabc";
+    zen::string tc7 = "abcabc";
+    zen::string tc8 = "abcdefabcdef";
+    zen::string tc9 = "";
+
+    tc1.replace_all("A",      "B");
+    tc2.replace_all("abc",    "abcdef");
+    tc3.replace_all("abc",    "a");
+    tc4.replace_all("abc",    "");
+    tc5.replace_all("",       "xyz");
+    tc6.replace_all("xyz",    "123");
+    tc7.replace_all("abc",    "abc");
+    tc8.replace_all("abcdef", "abc");
+    tc9.replace_all("abc",    "123");
+
+    ZEN_EXPECT(tc1 == "BBB");
+    ZEN_EXPECT(tc2 == "abcdefabcdef");
+    ZEN_EXPECT(tc3 == "aa");
+    ZEN_EXPECT(tc4 == "");
+    ZEN_EXPECT(tc5 == "abcabc");
+    ZEN_EXPECT(tc6 == "abcabc");
+    ZEN_EXPECT(tc7 == "abcabc");
+    ZEN_EXPECT(tc8 == "abcabc");
+    ZEN_EXPECT(tc9 == "");
+}
+
 void test_string_replace()
 {
     zen::string s1  = "I love apples.";
@@ -302,6 +337,7 @@ void main_test_string()
     // Check interchangeability with std::string // TODO: Cover more cases?
     std::string x = z; z = x;
 
+    test_string_replace_all();
     test_string_substring();
     test_string_ends_with();
     test_string_pad_start();
