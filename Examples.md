@@ -60,6 +60,12 @@ z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
 ```
+Replace a substring:
+```cpp
+z = "I love apples, apples, apples";
+z.replace(    "apples", "oranges"); // "I love oranges, apples, apples"
+z.replace_all("apples", "oranges"); // "I love oranges, oranges, oranges"
+```
 Remove a substring:
 ```cpp
 z = "Some uninteresting text";

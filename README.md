@@ -75,6 +75,12 @@ z.substring(  5,  50) == "substrings");  // just like in Python
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
 ```
+Replace a substring:
+```cpp
+z = "I love apples, apples, apples";
+z.replace(    "apples", "oranges"); // "I love oranges, apples, apples"
+z.replace_all("apples", "oranges"); // "I love oranges, oranges, oranges"
+```
 Python-like printing:
 ```cpp
 std::vector<int> v = {1, 2, 3}
