@@ -108,7 +108,7 @@ if (v.contains(42)) {     // easily check for containment
     zen::sum(v);          // easily sum up anything iterable with addable elements
 }
 
-// Fully interchangeable with std::vector
+// A drop-in replacement for std::vector
 std::vector x = v; v = x; // and so on
 ```
 The standard `container::empty()` can ambiguously be read as a verb, so Kaizen provides `is_empty()`:

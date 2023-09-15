@@ -95,7 +95,7 @@ if (v.contains(42)) {           // easily check for containment
     zen::sum(v);                // easily sum up anything iterable with addable elements
 }
 
-// Fully interchangeable with std::vector
+// A drop-in replacement for std::vector
 std::vector x = v; v = x; // and so on
 ```
 Many more examples can be found [here](https://github.com/heinsaar/kaizen/blob/master/Examples.md).
