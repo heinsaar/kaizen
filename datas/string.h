@@ -105,7 +105,7 @@ public:
         return *this;
     }
 
-    auto& replace_all(const std::string_view oldStr, const std::string_view newStr)
+    auto& replace(const std::string_view oldStr, const std::string_view newStr)
     {
         size_t startPos = 0;
         while ((startPos = find(oldStr, startPos)) != std::string::npos) {
