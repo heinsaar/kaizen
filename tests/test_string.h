@@ -129,157 +129,155 @@ void test_string_remove()
 {
     BEGIN_SUBTEST;
 
-    zen::string  str1 = "Hello, world!";     // basic
-    zen::string  str2 = "world world world"; // multiple occurrences
-    zen::string  str3 = "Hello, WORLD!";     // case sensitivity
-    zen::string  str4 = "Hello, world!";     // no occurrences
-    zen::string  str5 = "Hello  world!";     // remove spaces
-    zen::string  str6 = "";                  // empty string
-    zen::string  str7 = "world";             // remove entire string
-    zen::string  str8 = "Hello, world! Have a good world!";
-    zen::string  str9 = "123 123 123";
-    zen::string str10 = "aaabbaaa";
-    zen::string str12 = "Hello, world! 123";
-    zen::string str13 = "Hello, world! 123";
-    zen::string str14 = "  extra  spaces  ";
-    zen::string str15 = "<tag>content</tag>";
-    zen::string str16 = "<tag>content</tag>";
-    zen::string str17 = "Hello123World";
+    zen::string  z1 = "Hello, world!";     // basic
+    zen::string  z2 = "world world world"; // multiple occurrences
+    zen::string  z3 = "Hello, WORLD!";     // case sensitivity
+    zen::string  z4 = "Hello, world!";     // no occurrences
+    zen::string  z5 = "Hello  world!";     // remove spaces
+    zen::string  z6 = "";                  // empty string
+    zen::string  z7 = "world";             // remove entire string
+    zen::string  z8 = "Hello, world! Have a good world!";
+    zen::string  z9 = "123 123 123";
+    zen::string z10 = "aaabbaaa";
+    zen::string z12 = "Hello, world! 123";
+    zen::string z13 = "Hello, world! 123";
+    zen::string z14 = "  extra  spaces  ";
+    zen::string z15 = "<tag>content</tag>";
+    zen::string z16 = "<tag>content</tag>";
+    zen::string z17 = "Hello123World";
         
-     str1.remove("world");
-     str2.remove("world");
-     str3.remove("world");
-     str4.remove("earth");
-     str5.remove("  ");
-     str6.remove("world");
-     str7.remove("world");
-     str8.remove("world");
-     str9.remove("\\d+");
-    str10.remove("a*");
-    str12.remove("[a-z]+");                        // all lowercase words
-    str13.remove("[a-zA-Z0-9]+");                  // all words and numbers
-    str14.remove("\\s+");                          // all spaces
-    str15.remove("<.*>");                          // greedy match
-    str16.remove("<.*?>");                         // lazy match
-    str17.remove("\\d{2,3}");                      // 2 to 3 digits
+     z1.remove("world");
+     z2.remove("world");
+     z3.remove("world");
+     z4.remove("earth");
+     z5.remove("  ");
+     z6.remove("world");
+     z7.remove("world");
+     z8.remove("world");
+     z9.remove("\\d+");
+    z10.remove("a*");
+    z12.remove("[a-z]+");                        // all lowercase words
+    z13.remove("[a-zA-Z0-9]+");                  // all words and numbers
+    z14.remove("\\s+");                          // all spaces
+    z15.remove("<.*>");                          // greedy match
+    z16.remove("<.*?>");                         // lazy match
+    z17.remove("\\d{2,3}");                      // 2 to 3 digits
 
-    ZEN_EXPECT(str1 == "Hello, !");
-    ZEN_EXPECT(str2 == "  ");
-    ZEN_EXPECT(str3 == "Hello, WORLD!");
-    ZEN_EXPECT(str4 == "Hello, world!");
-    ZEN_EXPECT(str5 == "Helloworld!");
-    ZEN_EXPECT(str6 == "");
-    ZEN_EXPECT(str7 == "");
-    ZEN_EXPECT(str8 == "Hello, ! Have a good !");  // pattern 'world' should be removed
-    ZEN_EXPECT(str9 == "  ");                      // pattern '\\d+' should remove all digits
-    ZEN_EXPECT(str10 == "bb");                     // pattern 'a*' should remove all 'a'
-    ZEN_EXPECT(str12 == "H, ! 123");               // pattern '[a-z]+' should remove all lowercase words
-    ZEN_EXPECT(str13 == ", ! ");                   // pattern '[a-zA-Z0-9]+' should remove all words and numbers
-    ZEN_EXPECT(str14 == "extraspaces");            // pattern '\\s+' should remove all extra spaces
-    ZEN_EXPECT(str15 == "");                       // pattern '<.*>' should remove everything
-    ZEN_EXPECT(str16 == "content");                // pattern '<.*?>' should remove all tags but leave content
-    ZEN_EXPECT(str17 == "HelloWorld");             // pattern '\\d{2,3}' should remove 123
+    ZEN_EXPECT(z1 == "Hello, !");
+    ZEN_EXPECT(z2 == "  ");
+    ZEN_EXPECT(z3 == "Hello, WORLD!");
+    ZEN_EXPECT(z4 == "Hello, world!");
+    ZEN_EXPECT(z5 == "Helloworld!");
+    ZEN_EXPECT(z6 == "");
+    ZEN_EXPECT(z7 == "");
+    ZEN_EXPECT(z8 == "Hello, ! Have a good !");  // pattern 'world' should be removed
+    ZEN_EXPECT(z9 == "  ");                      // pattern '\\d+' should remove all digits
+    ZEN_EXPECT(z10 == "bb");                     // pattern 'a*' should remove all 'a'
+    ZEN_EXPECT(z12 == "H, ! 123");               // pattern '[a-z]+' should remove all lowercase words
+    ZEN_EXPECT(z13 == ", ! ");                   // pattern '[a-zA-Z0-9]+' should remove all words and numbers
+    ZEN_EXPECT(z14 == "extraspaces");            // pattern '\\s+' should remove all extra spaces
+    ZEN_EXPECT(z15 == "");                       // pattern '<.*>' should remove everything
+    ZEN_EXPECT(z16 == "content");                // pattern '<.*?>' should remove all tags but leave content
+    ZEN_EXPECT(z17 == "HelloWorld");             // pattern '\\d{2,3}' should remove 123
 }
 
 void test_string_pad_end()
 {
     BEGIN_SUBTEST;
 
-    zen::string s1 = "Hey";
-    zen::string s2 = "Hey";
-    zen::string s3 = "Hey";
-    zen::string s4 = "Hey";
-    zen::string s5 = "Hey";
-    zen::string s6 = "Hey";
-    zen::string s7 = "Hey";
-    zen::string s8 = "";
+    zen::string z1 = "Hey";
+    zen::string z2 = "Hey";
+    zen::string z3 = "Hey";
+    zen::string z4 = "Hey";
+    zen::string z5 = "Hey";
+    zen::string z6 = "Hey";
+    zen::string z7 = "Hey";
+    zen::string z8 = "";
 
-    s1.pad_end(5);          // padding with default space character
-    s2.pad_end(6, "AB");    // padding with a custom string
-    s3.pad_end(8, "ABCDE"); // padding with a longer custom string
-    s4.pad_end(2);          // with a target_length smaller than the string size (no change expected)
-    s5.pad_end(3);          // with a target_length equal to the string size (no change expected)
-    s6.pad_end(5, "");      // padding with an empty string (no change expected)
-    s7.pad_end(7, "AB");    // padding with multiple characters, but not enough to complete the next repeat
-    s8.pad_end(3, "A");     // padding an empty string
+    z1.pad_end(5);          // padding with default space character
+    z2.pad_end(6, "AB");    // padding with a custom string
+    z3.pad_end(8, "ABCDE"); // padding with a longer custom string
+    z4.pad_end(2);          // with a target_length smaller than the string size (no change expected)
+    z5.pad_end(3);          // with a target_length equal to the string size (no change expected)
+    z6.pad_end(5, "");      // padding with an empty string (no change expected)
+    z7.pad_end(7, "AB");    // padding with multiple characters, but not enough to complete the next repeat
+    z8.pad_end(3, "A");     // padding an empty string
 
-    ZEN_EXPECT(s1 == "Hey  ");
-    ZEN_EXPECT(s2 == "HeyABA");
-    ZEN_EXPECT(s3 == "HeyABCDE");
-    ZEN_EXPECT(s4 == "Hey");
-    ZEN_EXPECT(s5 == "Hey");
-    ZEN_EXPECT(s6 == "Hey");
-    ZEN_EXPECT(s7 == "HeyABAB");
-    ZEN_EXPECT(s8 == "AAA");
+    ZEN_EXPECT(z1 == "Hey  ");
+    ZEN_EXPECT(z2 == "HeyABA");
+    ZEN_EXPECT(z3 == "HeyABCDE");
+    ZEN_EXPECT(z4 == "Hey");
+    ZEN_EXPECT(z5 == "Hey");
+    ZEN_EXPECT(z6 == "Hey");
+    ZEN_EXPECT(z7 == "HeyABAB");
+    ZEN_EXPECT(z8 == "AAA");
 }
 
 void test_string_pad_start()
 {
     BEGIN_SUBTEST;
 
-    zen::string s1 = "Hey";
-    zen::string s2 = "Hey";
-    zen::string s3 = "Hey";
-    zen::string s4 = "Hey";
-    zen::string s5 = "Hey";
-    zen::string s6 = "Hey";
-    zen::string s7 = "Hey";
-    zen::string s8 = "";
+    zen::string z1 = "Hey";
+    zen::string z2 = "Hey";
+    zen::string z3 = "Hey";
+    zen::string z4 = "Hey";
+    zen::string z5 = "Hey";
+    zen::string z6 = "Hey";
+    zen::string z7 = "Hey";
+    zen::string z8 = "";
 
-    s1.pad_start(5);          // padding with default space character
-    s2.pad_start(6, "AB");    // padding with a custom string
-    s3.pad_start(8, "ABCDE"); // padding with a longer custom string
-    s4.pad_start(2);          // target_length smaller than the string size
-    s5.pad_start(3);          // target_length equal to the string size
-    s6.pad_start(5, "");      // padding with an empty string
-    s7.pad_start(7, "AB");    // padding with multiple characters, but not enough to complete the next repeat
-    s8.pad_start(3, "A");     // padding an empty string
+    z1.pad_start(5);          // padding with default space character
+    z2.pad_start(6, "AB");    // padding with a custom string
+    z3.pad_start(8, "ABCDE"); // padding with a longer custom string
+    z4.pad_start(2);          // target_length smaller than the string size
+    z5.pad_start(3);          // target_length equal to the string size
+    z6.pad_start(5, "");      // padding with an empty string
+    z7.pad_start(7, "AB");    // padding with multiple characters, but not enough to complete the next repeat
+    z8.pad_start(3, "A");     // padding an empty string
 
-    zen::log(s7);
-
-    ZEN_EXPECT(s1 == "  Hey");
-    ZEN_EXPECT(s2 == "ABAHey");
-    ZEN_EXPECT(s3 == "ABCDEHey");
-    ZEN_EXPECT(s4 == "Hey");
-    ZEN_EXPECT(s5 == "Hey");
-    ZEN_EXPECT(s6 == "Hey");
-    ZEN_EXPECT(s7 == "ABABHey");
-    ZEN_EXPECT(s8 == "AAA");
+    ZEN_EXPECT(z1 == "  Hey");
+    ZEN_EXPECT(z2 == "ABAHey");
+    ZEN_EXPECT(z3 == "ABCDEHey");
+    ZEN_EXPECT(z4 == "Hey");
+    ZEN_EXPECT(z5 == "Hey");
+    ZEN_EXPECT(z6 == "Hey");
+    ZEN_EXPECT(z7 == "ABABHey");
+    ZEN_EXPECT(z8 == "AAA");
 }
 
 void test_string_replace_all()
 {
     BEGIN_SUBTEST;
 
-    zen::string tc1 = "AAA";
-    zen::string tc2 = "abcabc";
-    zen::string tc3 = "abcabc";
-    zen::string tc4 = "abcabc";
-    zen::string tc5 = "abcabc";
-    zen::string tc6 = "abcabc";
-    zen::string tc7 = "abcabc";
-    zen::string tc8 = "abcdefabcdef";
-    zen::string tc9 = "";
+    zen::string z1 = "AAA";
+    zen::string z2 = "abcabc";
+    zen::string z3 = "abcabc";
+    zen::string z4 = "abcabc";
+    zen::string z5 = "abcabc";
+    zen::string z6 = "abcabc";
+    zen::string z7 = "abcabc";
+    zen::string z8 = "abcdefabcdef";
+    zen::string z9 = "";
 
-    tc1.replace_all("A",      "B");
-    tc2.replace_all("abc",    "abcdef");
-    tc3.replace_all("abc",    "a");
-    tc4.replace_all("abc",    "");
-    tc5.replace_all("",       "xyz");
-    tc6.replace_all("xyz",    "123");
-    tc7.replace_all("abc",    "abc");
-    tc8.replace_all("abcdef", "abc");
-    tc9.replace_all("abc",    "123");
+    z1.replace_all("A",      "B");
+    z2.replace_all("abc",    "abcdef");
+    z3.replace_all("abc",    "a");
+    z4.replace_all("abc",    "");
+    z5.replace_all("",       "xyz");
+    z6.replace_all("xyz",    "123");
+    z7.replace_all("abc",    "abc");
+    z8.replace_all("abcdef", "abc");
+    z9.replace_all("abc",    "123");
 
-    ZEN_EXPECT(tc1 == "BBB");
-    ZEN_EXPECT(tc2 == "abcdefabcdef");
-    ZEN_EXPECT(tc3 == "aa");
-    ZEN_EXPECT(tc4 == "");
-    ZEN_EXPECT(tc5 == "abcabc");
-    ZEN_EXPECT(tc6 == "abcabc");
-    ZEN_EXPECT(tc7 == "abcabc");
-    ZEN_EXPECT(tc8 == "abcabc");
-    ZEN_EXPECT(tc9 == "");
+    ZEN_EXPECT(z1 == "BBB");
+    ZEN_EXPECT(z2 == "abcdefabcdef");
+    ZEN_EXPECT(z3 == "aa");
+    ZEN_EXPECT(z4 == "");
+    ZEN_EXPECT(z5 == "abcabc");
+    ZEN_EXPECT(z6 == "abcabc");
+    ZEN_EXPECT(z7 == "abcabc");
+    ZEN_EXPECT(z8 == "abcabc");
+    ZEN_EXPECT(z9 == "");
 }
 
 void test_string_replace()
