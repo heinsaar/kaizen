@@ -30,7 +30,7 @@ utilities far outweigh any theoretical dangers of for some reason allocating `ze
 then deleting it through a pointer to base `std::string`, whether accidentally or on purpose. Any codebase is far more
 likely to experience problems and corrosion from the regular breed of bugs that are much easier to make accidentally.
 
-During development, the `kaizen.h` header is generated during build (see below for building).
+The `kaizen.h` header is generated during the build (see below for building).
 
 ## Examples
 Here's a taste of what you can do with Kaizen right out of the box:
@@ -131,7 +131,7 @@ The project is probably more backward-compatible, but at the moment is being dev
 
 Open the repo folder in your favorite IDE (on Windows, if you're not very used to Visual Studio,
 I recommend using Visual Studio Code with [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)) and follow the steps described below to run it on your system.
-The ```main()``` function simply runs the tests and print out the report.
+The `main()` function simply runs the tests and print out the report.
 
 ## Build & Run on Windows & Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 
