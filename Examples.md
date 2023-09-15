@@ -57,7 +57,7 @@ z.extract_pattern(R"((\d+\.\d+\.\d+))"); // "1.2.3"
 z.extract_date();                        // "1/2/2023"
 z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
 
-// Fully interchangeable with std::string
+// A drop-in replacement for std::string
 std::string x = z; z = x; // and so on
 ```
 Replace a substring:

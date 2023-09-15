@@ -72,7 +72,7 @@ z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
 z.substring(  5,  50) == "substrings");  // just like in Python
 
-// Fully interchangeable with std::string
+// A drop-in replacement for std::string
 std::string x = z; z = x; // and so on
 ```
 Replace a substring:
