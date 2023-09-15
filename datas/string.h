@@ -113,6 +113,7 @@ public:
         }
         return *this;
     }
+    // TODO: Add an equivalent replace_if()
 
     // Behaves like JavaScript's string.replaceAll()
     auto& replace_all(const std::string& search, const std::string& replacement) {
@@ -125,6 +126,7 @@ public:
         }
         return *this;
     }
+    // TODO: Add an equivalent replace_all_if()
 
     auto& trim_from_last(const std::string_view str)
     {
