@@ -28,7 +28,7 @@ of working with strings that `zen::string` provides.
 This approach is rooted in the philosophy that in the vast majority of cases and projects, the benefits from these
 utilities far outweigh any theoretical dangers of for some reason allocating `zen::string` itself dynamically and
 then deleting it through a pointer to base `std::string`, whether accidentally or on purpose. Any codebase is far more
-likely to experience problems and corrosion from the regular population of bugs that are much easier to make accidentally.
+likely to experience problems and corrosion from the regular breed of bugs that are much easier to make accidentally.
 
 During development, the `kaizen.h` header is generated during build (see below for building).
 

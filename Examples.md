@@ -60,6 +60,11 @@ z.extract_pattern(R"((\d+\/\d+\/\d+))"); // "1/2/2023"
 // Fully interchangeable with std::string
 std::string x = z; z = x; // and so on
 ```
+Remove a substring:
+```cpp
+z = "Some uninteresting text";
+z.remove("uninteresting ");     // "Some text"
+```
 Trim whitespaces:
 ```cpp
 z =         "   Trim   me  ";
