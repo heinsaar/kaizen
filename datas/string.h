@@ -55,9 +55,9 @@ public:
 
     bool is_empty() const { return my::empty(); }
 
-    // For some string s = "[EXTRACTME]"; 
-    // ......................^^^^^^^^^...
-    // Usage: s.extract_between("[", "]");
+    // std::string s = "[EXTRACTME]"; 
+    //                   ^^^^^^^^^
+    // Example: s.extract_between("[", "]");
     zen::string extract_between(const std::string_view beg, const std::string_view end) const
     {
         const size_t posBeg = find(beg);
