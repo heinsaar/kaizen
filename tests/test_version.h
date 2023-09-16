@@ -30,7 +30,7 @@ void main_test_version()
     zen::version v(1, 2, 3, 4);
     std::ostringstream os;
     os << v;
-    ZEN_EXPECT(os.str() == "1.2.3.4");
 
+    ZEN_EXPECT(os.str() == "1.2.3.4");
     ZEN_EXPECT_THROW(zen::version vi("invalid.version"), std::invalid_argument);
 }
