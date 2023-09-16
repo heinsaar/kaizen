@@ -26,13 +26,11 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::in
 
-// This type is meant to be used in range-for loops:
-// for (int i : zen::in(5))         // from  0 to  5
-// for (int i : zen::in(1, 10))     // from  1 to 10
-// for (int i : zen::in(10, 1, -1)) // from 10 to  1, step -1
-//
-// Note that apart from an intuitive reading, "in"
-// can also be thought of standing for "interval"
+// Declarative range-for loop. Note that apart from an intuitive
+// reading, "in" can also be thought of standing for "interval".
+// Example: for (int i : zen::in(5))         // from  0 to  5
+// Example: for (int i : zen::in(1, 10))     // from  1 to 10
+// Example: for (int i : zen::in(10, 1, -1)) // from 10 to  1, step -1
 class in {
 public:
     in(int end)
