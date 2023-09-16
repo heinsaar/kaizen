@@ -99,17 +99,17 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
             exception_caught = true; \
             if (zen::REPORT_TC_FAIL) \
                 zen::log(zen::color::red("CASE FAIL:"), __func__, \
-                        "EXPECTED THAT `" #expression \
-                        "` THROWS AN EXCEPTION OF TYPE `" #exception_type \
-                        "`, BUT IT THROWS OTHER TYPE."); \
+                        "EXPECTED `" #expression \
+                        "` TO THROW AN EXCEPTION OF TYPE `" #exception_type \
+                        "`, BUT IT THROWS ANOTHER TYPE."); \
             ++zen::TEST_CASE_FAIL_COUNT; \
             break; \
         } \
         if (!exception_caught) { \
             if (zen::REPORT_TC_FAIL) \
                 zen::log(zen::color::red("CASE FAIL:"), __func__, \
-                        "EXPECTED THAT `" #expression \
-                        "` THROWS AN EXCEPTION, BUT IT DOES NOT."); \
+                        "EXPECTED `" #expression \
+                        "` TO THROW AN EXCEPTION, BUT IT DOES NOT."); \
             ++zen::TEST_CASE_FAIL_COUNT; \
         } \
     } while(0)
