@@ -131,10 +131,11 @@ zen::string repeat(const std::string_view s, const int n) {
 }
 
 // Replicates a string patterns.
+// This is the symmetrical complement of replicate(str, int).
 // Usage:
-//       repeat(10, "*") // "**********"
-// 
-// This is the symmetrical complement of replicate(str, int)
+//         repeat(10, "*");
+// Result:
+//         "**********"
 zen::string repeat(const int n, const std::string_view s) {
     std::string result;
     for (int i = 0; i < n; i++) {
