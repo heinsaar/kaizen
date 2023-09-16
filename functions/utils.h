@@ -51,12 +51,9 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // The do { } while (0) construct ensures that the macro behaves as a single statement.
 // This allows it to be used safely in contexts like if-else statements without braces,
 // preventing syntax errors or unexpected behavior due to dangling elses.
-// Example:
-//          ZEN_EXPECT(str == "good");
-// Result:
-//          CASE PASS: ...
+// Example: ZEN_EXPECT(str == "good");
+// Result:  CASE PASS: ...
 //          CASE FAIL: ...
-// 
 #define ZEN_EXPECT(cond) \
     do { \
         if (cond) { \
@@ -76,12 +73,9 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // The do { } while (0) construct ensures that the macro behaves as a single statement.
 // This allows it to be used safely in contexts like if-else statements without braces,
 // preventing syntax errors or unexpected behavior due to dangling elses.
-// Example:
-//          ZEN_EXPECT_THROW(zen::version vi("bad"), std::invalid_argument);
-// Result:
-//          CASE PASS: ...
-//          CASE FAIL: ...
-// 
+// Example: ZEN_EXPECT_THROW(zen::version vi("bad"), std::invalid_argument);
+// Result:  CASE PASS: ...
+//     or:  CASE FAIL: ...
 #define ZEN_EXPECT_THROW(expression, exception_type) \
     do { \
         bool exception_caught{false}; \
@@ -115,11 +109,8 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
     } while(0)
 
 // Quotes a string. This helps avoid cumbersome quote gymnastics in code.
-// Example:
-//          quote(filename) + " does not exist";
-// Result:
-//              "/path/to/file" does not exist
-// 
+// Example: quote(filename) + " does not exist";
+// Result:  "/path/to/file" does not exist
 inline auto quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
 inline auto timestamp() {
@@ -130,10 +121,8 @@ inline auto timestamp() {
 
 // Replicates a string patterns.
 // This is the symmetrical complement of replicate(int, str).
-// Example:
-//          replicate("*", 10);
-// Result:
-//          "**********"
+// Example: replicate("*", 10);
+// Result:  "**********"
 zen::string repeat(const std::string_view s, const int n) {
     std::string result;
     for (int i = 0; i < n; i++) {
@@ -144,10 +133,8 @@ zen::string repeat(const std::string_view s, const int n) {
 
 // Replicates a string patterns.
 // This is the symmetrical complement of replicate(str, int).
-// Example:
-//          repeat(10, "*");
-// Result:
-//          "**********"
+// Example: repeat(10, "*");
+//  Result: "**********"
 zen::string repeat(const int n, const std::string_view s) {
     std::string result;
     for (int i = 0; i < n; i++) {
