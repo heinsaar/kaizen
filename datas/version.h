@@ -29,7 +29,12 @@
 namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::version
-
+// Example: zen::version v8("8.2.3.4567");
+// Example: zen::version v1(1, 2, 3, 4567);
+// v1.major() == 1;
+// v1.minor() == 2;
+// v1.patch() == 3;
+// v1.build() == 4567;
 class version : public std::array<int, 4> { 
 public:
     version(int major, int minor, int patch, int build)
@@ -65,6 +70,7 @@ std::ostream& operator<<(std::ostream& os, const version& v)
 
 namespace literals::version {
 
+// Example: auto v7 = "7.6.5.4321"_version;
 zen::version operator""_version(const char* text, size_t)
 {
     return zen::version{text};
