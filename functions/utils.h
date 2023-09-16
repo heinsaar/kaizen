@@ -110,8 +110,10 @@ inline auto timestamp() {
     return timestr.substr(0, timestr.length() - 1);
 }
 
-// Allows replicating string patterns. Usually used like so:
-// replicate("*", 10) // "**********"
+// Replicates a string patterns.
+// Usage:
+//       replicate("*", 10) // "**********"
+// 
 // This is the symmetrical complement of replicate(int, str)
 zen::string repeat(const std::string_view s, const int n) {
     std::string result;
@@ -121,8 +123,10 @@ zen::string repeat(const std::string_view s, const int n) {
     return result;
 }
 
-// Allows replicating string patterns. Usually used like so:
-// replicate(10, "*") // "**********"
+// Replicates a string patterns.
+// Usage:
+//       repeat(10, "*") // "**********"
+// 
 // This is the symmetrical complement of replicate(str, int)
 zen::string repeat(const int n, const std::string_view s) {
     std::string result;
