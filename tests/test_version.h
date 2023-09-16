@@ -27,8 +27,8 @@ void main_test_version()
     auto v7 = "7.6.5.4321"_version;
     ZEN_EXPECT(v7.build() == 4321);
 
-    std::ostringstream os;
     zen::version v(1, 2, 3, 4);
+    std::ostringstream os;
     os << v;
     ZEN_EXPECT(os.str() == "1.2.3.4");
 
