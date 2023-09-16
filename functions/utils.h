@@ -47,7 +47,7 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 
 #define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN STATIC ASSERTION FAILED. "#M ": " #X)
 
-// ZEN_EXPECT checks its condition parameter and spits out the condition statement if it fails.
+// ZEN_EXPECT checks its expression parameter and spits out the expression if it fails.
 // The do { } while (0) construct ensures that the macro behaves as a single statement.
 // This allows it to be used safely in contexts like if-else statements without braces,
 // preventing syntax errors or unexpected behavior due to dangling elses.
