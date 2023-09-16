@@ -12,7 +12,7 @@ Parse program arguments declaratively:
 
 int main(int argc, char* argv[])
 {
-    zen::cmd_args args(argv, argc);
+    zen::cmd_args  args(argv, argc);
     bool verbose = args.accept("-verbose").is_present();
     bool ignore  = args.accept("-ignore" ).is_present();
     
