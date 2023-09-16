@@ -54,16 +54,16 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // Example: ZEN_EXPECT(str == "good");
 // Result:  CASE PASS: ...
 //          CASE FAIL: ...
-#define ZEN_EXPECT(cond) \
+#define ZEN_EXPECT(expression) \
     do { \
-        if (cond) { \
+        if (expression) { \
             if (zen::REPORT_TC_PASS) \
-                zen::log(zen::color::green("CASE PASS:"), #cond); \
+                zen::log(zen::color::green("CASE PASS:"), #expression); \
             ++zen::TEST_CASE_PASS_COUNT; \
         } \
-        if (!(cond)) { \
+        if (!(expression)) { \
             if (zen::REPORT_TC_FAIL) \
-                zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #cond); \
+                zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #expression); \
             ++zen::TEST_CASE_FAIL_COUNT; \
         } \
     } while (0)
