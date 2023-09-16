@@ -35,9 +35,9 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// USEFUL MISC
 
-#define BEGIN_TEST    zen::log("BEGIN", zen::replicate("-", 50), __func__)
-#define BEGIN_SUBTEST zen::log(         zen::replicate("-", 61), __func__)
-#define END_TESTS     zen::log("END  ", zen::replicate("-", 50), __func__)
+#define BEGIN_TEST    zen::log("BEGIN", zen::repeat("-", 50), __func__)
+#define BEGIN_SUBTEST zen::log(         zen::repeat("-", 61), __func__)
+#define END_TESTS     zen::log("END  ", zen::repeat("-", 50), __func__)
 
 std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
 std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
@@ -113,7 +113,7 @@ inline auto timestamp() {
 // Allows replicating string patterns. Usually used like so:
 // replicate("*", 10) // "**********"
 // This is the symmetrical complement of replicate(int, str)
-zen::string replicate(const std::string_view s, const int n) {
+zen::string repeat(const std::string_view s, const int n) {
     std::string result;
     for (int i = 0; i < n; i++) {
         result += s;
@@ -124,7 +124,7 @@ zen::string replicate(const std::string_view s, const int n) {
 // Allows replicating string patterns. Usually used like so:
 // replicate(10, "*") // "**********"
 // This is the symmetrical complement of replicate(str, int)
-zen::string replicate(const int n, const std::string_view s) {
+zen::string repeat(const int n, const std::string_view s) {
     std::string result;
     for (int i = 0; i < n; i++) {
         result += s;

@@ -120,8 +120,8 @@ void test_string_trimming()
     ZEN_EXPECT(z.deflate().is_deflated());
     ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
 
-    ZEN_EXPECT(zen::replicate("*", 10) == "**********");
-    ZEN_EXPECT(zen::replicate(10, "*") == "**********");
+    ZEN_EXPECT(zen::repeat("*", 10) == "**********");
+    ZEN_EXPECT(zen::repeat(10, "*") == "**********");
 
 }
 

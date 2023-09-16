@@ -40,12 +40,12 @@ int main(int argc, char* argv[])
 	std::string datestamp = zen::string(zen::timestamp()).remove(time).deflate();
 
 	// Print the Kaizen preamble
-	zen::log(zen::color::blue(zen::replicate("|", 79)));
-	zen::log(zen::color::blue(zen::replicate("|", 30) + " KAIZEN"), vers,
-		     zen::color::blue(zen::replicate("|", 30)));
-	zen::log(zen::color::blue(zen::replicate("|", 30) + "  " + datestamp + " "),
-		     zen::color::blue(zen::replicate("|", 30)));
-	zen::log(zen::color::blue(zen::replicate("|", 79)));
+	zen::log(zen::color::blue(zen::repeat("|", 79)));
+	zen::log(zen::color::blue(zen::repeat("|", 30) + " KAIZEN"), vers,
+		     zen::color::blue(zen::repeat("|", 30)));
+	zen::log(zen::color::blue(zen::repeat("|", 30) + "  " + datestamp + " "),
+		     zen::color::blue(zen::repeat("|", 30)));
+	zen::log(zen::color::blue(zen::repeat("|", 79)));
 	zen::log(zen::color::blue("RUNNING TESTS..."));
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN TESTS
