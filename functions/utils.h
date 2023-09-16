@@ -267,7 +267,10 @@ namespace color {
 
 // ------------------------------------------------------------------------------------------ stringify
 
-// Overload for containers like vector, list, etc.
+// Converts most of the widely used data types to a string.
+// Example: std::vector<int> v = {1, 3, 3};
+// Example: to_string(vec) Result: [1, 2, 3]
+// Example: to_string(42)  Result: "42"
 template<class T>
 std::string to_string(const T& x) {
     std::stringstream ss;
