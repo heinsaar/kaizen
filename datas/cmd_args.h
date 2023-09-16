@@ -60,7 +60,7 @@ public:
         }
     }
 
-    cmd_args& accept(const std::string& a)
+    auto& accept(const std::string& a)
     {
         args_accepted_.push_back(a);
         return *this;
