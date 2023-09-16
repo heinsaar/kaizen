@@ -102,6 +102,12 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
         } \
     } while(0)
 
+// Quotes a string. This helps avoid cumbersome quote gymnastics in code.
+// Usage:
+//         quote(filename) + " does not exist";
+// Result:
+//             "/path/to/file" does not exist
+// 
 inline auto quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
 inline auto timestamp() {
@@ -111,10 +117,11 @@ inline auto timestamp() {
 }
 
 // Replicates a string patterns.
+// This is the symmetrical complement of replicate(int, str).
 // Usage:
-//       replicate("*", 10) // "**********"
-// 
-// This is the symmetrical complement of replicate(int, str)
+//         replicate("*", 10);
+// Result:
+//         "**********"
 zen::string repeat(const std::string_view s, const int n) {
     std::string result;
     for (int i = 0; i < n; i++) {
