@@ -88,6 +88,7 @@ void test_cmd_args_uniqueness()
     zen::cmd_args args(argv, 3);
     args.accept("-verbose");
     args.accept("-verbose"); // this should have no effect
+    args.accept("");         // this should have no effect either
     ZEN_EXPECT(args.count_accepted() == 1);
 }
 
