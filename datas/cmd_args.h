@@ -90,6 +90,8 @@ public:
     std::string first_arg() const { return arg_at(0); }
     std::string  last_arg() const { return arg_at(argc_ - 1); }
 
+    int count_accepted() const { return args_accepted_.size(); }
+
 private:
     using arguments = std::vector<std::string>;
 
