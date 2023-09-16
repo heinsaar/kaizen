@@ -63,14 +63,13 @@ std::ostream& operator<<(std::ostream& os, const version& v)
     return os << v.major() << '.' << v.minor() << '.' << v.patch() << '.' << v.build();
 }
 
-namespace literals {
-namespace version {
+namespace literals::version {
 
 zen::version operator""_version(const char* text, size_t)
 {
     return zen::version{text};
 }
 
-}} // namespace literals::version
+} // namespace literals::version
 
 } // namespace zen
