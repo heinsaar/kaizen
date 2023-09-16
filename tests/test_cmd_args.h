@@ -81,6 +81,16 @@ void test_cmd_args_constructor_exceptions() {
     }
 }
 
+void test_cmd_args_uniqueness()
+{
+    BEGIN_SUBTEST;
+    const char* argv[] = { "exe", "-verbose", "-verbose" };
+    zen::cmd_args args(argv, 3);
+    args.accept("-verbose");
+    args.accept("-verbose"); // this should have no effect
+    ZEN_EXPECT(args.count_accepted() == 1);
+}
+
 void main_test_cmd_args(int argc, char* argv[])
 {
     BEGIN_TEST;
@@ -100,5 +110,6 @@ void main_test_cmd_args(int argc, char* argv[])
     test_cmd_args_single_arg_present();
     test_cmd_args_first_last_arg();
     test_cmd_args_empty_args();
+    test_cmd_args_uniqueness();
     test_cmd_args_arg_at();
 }

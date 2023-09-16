@@ -62,7 +62,10 @@ public:
 
     auto& accept(const std::string& a)
     {
-        args_accepted_.push_back(a);
+        if (std::find(std::begin(args_accepted_),
+                      std::end(  args_accepted_), a)
+                   == std::end(  args_accepted_))
+            args_accepted_.push_back(a);
         return *this;
     }
 
