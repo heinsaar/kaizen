@@ -108,7 +108,7 @@ Yellow circles signify a potential need to code, although quite often a suggesti
 1. 🟢 **Review code & commits.** Our commits follow the [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) and therefore are very easy to review.
 1. 🟢 **Suggest a utility.** If you have an idea for a common C++ utility code, feel free to suggest in [our discussions](https://github.com/heinsaar/kaizen/discussions).
 1. 🟢 **Document.** If you see any missing documentation or a discrepancy (wrong code, etc.).
-1. 🟡 **Generalize a utility.** If you see how to generalize any code in a meaningful way.
+1. 🟡 **Generalize a utility.** If you see how to generalize any code in a meaningful way, [like this](https://github.com/heinsaar/kaizen/commit/105fa25eeb5a796941e89304d61070afdea88891).
 1. 🟡 **Optimize.** If you see how to optimize any code in a meaningful way.
 1. 🟡 **Harden.** If you see how to improve the robustness of any code (unhandled edge cases, etc.).
 1. 🟡 **Reduce LOC.** If you see ways to reduce lines of code (common sense - with no loss of readability).
