@@ -144,7 +144,8 @@ zen::string repeat(const int n, const std::string_view s) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
-
+// Example: random_int();
+//  Result: A random integer between [min, max)
 template<class T = int>
 T random_int(const T min = 0, const T max = 10) {
     // Reasons why the std::random_device and the std::mt19937 are 'static' below:
@@ -183,6 +184,8 @@ T random_int(const T min = 0, const T max = 10) {
     return dis(gen);
 }
 
+// Example: populate_random(c); // c is an iterable and resizable container
+//  Result: A random integer between [min, max)
 template<class Iterable>
 void populate_random(Iterable& c, int size = 10) // TODO: Generalize & test with all containers before Kaizen 1.0.0 release
 {
@@ -194,6 +197,7 @@ void populate_random(Iterable& c, int size = 10) // TODO: Generalize & test with
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
 
+// Example: is_empty(c); // c is an iterable container
 template<class Iterable>
 bool is_empty(const Iterable& c)
 {
@@ -226,7 +230,9 @@ auto sum(const Iterable& c)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// COLORS
-
+// Example: zen::print(zen::color::red(str));
+// Example: std::cout( zen::color::red(str));
+//  Result: Red-colored str in the console.
 namespace color {
     class color_string {
     public:
