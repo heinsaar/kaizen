@@ -53,7 +53,7 @@ public:
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = array;
+    using my = array<T, N>;
 };
 
 } // namespace zen

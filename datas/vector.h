@@ -48,7 +48,7 @@ public:
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = vector;
+    using my = vector<T>;
 };
 
 } // namespace zen

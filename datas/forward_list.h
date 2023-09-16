@@ -47,7 +47,7 @@ public:
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = forward_list;
+    using my = forward_list<T>;
 };
 
 } // namespace zen

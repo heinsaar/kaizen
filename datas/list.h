@@ -47,7 +47,7 @@ public:
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = list;
+    using my = list<T>;
 };
 
 } // namespace zen
