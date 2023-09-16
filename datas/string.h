@@ -61,11 +61,9 @@ public:
     zen::string extract_between(const std::string_view beg, const std::string_view end) const
     {
         const size_t posBeg = find(beg);
-        if (posBeg == std::string::npos)
-            return ""; // signals 'not found'
+        if (posBeg == std::string::npos) return ""; // signals 'not found'
         const size_t posEnd = find(end, posBeg + 1);
-        if (posEnd == std::string::npos)
-            return ""; // signals 'not found'
+        if (posEnd == std::string::npos) return ""; // signals 'not found'
         return substr(posBeg + 1, posEnd - posBeg - 1);
     }
 
