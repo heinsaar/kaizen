@@ -278,17 +278,15 @@ std::string to_string(const T& x) {
     // First check for string-likeness so that zen::pring("abc") prints "abc"
     // and not [a, b, c] as a result of considering strings as iterable below
     if constexpr (is_string_like<T>()) {
-       return x;
-    }
-
-    if constexpr (is_iterable_v<T>) {
+        return x;
+    } else if constexpr (is_iterable_v<T>) {
         ss << "[";
         auto it = std::begin(x);
         if (it != std::end(x)) {
-            ss << *it++;
+            ss << to_string(*it++);       // recursive call to handle nested iterables
         }
         for (; it != std::end(x); ++it) {
-            ss << ", " << *it;
+            ss << ", " << to_string(*it); // recursive call to handle nested iterables
         }
         ss << "]";
     } else { // not iterable, single item
