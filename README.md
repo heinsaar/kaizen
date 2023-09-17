@@ -123,7 +123,7 @@ See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for
 
 You'll need the GCC compiler for Linux or MSVC (comes with Visual Studio) for Windows development.
 
-The project is probably more backward-compatible, but at the moment is being developed and tested with the following tools: 
+The project is probably more widely and more backward-compatible, but at the moment is being developed and tested with the following tools: 
 
 1. Python 3.11
 2. MSVC 19.37
