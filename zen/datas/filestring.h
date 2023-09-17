@@ -110,15 +110,13 @@ private:
     std::ifstream                filestream_;
 };
 
-namespace literals {
-namespace path {
+namespace literals::path {
 
 std::filesystem::path operator "" _path(const char* str, std::size_t length)
 {
     return std::filesystem::path(std::string(str, length));
 }
 
-}}
-
+} // namespace literals::path
 } // namespace file
 } // namespace zen
