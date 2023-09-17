@@ -61,6 +61,12 @@ file(GLOB tests    tests/test_*.h)
 add_executable(kaizen "test_kaizen.cpp" ${datas} ${functions} ${tests})
 # add_test(NAME KaizenTest COMMAND kaizen -verbose) # TODO: This should be picked up by CI, but isn't
 
+if(MSVC)
+    target_compile_options(kaizen PRIVATE /W4)
+else()
+    target_compile_options(kaizen PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
 # Set a dependency on the custom target to ensure it runs before the kaizen executable is built
 add_dependencies(kaizen generate_kaizen_header)
 
