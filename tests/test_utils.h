@@ -84,7 +84,7 @@ void test_print()
     auto old_buf = std::cout.rdbuf(ss.rdbuf()); // redirect the output
 
     // Testing zen::print() is a special case since we're testing the same function
-    // that's also used for test output log. Therefor, in order not to pollute the
+    // that's also used for test output log. Therefore, in order not to pollute the
     // test output log, we save the standard cout buffer into old_buf at the top of
     // this function, and restore to it at the bottom - after all the tests in between.
     // The tests in between juggle around in a way so that ZEN_EXPECT (which uses zen::log(),
