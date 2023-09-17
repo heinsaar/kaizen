@@ -61,7 +61,7 @@ def write_output_file(filename, license_text, include_directives, code_content):
 if __name__ == '__main__':
     project_dir = os.path.dirname(os.path.abspath(__file__))
     
-    datas_dir = os.path.join(project_dir, 'datas')
+    datas_dir    = os.path.join(project_dir, 'datas')
     function_dir = os.path.join(project_dir, 'functions')
     
     license_file = os.path.join(project_dir, 'LICENSE.txt')
