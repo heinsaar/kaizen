@@ -52,7 +52,7 @@ add_custom_command(
 )
 
 add_custom_target(generate_kaizen_header ALL DEPENDS kaizen.h)
-add_dependencies(generate_kaizen_header delete_kaizen_header)
+add_dependencies( generate_kaizen_header delete_kaizen_header)
 
 ################################### Add source to this project's executable.
 file(GLOB datas         datas/*.h)
