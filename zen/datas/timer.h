@@ -39,7 +39,7 @@ public:
 
     template<class Duration>
     auto duration() const {
-        return std::chrono::duration_cast<Duration>(stop_ - start_).count();
+        return std::chrono::duration_cast<Duration>(stop_ - start_);
     }
 
     using nsec = std::chrono::nanoseconds;
