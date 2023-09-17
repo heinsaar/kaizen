@@ -100,8 +100,8 @@ void main_test_cmd_args(int argc, char* argv[])
     const bool verbose = args.accept("-verbose").is_present();
     const bool absent  = args.accept("-absent" ).is_present();
 
-    ZEN_EXPECT( args.is_present("-verbose"));
-    ZEN_EXPECT(!args.is_present("-absent"));
+    ZEN_EXPECT(verbose == args.is_present("-verbose"));
+    ZEN_EXPECT(absent  == args.is_present("-absent"));
     ZEN_EXPECT(!args.is_present("-ignore"));
 
     test_cmd_args_multiple_args_one_missing();

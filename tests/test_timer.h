@@ -8,7 +8,7 @@ void main_test_timer()
 
     zen::timer timer;
 
-    for (int i : zen::in(100)) {
+    for ([[maybe_unused]] int i : zen::in(100)) {
         // Trim and deflate a string
         zen::string z = "   Trim   me  ";
         std::string s = z.trim(); // from leading & trailing empty spaces
