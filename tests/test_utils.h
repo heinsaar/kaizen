@@ -86,93 +86,92 @@ void test_print()
     // Testing zen::print() is a special case since we're testing the same function
     // that's also used for test output log. Therefore, in order not to pollute the
     // test output log, we save the standard cout buffer into old_buf at the top of
-    // this function, and restore to it at the bottom - after all the tests in between.
+    // this function, and restore to it after each test so that each test ends with
+    // a restoration of the system to printing into the standard output.
+    // 
     // The tests in between juggle around in a way so that ZEN_EXPECT (which uses zen::log(),
     // which in turn uses zen::print()) behaves as expected instead of outputting into the
     // intermediate stream used for testing the zen::print(). Tests follow this pattern:
     // 
-    // 1. Call zen::print(), which will output into the std::stringstream
+    // 1. Reset a local std::stringstream object state to an empty string
+    // 1. Redirect cout into the local std::stringstream object
+    // 1. Call zen::print(), which will output into the std::stringstream object
     // 2. Temporarily redirect cout back to the standard output for the subsequent ZEN_EXPECT()
     // 3. Use ZEN_EXPECT() with the standard output
-    // 4. Redirect cout back to the std::stringstream
-    // 5. Clear the stream with ss.str("")
 
     // Test with a number
-    zen::print(5);
-    std::cout.rdbuf(old_buf);
-    ZEN_EXPECT(ss.str() == "5");
     std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
+    zen::print(5);
+    std::cout.rdbuf(old_buf); // back to standard output
+    ZEN_EXPECT(ss.str() == "5");
 
     // Test with a string
+    ss.str("");
+    std::cout.rdbuf(ss.rdbuf());
     zen::print("hello");
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "hello");
-    std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
 
     // Test with multiple arguments of mixed types
+    ss.str("");
+    std::cout.rdbuf(ss.rdbuf());
     zen::print(5, "hello", 7.2);
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "5 hello 7.2");
-    std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
 
     // Test with a vector
+    ss.str("");
+    std::cout.rdbuf(ss.rdbuf());
     std::vector<int> v = { 1, 2, 3 };
     zen::print(v);
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "[1, 2, 3]");
-    std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
 
     // Test with nested containers
+    ss.str("");
+    std::cout.rdbuf(ss.rdbuf());
     std::vector<std::vector<int>> vv = { {1, 2}, {3, 4} };
     zen::print(vv);
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "[[1, 2], [3, 4]]");
-    std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
 
     // Test with even more nested containers: vector, list, vector
+    ss.str("");
+    std::cout.rdbuf(ss.rdbuf());
     std::vector<std::list<std::vector<int>>> vxv = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
     zen::print(vxv);
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
-    std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
 
     // Test with even more nested containers: list, vector, list
+    ss.str("");
+    std::cout.rdbuf(ss.rdbuf());
     std::list<std::vector<std::list<int>>> xvx = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
     zen::print(xvx);
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
-    std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
 
     // Test with even more nested containers: list, vector, map
+    ss.str("");
+    std::cout.rdbuf(ss.rdbuf());
     std::list<std::vector<std::deque<int>>> xvd = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
     zen::print(xvd);
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
-    std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
 
     // Test with mixed types
+    ss.str("");
+    std::cout.rdbuf(ss.rdbuf());
     zen::print("Test", 1, 4.5);
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "Test 1 4.5");
-    std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
 
     // Test an empty print call
+    ss.str("");
+    std::cout.rdbuf(ss.rdbuf());
     zen::print();
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "");
-    std::cout.rdbuf(ss.rdbuf());
-    ss.str("");
-
-    std::cout.rdbuf(old_buf); // restore the output
 }
 
 void main_test_utils()
