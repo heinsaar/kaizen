@@ -160,7 +160,7 @@ public:
     auto substring(int i1, int i2) const {
         const int sz = static_cast<int>(size());
 
-        // Convert negative indices to positive, if necessary
+        // If necessary, convert negative indices to positive
         if (i1 < 0) i1 += sz;
         if (i2 < 0) i2 += sz;
 
