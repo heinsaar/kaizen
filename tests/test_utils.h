@@ -48,6 +48,8 @@ void test_utils_sum()
 
 void test_to_string()
 {
+    BEGIN_SUBTEST;
+
     std::vector<std::vector<std::vector<int>>> vvv     = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
     std::vector<std::vector<int>>              vv      = { {1, 2}, {3, 4} };
     std::vector<std::vector<int>>              vve     = { {}, {}, {} };
