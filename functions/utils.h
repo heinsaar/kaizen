@@ -134,7 +134,7 @@ zen::string repeat(const std::string_view s, const int n) {
 // This is the symmetrical complement of repeat(str, int).
 // Repeats a string patterns.
 // Example: repeat(10, "*");
-//  Result: "**********"
+// Result:  "**********"
 zen::string repeat(const int n, const std::string_view s) {
     std::string result;
     for (int i = 0; i < n; i++) {
@@ -145,7 +145,7 @@ zen::string repeat(const int n, const std::string_view s) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
 // Example: random_int();
-//  Result: A random integer between [min, max)
+// Result: A random integer between [min, max)
 template<class T = int>
 T random_int(const T min = 0, const T max = 10) {
     // Reasons why the std::random_device and the std::mt19937 are 'static' below:
@@ -185,7 +185,7 @@ T random_int(const T min = 0, const T max = 10) {
 }
 
 // Example: populate_random(c); // c is an iterable and resizable container
-//  Result: A random integer between [min, max)
+// Result: A random integer between [min, max)
 template<class Iterable>
 void populate_random(Iterable& c, int size = 10) // TODO: Generalize & test with all containers before Kaizen 1.0.0 release
 {
@@ -232,7 +232,7 @@ auto sum(const Iterable& c)
 ///////////////////////////////////////////////////////////////////////////////////////////// COLORS
 // Example: zen::print(zen::color::red(str));
 // Example: std::cout( zen::color::red(str));
-//  Result: Red-colored str in the console.
+// Result: Red-colored str in the console.
 namespace color {
     class color_string {
     public:
