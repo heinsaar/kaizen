@@ -119,9 +119,9 @@ inline auto timestamp() {
     return timestr.substr(0, timestr.length() - 1);
 }
 
-// Replicates a string patterns.
-// This is the symmetrical complement of replicate(int, str).
-// Example: replicate("*", 10);
+// Repeats a string patterns.
+// This is the symmetrical complement of repeat(int, str).
+// Example: repeat("*", 10);
 // Result:  "**********"
 zen::string repeat(const std::string_view s, const int n) {
     std::string result;
@@ -131,8 +131,8 @@ zen::string repeat(const std::string_view s, const int n) {
     return result;
 }
 
-// Replicates a string patterns.
-// This is the symmetrical complement of replicate(str, int).
+// This is the symmetrical complement of repeat(str, int).
+// Repeats a string patterns.
 // Example: repeat(10, "*");
 //  Result: "**********"
 zen::string repeat(const int n, const std::string_view s) {

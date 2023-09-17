@@ -77,10 +77,10 @@ z =         "   Trim   me  ";
 z.trim();   // "Trim   me" - from leading & trailing empty spaces
 z.deflate() // "Trim me"   - any adjacent spaces are removed
 ```
-Replicate a pattern of a string:
+Repeat a pattern of a string:
 ```cpp
-zen::replicate("/", 10) == "//////////";
-zen::replicate(10, "*") == "**********";
+zen::repeat("/", 10) == "//////////";
+zen::repeat(10, "*") == "**********";
 ```
 ### Random numbers
 Just give me a simple random number for everyday use:
