@@ -212,7 +212,7 @@ public:
         return *this;
     }
 
-    // TODO: Implement these (from Python string)
+    // TODO: Implement all or some of these (from Python string)
     // capitalize()	    Converts the first character to upper case
     // to_lower()	    Converts string into lower case
     // center()	        Returns a centered string
