@@ -63,7 +63,7 @@ public:
     auto& accept(const std::string& a)
     {
         if (a.empty())
-            return *this; // effectively voids an accept("") call
+            return *this; // reject accept("") calls
 
         if (std::find(std::begin(args_accepted_),
                       std::end(  args_accepted_), a)
