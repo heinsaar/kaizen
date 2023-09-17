@@ -13,11 +13,11 @@ Collection of utilities and enhanced data structures for a wide range of C++ pro
 
 ## Design Philosophy
 
-Kaizen 1.0 does not aim to be radiation-hardened for all imaginable scenarios and use cases. Instead, inspired by
-the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), emphasizing gradual improvement over
-attempts of ideally perfect designs, this library is built on top of STL and aims to provide a malleable and
-growing set of practical and simple tools through a single header file that, like a Swiss army knife, includes
-just enough of everything that can be useful for a broad range of C++ projects right off the bat.
+Kaizen does not aim to be radiation-hardened for all imaginable scenarios and use cases. Instead, inspired by
+the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), emphasizing frequent and gradual
+improvement, this library is built on top of STL and aims to provide a malleable and growing set of practical
+and simple tools through a single header file that, like a Swiss army knife, includes just enough of everything
+that can be useful for a broad range of C++ projects right off the bat.
 
 So, for example, even though STL containers were not meant to be derived from (in particular, their destructors
 are not virtual), `zen::string` derives from `std::string` in order to quickly, without having to implement all
