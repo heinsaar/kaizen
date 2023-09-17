@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
 	zen::log(""); // new line
 	zen::log(zen::string("TOTAL DURATION (MILLIS):").pad_end(24), timer.duration<zen::timer::msec>());
 	zen::log(zen::string("TOTAL kaizen.h LOC:"     ).pad_end(24), total_loc);
-	zen::log(zen::string("TOTAL kaizen.h LOC/TC:").pad_end(24), ratio);
+	zen::log(zen::string("TOTAL kaizen.h LOC/TC:"  ).pad_end(24), ratio);
 
 // ------------------------------------------------------------------------------------------ Total PASS/FAIL
 
