@@ -81,12 +81,12 @@ int main(int argc, char* argv[])
 	const zen::cloc cloc(zen::parent_path(), { "build"});
 	int total_loc = cloc.count({ ".h" });
 
-	auto ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
+	auto total_loctc_ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
 
 	zen::log(""); // new line
 	zen::log(zen::string("TOTAL DURATION (MILLIS):").pad_end(24), timer.duration<zen::timer::msec>());
 	zen::log(zen::string("TOTAL kaizen.h LOC:"     ).pad_end(24), total_loc);
-	zen::log(zen::string("TOTAL kaizen.h LOC/TC:"  ).pad_end(24), ratio);
+	zen::log(zen::string("TOTAL kaizen.h LOC/TC:"  ).pad_end(24), total_loctc_ratio);
 
 // ------------------------------------------------------------------------------------------ Total PASS/FAIL
 
