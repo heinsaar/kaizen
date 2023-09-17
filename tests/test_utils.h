@@ -91,14 +91,14 @@ void test_print()
     // which in turn uses zen::print()) behaves as expected instead of outputting into the
     // intermediate stream used for testing the zen::print(). Tests follow this pattern:
     // 
-    // 1. Call zen::print() and output into the std::stringstream
-    // 2. Temporarily redirect cout back to the standard output for subsequent ZEN_EXPECT
-    // 3. Use ZEN_EXPECT with the standard output
+    // 1. Call zen::print(), which will output into the std::stringstream
+    // 2. Temporarily redirect cout back to the standard output for the subsequent ZEN_EXPECT()
+    // 3. Use ZEN_EXPECT() with the standard output
     // 4. Redirect cout back to the std::stringstream
     // 5. Clear the stream with ss.str("")
 
     // Test with a number
-    zen::print(5);               // print to the stream
+    zen::print(5);
     std::cout.rdbuf(old_buf);
     ZEN_EXPECT(ss.str() == "5");
     std::cout.rdbuf(ss.rdbuf());
