@@ -30,7 +30,7 @@
 namespace zen {
 
 // Forward declarations
-template <class T, class... Args> void log(T x, Args... args);
+std::string quote(const std::string_view s);
 
 namespace file {
 
@@ -42,8 +42,7 @@ public:
         : filepath_(path), filestream_(path)
     {
         if (!filestream_.is_open()) {
-            zen::log("ERROR OPENING FILE: ", path);
-            throw std::runtime_error("END OF FILE REACHED");
+            throw std::runtime_error("ERROR OPENING FILE: " + zen::quote(path.string()));
         }
     }
 
