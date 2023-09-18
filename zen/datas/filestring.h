@@ -111,7 +111,7 @@ private:
 
 namespace literals::path {
 
-std::filesystem::path operator "" _path(const char* str, std::size_t length)
+std::filesystem::path operator ""_path(const char* str, std::size_t length)
 {
     return std::filesystem::path(std::string(str, length));
 }
