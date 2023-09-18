@@ -68,8 +68,8 @@ zen::string z = "Test substrings";
 
 z.substring(  0,   4) == "Test");        // both arguments are indices
 z.substring(-20,   4) == "Test");        // negative indices are okay
-z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
+z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(  5,  50) == "substrings");  // just like in Python
 
 // A drop-in replacement for std::string
