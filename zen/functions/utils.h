@@ -51,6 +51,7 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // The do { } while (0) construct ensures that the macro behaves as a single statement.
 // This allows it to be used safely in contexts like if-else statements without braces,
 // preventing syntax errors or unexpected behavior due to dangling elses.
+// Continues execution regardless of the expectation result.
 // Example: ZEN_EXPECT(str == "good");
 // Result:  CASE PASS: ...
 //          CASE FAIL: ...
@@ -74,6 +75,7 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // This allows it to be used safely in contexts like if-else statements without braces,
 // preventing syntax errors or unexpected behavior due to dangling elses.
 // Example: ZEN_EXPECT_THROW(zen::version vi("bad"), std::invalid_argument);
+// Continues execution regardless of the expectation result.
 // Result:  CASE PASS: ...
 //     or:  CASE FAIL: ...
 #define ZEN_EXPECT_THROW(expression, exception_type) \
