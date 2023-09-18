@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 ### Working with files
 Open a file and read any line right away:
 ```cpp
-zen::file::filestring filestr("../LICENSE.txt"_path);
+zen::file::ifile      filestr("../LICENSE.txt"_path);
 zen::string version = filestr.getline(1);
 zen::string license = filestr.getline(3);
 ```

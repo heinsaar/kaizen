@@ -34,11 +34,11 @@ std::string quote(const std::string_view s);
 
 namespace file {
 
-///////////////////////////////////////////////////////////////////////////////////////////// zen::filestring
+///////////////////////////////////////////////////////////////////////////////////////////// zen::ifile
 
-class filestring {
+class ifile {
 public:
-    filestring(const std::filesystem::path& path)
+    ifile(const std::filesystem::path& path)
         : filepath_(path), filestream_(path)
     {
         if (!filestream_.is_open()) {
@@ -46,7 +46,7 @@ public:
         }
     }
 
-    ~filestring() {
+    ~ifile() {
         if (filestream_.is_open()) {
             filestream_.close();
         }
