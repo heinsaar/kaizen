@@ -23,11 +23,11 @@
 #pragma once
 
 #include "tests/test_forward_list.h"
-#include "tests/test_ifile.h"
 #include "tests/test_cmd_args.h"
 #include "tests/test_version.h"
 #include "tests/test_string.h"
 #include "tests/test_vector.h"
+#include "tests/test_ifile.h"
 #include "tests/test_array.h"
 #include "tests/test_deque.h"
 #include "tests/test_utils.h"
