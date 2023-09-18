@@ -1,6 +1,7 @@
 ![Build](https://github.com/heinsaar/kaizen/actions/workflows/cmake-multi-platform.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![image](https://github.com/heinsaar/kaizen/assets/14178490/c501af55-a0d3-4a2f-be11-8190ce680569)
 # Kaizen
 
 Collection of utilities and enhanced data structures for a wide range of C++ projects in a single header file ```kaizen.h```
