@@ -51,9 +51,9 @@ int main(int argc, char* argv[])
 ```
 Open a file and read any line right away:
 ```cpp
-zen::file::ifile      license("../LICENSE.txt"_path);
-zen::string version = license.getline(1);
-zen::string license = license.getline(3);
+zen::file::ifile      license_text("../LICENSE.txt"_path);
+zen::string version = license_text.getline(1);
+zen::string license = license_text.getline(3);
 ```
 Python-like range notation:
 ```cpp
