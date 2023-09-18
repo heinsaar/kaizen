@@ -33,7 +33,7 @@ namespace zen {
 class string : public std::string
 {
 public:
-    using std::string::string;    // inherit constructors, has to be explicit
+    using std::string::string;    // inherit constructors,         has to be explicit
     using std::string::operator=; // inherit assignment operators, has to be explicit
 
     string(const std::string&     s) : std::string(s) {}

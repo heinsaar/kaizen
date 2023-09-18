@@ -38,7 +38,7 @@ public:
 
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
-        contains(Pred p) const
+         contains(Pred p) const
     {
         return std::find_if(my::begin(), my::end(), p) != my::end();
     }
