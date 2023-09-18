@@ -37,16 +37,16 @@ std::string quote(const std::string_view s);
 class ifile {
 public:
     ifile(const std::filesystem::path& path)
-        : filepath_(path), filestream_(path)
+        : filepath_(path), ifstream_(path)
     {
-        if (!filestream_.is_open()) {
+        if (!ifstream_.is_open()) {
             throw std::runtime_error("ERROR OPENING FILE: " + zen::quote(path.string()));
         }
     }
 
     ~ifile() {
-        if (filestream_.is_open()) {
-            filestream_.close();
+        if (ifstream_.is_open()) {
+            ifstream_.close();
         }
     }
 
@@ -85,8 +85,8 @@ public:
         std::string    line_;
     };
 
-    auto begin() { return iterator{filestream_}; }
-    auto end()   { return iterator{filestream_, true}; }
+    auto begin() { return iterator{ifstream_}; }
+    auto end()   { return iterator{ifstream_, true}; }
 
     // Method to get line n from the file (indexing starts from 1, not 0)
     std::string getline(int nth) {
@@ -104,7 +104,7 @@ public:
 private:
     // TODO: Dynamically cache lines that are read the first time
     const std::filesystem::path& filepath_;
-    std::ifstream                filestream_;
+    std::ifstream                ifstream_;
 };
 
 namespace literals::path {
