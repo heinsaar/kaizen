@@ -110,6 +110,8 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
         } \
     } while(0)
 
+// TODO: Add ZEN_EXPECT_NOTHROW()
+
 // Quotes a string. This helps avoid cumbersome quote gymnastics in code.
 // Example: quote(filename) + " does not exist";
 // Result:  "/path/to/file" does not exist
