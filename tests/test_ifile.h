@@ -9,7 +9,7 @@ void main_test_ifile()
 
     const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
 
-    zen::file::ifile filestr(project_dir / "LICENSE.txt");
+    zen::file::ifile lic(project_dir / "LICENSE.txt");
 
     using namespace zen::file::literals::path;
     zen::file::ifile test_literal("../LICENSE.txt"_path);
@@ -19,8 +19,8 @@ void main_test_ifile()
     // to compile, as expected, just a few hours ago. May be a Heisenbug.
     zen::file::ifile test_string("../LICENSE.txt");
 
-    zen::string version = filestr.getline(1);
-    zen::string license = filestr.getline(3);
+    zen::string version = lic.getline(1);
+    zen::string license = lic.getline(3);
 
     // TODO: Add cases here
     ZEN_EXPECT(version.contains("1.0.0.0000"));
