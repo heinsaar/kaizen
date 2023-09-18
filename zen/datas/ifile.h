@@ -32,8 +32,6 @@ namespace zen {
 // Forward declarations
 std::string quote(const std::string_view s);
 
-namespace file {
-
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::ifile
 
 class ifile {
@@ -117,5 +115,4 @@ std::filesystem::path operator ""_path(const char* str, std::size_t length)
 }
 
 } // namespace literals::path
-} // namespace file
 } // namespace zen

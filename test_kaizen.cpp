@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////// PREAMBLE
 
 	// Extract Kaizen version from the license file
-	zen::file::ifile   license(project_dir / "LICENSE.txt");
+	zen::ifile   license(project_dir / "LICENSE.txt");
 	zen::string	line = license.getline(1);
 	zen::string	vers = line.extract_version();
 	

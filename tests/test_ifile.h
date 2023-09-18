@@ -9,15 +9,15 @@ void main_test_ifile()
 
     const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
 
-    zen::file::ifile lic(project_dir / "LICENSE.txt");
+    zen::ifile lic(project_dir / "LICENSE.txt");
 
-    using namespace zen::file::literals::path;
-    zen::file::ifile test_literal("../LICENSE.txt"_path);
+    using namespace zen::literals::path;
+    zen::ifile test_literal("../LICENSE.txt"_path);
 
     // TODO: This shouldn't compile, zen::ifile constructor only
     // accepts std::filesystem::path, but it compiles. Why? It was failing
     // to compile, as expected, just a few hours ago. May be a Heisenbug.
-    zen::file::ifile test_string("../LICENSE.txt");
+    zen::ifile test_string("../LICENSE.txt");
 
     zen::string version = lic.getline(1);
     zen::string license = lic.getline(3);
