@@ -117,12 +117,14 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // Result:  "/path/to/file" does not exist
 inline std::string quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
+// API 1.0 timestamp()
 inline auto timestamp() {
     std::time_t result  = std::time(nullptr);
     std::string timestr = std::asctime(std::localtime(&result));
     return timestr.substr(0, timestr.length() - 1);
 }
 
+// API 1.0 repeat()
 // Repeats a string patterns.
 // This is the symmetrical complement of repeat(int, str).
 // Example: repeat("*", 10);
@@ -135,6 +137,7 @@ zen::string repeat(const std::string_view s, const int n) {
     return result;
 }
 
+// API 1.0 repeat()
 // This is the symmetrical complement of repeat(str, int).
 // Repeats a string patterns.
 // Example: repeat(10, "*");
@@ -148,6 +151,8 @@ zen::string repeat(const int n, const std::string_view s) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
+
+// API 1.0 random_int()
 // Example: random_int();
 // Result: A random integer between [min, max)
 template<class T = int>
@@ -188,6 +193,7 @@ T random_int(const T min = 0, const T max = 10) {
     return dis(gen);
 }
 
+// API 1.0 populate_random()
 // Example: populate_random(c); // c is an iterable and resizable container
 // Result: A random integer between [min, max)
 template<class Iterable>
@@ -201,6 +207,7 @@ void populate_random(Iterable& c, int size = 10) // TODO: Generalize & test with
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
 
+// API 1.0 is_empty()
 // Example: is_empty(c); // c is an iterable container
 template<class Iterable>
 bool is_empty(const Iterable& c)

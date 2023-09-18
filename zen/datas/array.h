@@ -30,6 +30,7 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::array
 
+// API 1.0 array{}
 template<class T, size_t N>
 class array : public std::array<T, N>
 {
