@@ -115,7 +115,7 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // Quotes a string. This helps avoid cumbersome quote gymnastics in code.
 // Example: quote(filename) + " does not exist";
 // Result:  "/path/to/file" does not exist
-inline auto quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
+inline std::string quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
 
 inline auto timestamp() {
     std::time_t result  = std::time(nullptr);
