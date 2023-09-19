@@ -90,5 +90,4 @@ auto measure_execution(std::function<void()> operation)
     return t.duration<Duration>();
 }
 
-
 } // namespace zen
