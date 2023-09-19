@@ -38,7 +38,6 @@ namespace zen {
 // const bool verbose = cmd_args.accept("-verbose").is_present();
 // const bool ignore  = cmd_args.accept("-ignore" ).is_present();
 
-// API 1.0 cmd_args{}
 // TODO: Enhance with support for:
 // - Help strings
 // - arg arguments (like -path "/to/some/dir"
