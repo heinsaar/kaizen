@@ -81,7 +81,6 @@ private:
     std::chrono::time_point<std::chrono::high_resolution_clock>  stop_;
 };
 
-
 template<typename Duration = timer::nsec>
 auto measure_execution(std::function<void()> operation)
 {
