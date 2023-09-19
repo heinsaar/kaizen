@@ -39,6 +39,12 @@ public:
     void stop()  {  stop_ = std::chrono::high_resolution_clock::now(); }
 
     template<class Duration>
+    auto elapsed() const {
+        const auto now = std::chrono::high_resolution_clock::now();
+        return std::chrono::duration_cast<Duration>(now - start_);
+    }
+
+    template<class Duration>
     auto duration() const {
         return std::chrono::duration_cast<Duration>(stop_ - start_);
     }
