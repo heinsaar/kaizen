@@ -23,6 +23,7 @@
 #pragma once
 
 #include <chrono>
+#include <functional>
 
 namespace zen {
 
@@ -73,5 +74,15 @@ std::string adaptive_duration(const std::chrono::duration<Rep, Period>& d)
 
     return std::to_string(duration_ns) + " nanoseconds";
 }
+
+template<typename Duration = timer::nsec>
+auto measure_execution(std::function<void()> operation)
+{
+    timer t;
+    operation();
+    t.stop();
+    return t.duration<Duration>();
+}
+
 
 } // namespace zen
