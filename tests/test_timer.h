@@ -2,6 +2,9 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+#include <thread>
+
+
 void main_test_timer()
 {
     BEGIN_TEST;
@@ -33,4 +36,12 @@ void main_test_timer()
     ZEN_EXPECT(zen::string(zen::adaptive_duration(seconds(       60))) ==   "1 minutes"      );
     ZEN_EXPECT(zen::string(zen::adaptive_duration(minutes(       59))) ==  "59 minutes"      );
     ZEN_EXPECT(zen::string(zen::adaptive_duration(minutes(       60))) ==   "1 hours"        );
+
+
+    constexpr milliseconds ms200{200};
+    const auto dur = zen::measure_execution<>(
+        []{
+            std::this_thread::sleep_for(ms200);
+        });
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(dur)) != "200 milliseconds");
 }
