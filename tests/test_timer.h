@@ -4,7 +4,6 @@
 
 #include <thread>
 
-
 void main_test_timer()
 {
     BEGIN_TEST;
