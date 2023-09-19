@@ -23,6 +23,7 @@
 #pragma once
 
 #include <chrono>
+#include <functional>
 
 namespace zen {
 
@@ -36,6 +37,12 @@ public:
 
     void start() { start_ = std::chrono::high_resolution_clock::now(); }
     void stop()  {  stop_ = std::chrono::high_resolution_clock::now(); }
+
+    template<class Duration>
+    auto elapsed() const {
+        const auto now = std::chrono::high_resolution_clock::now();
+        return std::chrono::duration_cast<Duration>(now - start_);
+    }
 
     template<class Duration>
     auto duration() const {
@@ -73,5 +80,15 @@ std::string adaptive_duration(const std::chrono::duration<Rep, Period>& d)
 
     return std::to_string(duration_ns) + " nanoseconds";
 }
+
+template<typename Duration = timer::nsec>
+auto measure_execution(std::function<void()> operation)
+{
+    timer t;
+    operation();
+    t.stop();
+    return t.duration<Duration>();
+}
+
 
 } // namespace zen
