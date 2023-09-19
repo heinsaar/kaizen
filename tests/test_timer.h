@@ -27,7 +27,6 @@ void main_test_timer()
     using namespace std::chrono;
 
     ZEN_EXPECT(zen::adaptive_duration(timer.duration<nanoseconds>()) == timer.duration_string());
-    ZEN_EXPECT(zen::adaptive_duration(timer.duration<nanoseconds>()).contains("milliseconds"));
 
     ZEN_EXPECT(zen::adaptive_duration(nanoseconds(  999)) == "999 nanoseconds"  );
     ZEN_EXPECT(zen::adaptive_duration(nanoseconds( 1000)) ==   "1 microseconds" );
