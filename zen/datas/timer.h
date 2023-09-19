@@ -65,6 +65,10 @@ public:
         return std::chrono::duration_cast<Duration>(stop_ - start_);
     }
 
+    auto duration_string() const {
+        return adaptive_duration(duration<nsec>());
+    }
+
     using nsec = std::chrono::nanoseconds;
     using usec = std::chrono::microseconds;
     using msec = std::chrono::milliseconds;
