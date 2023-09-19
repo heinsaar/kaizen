@@ -40,7 +40,7 @@ void main_test_timer()
 
     constexpr milliseconds ms200{200};
     const auto dur = zen::measure_execution<>(
-        []{
+        [&ms200]{
             std::this_thread::sleep_for(ms200);
         });
     ZEN_EXPECT(zen::string(zen::adaptive_duration(dur)) != "200 milliseconds");
