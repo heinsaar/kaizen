@@ -27,6 +27,22 @@
 
 namespace zen {
 
+template <typename Rep, typename Period>
+std::string adaptive_duration(const std::chrono::duration<Rep, Period>& d)
+{
+    using namespace std::chrono;
+
+    auto duration_ns = duration_cast<nanoseconds>(d).count();
+
+    if (duration_ns >= 3600e9) return std::to_string(duration_cast<hours>       (d).count()) + " hours";
+    if (duration_ns >=   60e9) return std::to_string(duration_cast<minutes>     (d).count()) + " minutes";
+    if (duration_ns >=    1e9) return std::to_string(duration_cast<seconds>     (d).count()) + " seconds";
+    if (duration_ns >=    1e6) return std::to_string(duration_cast<milliseconds>(d).count()) + " milliseconds";
+    if (duration_ns >=    1e3) return std::to_string(duration_cast<microseconds>(d).count()) + " microseconds";
+
+    return std::to_string(duration_ns) + " nanoseconds";
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::timer
 
 class timer {
@@ -65,21 +81,6 @@ private:
     std::chrono::time_point<std::chrono::high_resolution_clock>  stop_;
 };
 
-template <typename Rep, typename Period>
-std::string adaptive_duration(const std::chrono::duration<Rep, Period>& d)
-{
-    using namespace std::chrono;
-
-    auto duration_ns = duration_cast<nanoseconds>(d).count();
-
-    if (duration_ns >= 3600e9) return std::to_string(duration_cast<hours>       (d).count()) + " hours";
-    if (duration_ns >=   60e9) return std::to_string(duration_cast<minutes>     (d).count()) + " minutes";
-    if (duration_ns >=    1e9) return std::to_string(duration_cast<seconds>     (d).count()) + " seconds";
-    if (duration_ns >=    1e6) return std::to_string(duration_cast<milliseconds>(d).count()) + " milliseconds";
-    if (duration_ns >=    1e3) return std::to_string(duration_cast<microseconds>(d).count()) + " microseconds";
-
-    return std::to_string(duration_ns) + " nanoseconds";
-}
 
 template<typename Duration = timer::nsec>
 auto measure_execution(std::function<void()> operation)
