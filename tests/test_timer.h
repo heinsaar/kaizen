@@ -39,10 +39,10 @@ void main_test_timer()
     ZEN_EXPECT(zen::adaptive_duration(minutes(       59)) ==  "59 minutes"      );
     ZEN_EXPECT(zen::adaptive_duration(minutes(       60)) ==   "1 hours"        );
 
-    constexpr milliseconds ms200{200};
+    constexpr milliseconds ms20{20};
     const auto dur = zen::measure_execution<>(
-        [&ms200]{
-            std::this_thread::sleep_for(ms200);
+        [&ms20]{
+            std::this_thread::sleep_for(ms20);
         });
-    ZEN_EXPECT(zen::adaptive_duration(dur) != "200 milliseconds");
+    ZEN_EXPECT(zen::adaptive_duration(dur) != "20 milliseconds");
 }
