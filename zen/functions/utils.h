@@ -205,7 +205,7 @@ void generate_random(Iterable& c, int size = 10) // TODO: Generalize & test with
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
 
-// Example: is_empty(c); // c is an iterable container
+// Example: zen::is_empty(c); // c is an iterable container
 template<class Iterable>
 bool is_empty(const Iterable& c)
 {
