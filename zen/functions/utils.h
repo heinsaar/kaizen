@@ -189,8 +189,11 @@ T random_int(const T min = 0, const T max = 10) {
     return dis(gen);
 }
 
-// Example: generate_random(c); // c is an iterable and resizable container
-// Result: A container with random integers between [min, max)
+// Very often all we want is a dead simple way of quickly
+// generating a container filled with some random numbers.
+// Example: std::vector<int> v;
+//          zen::generate_random(v);
+// Result: A vector of size 10 with random integers between [min, max)
 template<class Iterable>
 void generate_random(Iterable& c, int size = 10) // TODO: Generalize & test with all containers before Kaizen 1.0.0 release
 {
