@@ -1,4 +1,6 @@
-# Contribution
+# Communication
+
+We use [RAPID Principles](https://leoheinsaar.blogspot.com/p/rapid.html) for our communication.
 
 To reduce double-communication, we use GitHub's commit messages as our primary medium of communication
 for real, tangible progress. By "tangible" we mean progress on code, documentation, etc. Obviously, there
