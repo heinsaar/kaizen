@@ -19,7 +19,7 @@ void main_test_deque()
     BEGIN_TEST;
 
     zen::deque<int> q;
-    zen::populate_random(q);
+    zen::generate_random(q);
     q.push_back(777);
 
     //zen::log("RANDOM DEQUE:", q);

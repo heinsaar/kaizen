@@ -19,7 +19,7 @@ void main_test_list()
     BEGIN_TEST;
 
     zen::list<int> x;
-    zen::populate_random(x);
+    zen::generate_random(x);
     x.push_back(777);
 
     //zen::log("RANDOM LIST:", x);
