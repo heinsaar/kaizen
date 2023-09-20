@@ -84,9 +84,9 @@ int main(int argc, char* argv[])
 	auto total_loctc_ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
 
 	zen::log(""); // new line
-	zen::log(zen::string("TOTAL DURATION (MILLIS):").pad_end(24), timer.duration<zen::timer::msec>().count());
-	zen::log(zen::string("TOTAL kaizen.h LOC:"     ).pad_end(24), total_loc);
-	zen::log(zen::string("TOTAL kaizen.h LOC/TC:"  ).pad_end(24), total_loctc_ratio);
+	zen::log(zen::string("TOTAL DURATION :"		 ).pad_end(22), timer.duration_string());
+	zen::log(zen::string("TOTAL kaizen.h LOC:"   ).pad_end(22), total_loc);
+	zen::log(zen::string("TOTAL kaizen.h LOC/TC:").pad_end(22), total_loctc_ratio);
 
 // ------------------------------------------------------------------------------------------ Total PASS/FAIL
 
