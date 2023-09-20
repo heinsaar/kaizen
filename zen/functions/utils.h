@@ -205,7 +205,10 @@ void generate_random(Iterable& c, int size = 10) // TODO: Generalize & test with
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
 
-// Example: zen::is_empty(c); // c is an iterable container
+// Over the years it has become clear that the standard member
+// function empty() that lacks an 'is_' prefix is confusing to
+// non-familiar users due to its ambiguity as a noun and a verb.
+// Example: zen::is_empty(c); // c is any iterable container
 template<class Iterable>
 bool is_empty(const Iterable& c)
 {
