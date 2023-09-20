@@ -199,7 +199,7 @@ void generate_random(Iterable& c, int size = 10) // TODO: Generalize & test with
 {
     ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
 
-    if (!std::size(c))
+    if (std::empty(c))
         c.resize(size);
 
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
