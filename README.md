@@ -120,7 +120,7 @@ Yellow circles signify a potential need to code, although quite often a suggesti
 
 ### Communication
 
-* See our [Communication](https://github.com/heinsaar/kaizen/blob/master/Contribution.md) page for our approach to communication.
+* See our [Communication](https://github.com/heinsaar/kaizen/blob/master/Communication.md) page for our approach to communication.
 * See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
 
 ## Prerequisites for building
