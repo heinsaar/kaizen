@@ -5,7 +5,8 @@ We use [RAPID Principles](https://leoheinsaar.blogspot.com/p/rapid.html) for our
 To reduce double-communication, we use GitHub's commit messages as our primary medium of communication
 for real, tangible progress. By "tangible" we mean progress on code, documentation, etc. Obviously, there
 are many other intangible forms of real progress, such as discussions and individual thoughts that end up
-in resolutions to questions, issues and problems. The primary medium for those is our [Kaizen workspace in Slack](https://kaizencpp.slack.com).
+in resolutions to questions, issues and problems. The primary medium for those is our
+[Kaizen workspace in Slack](https://kaizencpp.slack.com).
 
 ## Tips
 
