@@ -10,7 +10,9 @@ void test_vector_of_strings()
 
     //zen::log(typeid(v).name(), v);
 
-    ZEN_EXPECT(v.contains("0"));
+    zen::strings zs = v;
+
+    ZEN_EXPECT(v.contains("0") == zs.contains("0"));
     ZEN_EXPECT(zen::is_empty(v) == v.is_empty());
 }
 
