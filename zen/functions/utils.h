@@ -197,7 +197,7 @@ T random_int(const T min = 0, const T max = 10) {
 template<class Iterable>
 void generate_random(Iterable& c, int size = 10) // TODO: Generalize & test with all containers before Kaizen 1.0.0 release
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_iterable_v< Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
     ZEN_STATIC_ASSERT(zen::is_resizable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
 
     if (std::empty(c))
