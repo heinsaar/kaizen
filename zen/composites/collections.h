@@ -32,6 +32,8 @@ namespace zen {
 using stringlist = zen::list<  zen::string>;
 using stringvec  = zen::vector<zen::string>;
 using integers   = zen::vector<int>;
+using floats     = zen::vector<float>;
+using reals      = zen::vector<double>;
 
 // Shorthands
 using strings = stringvec;
