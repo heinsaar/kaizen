@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2023 Leo Heinsaar
 // 
@@ -22,17 +22,24 @@
 
 #pragma once
 
-#include "tests/test_forward_list.h"
-#include "tests/test_cmd_args.h"
-#include "tests/test_version.h"
-#include "tests/test_string.h"
-#include "tests/test_vector.h"
-#include "tests/test_ifile.h"
-#include "tests/test_array.h"
-#include "tests/test_deque.h"
-#include "tests/test_utils.h"
-#include "tests/test_timer.h"
-#include "tests/test_list.h"
-#include "tests/test_cloc.h"
-#include "tests/test_set.h"
-#include "tests/test_in.h"
+#include <type_traits>
+#include <algorithm>
+#include <set>
+
+namespace zen {
+
+///////////////////////////////////////////////////////////////////////////////////////////// zen::deque
+
+template<class T>
+class set : public std::set<T>
+{
+public:
+    using std::set<T>::set; // inherit constructors, has to be explicit
+
+    bool is_empty() const { return my::empty(); }
+
+private:
+    using my = set<T>;
+};
+
+} // namespace zen
