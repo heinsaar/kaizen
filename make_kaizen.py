@@ -11,6 +11,17 @@ def collect_header_files(dirs):
                 header_files.append(os.path.join(dir, filename))
     return header_files
 
+def collect_composite_headers(composite_dir):
+    header_files = []
+    composite_includes = set()
+    for filename in os.listdir(composite_dir):
+        if filename.endswith('.h'):
+            header_file = os.path.join(composite_dir, filename)
+            include_directives, _ = parse_header_file(header_file)
+            composite_includes.update(include_directives)
+            header_files.append(header_file)
+    return header_files, composite_includes
+
 # Separates license, include directives and code
 def parse_header_file(header_file):
     include_directives = set()
@@ -63,20 +74,32 @@ if __name__ == '__main__':
     
     datas_dir    = os.path.join(project_dir, 'zen/datas')
     function_dir = os.path.join(project_dir, 'zen/functions')
-    
+    composite_dir = os.path.join(project_dir, 'zen/composites')
+
     license_file = os.path.join(project_dir, 'LICENSE.txt')
 
     header_files = collect_header_files([datas_dir, function_dir])
+    composite_headers, composite_includes = collect_composite_headers(composite_dir)
+    
     license_text = read_license(license_file)
 
     all_include_directives = set()
     all_code_content = []
 
+    # Process regular headers
     for header_file in header_files:
         include_directives, code_content = parse_header_file(header_file)
         all_include_directives.update(include_directives)
         all_code_content.extend(code_content)
-    
+        
+    # Process composite headers
+    for composite_header in composite_headers:
+        _, code_content = parse_header_file(composite_header)
+        all_code_content.extend(code_content)
+        
+    # Remove headers included in composite headers
+    all_include_directives -= composite_includes
+
     # Generate the final result of the Kaizen library header file
     write_output_file('kaizen.h', license_text, all_include_directives, all_code_content)
 
