@@ -29,6 +29,10 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// COMPOSITES
 
+// Following are some of the most common data types defined in
+// pretty much all C++ projects that use the types on the right.
+// The name 'composites' is chosen by analogy with composite materials.
+
 using stringlist = zen::list<  zen::string>;
 using stringvec  = zen::vector<zen::string>;
 using integers   = zen::vector<int>;
