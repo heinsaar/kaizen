@@ -3,7 +3,7 @@ import re
 import os
 
 # Collects header files from specified dirs
-def collect_header_files(dirs):
+def collect_main_header_files(dirs):
     header_files = []
     for dir in dirs:
         for filename in os.listdir(dir):
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
     license_file = os.path.join(project_dir, 'LICENSE.txt')
 
-    header_files = collect_header_files([datas_dir, function_dir])
+    header_files = collect_main_header_files([datas_dir, function_dir])
     composite_headers, composite_includes = collect_composite_headers(composite_dir)
     
     license_text = read_license(license_file)
