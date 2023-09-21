@@ -19,7 +19,7 @@ void test_vector_of_strings()
 void main_test_vector()
 {
     BEGIN_TEST;
-    zen::vector<int> v(10);
+    zen::vector<int> v;
     zen::generate_random(v);
     v.push_back(777);
 
