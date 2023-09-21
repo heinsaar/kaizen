@@ -69,6 +69,29 @@ namespace zen {
     template <class T> constexpr bool is_addable_v = is_addable<T>::value;
 #endif
 
+// ------------------------------------------------------------------------------------------ Resizable
+
+#if __cpp_concepts >= 202002L
+    template <class T>
+    concept Resizable = requires(T x, size_t n) {
+        x.resize(n); // has a resize method
+        { x.size() } -> std::same_as<size_t>; // has a size method returning size_t
+    };
+    template <typename T> concept is_resizable_v = Resizable<T>;
+#else
+    template <class T, class = void> struct is_resizable : std::false_type {};
+
+    template <class T>
+    struct is_resizable<T,
+        std::void_t<
+            decltype(std::declval<T&>().resize(std::declval<size_t>())), // has a resize method
+            decltype(std::declval<T&>().size())                          // has a size method
+        >
+    > : std::true_type {};
+
+    template <class T> constexpr bool is_resizable_v = is_resizable<T>::value;
+#endif
+
 // ------------------------------------------------------------------------------------------ is_string_like
 
 template<class T>
