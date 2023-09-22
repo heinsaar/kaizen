@@ -43,7 +43,7 @@ using keyval     = zen::map<zen::string, zen::string>;
 
 // Aliases
 using dictionary = keyval;
-using strings = stringvec;
-using ints    = integers;
+using strings    = stringvec;
+using ints       = integers;
 
 } // namespace zen
