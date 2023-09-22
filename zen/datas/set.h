@@ -22,7 +22,6 @@
 
 #pragma once
 
-#include <algorithm>
 #include <set>
 
 namespace zen {

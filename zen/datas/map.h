@@ -22,7 +22,6 @@
 
 #pragma once
 
-#include <algorithm>
 #include <map>
 
 namespace zen {
