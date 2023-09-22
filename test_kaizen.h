@@ -35,4 +35,5 @@
 #include "tests/test_list.h"
 #include "tests/test_cloc.h"
 #include "tests/test_set.h"
+#include "tests/test_map.h"
 #include "tests/test_in.h"

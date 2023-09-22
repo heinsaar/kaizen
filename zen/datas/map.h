@@ -22,28 +22,23 @@
 
 #pragma once
 
-#include "../datas/vector.h" // will not be included in kaizen.h
-#include "../datas/string.h" // will not be included in kaizen.h
-#include "../datas/map.h"    // will not be included in kaizen.h
+#include <algorithm>
+#include <map>
 
 namespace zen {
 
-///////////////////////////////////////////////////////////////////////////////////////////// COMPOSITES
+///////////////////////////////////////////////////////////////////////////////////////////// zen::map
 
-// Following are some of the most common data types defined in
-// pretty much all C++ projects that use the types on the right.
-// The name 'composites' is chosen by analogy with composite materials.
+template<class K, class V>
+class map : public std::map<K, V>
+{
+public:
+    using std::map<K, V>::map; // inherit constructors, has to be explicit
 
-using stringlist = zen::list<  zen::string>;
-using stringvec  = zen::vector<zen::string>;
-using integers   = zen::vector<int>;
-using floats     = zen::vector<float>;
-using reals      = zen::vector<double>;
-using keyval     = zen::map<zen::string, zen::string>;
+    bool is_empty() const { return my::empty(); }
 
-// Aliases
-using dictionary = keyval;
-using strings = stringvec;
-using ints    = integers;
+private:
+    using my = map<K, V>;
+};
 
 } // namespace zen
