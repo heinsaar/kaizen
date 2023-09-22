@@ -22,7 +22,6 @@
 
 #pragma once
 
-#include <type_traits>
 #include <algorithm>
 #include <set>
 
