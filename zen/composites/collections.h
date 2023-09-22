@@ -22,10 +22,6 @@
 
 #pragma once
 
-#include "../datas/vector.h" // will not be included in kaizen.h
-#include "../datas/string.h" // will not be included in kaizen.h
-#include "../datas/map.h"    // will not be included in kaizen.h
-
 namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// COMPOSITES
