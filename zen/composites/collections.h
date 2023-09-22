@@ -30,6 +30,14 @@ namespace zen {
 // pretty much all C++ projects that use the types on the right.
 // The name 'composites' is chosen by analogy with composite materials.
 
+template<
+    class T,
+    class H = std::hash<T>,
+    class E = std::equal_to<T>,
+    class A = std::allocator<T>
+>
+using hash_set   = zen::unordered_set<T, H, E, A>;
+
 using stringlist = zen::list<  zen::string>;
 using stringvec  = zen::vector<zen::string>;
 using integers   = zen::vector<int>;

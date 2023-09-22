@@ -5,7 +5,7 @@
 void test_unordered_set_of_strings()
 {
     BEGIN_SUBTEST;
-    zen::unordered_set<zen::string, zen::string_hash> x = { "1", "2", "3", "4" };
+    zen::hash_set<zen::string, zen::string_hash> x = { "1", "2", "3", "4" };
     x.insert("0");
     
     ZEN_EXPECT(x.contains("0"));
