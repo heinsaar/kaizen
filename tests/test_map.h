@@ -23,6 +23,8 @@ void main_test_map()
     m.insert({ "D", "4" });
 
     ZEN_EXPECT( m.contains({ "A" }));
+    ZEN_EXPECT( m["A"].contains("1"));
+    ZEN_EXPECT(!m["A"].contains("x"));
     ZEN_EXPECT(!m.contains({ "X" }));
     
     ZEN_EXPECT(zen::is_empty(m) == m.is_empty());
