@@ -28,8 +28,8 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::map
 
-template<class K, class V>
-class map : public std::map<K, V>
+template<class K, class V, class C = std::less<K>>
+class map : public std::map<K, V, C>
 {
 public:
     using std::map<K, V>::map; // inherit constructors, has to be explicit
@@ -37,7 +37,7 @@ public:
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = map<K, V>;
+    using my = map<K, V, C>;
 };
 
 } // namespace zen
