@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2023 Leo Heinsaar
 // 
@@ -22,19 +22,27 @@
 
 #pragma once
 
-#include "tests/test_unordered_set.h"
-#include "tests/test_forward_list.h"
-#include "tests/test_cmd_args.h"
-#include "tests/test_version.h"
-#include "tests/test_string.h"
-#include "tests/test_vector.h"
-#include "tests/test_ifile.h"
-#include "tests/test_array.h"
-#include "tests/test_deque.h"
-#include "tests/test_utils.h"
-#include "tests/test_timer.h"
-#include "tests/test_list.h"
-#include "tests/test_cloc.h"
-#include "tests/test_set.h"
-#include "tests/test_map.h"
-#include "tests/test_in.h"
+#include <unordered_set>
+
+namespace zen {
+
+///////////////////////////////////////////////////////////////////////////////////////////// zen::unordered_set
+
+template<
+    class T,
+    class H = std::hash<T>,
+    class E = std::equal_to<T>,
+    class A = std::allocator<T>
+>
+class unordered_set : public std::unordered_set<T, H, E, A>
+{
+public:
+    using std::unordered_set<T, H, E, A>::unordered_set; // inherit constructors, has to be explicit
+
+    bool is_empty() const { return my::empty(); }
+
+private:
+    using my = unordered_set<T, H, E, A>;
+};
+
+} // namespace zen

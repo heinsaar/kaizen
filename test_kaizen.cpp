@@ -53,6 +53,7 @@ int main(int argc, char* argv[])
 	zen::timer timer;
 
 	main_test_cmd_args(argc, argv);
+	main_test_unordered_set();
 	main_test_forward_list();
     main_test_version();
 	main_test_string();
