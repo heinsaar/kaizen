@@ -245,4 +245,10 @@ private:
     using my = zen::string;
 };
 
+struct string_hash {
+    size_t operator()(const zen::string& z) const {
+        return std::hash<std::string>()(z);
+    }
+};
+
 } // namespace zen
