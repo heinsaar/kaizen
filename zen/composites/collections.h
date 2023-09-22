@@ -39,7 +39,7 @@ using integers   = zen::vector<int>;
 using floats     = zen::vector<float>;
 using reals      = zen::vector<double>;
 
-// Shorthands
+// Aliases
 using strings = stringvec;
 using ints    = integers;
 
