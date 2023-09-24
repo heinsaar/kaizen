@@ -16,7 +16,7 @@ Collection of utilities and enhanced data structures for a wide range of C++ pro
 
 Kaizen does not aim to be radiation-hardened for all imaginable scenarios and use cases. Instead, inspired by
 the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), emphasizing frequent and gradual
-improvement, this library is built on top of STL and aims to provide a malleable and growing set of practical,
+improvement, this library builds on top of STL and aims to provide a malleable and growing set of practical,
 simple and well-tested tools through a single header file that, like a Swiss army knife, includes just enough
 of everything that can be useful for a broad range of C++ projects right off the bat.
 
