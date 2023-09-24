@@ -28,16 +28,16 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::set
 
-template<class K>
-class set : public std::set<K>
+template<class K, class C = std::less<K>, class A = std::allocator<K>>
+class set : public std::set<K, C, A>
 {
 public:
-    using std::set<K>::set; // inherit constructors, has to be explicit
+    using std::set<K, C, A>::set; // inherit constructors, has to be explicit
 
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = set<K>;
+    using my = set<K, C, A>;
 };
 
 } // namespace zen
