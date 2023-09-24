@@ -30,11 +30,11 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::deque
 
-template<class T>
-class deque : public std::deque<T>
+template<class T, class A = std::allocator<T>>
+class deque : public std::deque<T, A>
 {
 public:
-    using std::deque<T>::deque; // inherit constructors, has to be explicit
+    using std::deque<T, A>::deque; // inherit constructors, has to be explicit
 
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
@@ -47,7 +47,7 @@ public:
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = deque<T>;
+    using my = deque<T, A>;
 };
 
 } // namespace zen
