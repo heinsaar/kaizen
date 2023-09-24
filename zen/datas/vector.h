@@ -30,11 +30,11 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::vector
 
-template<class T>
-class vector : public std::vector<T>
+template<class T, class A = std::allocator<T>>
+class vector : public std::vector<T, A>
 {
 public:
-    using std::vector<T>::vector; // inherit constructors, has to be explicit
+    using std::vector<T, A>::vector; // inherit constructors, has to be explicit
 
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
@@ -48,7 +48,7 @@ public:
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = vector<T>;
+    using my = vector<T, A>;
 };
 
 } // namespace zen
