@@ -14,6 +14,18 @@ void test_set_of_strings()
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
 
+void main_test_multiset()
+{
+    BEGIN_SUBTEST;
+    zen::multiset<zen::string> x = { "1", "1", "3", "4", "4"};
+    x.insert("0");
+
+    // zen::log(x);
+
+    ZEN_EXPECT(x.contains("0"));
+    ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
+}
+
 void main_test_set()
 {
     BEGIN_TEST;

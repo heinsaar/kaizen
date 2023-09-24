@@ -40,4 +40,18 @@ private:
     using my = set<K, C, A>;
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////// zen::multiset
+
+template<class K, class C = std::less<K>, class A = std::allocator<K>>
+class multiset : public std::multiset<K, C, A>
+{
+public:
+    using std::multiset<K, C, A>::multiset; // inherit constructors, has to be explicit
+
+    bool is_empty() const { return my::empty(); }
+
+private:
+    using my = multiset<K, C, A>;
+};
+
 } // namespace zen
