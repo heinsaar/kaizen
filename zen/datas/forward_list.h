@@ -30,11 +30,11 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::forward_list
 
-template<class T>
-class forward_list : public std::forward_list<T>
+template<class T, class A = std::allocator<T>>
+class forward_list : public std::forward_list<T, A>
 {
 public:
-    using std::forward_list<T>::forward_list; // inherit constructors, has to be explicit
+    using std::forward_list<T, A>::forward_list; // inherit constructors, has to be explicit
 
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
@@ -47,7 +47,7 @@ public:
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = forward_list<T>;
+    using my = forward_list<T, A>;
 };
 
 } // namespace zen
