@@ -6,7 +6,7 @@ void test_set_of_strings()
 {
     BEGIN_SUBTEST;
     zen::set<zen::string> x = { "1", "2", "3", "4" };
-    //x.insert("0");
+    x.insert("0");
 
     //zen::log(typeid(x).name(), x);
 
