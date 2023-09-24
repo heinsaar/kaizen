@@ -30,11 +30,11 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::list
 
-template<class T>
-class list : public std::list<T>
+template<class T, class A = std::allocator<T>>
+class list : public std::list<T, A>
 {
 public:
-    using std::list<T>::list; // inherit constructors, has to be explicit
+    using std::list<T, A>::list; // inherit constructors, has to be explicit
 
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
@@ -47,7 +47,7 @@ public:
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = list<T>;
+    using my = list<T, A>;
 };
 
 } // namespace zen
