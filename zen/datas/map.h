@@ -28,16 +28,16 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::map
 
-template<class K, class V, class C = std::less<K>>
-class map : public std::map<K, V, C>
+template<class K, class V, class C = std::less<K>, class A = std::allocator<std::pair<const K, V>>>
+class map : public std::map<K, V, C, A>
 {
 public:
-    using std::map<K, V>::map; // inherit constructors, has to be explicit
+    using std::map<K, V, C, A>::map; // inherit constructors, has to be explicit
 
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = map<K, V, C>;
+    using my = map<K, V, C, A>;
 };
 
 } // namespace zen
