@@ -243,6 +243,13 @@ public:
 
 private:
     using my = zen::string;
+
+    // Disable dynamic allocation since this type is derived from its std namesake that's
+    // not meant to be derived from (in particular, its destructor is not virtual).
+    static void* operator new(  std::size_t) = delete;
+    static void* operator new[](std::size_t) = delete;
+    static void  operator delete(  void*)    = delete;
+    static void  operator delete[](void*)    = delete;
 };
 
 struct string_hash {
