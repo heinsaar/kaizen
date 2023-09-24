@@ -10,8 +10,8 @@ void main_test_uncompilable()
     // dynamic allocation has been disabled
     //auto* _1 = new zen::forward_list<int>;
     //auto* _2 = new zen::array<int, 4>;
-    //auto* _3 = new zen::vector<int>;
     //auto* _4 = new zen::map<int, int>;
+    //auto* _3 = new zen::vector<int>;
     //auto* _5 = new zen::deque<int>;
     //auto* _6 = new zen::list<int>;
     //auto* _7 = new zen::set<int>;
