@@ -69,6 +69,17 @@ namespace zen {
     template <class T> constexpr bool is_addable_v = is_addable<T>::value;
 #endif
 
+// ------------------------------------------------------------------------------------------ Arithmetic
+
+#if __cpp_concepts >= 202002L
+    template <class T>
+    concept Arithmetic = std::is_arithmetic<T>::value;
+    template <typename T> concept is_arithmetic_v = Arithmetic<T>;
+#else
+    template <class T> struct is_arithmetic : std::is_arithmetic<T> {};
+    template <class T> constexpr bool is_arithmetic_v = is_arithmetic<T>::value;
+#endif
+
 // ------------------------------------------------------------------------------------------ Resizable
 
 #if __cpp_concepts >= 202002L
