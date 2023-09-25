@@ -50,6 +50,12 @@ void test_point_std_map_interoperability()
         r3.second->first.x() == 3.0 &&
         r3.second->first.y() == 4.0
     );
+
+    std::map<double, double> md = { {1.0, 1.0}, {2.0, 2.0}, {3.0, 3.0} };
+    const zen::point p = *md.begin();
+    md.insert(zen::point(4, 4));
+    ZEN_EXPECT(p.x() == 1.0 && p.y() == 1.0);
+    ZEN_EXPECT(md.size() == 4 && md[4.0] == 4.0);
 }
 
 void test_point_std_vector_of_pairs()

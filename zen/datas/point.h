@@ -34,6 +34,17 @@ public:
     point2d(const std::pair<double, double>&  p) : std::pair<double, double>(p)            {}
     point2d(      std::pair<double, double>&& p) : std::pair<double, double>(std::move(p)) {}
 
+    // Allows conversions from other arithmetic pair types
+    template <class T, class U, typename std::enable_if<
+                                         zen::is_arithmetic_v<T> &&
+                                         zen::is_arithmetic_v<U>, int>::type = 0>
+    point2d(const std::pair<T, U>& p)
+        : std::pair<double, double>(
+            static_cast<double>(p.first),
+            static_cast<double>(p.second)
+        )
+    {}
+
     point2d& operator=(const std::pair<double, double>& p) {
         this->first  = p.first;
         this->second = p.second;

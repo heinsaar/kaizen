@@ -16,4 +16,7 @@ void main_test_uncompilable()
     //auto* _6 = new zen::list<int>;
     //auto* _7 = new zen::set<int>;
     //auto* _8 = new zen::string;
+
+    //std::map<std::string, double> mis = { {"30.0", 3.0} };
+    //zen::point pq = *mis.begin();
 }
