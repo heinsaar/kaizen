@@ -45,13 +45,13 @@ using integers   = zen::vector<int>;
 using floats     = zen::vector<float>;
 using reals      = zen::vector<double>;
 using keyval     = zen::map<zen::string, zen::string>;
-using point2ds   = zen::vector<zen::point2d>;
-using point3ds   = zen::vector<zen::point3d>;
+using points2d   = zen::vector<zen::point2d>;
+using points3d   = zen::vector<zen::point3d>;
 
 // Composite name aliases
 using dictionary = keyval;
 using strings    = stringvec;
-using points     = point2ds;
+using points     = points2d;
 using ints       = integers;
 
 } // namespace zen
