@@ -100,6 +100,14 @@ void main_test_point()
         p2.y() == q3.y()
     );
 
+    std::tuple<int, float, double> my_point = { 1, 2.0f, 3.0 };
+    zen::point3d p3d(my_point);
+    ZEN_EXPECT(
+        p3d.x() == 1 &&
+        p3d.y() == 2 &&
+        p3d.z() == 3
+    );
+
     test_point_std_map_interoperability();
     test_point_std_vector_of_pairs();
     test_point_copy_assignment();

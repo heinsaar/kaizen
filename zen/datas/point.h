@@ -70,6 +70,15 @@ public:
 
     point3d(const point2d& p, double zc = 0.0) : point2d(p), z_(zc) {}
 
+    template <class T, class U, class V, typename std::enable_if<
+                                                  zen::is_arithmetic_v<T> &&
+                                                  zen::is_arithmetic_v<U> &&
+                                                  zen::is_arithmetic_v<V>, int>::type = 0>
+    point3d(const std::tuple<T, U, V>& p)
+        : point2d(std::get<0>(p), std::get<1>(p)),
+           z_(static_cast<double>(std::get<2>(p)))
+    {}
+
     point3d& operator=(const std::pair<double, double>& p) {
         point2d::operator=(p); // inherit behavior for x and y
         z_ = 0;                // reset to default
