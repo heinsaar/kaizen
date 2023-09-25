@@ -80,8 +80,8 @@ public:
     {}
 
     point3d& operator=(const std::pair<double, double>& p) {
-        point2d::operator=(p); // inherit behavior for x and y
-        z_ = 0;                // reset to default
+        point2d::operator=(p);            // inherit behavior for x and y
+        z_ = 0;                           // reset to default
         return *this;
     }
 
