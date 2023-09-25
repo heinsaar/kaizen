@@ -36,8 +36,8 @@ public:
 
     // Allows conversions from other arithmetic pair types
     template <class T, class U, typename std::enable_if<
-                                         zen::is_arithmetic_v<T> &&
-                                         zen::is_arithmetic_v<U>, int>::type = 0>
+                                         std::is_arithmetic_v<T> &&
+                                         std::is_arithmetic_v<U>, int>::type = 0>
     point2d(const std::pair<T, U>& p)
         : std::pair<double, double>(
             static_cast<double>(p.first),
@@ -71,9 +71,9 @@ public:
     point3d(const point2d& p, double zc = 0.0) : point2d(p), z_(zc) {}
 
     template <class T, class U, class V, typename std::enable_if<
-                                                  zen::is_arithmetic_v<T> &&
-                                                  zen::is_arithmetic_v<U> &&
-                                                  zen::is_arithmetic_v<V>, int>::type = 0>
+                                                  std::is_arithmetic_v<T> &&
+                                                  std::is_arithmetic_v<U> &&
+                                                  std::is_arithmetic_v<V>, int>::type = 0>
     point3d(const std::tuple<T, U, V>& p)
         : point2d(std::get<0>(p), std::get<1>(p)),
            z_(static_cast<double>(std::get<2>(p)))
