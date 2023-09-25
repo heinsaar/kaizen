@@ -58,6 +58,7 @@ int main(int argc, char* argv[])
 	main_test_unordered_set();
 	main_test_forward_list();
 	main_test_multiset();
+	main_test_multimap();
     main_test_version();
 	main_test_string();
 	main_test_vector();

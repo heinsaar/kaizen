@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include <vector>
 #include <map>
 
 namespace zen {
@@ -38,6 +39,36 @@ public:
 
 private:
     using my = map<K, V, C, A>;
+
+    // Disable dynamic allocation since this type is derived from its std namesake that's
+    // not meant to be derived from (in particular, its destructor is not virtual).
+    static void* operator new(  std::size_t) = delete;
+    static void* operator new[](std::size_t) = delete;
+    static void  operator delete(  void*)    = delete;
+    static void  operator delete[](void*)    = delete;
+};
+
+template<class K, class V, class C = std::less<K>, class A = std::allocator<std::pair<const K, V>>>
+class multimap : public std::multimap<K, V, C, A>
+{
+public:
+    using std::multimap<K, V, C, A>::multimap; // inherit constructors, has to be explicit
+
+    // std::map::operator[] is not defined, but
+    // zen::map::operator[] returns an std::vector.
+    std::vector<V> operator[](const K& key) {
+        auto range = my::equal_range(key);
+        std::vector<V> values;
+        for (auto it = range.first; it != range.second; ++it) {
+            values.push_back(it->second);
+        }
+        return values;
+    }
+
+    bool is_empty() const { return my::empty(); }
+
+private:
+    using my = multimap<K, V, C, A>;
 
     // Disable dynamic allocation since this type is derived from its std namesake that's
     // not meant to be derived from (in particular, its destructor is not virtual).
