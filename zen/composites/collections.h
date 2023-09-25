@@ -44,10 +44,13 @@ using integers   = zen::vector<int>;
 using floats     = zen::vector<float>;
 using reals      = zen::vector<double>;
 using keyval     = zen::map<zen::string, zen::string>;
+using point2ds   = zen::vector<zen::point2d>;
+using point3ds   = zen::vector<zen::point3d>;
 
 // Aliases
 using dictionary = keyval;
 using strings    = stringvec;
+using points     = point2ds;
 using ints       = integers;
 
 } // namespace zen
