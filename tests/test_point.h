@@ -80,14 +80,6 @@ void test_std_algorithms()
     );
 }
 
-void test_point_stdpair_interchangability()
-{
-    test_point_std_map_interoperability();
-    test_point_std_vector_of_pairs();
-    test_point_copy_assignment();
-    test_std_algorithms();
-}
-
 void main_test_point()
 {
     BEGIN_TEST;
@@ -102,5 +94,8 @@ void main_test_point()
         p2.y() == q3.y()
     );
 
-    test_point_stdpair_interchangability();
+    test_point_std_map_interoperability();
+    test_point_std_vector_of_pairs();
+    test_point_copy_assignment();
+    test_std_algorithms();
 }
