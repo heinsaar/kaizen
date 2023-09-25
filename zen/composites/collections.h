@@ -38,6 +38,7 @@ template<
 >
 using hash_set   = zen::unordered_set<T, H, E, A>;
 
+// Composite names
 using stringlist = zen::list<  zen::string>;
 using stringvec  = zen::vector<zen::string>;
 using integers   = zen::vector<int>;
@@ -47,7 +48,7 @@ using keyval     = zen::map<zen::string, zen::string>;
 using point2ds   = zen::vector<zen::point2d>;
 using point3ds   = zen::vector<zen::point3d>;
 
-// Aliases
+// Composite name aliases
 using dictionary = keyval;
 using strings    = stringvec;
 using points     = point2ds;
