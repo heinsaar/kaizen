@@ -48,6 +48,8 @@ private:
     static void  operator delete[](void*)    = delete;
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////// zen::multimap
+
 template<class K, class V, class C = std::less<K>, class A = std::allocator<std::pair<const K, V>>>
 class multimap : public std::multimap<K, V, C, A>
 {
