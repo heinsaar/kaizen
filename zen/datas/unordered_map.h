@@ -22,21 +22,11 @@
 
 #pragma once
 
+#include <unordered_map>
+
 namespace zen {
 
-///////////////////////////////////////////////////////////////////////////////////////////// COMPOSITES
-
-// Following are some of the most common data types defined in
-// pretty much all C++ projects that use the types on the right.
-// The name 'composites' is chosen by analogy with composite materials.
-
-template<
-    class T,
-    class H = std::hash<T>,
-    class E = std::equal_to<T>,
-    class A = std::allocator<T>
->
-using hash_set   = zen::unordered_set<T, H, E, A>;
+///////////////////////////////////////////////////////////////////////////////////////////// zen::unordered_set
 
 template<
     class K,
@@ -45,22 +35,22 @@ template<
     class E = std::equal_to<K>,
     class A = std::allocator<std::pair<const K, V>>
 >
-using hash_map   = zen::unordered_map<K, V, H, E, A>;
+class unordered_map : public std::unordered_map<K, V, H, E, A>
+{
+public:
+    using std::unordered_map<K, V, H, E, A>::unordered_map; // inherit constructors, has to be explicit
 
-// Composite names
-using stringlist = zen::list<  zen::string>;
-using stringvec  = zen::vector<zen::string>;
-using integers   = zen::vector<int>;
-using floats     = zen::vector<float>;
-using reals      = zen::vector<double>;
-using keyval     = zen::map<zen::string, zen::string>;
-using points2d   = zen::vector<zen::point2d>;
-using points3d   = zen::vector<zen::point3d>;
+    bool is_empty() const { return my::empty(); }
 
-// Composite name aliases
-using dictionary = keyval;
-using strings    = stringvec;
-using points     = points2d;
-using ints       = integers;
+private:
+    using my = unordered_map<K, V, H, E, A>;
+
+    // Disable dynamic allocation since this type is derived from its std namesake that's
+    // not meant to be derived from (in particular, its destructor is not virtual).
+    static void* operator new(  std::size_t) = delete;
+    static void* operator new[](std::size_t) = delete;
+    static void  operator delete(  void*)    = delete;
+    static void  operator delete[](void*)    = delete;
+};
 
 } // namespace zen

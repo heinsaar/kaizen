@@ -25,6 +25,7 @@
 // Since the order of these #includes doesn't matter,
 // they're sorted in descending length for beauty
 #include "tests/test_unordered_set.h"
+#include "tests/test_unordered_map.h"
 #include "tests/test_uncompilable.h"
 #include "tests/test_forward_list.h"
 #include "tests/test_cmd_args.h"

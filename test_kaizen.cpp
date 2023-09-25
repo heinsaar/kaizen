@@ -56,6 +56,7 @@ int main(int argc, char* argv[])
 	// calls are listed in descending length for beauty
 	main_test_cmd_args(argc, argv);
 	main_test_unordered_set();
+	main_test_unordered_map();
 	main_test_forward_list();
 	main_test_multiset();
 	main_test_multimap();
