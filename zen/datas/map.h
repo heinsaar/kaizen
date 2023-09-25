@@ -55,7 +55,8 @@ public:
     using std::multimap<K, V, C, A>::multimap; // inherit constructors, has to be explicit
 
     // std::map::operator[] is not defined, but
-    // zen::map::operator[] returns an std::vector.
+    // zen::map::operator[] returns an std::vector
+    // composed of values corresponding to the parameter key.
     std::vector<V> operator[](const K& key) {
         auto range = my::equal_range(key);
         std::vector<V> values;
