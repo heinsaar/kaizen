@@ -166,7 +166,8 @@ std::filesystem::path current_path() { return std::filesystem::current_path(); }
 std::filesystem::path  parent_path() { return std::filesystem::current_path().parent_path(); }
 
 std::optional<std::filesystem::path>
-search_upward(std::string_view name, std::filesystem::path dir = std::filesystem::current_path()) {
+search_upward(std::string_view name, std::filesystem::path dir = std::filesystem::current_path())
+{
     while (dir.filename() != name) {
         if (dir.root_path() == dir && name == "/")
             return dir;
