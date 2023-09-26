@@ -168,7 +168,7 @@ auto sum(const Iterable& c)
 // Example: to_string(vec) Result: [1, 2, 3]
 // Example: to_string(42)  Result: "42"
 template<class T>
-std::string to_string(const T& x) {
+zen::string to_string(const T& x) {
     std::stringstream ss;
     
     // First check for string-likeness so that zen::pring("abc") prints "abc"
@@ -193,11 +193,11 @@ std::string to_string(const T& x) {
 
 // Recursive variadic template to handle multiple arguments
 template<class T, class... Args>
-inline std::string to_string(const T& x, const Args&... args) {
+inline zen::string to_string(const T& x, const Args&... args) {
     return to_string(x) + " " + to_string(args...);
 }
 // Base case for the recursive calls
-inline std::string to_string() { return ""; }
+inline zen::string to_string() { return ""; }
 
 // ------------------------------------------------------------------------------------------ print
 
