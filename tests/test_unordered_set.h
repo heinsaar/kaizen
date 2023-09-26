@@ -15,12 +15,12 @@ void test_unordered_set_of_strings()
 void test_unordered_multiset_of_strings()
 {
     BEGIN_SUBTEST;
-    zen::hash_multiset<zen::string, zen::string_hash> y = { "1", "1", "2", "2" };
-    y.insert("0");
-    y.insert("0");
+    zen::hash_multiset<zen::string, zen::string_hash> x = { "1", "1", "2", "2" };
+    x.insert("0");
+    x.insert("0");
 
-    ZEN_EXPECT(y.count("0") == 2 && y.size() == 6);
-    ZEN_EXPECT(zen::is_empty(y) == y.is_empty());
+    ZEN_EXPECT(x.count("0") == 2 && x.size() == 6);
+    ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
 
 void main_test_unordered_set()
