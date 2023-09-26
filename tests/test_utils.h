@@ -184,7 +184,7 @@ void main_test_utils()
 
     ZEN_EXPECT(zen::random_int() <= 10);
 
-    test_utils_sum();
     test_utils_to_string();
     test_utils_print();
+    test_utils_sum();
 }
