@@ -102,7 +102,7 @@ def deflate(code_content):
 # Produces the final resulting kaizen library single header file
 def write_output_file(filename, license_text, include_directives, code_content):
     code_content = compact_namespace_zen(code_content)
-    #code_content = deflate(code_content)
+    code_content = deflate(code_content)
     
     with open(filename, 'w') as output_file:
         now = datetime.datetime.now()
