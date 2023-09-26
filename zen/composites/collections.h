@@ -36,7 +36,7 @@ template<
     class E = std::equal_to<T>,
     class A = std::allocator<T>
 >
-using hash_set   = zen::unordered_set<T, H, E, A>;
+using hash_set = zen::unordered_set<T, H, E, A>;
 
 template<
     class K,
@@ -45,7 +45,7 @@ template<
     class E = std::equal_to<K>,
     class A = std::allocator<std::pair<const K, V>>
 >
-using hash_map   = zen::unordered_map<K, V, H, E, A>;
+using hash_map = zen::unordered_map<K, V, H, E, A>;
 
 // Composite names
 using stringlist = zen::list<  zen::string>;
