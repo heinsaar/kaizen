@@ -24,7 +24,7 @@
 
 int main(int argc, char* argv[])
 {
-	const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
+	const auto project_dir = zen::search_upward("kaizen").value();
 
 	zen::cmd_args		  cmd_args(argv, argc);
 	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();

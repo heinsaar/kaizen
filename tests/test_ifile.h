@@ -7,7 +7,7 @@ void main_test_ifile()
 {
     BEGIN_TEST;
 
-    const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
+    const auto project_dir = zen::search_upward("kaizen").value();
 
     zen::ifile lic(project_dir / "LICENSE.txt");
 
