@@ -46,7 +46,7 @@ void test_utils_sum()
     //zen::sum(int_umap); // should fail compilation with message: ZEN STATIC ASSERTION FAILED. "ELEMENT TYPE EXPECTED TO BE Addable, BUT IS NOT"
 }
 
-void test_to_string()
+void test_utils_to_string()
 {
     BEGIN_SUBTEST;
 
@@ -78,7 +78,7 @@ void test_to_string()
     ZEN_EXPECT(zen::to_string(vmix, "mixed", 42) == "[1, 2, 3] mixed 42");
 }
 
-void test_print()
+void test_utils_print()
 {
     std::stringstream ss;
     auto old_buf = std::cout.rdbuf(ss.rdbuf()); // redirect the output
@@ -185,6 +185,6 @@ void main_test_utils()
     ZEN_EXPECT(zen::random_int() <= 10);
 
     test_utils_sum();
-    test_to_string();
-    test_print();
+    test_utils_to_string();
+    test_utils_print();
 }
