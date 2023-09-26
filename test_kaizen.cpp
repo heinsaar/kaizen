@@ -68,6 +68,7 @@ int main(int argc, char* argv[])
 	main_test_ifile();
 	main_test_array();
 	main_test_deque();
+	main_test_stack();
 	main_test_utils();
 	main_test_timer();
 	main_test_point();

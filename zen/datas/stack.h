@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2023 Leo Heinsaar
 // 
@@ -22,25 +22,26 @@
 
 #pragma once
 
-// Since the order of these #includes doesn't matter,
-// they're sorted in descending length for aesthetics
-#include "tests/test_unordered_set.h"
-#include "tests/test_unordered_map.h"
-#include "tests/test_uncompilable.h"
-#include "tests/test_forward_list.h"
-#include "tests/test_cmd_args.h"
-#include "tests/test_version.h"
-#include "tests/test_string.h"
-#include "tests/test_vector.h"
-#include "tests/test_ifile.h"
-#include "tests/test_array.h"
-#include "tests/test_deque.h"
-#include "tests/test_stack.h"
-#include "tests/test_utils.h"
-#include "tests/test_timer.h"
-#include "tests/test_point.h"
-#include "tests/test_list.h"
-#include "tests/test_cloc.h"
-#include "tests/test_set.h"
-#include "tests/test_map.h"
-#include "tests/test_in.h"
+#include <type_traits>
+#include <algorithm>
+#include <stack>
+
+#include "alpha.h" // internal; will not be included in kaizen.h
+
+namespace zen {
+
+///////////////////////////////////////////////////////////////////////////////////////////// zen::stack
+
+template<class T, class C = std::deque<T>>
+class stack : public std::stack<T, C>, private zen::stackonly
+{
+public:
+    using std::stack<T, C>::stack; // inherit constructors, has to be explicit
+        
+    bool is_empty() const { return my::empty(); }
+
+private:
+    using my = stack<T, C>;
+};
+
+} // namespace zen
