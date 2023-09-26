@@ -55,6 +55,15 @@ template<
 >
 using hash_map = zen::unordered_map<K, V, H, E, A>;
 
+template<
+    class K,
+    class V,
+    class H = std::hash<K>,
+    class E = std::equal_to<K>,
+    class A = std::allocator<std::pair<const K, V>>
+>
+using hash_multimap = zen::unordered_multimap<K, V, H, E, A>;
+
 // Composite names
 using stringlist = zen::list<  zen::string>;
 using stringvec  = zen::vector<zen::string>;

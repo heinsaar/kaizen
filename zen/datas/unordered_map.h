@@ -48,4 +48,24 @@ private:
     using my = unordered_map<K, V, H, E, A>;
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////// zen::unordered_multimap
+
+template<
+    class K,
+    class V,
+    class H = std::hash<K>,
+    class E = std::equal_to<K>,
+    class A = std::allocator<std::pair<const K, V>>
+>
+class unordered_multimap : public std::unordered_multimap<K, V, H, E, A>, private zen::stackonly
+{
+public:
+    using std::unordered_multimap<K, V, H, E, A>::unordered_multimap; // inherit constructors, has to be explicit
+
+    bool is_empty() const { return my::empty(); }
+
+private:
+    using my = unordered_multimap<K, V, H, E, A>;
+};
+
 } // namespace zen
