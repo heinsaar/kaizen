@@ -30,7 +30,7 @@ void main_test_unordered_set()
     zen::unordered_set<int> x = { 1, 2, 3, 4 };
     x.insert(777);
 
-    ZEN_EXPECT(x.contains(777));
+    ZEN_EXPECT(x.contains(777) && x.size() == 5);
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 
     test_unordered_set_of_strings();
@@ -44,7 +44,7 @@ void main_test_unordered_multiset()
     x.insert(888);
     x.insert(888);
 
-    ZEN_EXPECT(x.contains(888));
+    ZEN_EXPECT(x.contains(888) && x.size() == 8);
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 
     test_unordered_set_of_strings();
