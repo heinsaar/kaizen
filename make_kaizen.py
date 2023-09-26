@@ -109,7 +109,8 @@ def write_output_file(filename, license_text, include_directives, code_content):
         output_file.write('// FILE GENERATED ON: ' + now.strftime("%d.%m.%Y %H:%M:%S") + '\n//\n')
         output_file.writelines(license_text)
         output_file.write('\n#pragma once\n\n')
-        for include_directive in sorted(include_directives):
+        output_file.write('// Since the order of these #includes doesn\'t matter,\n// they\'re sorted in descending length for aesthetics\n')
+        for include_directive in sorted(include_directives, key=len, reverse=True):
             output_file.write(include_directive + '\n')
         # Remove all leading empty lines but one that come right after the #include directives:
         while code_content and code_content[0].strip() == '':
