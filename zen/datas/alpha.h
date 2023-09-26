@@ -28,7 +28,7 @@ namespace zen {
 // sorted in alphabetical order, so the name 'alpha.h' of the file is chosen such that its
 // contents appear first in kaizen.h, so any downstream code can use it. This slighly breaks
 // the principle of independence of all individual headers, but only to a first degree and
-// seems to bring benefits that outweight the cost of a slightly increased coupling.
+// seems to bring benefits that outweigh the cost of a slightly increased coupling.
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::stackonly
 
