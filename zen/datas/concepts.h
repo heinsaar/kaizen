@@ -28,6 +28,29 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// CONCEPTS
 
+// ------------------------------------------------------------------------------------------ HasEmpty
+
+#if __cpp_concepts >= 202002L
+    // Check if a type T has an empty member function
+    template <class T>
+    concept HasEmpty = requires(T x) {
+        { x.empty() } -> std::same_as<bool>;
+    };
+
+    template <typename T> concept has_empty_v = HasEmpty<T>;
+#else // use SFINAE if concepts are not available (pre-C++20)
+    template <class T, class = void> struct has_empty : std::false_type {};
+
+    template <class T>
+    struct has_empty<T,
+        std::void_t<decltype(std::declval<T&>().empty())>
+    > : std::true_type {
+        static_assert(std::is_same_v<decltype(std::declval<T&>().empty()), bool>, "empty() MUST RETURN bool");
+    };
+
+    template <class T> constexpr bool has_empty_v = has_empty<T>::value;
+#endif
+
 // ------------------------------------------------------------------------------------------ Iterable
 
 #if __cpp_concepts >= 202002L
