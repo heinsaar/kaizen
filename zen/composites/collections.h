@@ -39,6 +39,14 @@ template<
 using hash_set = zen::unordered_set<T, H, E, A>;
 
 template<
+    class T,
+    class H = std::hash<T>,
+    class E = std::equal_to<T>,
+    class A = std::allocator<T>
+>
+using hash_multiset = zen::unordered_multiset<T, H, E, A>;
+
+template<
     class K,
     class V,
     class H = std::hash<K>,

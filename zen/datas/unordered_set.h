@@ -47,4 +47,23 @@ private:
     using my = unordered_set<T, H, E, A>;
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////// zen::unordered_multiset
+
+template<
+    class T,
+    class H = std::hash<T>,
+    class E = std::equal_to<T>,
+    class A = std::allocator<T>
+>
+class unordered_multiset : public std::unordered_multiset<T, H, E, A>, private zen::stackonly
+{
+public:
+    using std::unordered_multiset<T, H, E, A>::unordered_multiset; // inherit constructors, has to be explicit
+
+    bool is_empty() const { return my::empty(); }
+
+private:
+    using my = unordered_multiset<T, H, E, A>;
+};
+
 } // namespace zen

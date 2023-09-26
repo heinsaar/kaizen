@@ -7,9 +7,16 @@ void test_unordered_set_of_strings()
     BEGIN_SUBTEST;
     zen::hash_set<zen::string, zen::string_hash> x = { "1", "2", "3", "4" };
     x.insert("0");
+
+    zen::hash_multiset<zen::string, zen::string_hash> y = { "1", "1", "2", "2" };
+    y.insert("0");
+    y.insert("0");
     
     ZEN_EXPECT(x.contains("0"));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
+
+    ZEN_EXPECT(y.count("0") == 2 && y.size() == 6);
+    ZEN_EXPECT(zen::is_empty(y) == y.is_empty());
 }
 
 void main_test_unordered_set()
@@ -21,6 +28,13 @@ void main_test_unordered_set()
 
     ZEN_EXPECT(x.contains(777));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
+
+    zen::unordered_multiset<int> y = { 1, 1, 2, 2, 3, 3 };
+    y.insert(888);
+    y.insert(888);
+
+    ZEN_EXPECT(y.contains(888));
+    ZEN_EXPECT(zen::is_empty(y) == y.is_empty());
 
     test_unordered_set_of_strings();
 }
