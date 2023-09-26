@@ -35,94 +35,6 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// USEFUL MISC
 
-#define BEGIN_TEST    zen::log("BEGIN", zen::repeat("-", 50), __func__)
-#define BEGIN_SUBTEST zen::log(         zen::repeat("-", 61), __func__)
-#define END_TESTS     zen::log("END  ", zen::repeat("-", 50), __func__)
-
-std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
-std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
-
-bool REPORT_TC_PASS = false; // by default, don't report passes to avoid chatter
-bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
-
-#define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN STATIC ASSERTION FAILED. "#M ": " #X)
-
-// ZEN_EXPECT checks its expression parameter and spits out the expression if it fails.
-// The do { } while (0) construct ensures that the macro behaves as a single statement.
-// This allows it to be used safely in contexts like if-else statements without braces,
-// preventing syntax errors or unexpected behavior due to dangling elses.
-// Continues execution regardless of the expectation result.
-// Example: ZEN_EXPECT(str == "good");
-// Result:  CASE PASS: ...
-//     or:  CASE FAIL: ...
-#define ZEN_EXPECT(expression) \
-    do { \
-        if (expression) { \
-            if (zen::REPORT_TC_PASS) \
-                zen::log(zen::color::green("CASE PASS:"), #expression); \
-            ++zen::TEST_CASE_PASS_COUNT; \
-        } \
-        if (!(expression)) { \
-            if (zen::REPORT_TC_FAIL) \
-                zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #expression); \
-            ++zen::TEST_CASE_FAIL_COUNT; \
-        } \
-    } while (0)
-
-// ZEN_EXPECT_THROW checks its expression parameter to throw the expression_type exception
-// and spits out the expression statement if it encounters another exception type thrown.
-// The do { } while (0) construct ensures that the macro behaves as a single statement.
-// This allows it to be used safely in contexts like if-else statements without braces,
-// preventing syntax errors or unexpected behavior due to dangling elses.
-// Example: ZEN_EXPECT_THROW(zen::version vi("bad"), std::invalid_argument);
-// Continues execution regardless of the expectation result.
-// Result:  CASE PASS: ...
-//     or:  CASE FAIL: ...
-#define ZEN_EXPECT_THROW(expression, exception_type) \
-    do { \
-        bool exception_caught{false}; \
-        try { \
-            expression; \
-        } \
-        catch (const exception_type&) { \
-            exception_caught = true; \
-            if (zen::REPORT_TC_PASS) \
-                zen::log(zen::color::green("CASE PASS:"), #expression); \
-            ++zen::TEST_CASE_PASS_COUNT; \
-            break; \
-        } \
-        catch (...) { \
-            exception_caught = true; \
-            if (zen::REPORT_TC_FAIL) \
-                zen::log(zen::color::red("CASE FAIL:"), __func__, \
-                        "EXPECTED `" #expression \
-                        "` TO THROW AN EXCEPTION OF TYPE `" #exception_type \
-                        "`, BUT IT THROWS ANOTHER TYPE."); \
-            ++zen::TEST_CASE_FAIL_COUNT; \
-            break; \
-        } \
-        if (!exception_caught) { \
-            if (zen::REPORT_TC_FAIL) \
-                zen::log(zen::color::red("CASE FAIL:"), __func__, \
-                        "EXPECTED `" #expression \
-                        "` TO THROW AN EXCEPTION, BUT IT DOES NOT."); \
-            ++zen::TEST_CASE_FAIL_COUNT; \
-        } \
-    } while(0)
-
-// TODO: Add ZEN_EXPECT_NOTHROW()
-
-// Quotes a string. This helps avoid cumbersome quote gymnastics in code.
-// Example: quote(filename) + " does not exist";
-// Result:  "/path/to/file" does not exist
-inline std::string quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
-
-inline auto timestamp() {
-    std::time_t result  = std::time(nullptr);
-    std::string timestr = std::asctime(std::localtime(&result));
-    return timestr.substr(0, timestr.length() - 1);
-}
-
 // Repeats a string patterns.
 // This is the symmetrical complement of repeat(int, str).
 // Example: repeat("*", 10);
@@ -241,34 +153,6 @@ auto sum(const Iterable& c)
     return sum;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////// COLORS
-// Example: zen::print(zen::color::red(str));
-// Example: std::cout( zen::color::red(str));
-// Result: Red-colored str in the console.
-namespace color {
-    class color_string {
-    public:
-        color_string(const std::string_view s, int c) : text(s), code(c) {}
-        const std::string text;
-        const int /*col*/ code;
-
-        friend std::ostream& operator<<(std::ostream& os, const color_string& cw) {
-            os << "\033[" << cw.code << "m" << cw.text << "\033[0m";
-            return os;
-        }
-    };
-
-    color_string nocolor(const std::string_view s) { return color_string(s,  0); }
-    color_string red    (const std::string_view s) { return color_string(s, 31); }
-    color_string blue   (const std::string_view s) { return color_string(s, 34); }
-    color_string green  (const std::string_view s) { return color_string(s, 32); }
-    color_string black  (const std::string_view s) { return color_string(s, 30); }
-    color_string yellow (const std::string_view s) { return color_string(s, 33); }
-    color_string magenta(const std::string_view s) { return color_string(s, 35); }
-    color_string cyan   (const std::string_view s) { return color_string(s, 36); }
-    color_string white  (const std::string_view s) { return color_string(s, 37); }
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////// LPS (Log, Print, String)
 // 
 // Printing and logging in Kaizen follows the LPS principle of textual visualization.
@@ -356,22 +240,5 @@ void log(T x, Args... args) {
 }
 // Base case for the recursive calls
 inline void log() {}
-
-///////////////////////////////////////////////////////////////////////////////////////////// PATHS
-
-std::filesystem::path current_path() { return std::filesystem::current_path(); }
-std::filesystem::path  parent_path() { return std::filesystem::current_path().parent_path(); }
-
-std::optional<std::filesystem::path>
-search_upward(std::filesystem::path dir, std::string_view name) {
-    while (dir.filename() != name) {
-        dir = dir.parent_path();
-    }
-
-    if (dir.empty())
-        return std::nullopt;
-        
-    return dir;
-}
 
 } // namespace zen
