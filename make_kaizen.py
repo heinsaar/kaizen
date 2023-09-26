@@ -57,8 +57,37 @@ def read_license(filename):
         # Return with comment characters added if they're not present
         return ['// ' + line if not line.startswith('// ') else line for line in lines]
 
+def compact_namespace_zen(code_content):
+    first_namespace_found      = False
+    last_closing_namespace_idx = None
+    compacted_code_content     = []
+    
+    # Find the index of the last "} // namespace zen"
+    for idx, line in reversed(list(enumerate(code_content))):
+        if "} // namespace zen" in line:
+            last_closing_namespace_idx = idx
+            break
+            
+    # Create a new list for compacted code content
+    for idx, line in enumerate(code_content):
+        if "namespace zen {" in line:
+            if not first_namespace_found:
+                first_namespace_found = True
+                compacted_code_content.append(line)
+            continue
+        elif "} // namespace zen" in line:
+            if idx == last_closing_namespace_idx:
+                compacted_code_content.append(line)
+            continue
+        else:
+            compacted_code_content.append(line)
+    
+    return compacted_code_content
+
 # Produces the final resulting kaizen library single header file
 def write_output_file(filename, license_text, include_directives, code_content):
+    code_content = compact_namespace_zen(code_content)
+    
     with open(filename, 'w') as output_file:
         now = datetime.datetime.now()
         output_file.write('// FILE GENERATED ON: ' + now.strftime("%d.%m.%Y %H:%M:%S") + '\n//\n')
