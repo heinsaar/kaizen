@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 	zen::timer timer;
 
 	// Since the order of tests doesn't matter, their
-	// calls are listed in descending length for beauty
+	// calls are listed in descending length for aesthetics
 	main_test_cmd_args(argc, argv);
 	main_test_unordered_set();
 	main_test_unordered_map();
