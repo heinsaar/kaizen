@@ -122,10 +122,10 @@ void generate_random(Iterable& c, int size = 10) // TODO: Generalize & test with
 // function empty() that lacks an 'is_' prefix is confusing to
 // non-familiar users due to its ambiguity as a noun and a verb.
 // Example: zen::is_empty(c); // c is any iterable container
-template<class Iterable>
-bool is_empty(const Iterable& c)
+template<class HasEmpty>
+bool is_empty(const HasEmpty& c)
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::has_empty_v<HasEmpty>, "TEMPLATE PARAMETER EXPECTED TO HAVE empty(), BUT DOES NOT");
     return c.empty();
 }
 
