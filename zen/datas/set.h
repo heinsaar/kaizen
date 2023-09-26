@@ -24,12 +24,14 @@
 
 #include <set>
 
+#include "alpha.h" // internal; will not be included in kaizen.h
+
 namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::set
 
 template<class K, class C = std::less<K>, class A = std::allocator<K>>
-class set : public std::set<K, C, A>
+class set : public std::set<K, C, A>, private zen::stackonly
 {
 public:
     using std::set<K, C, A>::set; // inherit constructors, has to be explicit
@@ -38,19 +40,12 @@ public:
 
 private:
     using my = set<K, C, A>;
-
-    // Disable dynamic allocation since this type is derived from its std namesake that's
-    // not meant to be derived from (in particular, its destructor is not virtual).
-    static void* operator new(  std::size_t) = delete;
-    static void* operator new[](std::size_t) = delete;
-    static void  operator delete(  void*)    = delete;
-    static void  operator delete[](void*)    = delete;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::multiset
 
 template<class K, class C = std::less<K>, class A = std::allocator<K>>
-class multiset : public std::multiset<K, C, A>
+class multiset : public std::multiset<K, C, A>, private zen::stackonly
 {
 public:
     using std::multiset<K, C, A>::multiset; // inherit constructors, has to be explicit
@@ -59,13 +54,6 @@ public:
 
 private:
     using my = multiset<K, C, A>;
-
-    // Disable dynamic allocation since this type is derived from its std namesake that's
-    // not meant to be derived from (in particular, its destructor is not virtual).
-    static void* operator new(  std::size_t) = delete;
-    static void* operator new[](std::size_t) = delete;
-    static void  operator delete(  void*)    = delete;
-    static void  operator delete[](void*)    = delete;
 };
 
 } // namespace zen

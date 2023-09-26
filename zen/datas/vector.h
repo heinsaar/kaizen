@@ -26,12 +26,14 @@
 #include <algorithm>
 #include <vector>
 
+#include "alpha.h" // internal; will not be included in kaizen.h
+
 namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::vector
 
 template<class T, class A = std::allocator<T>>
-class vector : public std::vector<T, A>
+class vector : public std::vector<T, A>, private zen::stackonly
 {
 public:
     using std::vector<T, A>::vector; // inherit constructors, has to be explicit
@@ -49,13 +51,6 @@ public:
 
 private:
     using my = vector<T, A>;
-
-    // Disable dynamic allocation since this type is derived from its std namesake that's
-    // not meant to be derived from (in particular, its destructor is not virtual).
-    static void* operator new(  std::size_t) = delete;
-    static void* operator new[](std::size_t) = delete;
-    static void  operator delete(  void*)    = delete;
-    static void  operator delete[](void*)    = delete;
 };
 
 } // namespace zen

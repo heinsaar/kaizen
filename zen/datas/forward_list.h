@@ -26,12 +26,14 @@
 #include <type_traits>
 #include <algorithm>
 
+#include "alpha.h" // internal; will not be included in kaizen.h
+
 namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::forward_list
 
 template<class T, class A = std::allocator<T>>
-class forward_list : public std::forward_list<T, A>
+class forward_list : public std::forward_list<T, A>, private zen::stackonly
 {
 public:
     using std::forward_list<T, A>::forward_list; // inherit constructors, has to be explicit
@@ -48,13 +50,6 @@ public:
 
 private:
     using my = forward_list<T, A>;
-
-    // Disable dynamic allocation since this type is derived from its std namesake that's
-    // not meant to be derived from (in particular, its destructor is not virtual).
-    static void* operator new(  std::size_t) = delete;
-    static void* operator new[](std::size_t) = delete;
-    static void  operator delete(  void*)    = delete;
-    static void  operator delete[](void*)    = delete;
 };
 
 } // namespace zen

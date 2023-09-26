@@ -25,12 +25,14 @@
 #include <vector>
 #include <map>
 
+#include "alpha.h" // internal; will not be included in kaizen.h
+
 namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::map
 
 template<class K, class V, class C = std::less<K>, class A = std::allocator<std::pair<const K, V>>>
-class map : public std::map<K, V, C, A>
+class map : public std::map<K, V, C, A>, private zen::stackonly
 {
 public:
     using std::map<K, V, C, A>::map; // inherit constructors, has to be explicit
@@ -39,19 +41,12 @@ public:
 
 private:
     using my = map<K, V, C, A>;
-
-    // Disable dynamic allocation since this type is derived from its std namesake that's
-    // not meant to be derived from (in particular, its destructor is not virtual).
-    static void* operator new(  std::size_t) = delete;
-    static void* operator new[](std::size_t) = delete;
-    static void  operator delete(  void*)    = delete;
-    static void  operator delete[](void*)    = delete;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::multimap
 
 template<class K, class V, class C = std::less<K>, class A = std::allocator<std::pair<const K, V>>>
-class multimap : public std::multimap<K, V, C, A>
+class multimap : public std::multimap<K, V, C, A>, private zen::stackonly
 {
 public:
     using std::multimap<K, V, C, A>::multimap; // inherit constructors, has to be explicit
@@ -72,13 +67,6 @@ public:
 
 private:
     using my = multimap<K, V, C, A>;
-
-    // Disable dynamic allocation since this type is derived from its std namesake that's
-    // not meant to be derived from (in particular, its destructor is not virtual).
-    static void* operator new(  std::size_t) = delete;
-    static void* operator new[](std::size_t) = delete;
-    static void  operator delete(  void*)    = delete;
-    static void  operator delete[](void*)    = delete;
 };
 
 } // namespace zen

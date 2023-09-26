@@ -26,12 +26,14 @@
 #include <algorithm>
 #include <deque>
 
+#include "alpha.h" // internal; will not be included in kaizen.h
+
 namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::deque
 
 template<class T, class A = std::allocator<T>>
-class deque : public std::deque<T, A>
+class deque : public std::deque<T, A>, private zen::stackonly
 {
 public:
     using std::deque<T, A>::deque; // inherit constructors, has to be explicit
@@ -48,13 +50,6 @@ public:
 
 private:
     using my = deque<T, A>;
-
-    // Disable dynamic allocation since this type is derived from its std namesake that's
-    // not meant to be derived from (in particular, its destructor is not virtual).
-    static void* operator new(  std::size_t) = delete;
-    static void* operator new[](std::size_t) = delete;
-    static void  operator delete(  void*)    = delete;
-    static void  operator delete[](void*)    = delete;
 };
 
 } // namespace zen
