@@ -38,8 +38,12 @@ def parse_header_file(header_file):
 
             if '#pragma once' in line:
                 continue
+            
+            # If line #includes any non-standard C++ headers (like Kaizen-internal), skip it
+            if re.match(r'#include\s+"(.*)"', line):
+                continue # skip non-standard headers
 
-            match_include = re.match(r'#include\s+["<](.*)[">]', line)
+            match_include = re.match(r'#include\s+[<](.*)[>]', line)
             if match_include:
                 include_directives.add(line.strip())
             else:
