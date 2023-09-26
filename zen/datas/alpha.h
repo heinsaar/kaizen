@@ -168,7 +168,19 @@ std::filesystem::path  parent_path() { return std::filesystem::current_path().pa
 std::optional<std::filesystem::path>
 search_upward(std::filesystem::path dir, std::string_view name) {
     while (dir.filename() != name) {
-        dir = dir.parent_path();
+        if (dir.root_path() == dir && name == "/")
+            return dir;
+
+        // In most file systems, attempting to go to the parent of the root
+        // directory returns the root directory itself. Therefore, to avoid
+        // potentially infinite loops when the search reaches the root
+        // directory and still can't find the specified directory or file
+        // handle, we check to see if the parent of dir is dir itself:
+        std::filesystem::path parent = dir.parent_path();
+        if (dir == parent)
+            return std::nullopt;
+
+        dir = parent;
     }
 
     if (dir.empty())

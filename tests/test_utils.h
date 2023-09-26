@@ -174,6 +174,25 @@ void test_utils_print()
     ZEN_EXPECT(ss.str() == "");
 }
 
+void test_utils_search_upward()
+{
+    // Directory exists in the path
+    ZEN_EXPECT(zen::search_upward("/home/user/documents", "user").value().filename() == "user");
+
+    // Directory does not exist in the path
+    ZEN_EXPECT(zen::search_upward("/home/user/documents", "nonexistent") == std::nullopt);
+
+    // Root directory is reached
+    ZEN_EXPECT(zen::search_upward("/", "nonexistent") == std::nullopt);
+
+    // Searching for the root directory itself
+    ZEN_EXPECT(zen::search_upward("/", "/").value().filename() == "");
+    ZEN_EXPECT(zen::search_upward("/",  "").value().filename() == "");
+
+    // Empty initial directory
+    ZEN_EXPECT(zen::search_upward("", "nonexistent") == std::nullopt);
+}
+
 void main_test_utils()
 {
     BEGIN_TEST;
@@ -184,6 +203,7 @@ void main_test_utils()
 
     ZEN_EXPECT(zen::random_int() <= 10);
 
+    test_utils_search_upward();
     test_utils_to_string();
     test_utils_print();
     test_utils_sum();
