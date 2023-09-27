@@ -65,7 +65,6 @@ public:
 
 class point3d : public point2d {
 public:
-    point3d(double xc = 0.0, double yc = 0.0)                  : point2d(xc, yc), z_(0) {}
     point3d(double xc = 0.0, double yc = 0.0, double zc = 0.0) : point2d(xc, yc), z_(zc) {}
 
     point3d(const point2d& p, double zc = 0.0) : point2d(p), z_(zc) {}
