@@ -24,7 +24,6 @@
 
 #include <queue>
 
-#include "concepts.h" // internal; will not be included in kaizen.h
 #include "alpha.h"    // internal; will not be included in kaizen.h
 
 namespace zen {
