@@ -160,7 +160,7 @@ namespace color {
     color_string white  (const std::string_view s) { return color_string(s, 37); }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////// PATHS
+///////////////////////////////////////////////////////////////////////////////////////////// FILESYSTEM
 
 std::filesystem::path current_path() { return std::filesystem::current_path(); }
 std::filesystem::path  parent_path() { return std::filesystem::current_path().parent_path(); }
