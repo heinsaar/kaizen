@@ -31,7 +31,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::queue
 
 template<class T, class C = std::deque<T>>
-class queue : public std::queue<T, C>//, private zen::stackonly
+class queue : public std::queue<T, C>, private zen::stackonly
 {
 public:
     using std::queue<T, C>::queue; // inherit constructors, has to be explicit
