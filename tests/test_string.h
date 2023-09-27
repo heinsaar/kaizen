@@ -285,6 +285,8 @@ void test_string_replace_all()
 
 void test_string_replace()
 {
+    BEGIN_SUBTEST;
+
     zen::string z1  = "I love apples.";
     zen::string z2  = "Replace me, replace me!";
     zen::string z3  = "Nothing to replace here.";
