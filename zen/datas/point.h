@@ -62,8 +62,8 @@ public:
     // interface to avoid writing '.first' or '.second' 
     constexpr double& x()       { return this->first;  }
     constexpr double& y()       { return this->second; }
-    constexpr double x() const { return this->first;  }
-    constexpr double y() const { return this->second; }
+    constexpr double  x() const { return this->first;  }
+    constexpr double  y() const { return this->second; }
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::point3d
@@ -99,7 +99,7 @@ public:
     // x(), y() and z() are simply meant to be a convenience alias
     // interface to avoid writing '->first', '->second' or '->z_'
     constexpr double& z()       { return z_; }
-    constexpr double z() const { return z_; }
+    constexpr double  z() const { return z_; }
 
 private:
     double z_;
