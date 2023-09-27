@@ -59,7 +59,7 @@ template<
     class C = std::vector<T>,
     class L = std::less<typename C::value_type>
 >
-class priority_queue : public std::priority_queue<T, C, L>//, private zen::stackonly
+class priority_queue : public std::priority_queue<T, C, L>, private zen::stackonly
 {
 public:
     using std::priority_queue<T, C, L>::priority_queue; // inherit constructors, has to be explicit
