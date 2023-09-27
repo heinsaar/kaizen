@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
@@ -193,6 +193,29 @@ void test_utils_search_upward()
     ZEN_EXPECT(zen::search_upward("nonexistent", "") == std::nullopt);
 }
 
+void test_utils_search_downward()
+{
+    // Test case 1: When the directory exists within the depth
+    auto r1 = zen::search_downward("CMakeCache.txt");
+    ZEN_EXPECT(r1.has_value() && r1.value().filename() == "CMakeCache.txt");
+
+    // Test case 2: When the directory does not exist
+    auto r2 = zen::search_downward("nonexistent");
+    ZEN_EXPECT(!r2.has_value() && r2 == std::nullopt);
+
+    // Test case 3: When the file exists within the depth
+    auto r3 = zen::search_downward("CMakeFiles");
+    ZEN_EXPECT(r3.has_value() && r3.value().filename() == "CMakeFiles");
+
+    // Test case 4: Limiting the depth
+    auto r4 = zen::search_downward("file.txt", std::filesystem::path("/home/user"), 1);
+    ZEN_EXPECT(r4 == std::nullopt);
+
+    // Test case 5: When the initial directory is empty
+    auto r5 = zen::search_downward("nonexistent", std::filesystem::path(""));
+    ZEN_EXPECT(r5 == std::nullopt);
+}
+
 void main_test_utils()
 {
     BEGIN_TEST;
@@ -203,6 +226,7 @@ void main_test_utils()
 
     ZEN_EXPECT(zen::random_int() <= 10);
 
+    test_utils_search_downward();
     test_utils_search_upward();
     test_utils_to_string();
     test_utils_print();
