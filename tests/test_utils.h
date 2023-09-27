@@ -2,12 +2,6 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
-// TODO: Remove these std includes below when "kaizen.h" includes them
-#include <unordered_map>
-#include <forward_list>
-#include <set>
-#include <map>
-
 void test_utils_sum()
 {
     BEGIN_SUBTEST;
