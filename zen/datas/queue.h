@@ -35,7 +35,16 @@ class queue : public std::queue<T, C>, private zen::stackonly
 {
 public:
     using std::queue<T, C>::queue; // inherit constructors, has to be explicit
-        
+    
+    template<class Iterable>
+    queue(const Iterable& c)
+    {
+        ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
+
+        for (const auto& x : c)
+            my::push(x);
+    }
+
     bool is_empty() const { return my::empty(); }
 
 private:

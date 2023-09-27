@@ -18,8 +18,7 @@ void test_priority_queue_of_strings()
 void test_queue_of_strings()
 {
     BEGIN_SUBTEST;
-    zen::deque<zen::string> d = { "1", "2", "3", "4" };
-    zen::queue<zen::string> x(d); // queue is not directly contructible from an initializer list
+    zen::queue<zen::string> x = zen::strings{ "1", "2", "3", "4" }; // queue is not directly contructible from an initializer list
     x.push("0");
 
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
