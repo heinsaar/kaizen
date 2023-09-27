@@ -22,8 +22,6 @@
 
 #pragma once
 
-#include <type_traits>
-#include <algorithm>
 #include <stack>
 
 #include "alpha.h" // internal; will not be included in kaizen.h
