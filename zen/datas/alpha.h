@@ -166,28 +166,28 @@ std::filesystem::path current_path() { return std::filesystem::current_path(); }
 std::filesystem::path  parent_path() { return std::filesystem::current_path().parent_path(); }
 
 std::optional<std::filesystem::path>
-search_upward(std::string_view name, std::filesystem::path dir = std::filesystem::current_path())
+search_upward(std::string_view name, std::filesystem::path from = std::filesystem::current_path())
 {
-    while (dir.filename() != name) {
-        if (dir.root_path() == dir && name == "/")
-            return dir;
+    while (from.filename() != name) {
+        if (from.root_path() == from && name == "/")
+            return from;
 
         // In most file systems, attempting to go to the parent of the root
         // directory returns the root directory itself. Therefore, to avoid
         // potentially infinite loops when the search reaches the root
         // directory and still can't find the specified directory or file
-        // handle, we check to see if the parent of dir is dir itself:
-        std::filesystem::path parent = dir.parent_path();
-        if (dir == parent)
+        // handle, we check to see if the parent of 'from' is 'from' itself:
+        std::filesystem::path parent = from.parent_path();
+        if (from == parent)
             return std::nullopt;
 
-        dir = parent;
+        from = parent;
     }
 
-    if (dir.empty())
+    if (from.empty())
         return std::nullopt;
         
-    return dir;
+    return from;
 }
 
 } // namespace zen
