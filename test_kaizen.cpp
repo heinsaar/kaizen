@@ -57,6 +57,7 @@ int main(int argc, char* argv[])
 	main_test_cmd_args(argc, argv);
 	main_test_unordered_multiset();
 	main_test_unordered_multimap();
+	main_test_priority_queue();
 	main_test_unordered_set();
 	main_test_unordered_map();
 	main_test_forward_list();
