@@ -57,6 +57,11 @@ public:
         return *this;
     }
 
+    // Returning reference to the member is deliberate since
+    // x() and y() are simply meant to be a convenience alias
+    // interface to avoid writing '.first' or '.second' 
+    constexpr double& x()       { return this->first;  }
+    constexpr double& y()       { return this->second; }
     constexpr double x() const { return this->first;  }
     constexpr double y() const { return this->second; }
 };
@@ -90,6 +95,10 @@ public:
         return *this;
     }
 
+    // Returning reference to the member is deliberate since
+    // x(), y() and z() are simply meant to be a convenience alias
+    // interface to avoid writing '->first', '->second' or '->z_'
+    constexpr double& z()       { return z_; }
     constexpr double z() const { return z_; }
 
 private:

@@ -100,12 +100,32 @@ void main_test_point()
         p2.y() == q3.y()
     );
 
+    zen::point a;
+    a.x() = p2.x();
+    a.y() = p2.y();
+
+    ZEN_EXPECT(
+        a.x() == p2.x() &&
+        a.y() == p2.y()
+    );
+
     std::tuple<int, float, double> my_point = { 1, 2.0f, 3.0 };
     zen::point3d p3d(my_point);
     ZEN_EXPECT(
         p3d.x() == 1 &&
         p3d.y() == 2 &&
         p3d.z() == 3
+    );
+
+    zen::point3d a3d{ 5, 5, 5 };
+    a3d.x() = p3d.x();
+    a3d.y() = p3d.y();
+    a3d.z() = p3d.z();
+
+    ZEN_EXPECT(
+        a3d.x() == p3d.x() &&
+        a3d.y() == p3d.y() &&
+        a3d.z() == p3d.z()
     );
 
     test_point_std_map_interoperability();
