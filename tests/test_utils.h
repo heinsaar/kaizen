@@ -74,6 +74,8 @@ void test_utils_to_string()
 
 void test_utils_print()
 {
+    BEGIN_SUBTEST;
+
     std::stringstream ss;
     auto old_buf = std::cout.rdbuf(ss.rdbuf()); // redirect the output
 
@@ -170,6 +172,8 @@ void test_utils_print()
 
 void test_utils_search_upward()
 {
+    BEGIN_SUBTEST;
+
     // Directory exists in the path
     ZEN_EXPECT(zen::search_upward("user", "/home/user/documents").value().filename() == "user");
 
@@ -189,6 +193,8 @@ void test_utils_search_upward()
 
 void test_utils_search_downward()
 {
+    BEGIN_SUBTEST;
+
     // Test case 1: When the directory exists within the depth
     auto r1 = zen::search_downward("CMakeCache.txt");
     ZEN_EXPECT(r1.has_value() && r1.value().filename() == "CMakeCache.txt");
