@@ -145,7 +145,8 @@ void test_string_remove()
     zen::string z15 = "<tag>content</tag>";
     zen::string z16 = "<tag>content</tag>";
     zen::string z17 = "Hello123World";
-        
+    zen::string z18 = "aaabbaaa";
+
      z1.remove("world");
      z2.remove("world");
      z3.remove("world");
@@ -162,6 +163,7 @@ void test_string_remove()
     z15.remove("<.*>");                          // greedy match
     z16.remove("<.*?>");                         // lazy match
     z17.remove("\\d{2,3}");                      // 2 to 3 digits
+    z18.remove("a+");
 
     ZEN_EXPECT(z1 == "Hello, !");
     ZEN_EXPECT(z2 == "  ");
@@ -179,6 +181,7 @@ void test_string_remove()
     ZEN_EXPECT(z15 == "");                       // pattern '<.*>' should remove everything
     ZEN_EXPECT(z16 == "content");                // pattern '<.*?>' should remove all tags but leave content
     ZEN_EXPECT(z17 == "HelloWorld");             // pattern '\\d{2,3}' should remove 123
+    ZEN_EXPECT(z18 == "bb");                     // pattern 'a+' should remove all 'a'
 }
 
 void test_string_pad_end()
