@@ -60,7 +60,7 @@ namespace zen {
        *std::begin(x); // has begin and can be dereferenced
         std::end(x);   // has an end
     };
-    template <typename T> constexpr bool is_iterable_v = Iterable<T>;
+    template <typename T> concept is_iterable_v = Iterable<T>;
 #else // use SFINAE if concepts are not available (pre-C++20)
     template <class T, class = void> struct is_iterable : std::false_type {};
 
