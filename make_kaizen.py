@@ -5,16 +5,16 @@ import os
 # Collects header files from specified dirs
 def collect_main_header_files(dirs):
     header_files = []
-    alpha_file = None # separate out the alpha.h file
+    alpha_header = None # separate out the alpha.h file
     for dir in dirs:
         for filename in os.listdir(dir):
             if filename.endswith('.h'):
                 file_path = os.path.join(dir, filename)
                 if filename == 'alpha.h' and dir.endswith('zen/datas'):
-                    alpha_file = file_path
+                    alpha_header = file_path
                 else:
                     header_files.append(file_path)
-    return header_files, alpha_file
+    return header_files, alpha_header
 
 def collect_composite_headers(composite_dir):
     header_files = []
@@ -133,7 +133,7 @@ if __name__ == '__main__':
 
     license_file = os.path.join(project_dir, 'LICENSE.txt')
 
-    header_files, alpha_file = collect_main_header_files([datas_dir, function_dir])
+    header_files, alpha_header = collect_main_header_files([datas_dir, function_dir])
     composite_headers, composite_includes = collect_composite_headers(composite_dir)
     
     license_text = read_license(license_file)
@@ -142,8 +142,8 @@ if __name__ == '__main__':
     all_code_content = []
 
     # Step 2: Process 'alpha.h' separately and ensure its content is added first
-    if alpha_file:
-        _, alpha_content = parse_header_file(alpha_file)
+    if alpha_header:
+        _, alpha_content = parse_header_file(alpha_header)
         all_code_content.extend(alpha_content) # ensure alpha.h content is first
     
     # Process regular headers
