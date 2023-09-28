@@ -80,7 +80,7 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: generated-files
+        name: kaizen-ci-generated-files
         path: ${{ steps.strings.outputs.build-output-dir }}/*
         
     - name: Test
