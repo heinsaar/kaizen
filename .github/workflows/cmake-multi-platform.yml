@@ -77,6 +77,12 @@ jobs:
       # the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: generated-files
+        path: ${{ steps.strings.outputs.build-output-dir }}/*
+        
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       # Execute tests defined by the CMake configuration. Note that --build-config is needed because
