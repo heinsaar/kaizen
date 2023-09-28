@@ -77,11 +77,11 @@ jobs:
       # the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
-    - name: Upload Artifacts
-      if: always() # so that we can get the artifacts and inspect why builds fail, for example
+    - name: Upload Artifacts on Failure
+      if: failure() # so that we can get the artifacts and inspect why builds fail, for example
       uses: actions/upload-artifact@v2
       with:
-        name: kaizen-ci-generated-files
+        name: kaizen-ci-failed-build-artifacts-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
         path: ${{ steps.strings.outputs.build-output-dir }}/*
         
     - name: Test
