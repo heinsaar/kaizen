@@ -126,7 +126,7 @@ def write_output_file(filename, license_text, include_directives, code_content, 
 
         print(header_files)
         # Check if alpha.h is in the list and write its contents first
-        if header_files and header_files[0].endswith('/alpha.h'):
+        if header_files and header_files[0].endswith('zen/datas/alpha.h'):
             write_alpha_contents(output_file, header_files[0])
         else:
             print('FATAL ERROR: HEADER alpha.h NOT FOUND, KAIZEN NEEDS IT AS AN INTERNAL DEPENDENCY')
