@@ -5,11 +5,24 @@ import os
 # Collects header files from specified dirs
 def collect_main_header_files(dirs):
     header_files = []
+    alpha_header_path = None
     for dir in dirs:
         for filename in os.listdir(dir):
+            file_path = os.path.join(dir, filename)
             if filename.endswith('.h'):
-                header_files.append(os.path.join(dir, filename))
+                if filename == 'alpha.h' and dir.endswith('zen/datas'):
+                    alpha_header_path = file_path  # store the path of alpha.h
+                else:
+                    header_files.append(file_path)
+    if alpha_header_path:
+        header_files.insert(0, alpha_header_path)  # ensure alpha.h is first
     return header_files
+
+def write_alpha_contents(output_file, alpha_header_path):
+    with open(alpha_header_path, 'r') as alpha_file:
+        alpha_contents = alpha_file.read()
+        output_file.write(alpha_contents)
+        output_file.write('\n')  # separate alpha.h content from other contents
 
 def collect_composite_headers(composite_dir):
     header_files = []
@@ -100,7 +113,7 @@ def deflate(code_content):
     return deflated_code_content
 
 # Produces the final resulting kaizen library single header file
-def write_output_file(filename, license_text, include_directives, code_content):
+def write_output_file(filename, license_text, include_directives, code_content, header_files):
     code_content = compact_namespace_zen(code_content)
     code_content = deflate(code_content)
     
@@ -110,6 +123,14 @@ def write_output_file(filename, license_text, include_directives, code_content):
         output_file.writelines(license_text)
         output_file.write('\n#pragma once\n\n')
         output_file.write('// Since the order of these #includes doesn\'t matter,\n// they\'re sorted in descending length for aesthetics\n')
+
+        print(header_files)
+        # Check if alpha.h is in the list and write its contents first
+        if header_files and header_files[0].endswith('/alpha.h'):
+            write_alpha_contents(output_file, header_files[0])
+        else:
+            print('FATAL ERROR: HEADER alpha.h NOT FOUND, KAIZEN NEEDS IT AS AN INTERNAL DEPENDENCY')
+
         for include_directive in sorted(include_directives, key=len, reverse=True):
             output_file.write(include_directive + '\n')
         # Remove all leading empty lines but one that come right after the #include directives:
@@ -151,6 +172,6 @@ if __name__ == '__main__':
     all_include_directives -= composite_includes
 
     # Generate the final result of the Kaizen library header file
-    write_output_file('kaizen.h', license_text, all_include_directives, all_code_content)
+    write_output_file('kaizen.h', license_text, all_include_directives, all_code_content, header_files)
 
 # end
