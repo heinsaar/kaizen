@@ -141,7 +141,7 @@ if __name__ == '__main__':
     all_include_directives = set()
     all_code_content = []
 
-    # Step 2: Process 'alpha.h' separately and ensure its content is added first
+    # Process 'alpha.h' separately and ensure its content is added first
     if alpha_header:
         _, alpha_content = parse_header_file(alpha_header)
         all_code_content.extend(alpha_content) # ensure alpha.h content is first
