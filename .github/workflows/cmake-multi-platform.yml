@@ -31,7 +31,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         build_type: [Release]
-        c_compiler: [gcc, clang, cl, 'gcc-11', 'gcc-10', 'gcc-9', 'gcc-8', 'gcc-7', 'clang-14', 'clang-11', 'clang-10', 'clang-9', 'clang-8']
+        c_compiler: [gcc, clang, cl, 'gcc-11', 'gcc-10', 'gcc-9', 'clang-14', 'clang-11']
         include:
           - os: windows-latest
             c_compiler: cl
@@ -52,26 +52,8 @@ jobs:
             c_compiler: gcc-9
             cpp_compiler: g++-9
           - os: ubuntu-latest
-            c_compiler: gcc-8
-            cpp_compiler: g++-8
-          - os: ubuntu-latest
-            c_compiler: gcc-7
-            cpp_compiler: g++-7
-          - os: ubuntu-latest
             c_compiler: clang-14
             cpp_compiler: clang++-14
-          - os: ubuntu-latest
-            c_compiler: clang-11
-            cpp_compiler: clang++-11
-          - os: ubuntu-latest
-            c_compiler: clang-10
-            cpp_compiler: clang++-10
-          - os: ubuntu-latest
-            c_compiler: clang-9
-            cpp_compiler: clang++-9
-          - os: ubuntu-latest
-            c_compiler: clang-8
-            cpp_compiler: clang++-8
         exclude:
           - os: windows-latest
             c_compiler: gcc
