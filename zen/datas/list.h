@@ -33,7 +33,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::list
 
 template<class T, class A = std::allocator<T>>
-class list : public std::list<T, A>, private stackonly
+class list : public std::list<T, A>, private zen::stackonly
 {
 public:
     using std::list<T, A>::list; // inherit constructors, has to be explicit

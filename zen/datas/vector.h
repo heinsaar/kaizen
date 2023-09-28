@@ -33,7 +33,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::vector
 
 template<class T, class A = std::allocator<T>>
-class vector : public std::vector<T, A>, private stackonly
+class vector : public std::vector<T, A>, private zen::stackonly
 {
 public:
     using std::vector<T, A>::vector; // inherit constructors, has to be explicit

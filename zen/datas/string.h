@@ -32,7 +32,7 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::string
 
-class string : public std::string, private stackonly
+class string : public std::string, private zen::stackonly
 {
 public:
     using std::string::string;    // inherit constructors,         has to be explicit

@@ -33,7 +33,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::forward_list
 
 template<class T, class A = std::allocator<T>>
-class forward_list : public std::forward_list<T, A>, private stackonly
+class forward_list : public std::forward_list<T, A>, private zen::stackonly
 {
 public:
     using std::forward_list<T, A>::forward_list; // inherit constructors, has to be explicit

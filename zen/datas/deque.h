@@ -33,7 +33,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::deque
 
 template<class T, class A = std::allocator<T>>
-class deque : public std::deque<T, A>, private stackonly
+class deque : public std::deque<T, A>, private zen::stackonly
 {
 public:
     using std::deque<T, A>::deque; // inherit constructors, has to be explicit

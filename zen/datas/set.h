@@ -31,7 +31,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::set
 
 template<class K, class C = std::less<K>, class A = std::allocator<K>>
-class set : public std::set<K, C, A>, private stackonly
+class set : public std::set<K, C, A>, private zen::stackonly
 {
 public:
     using std::set<K, C, A>::set; // inherit constructors, has to be explicit
@@ -45,7 +45,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::multiset
 
 template<class K, class C = std::less<K>, class A = std::allocator<K>>
-class multiset : public std::multiset<K, C, A>, private stackonly
+class multiset : public std::multiset<K, C, A>, private zen::stackonly
 {
 public:
     using std::multiset<K, C, A>::multiset; // inherit constructors, has to be explicit

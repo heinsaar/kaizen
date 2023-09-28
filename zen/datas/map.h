@@ -32,7 +32,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::map
 
 template<class K, class V, class C = std::less<K>, class A = std::allocator<std::pair<const K, V>>>
-class map : public std::map<K, V, C, A>, private stackonly
+class map : public std::map<K, V, C, A>, private zen::stackonly
 {
 public:
     using std::map<K, V, C, A>::map; // inherit constructors, has to be explicit
@@ -46,7 +46,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::multimap
 
 template<class K, class V, class C = std::less<K>, class A = std::allocator<std::pair<const K, V>>>
-class multimap : public std::multimap<K, V, C, A>, private stackonly
+class multimap : public std::multimap<K, V, C, A>, private zen::stackonly
 {
 public:
     using std::multimap<K, V, C, A>::multimap; // inherit constructors, has to be explicit

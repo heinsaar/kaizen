@@ -37,7 +37,7 @@ template<
     class E = std::equal_to<K>,
     class A = std::allocator<std::pair<const K, V>>
 >
-class unordered_map : public std::unordered_map<K, V, H, E, A>, private stackonly
+class unordered_map : public std::unordered_map<K, V, H, E, A>, private zen::stackonly
 {
 public:
     using std::unordered_map<K, V, H, E, A>::unordered_map; // inherit constructors, has to be explicit
@@ -57,7 +57,7 @@ template<
     class E = std::equal_to<K>,
     class A = std::allocator<std::pair<const K, V>>
 >
-class unordered_multimap : public std::unordered_multimap<K, V, H, E, A>, private stackonly
+class unordered_multimap : public std::unordered_multimap<K, V, H, E, A>, private zen::stackonly
 {
 public:
     using std::unordered_multimap<K, V, H, E, A>::unordered_multimap; // inherit constructors, has to be explicit
