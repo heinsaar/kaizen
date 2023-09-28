@@ -163,4 +163,4 @@ if __name__ == '__main__':
     # Generate the final result of the Kaizen library header file
     write_output_file('kaizen.h', license_text, all_include_directives, all_code_content)
 
-# end
+# end of make_kayzen.py
