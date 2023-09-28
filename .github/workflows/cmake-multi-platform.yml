@@ -83,10 +83,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: |
-        apt-get update
-        apt-get install -y ${{ matrix.c_compiler }} ${{ matrix.c_compiler }}++  # install the necessary compilers
+    #- name: Install dependencies
+    #  run: |
+    #    apt-get update
+    #    apt-get install -y ${{ matrix.c_compiler }} ${{ matrix.c_compiler }}++  # install the necessary compilers
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs.
