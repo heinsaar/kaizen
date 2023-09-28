@@ -36,7 +36,7 @@ template<
     class E = std::equal_to<T>,
     class A = std::allocator<T>
 >
-class unordered_set : public std::unordered_set<T, H, E, A>, private zen::stackonly
+class unordered_set : public std::unordered_set<T, H, E, A>, private stackonly
 {
 public:
     using std::unordered_set<T, H, E, A>::unordered_set; // inherit constructors, has to be explicit
@@ -55,7 +55,7 @@ template<
     class E = std::equal_to<T>,
     class A = std::allocator<T>
 >
-class unordered_multiset : public std::unordered_multiset<T, H, E, A>, private zen::stackonly
+class unordered_multiset : public std::unordered_multiset<T, H, E, A>, private stackonly
 {
 public:
     using std::unordered_multiset<T, H, E, A>::unordered_multiset; // inherit constructors, has to be explicit

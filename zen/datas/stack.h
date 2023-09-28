@@ -31,7 +31,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::stack
 
 template<class T, class C = std::deque<T>>
-class stack : public std::stack<T, C>, private zen::stackonly
+class stack : public std::stack<T, C>, private stackonly
 {
 public:
     using std::stack<T, C>::stack; // inherit constructors, has to be explicit

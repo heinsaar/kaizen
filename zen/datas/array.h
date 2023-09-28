@@ -33,7 +33,7 @@ namespace zen {
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::array
 
 template<class T, size_t N>
-class array : public std::array<T, N>, private zen::stackonly
+class array : public std::array<T, N>, private stackonly
 {
 public:
     using std::array<T, N>::array; // inherit constructors, has to be explicit
