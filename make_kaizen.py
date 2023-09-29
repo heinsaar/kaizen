@@ -3,6 +3,8 @@ import fnmatch
 import re
 import os
 
+PRAGMA_ONCE = "#pragma once"
+
 # Collects header files from specified dirs
 def collect_main_header_files(dirs):
     header_files = []
@@ -42,7 +44,7 @@ def parse_header_file(header_file):
                 else:
                     skipping_license = False # end of license comment section, prepare for reading code
 
-            if '#pragma once' in line:
+            if PRAGMA_ONCE in line:
                 continue
             
             # If line #includes any non-standard C++ headers (like Kaizen-internal), skip it
@@ -114,7 +116,7 @@ def write_output_file(filename, license_text, include_directives, code_content):
         now = datetime.datetime.now()
         output_file.write('// FILE GENERATED ON: ' + now.strftime("%d.%m.%Y %H:%M:%S") + '\n//\n')
         output_file.writelines(license_text)
-        output_file.write('\n#pragma once\n\n')
+        output_file.write(f'\n{PRAGMA_ONCE} \n\n')
         output_file.write('// Since the order of these #includes doesn\'t matter,\n// they\'re sorted in descending length for aesthetics\n')
         for include_directive in sorted(include_directives, key=len, reverse=True):
             output_file.write(include_directive + '\n')
@@ -131,7 +133,7 @@ def is_pragma_once_present(file_path):
         lines = file.readlines()
     for line in lines:
         linestrip = line.strip()
-        if linestrip == '#pragma once':
+        if linestrip == PRAGMA_ONCE:
             return True
         elif not linestrip.startswith(('//', '/*', '*/', '*')) and linestrip:
             return False
@@ -143,7 +145,7 @@ def check_headers_in(directory):
         for file in fnmatch.filter(files, '*.h*'): # .h and .hpp files
             file_path = os.path.join(root, file)
             if not is_pragma_once_present(file_path):
-                print(f'WARNING: #pragma once NOT FOUND IN KAIZEN HEADER {file_path}')
+                print(f'WARNING: {PRAGMA_ONCE} NOT FOUND IN KAIZEN HEADER {file_path}')
 
 if __name__ == '__main__':
     project_dir = os.path.dirname(os.path.abspath(__file__))
