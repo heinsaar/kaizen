@@ -128,12 +128,12 @@ if __name__ == '__main__':
     project_dir = os.path.dirname(os.path.abspath(__file__))
     
     datas_dir     = os.path.join(project_dir, 'zen/datas')
-    function_dir  = os.path.join(project_dir, 'zen/functions')
+    functions_dir  = os.path.join(project_dir, 'zen/functions')
     composites_dir = os.path.join(project_dir, 'zen/composites')
 
     license_file = os.path.join(project_dir, 'LICENSE.txt')
 
-    header_files, alpha_header = collect_main_header_files([datas_dir, function_dir])
+    header_files, alpha_header = collect_main_header_files([datas_dir, functions_dir])
     composite_headers, composite_includes = collect_composite_headers(composites_dir)
     
     license_text = read_license(license_file)
