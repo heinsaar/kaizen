@@ -157,7 +157,6 @@ if __name__ == '__main__':
     check_headers_in(zen_functions)
     check_headers_in(zen_composites)
 
-
     license_file = os.path.join(project_dir, 'LICENSE.txt')
 
     header_files, alpha_header = collect_main_header_files([zen_datas, zen_functions])
