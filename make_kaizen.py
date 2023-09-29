@@ -152,6 +152,12 @@ if __name__ == '__main__':
     zen_functions  = os.path.join(project_dir, 'zen/functions')
     zen_composites = os.path.join(project_dir, 'zen/composites')
 
+    # checks for headers
+    check_headers_in(zen_datas)
+    check_headers_in(zen_functions)
+    check_headers_in(zen_composites)
+
+
     license_file = os.path.join(project_dir, 'LICENSE.txt')
 
     header_files, alpha_header = collect_main_header_files([zen_datas, zen_functions])
@@ -184,9 +190,5 @@ if __name__ == '__main__':
     # Generate the final result of the Kaizen library header file
     write_output_file('kaizen.h', license_text, all_include_directives, all_code_content)
 
-    # checks for headers
-    check_headers_in(zen_datas)
-    check_headers_in(zen_functions)
-    check_headers_in(zen_composites)
-
+    
 # end of make_kayzen.py
