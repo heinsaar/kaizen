@@ -1,4 +1,5 @@
 import datetime
+import fnmatch
 import re
 import os
 
@@ -130,7 +131,7 @@ def is_pragma_once_present(file_path):
         lines = file.readlines()
     for line in lines:
         linestrip = line.strip()
-        if linestrip == '#pragma donce':
+        if linestrip == '#pragma once':
             return True
         elif not linestrip.startswith(('//', '/*', '*/', '*')) and linestrip:
             return False
