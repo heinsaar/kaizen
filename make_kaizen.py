@@ -16,12 +16,12 @@ def collect_main_header_files(dirs):
                     header_files.append(file_path)
     return header_files, alpha_header
 
-def collect_composite_headers(composite_dir):
+def collect_composite_headers(composites_dir):
     header_files = []
     composite_includes = set()
-    for filename in os.listdir(composite_dir):
+    for filename in os.listdir(composites_dir):
         if filename.endswith('.h'):
-            header_file = os.path.join(composite_dir, filename)
+            header_file = os.path.join(composites_dir, filename)
             include_directives, _ = parse_header_file(header_file)
             composite_includes.update(include_directives)
             header_files.append(header_file)
@@ -129,12 +129,12 @@ if __name__ == '__main__':
     
     datas_dir     = os.path.join(project_dir, 'zen/datas')
     function_dir  = os.path.join(project_dir, 'zen/functions')
-    composite_dir = os.path.join(project_dir, 'zen/composites')
+    composites_dir = os.path.join(project_dir, 'zen/composites')
 
     license_file = os.path.join(project_dir, 'LICENSE.txt')
 
     header_files, alpha_header = collect_main_header_files([datas_dir, function_dir])
-    composite_headers, composite_includes = collect_composite_headers(composite_dir)
+    composite_headers, composite_includes = collect_composite_headers(composites_dir)
     
     license_text = read_license(license_file)
 
