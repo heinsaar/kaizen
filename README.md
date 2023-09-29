@@ -136,7 +136,7 @@ The project is probably more widely and more backward-compatible, but at the mom
 
 Open the repo folder in your favorite IDE (on Windows, if you're not very used to Visual Studio,
 I recommend using Visual Studio Code with [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)) and follow the steps described below to run it on your system.
-The `main()` function simply runs the tests and print out the report.
+The `main()` function simply runs the tests and prints out the report (see a sample screenshot below).
 
 ## Build & Run on Windows & Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 
