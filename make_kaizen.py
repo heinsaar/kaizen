@@ -124,6 +124,26 @@ def write_output_file(filename, license_text, include_directives, code_content):
         output_file.writelines(code_content)
         os.chmod(filename, 0o444) # make readonly
 
+# check if pragma_once is present in file
+def is_pragma_once_present(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+    for line in lines:
+        linestrip = line.strip()
+        if linestrip == '#pragma donce':
+            return True
+        elif not linestrip.startswith(('//', '/*', '*/', '*')) and linestrip:
+            return False
+    return False
+
+# checks for header
+def check_headers_in(directory):
+    for root, _, files in os.walk(directory):
+        for file in fnmatch.filter(files, '*.h*'): # .h and .hpp files
+            file_path = os.path.join(root, file)
+            if not is_pragma_once_present(file_path):
+                print(f'WARNING: #pragma once NOT FOUND IN KAIZEN HEADER {file_path}')
+
 if __name__ == '__main__':
     project_dir = os.path.dirname(os.path.abspath(__file__))
     
@@ -162,5 +182,10 @@ if __name__ == '__main__':
 
     # Generate the final result of the Kaizen library header file
     write_output_file('kaizen.h', license_text, all_include_directives, all_code_content)
+
+    # checks for headers
+    check_headers_in(zen_datas)
+    check_headers_in(zen_functions)
+    check_headers_in(zen_composites)
 
 # end of make_kayzen.py
