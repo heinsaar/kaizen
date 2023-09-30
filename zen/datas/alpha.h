@@ -63,6 +63,25 @@ std::string serialize(const T& x) {
 // simply quoting it, so that wherever it appears, it does so in quotes
 std::string serialize(const std::string& s) { return quote(s); }
 
+// Helper function to handle tuple serialization
+template<typename... Ts>
+std::string serialize(const std::tuple<Ts...>& tup) {
+    std::string s = "[";
+    std::apply([&s](auto&&... args) {
+        auto append = [&](const auto& arg) { s += serialize(arg) + ", ";};
+        (append(args), ...);
+    }, tup);
+    if (s.size() > 1)
+        s.erase(s.size() - 2); // remove trailing ", "
+    return s + "]";
+}
+
+// Helper function to handle pair serialization
+template<typename T1, typename T2>
+std::string serialize(const std::pair<T1, T2>& p) {
+    return "[" + serialize(p.first) + ", " + serialize(p.second) + "]";
+}
+
 // Helper function to handle comma-space separator
 template<typename Os, typename T, typename... Ts>
 void tuple_to_stream(Os& os, const T& first, const Ts&... rest) {
