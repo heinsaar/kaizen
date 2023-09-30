@@ -53,6 +53,7 @@ std::string silent_print(Args&&... args) {
     std::stringstream ss;
     auto old_buf = std::cout.rdbuf(ss.rdbuf()); // redirect the standard output to the local ss
     zen::print(std::forward<Args>(args)...);    // print to the local stream (i.e., "silent")
+    std::cout.flush();                          // just in case
     std::cout.rdbuf(old_buf);                   // redirect back to standard output
     return ss.str();
 }
