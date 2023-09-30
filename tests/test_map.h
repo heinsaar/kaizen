@@ -2,6 +2,8 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+#include "../internal.h"
+
 void main_test_map()
 {
     BEGIN_TEST;
@@ -24,6 +26,11 @@ void main_test_multimap()
     zen::multimap<zen::string, zen::string> mss = { {"A", "1"}, {"A", "2"}, {"A", "3"}, {"B", "4"}, {"B", "5"} };
     mss.insert({ "D", "6" });
     mss.insert({ "D", "7" });
+
+    zen::multimap<std::pair<zen::string, zen::string>, zen::string> mps = { {{"A", "A"}, "1"}, {{"B", "B"}, "2"} };
+
+    ZEN_EXPECT(silent_print(mss) == "[[A, 1], [A, 2], [A, 3], [B, 4], [B, 5], [D, 6], [D, 7]]");
+    ZEN_EXPECT(silent_print(mps) == "[[[A, A], 1], [[B, B], 2]]");
 
     ZEN_EXPECT(!mss.contains({ "X" }));
     ZEN_EXPECT(
