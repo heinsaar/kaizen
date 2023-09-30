@@ -54,7 +54,6 @@ std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p)
 //-------------------------------------------------------------------------------------------
 
 namespace internal {
-    // Function to handle string serialization
     template<typename T>
     std::string serialize(const T& x) {
         std::ostringstream ss;
@@ -66,7 +65,6 @@ namespace internal {
     // simply quoting it, so that wherever it appears, it does so in quotes
     std::string serialize(const std::string& s) { return quote(s); }
 
-    // Helper function to handle tuple serialization
     template<typename... Ts>
     std::string serialize(const std::tuple<Ts...>& tup) {
         std::string s = "[";
