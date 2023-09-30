@@ -112,6 +112,9 @@ void test_utils_print()
 
     // Test an empty print call
     ZEN_EXPECT(silent_print() == "");
+
+    std::tuple<int, int, std::string, double> tup = { 1, 2, "string in tuple", 3.9 };
+    ZEN_EXPECT(silent_print(tup) == "[1, 2, \"string in tuple\", 3.9]");
 }
 
 void test_utils_search_upward()

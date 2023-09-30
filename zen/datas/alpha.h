@@ -51,11 +51,23 @@ std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p)
     return os << '[' << p.first << ", " << p.second << ']';
 }
 
+// Function to handle string serialization
+template<typename T>
+std::string serialize(const T& x) {
+    std::ostringstream ss;
+    ss << x;
+    return ss.str();
+}
+
+// Overload for std::string type: serialization for a string type means
+// simply quoting it, so that wherever it appears, it does so in quotes
+std::string serialize(const std::string& s) { return quote(s); }
+
 // Helper function to handle comma-space separator
 template<typename Os, typename T, typename... Ts>
 void tuple_to_stream(Os& os, const T& first, const Ts&... rest) {
-    os << first;
-    ((os << ", " << rest), ...);
+    os << serialize(first);
+    ((os << ", " << serialize(rest)), ...);
 }
 
 template<typename... Ts>
@@ -63,7 +75,7 @@ std::ostream& operator<<(std::ostream& os, const std::tuple<Ts...>& tup) {
     os << "[";
     std::apply([&os](auto&&... args) {
         tuple_to_stream(os, args...);
-    }, tup);
+        }, tup);
     os << "]";
     return os;
 }
