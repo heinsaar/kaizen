@@ -79,7 +79,8 @@ int main(int argc, char* argv[])
 	main_test_set();
 	main_test_in();
 
-	if (cmd_args.is_present("-cloc")) main_test_cloc();
+	if (cmd_args.is_present("-cloc"))
+		main_test_cloc();
 
 	timer.stop();
 
