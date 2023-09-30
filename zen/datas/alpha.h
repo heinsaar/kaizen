@@ -68,7 +68,7 @@ template<typename... Ts>
 std::string serialize(const std::tuple<Ts...>& tup) {
     std::string s = "[";
     std::apply([&s](auto&&... args) {
-        auto append = [&](const auto& arg) { s += serialize(arg) + ", ";};
+        auto append = [&](const auto& arg) { s += serialize(arg) + ", "; };
         (append(args), ...);
     }, tup);
     if (s.size() > 1)
