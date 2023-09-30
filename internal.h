@@ -30,6 +30,23 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+// silent_print() was originally designed to test zen::print()
+// Testing zen::print() is a special case since we're testing the same function
+// that's also used for test output log. Therefore, in order not to pollute the
+// test output log, we save the standard cout buffer into old_buf at the top of
+// this function, and restore to it after each test so that each test ends with
+// a restoration of the system to printing into the standard output.
+// 
+// The tests in between juggle around in a way so that ZEN_EXPECT (which uses zen::log(),
+// which in turn uses zen::print()) behaves as expected instead of outputting into the
+// intermediate stream used for testing the zen::print(). Tests follow this pattern:
+// 
+// 1. Reset a local std::stringstream object state to an empty string
+// 1. Redirect cout into the local std::stringstream object
+// 1. Call zen::print(), which will output into the std::stringstream object
+// 2. Temporarily redirect cout back to the standard output for the subsequent ZEN_EXPECT()
+// 3. Use ZEN_EXPECT() with the standard output
+
 template<class T>
 std::string silent_print(T&& x)
 {
