@@ -51,13 +51,20 @@ std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p)
     return os << '[' << p.first << ", " << p.second << ']';
 }
 
+// Helper function to handle comma-space separator
+template<typename Os, typename T, typename... Ts>
+void tuple_to_stream(Os& os, const T& first, const Ts&... rest) {
+    os << first;
+    ((os << ", " << rest), ...);
+}
+
 template<typename... Ts>
 std::ostream& operator<<(std::ostream& os, const std::tuple<Ts...>& tup) {
     os << "[";
     std::apply([&os](auto&&... args) {
-                       ((os << args << ", "), ...);
-               }, tup);
-    os << "\b\b]"; // use backspaces to remove the extra comma and space at the end
+        tuple_to_stream(os, args...);
+    }, tup);
+    os << "]";
     return os;
 }
 
