@@ -51,6 +51,8 @@ std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p)
     return os << '[' << p.first << ", " << p.second << ']';
 }
 
+//-------------------------------------------------------------------------------------------
+
 // Function to handle string serialization
 template<typename T>
 std::string serialize(const T& x) {
