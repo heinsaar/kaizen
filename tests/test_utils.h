@@ -2,6 +2,8 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+#include "../internal.h"
+
 void test_utils_sum()
 {
     BEGIN_SUBTEST;
@@ -76,82 +78,40 @@ void test_utils_print()
 {
     BEGIN_SUBTEST;
 
-    std::stringstream ss;
-    auto old_buf = std::cout.rdbuf(ss.rdbuf()); // redirect the output
-
     // Test with a number
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
-    zen::print(5);
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "5");
+    ZEN_EXPECT(silent_print(5) == "5");
 
     // Test with a string
-    ss.str("");
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
-    zen::print("hello");
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "hello");
+    ZEN_EXPECT(silent_print("hello") == "hello");
 
     // Test with multiple arguments of mixed types
-    ss.str("");
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
-    zen::print(5, "hello", 7.2);
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "5 hello 7.2");
+    ZEN_EXPECT(silent_print(5, "hello", 7.2) == "5 hello 7.2");
 
     // Test with a vector
-    ss.str("");
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
-    std::vector<int> v = { 1, 2, 3 };
-    zen::print(v);
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "[1, 2, 3]");
+    std::vector<int> v =          { 1, 2, 3 };
+    ZEN_EXPECT(silent_print(v) == "[1, 2, 3]");
 
     // Test with nested containers
-    ss.str("");
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
     std::vector<std::vector<int>> vv = { {1, 2}, {3, 4} };
-    zen::print(vv);
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "[[1, 2], [3, 4]]");
+    ZEN_EXPECT(silent_print(vv) ==     "[[1, 2], [3, 4]]");
 
     // Test with even more nested containers: vector, list, vector
-    ss.str("");
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
     std::vector<std::list<std::vector<int>>> vxv = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
-    zen::print(vxv);
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
+    ZEN_EXPECT(silent_print(vxv) ==                "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
 
     // Test with even more nested containers: list, vector, list
-    ss.str("");
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
     std::list<std::vector<std::list<int>>> xvx = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
-    zen::print(xvx);
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
+    ZEN_EXPECT(silent_print(xvx) ==              "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
 
     // Test with even more nested containers: list, vector, map
-    ss.str("");
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
     std::list<std::vector<std::deque<int>>> xvd = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
-    zen::print(xvd);
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
+    ZEN_EXPECT(silent_print(xvd) ==               "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
 
     // Test with mixed types
-    ss.str("");
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
-    zen::print("Test", 1, 4.5);
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "Test 1 4.5");
+    ZEN_EXPECT(silent_print("Test", 1, 4.5) == "Test 1 4.5");
 
     // Test an empty print call
-    ss.str("");
-    std::cout.rdbuf(ss.rdbuf()); // redirect to a local stream
-    zen::print();
-    std::cout.rdbuf(old_buf);    // back to standard output
-    ZEN_EXPECT(ss.str() == "");
+    ZEN_EXPECT(silent_print() == "");
 }
 
 void test_utils_search_upward()
