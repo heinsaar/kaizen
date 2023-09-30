@@ -47,13 +47,12 @@
 // 2. Temporarily redirect cout back to the standard output for the subsequent ZEN_EXPECT()
 // 3. Use ZEN_EXPECT() with the standard output
 
-template<class T>
-std::string silent_print(T&& x)
-{
+// Modified silent_print to perfectly forward to the variadic print function
+template <class... Args>
+std::string silent_print(Args&&... args) {
     std::stringstream ss;
-    auto old_buf = std::cout.rdbuf(ss.rdbuf()); // redirect the output
-    std::cout.rdbuf(ss.rdbuf());                // redirect to a local stream
-    zen::print(std::forward<T>(x));             // print to to the local stream (i.e., "silent")
+    auto old_buf = std::cout.rdbuf(ss.rdbuf()); // redirect the standard output to the local ss
+    zen::print(std::forward<Args>(args)...);    // print to the local stream (i.e., "silent")
     std::cout.rdbuf(old_buf);                   // redirect back to standard output
     return ss.str();
 }
