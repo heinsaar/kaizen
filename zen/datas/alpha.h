@@ -45,6 +45,22 @@ inline auto timestamp() {
     return timestr.substr(0, timestr.length() - 1);
 }
 
+template<class T1, class T2>
+std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p)
+{
+    return os << '[' << p.first << ", " << p.second << ']';
+}
+
+template<typename... Ts>
+std::ostream& operator<<(std::ostream& os, const std::tuple<Ts...>& tup) {
+    os << "[";
+    std::apply([&os](auto&&... args) {
+                       ((os << args << ", "), ...);
+               }, tup);
+    os << "\b\b]"; // use backspaces to remove the extra comma and space at the end
+    return os;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::stackonly
 
 struct stackonly
@@ -132,7 +148,7 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
         } \
     } while(0)
 
-// TODO: Add ZEN_EXPECT_NOTHROW()
+// ISSUE#25: Add ZEN_EXPECT_NOTHROW()
 
 ///////////////////////////////////////////////////////////////////////////////////////////// COLORS
 // Example: zen::print(zen::color::red(str));
