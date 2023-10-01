@@ -54,7 +54,6 @@ void test_utils_to_string()
     std::vector<int>                           vone    = { 1 };
     std::vector<int>                           v       = { 1, 2, 3 };
     std::vector<std::array<int, 2>>            va      = { {1, 2}, {3, 4} };
-    std::vector<int>                           vmix    = { 1, 2, 3 };
     std::vector<int>                           vempty;
 
     ZEN_EXPECT(zen::to_string()                  == "");
@@ -71,7 +70,7 @@ void test_utils_to_string()
     ZEN_EXPECT(zen::to_string(xv)                == "[[1, 2], [3, 4]]");
     ZEN_EXPECT(zen::to_string(va)                == "[[1, 2], [3, 4]]");
     ZEN_EXPECT(zen::to_string(vvv)               == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
-    ZEN_EXPECT(zen::to_string(vmix, "mixed", 42) == "[1, 2, 3] mixed 42");
+    ZEN_EXPECT(zen::to_string(v, "mixed", 42)    == "[1, 2, 3] mixed 42");
 }
 
 void test_utils_print()
