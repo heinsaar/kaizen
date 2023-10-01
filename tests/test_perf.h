@@ -26,8 +26,8 @@ void main_test_performance()
     }
     auto t2 = tm.stop().duration_string();
 
-    zen::log("PERF TIME FOR zen::in: ", t1);
-    zen::log("PERF TIME FOR RAW LOOP:", t2);
+    zen::log("PERF TIME FOR zen::in:", t1);
+    zen::log("PERF TIME FOR RAW for:", t2);
 
     silent_print(sink); // to ensure it's used
 }
