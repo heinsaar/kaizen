@@ -45,12 +45,6 @@ inline auto timestamp() {
     return timestr.substr(0, timestr.length() - 1);
 }
 
-template<class T1, class T2>
-std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p)
-{
-    return os << '[' << p.first << ", " << p.second << ']';
-}
-
 //-------------------------------------------------------------------------------------------
 
 namespace internal {
@@ -65,6 +59,30 @@ namespace internal {
     // simply quoting it, so that wherever it appears, it does so in quotes
     std::string serialize(const std::string& s) { return quote(s); }
 
+    // Helper function to handle pair serialization
+    template<typename T1, typename T2>
+    std::string serialize(const std::pair<T1, T2>& p) {
+        return "[" + serialize(p.first) + ", " + serialize(p.second) + "]";
+    }
+
+    // Helper function to handle pair stream output
+    template<typename Os, typename T1, typename T2>
+    void pair_to_stream(Os& os, const std::pair<T1, T2>& p) {
+        os << serialize(p.first) << ", " << serialize(p.second);
+    }
+} // namespace internal
+
+template<class T1, class T2>
+std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p) {
+    os << "[";
+    internal::pair_to_stream(os, p);
+    os << "]";
+    return os;
+}
+
+//-------------------------------------------------------------------------------------------
+
+namespace internal {
     template<typename... Ts>
     std::string serialize(const std::tuple<Ts...>& tup) {
         std::string s = "[";
@@ -76,13 +94,6 @@ namespace internal {
             s.erase(s.size() - 2); // remove trailing ", "
         return s + "]";
     }
-
-    // Helper function to handle pair serialization
-    template<typename T1, typename T2>
-    std::string serialize(const std::pair<T1, T2>& p) {
-        return "[" + serialize(p.first) + ", " + serialize(p.second) + "]";
-    }
-
     // Helper function to handle comma-space separator
     template<typename Os, typename T, typename... Ts>
     void tuple_to_stream(Os& os, const T& first, const Ts&... rest) {

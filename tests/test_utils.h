@@ -121,6 +121,21 @@ void test_utils_print()
 
     std::tuple<int, int, std::tuple<int, std::string, int>, double> tt = { 1, 2, {0, "string in tuple", 0}, 3.9 };
     ZEN_EXPECT(silent_print(tt) == "[1, 2, [0, \"string in tuple\", 0], 3.9]");
+
+    std::tuple<int, int, std::tuple<int, std::pair<std::string, int>, int>, double> ttp
+                                  = { 1, 2, {0, { "string in tuple",  7}, 0}, 3.9 };
+    ZEN_EXPECT(silent_print(ttp) == "[1, 2, [0, [\"string in tuple\", 7], 0], 3.9]");
+
+    std::pair<int, std::pair<std::string, double>> pp = { 1, { "string in pair",  7.8}};
+    ZEN_EXPECT(silent_print(pp) ==                      "[1, [\"string in pair\", 7.8]]");
+
+    std::pair<int, std::pair<std::string, std::pair<double, std::string>>> ppp =
+                                    { 1, { "string in pair",  {7.8,  "string in pair B" }}};
+    ZEN_EXPECT(silent_print(ppp) == "[1, [\"string in pair\", [7.8, \"string in pair B\"]]]");
+
+    std::tuple<int, int, std::tuple<int, std::pair<std::pair<std::string, std::string>, int>, int>, double> ttpp
+                                   = { 1, 2, {0, {{ "string in tuple A",   "string in tuple B"},  7}, 0}, 3.9 };
+    ZEN_EXPECT(silent_print(ttpp) == "[1, 2, [0, [[\"string in tuple A\", \"string in tuple B\"], 7], 0], 3.9]");
 }
 
 void test_utils_search_upward()
