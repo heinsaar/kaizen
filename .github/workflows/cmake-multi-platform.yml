@@ -119,4 +119,4 @@ jobs:
       if: success() && runner.os == 'Windows'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       shell: bash
-      run: .\Release\kaizen.exe -verbose
+      run: .\\Release\\kaizen.exe -verbose
