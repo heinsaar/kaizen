@@ -113,14 +113,14 @@ void test_utils_print()
     // Test an empty print call
     ZEN_EXPECT(silent_print() == "");
 
-    std::tuple<int, int, std::string, double> tup = { 1, 2, "string in tuple", 3.9 };
-    ZEN_EXPECT(silent_print(tup) == "[1, 2, \"string in tuple\", 3.9]");
+    std::tuple<int, int, std::string, double> tup = { 1, 2,  "string in tuple",  3.9 };
+    ZEN_EXPECT(silent_print(tup) ==                 "[1, 2, \"string in tuple\", 3.9]");
 
-    std::tuple<int, int, std::pair<std::string, int>, double> tp = { 1, 2, {"string in tuple", 0}, 3.9 };
-    ZEN_EXPECT(silent_print(tp) == "[1, 2, [\"string in tuple\", 0], 3.9]");
+    std::tuple<int, int, std::pair<std::string, int>, double> tp = { 1, 2, { "string in tuple",  0}, 3.9 };
+    ZEN_EXPECT(silent_print(tp) ==                                 "[1, 2, [\"string in tuple\", 0], 3.9]");
 
-    std::tuple<int, int, std::tuple<int, std::string, int>, double> tt = { 1, 2, {0, "string in tuple", 0}, 3.9 };
-    ZEN_EXPECT(silent_print(tt) == "[1, 2, [0, \"string in tuple\", 0], 3.9]");
+    std::tuple<int, int, std::tuple<int, std::string, int>, double> tt = { 1, 2, {0,  "string in tuple",  0}, 3.9 };
+    ZEN_EXPECT(silent_print(tt)                                       == "[1, 2, [0, \"string in tuple\", 0], 3.9]");
 
     std::tuple<int, int, std::tuple<int, std::pair<std::string, int>, int>, double> ttp
                                   = { 1, 2, {0, { "string in tuple",  7}, 0}, 3.9 };
