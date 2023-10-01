@@ -79,6 +79,9 @@ int main(int argc, char* argv[])
 	main_test_set();
 	main_test_in();
 
+	// Performance tests
+	main_test_performance();
+
 	if (cmd_args.is_present("-cloc"))
 		main_test_cloc();
 
