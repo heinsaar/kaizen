@@ -4,7 +4,13 @@
 
 #include "../internal.h"
 
-volatile int sink; // global variable to prevent loop optimization
+// Making sink a local variable while keeping it volatile should theoretically
+// still prevent the compiler from optimizing away the operations on sink.
+// However, making it global is often a stronger guarantee against unwanted
+// optimizations since the compiler can less easily reason about the usage of
+// a global variable across different parts of the program, compared to a local
+// variable whose usage scope is limited.
+volatile int sink; // global (see why above) to prevent loop optimization
 
 void main_test_performance()
 {
