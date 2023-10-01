@@ -139,6 +139,16 @@ A static assert that shows the expression that failed:
 // 'ZEN STATIC ASSERTION FAILED. "FAILED EXPRESSION:": zen::is_iterable_v<int>'
 ZEN_STATIC_ASSERT(zen::is_iterable_v<int>, "FAILED EXPRESSION:");
 ```
+### Timer
+A simple timer:
+```cpp
+// Let's benchmark zen::in
+zen::timer timer;
+for (int i : zen::in(N)) {
+    // Some computation
+}
+zen::log(timer.stop().duration_string());
+```
 ### Versions
 Semantic versioning:
 ```cpp
