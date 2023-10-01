@@ -126,12 +126,12 @@ void test_utils_print()
                                   = { 1, 2, {0, { "tuplestr",  7}, 0}, 3.9 };
     ZEN_EXPECT(silent_print(ttp) == "[1, 2, [0, [\"tuplestr\", 7], 0], 3.9]");
 
-    std::pair<int, std::pair<std::string, double>> pp = { 1, { "string in pair",  7.8}};
-    ZEN_EXPECT(silent_print(pp) ==                      "[1, [\"string in pair\", 7.8]]");
+    std::pair<int, std::pair<std::string, double>> pp = { 1, { "pairstr",  7.8}};
+    ZEN_EXPECT(silent_print(pp) ==                      "[1, [\"pairstr\", 7.8]]");
 
     std::pair<int, std::pair<std::string, std::pair<double, std::string>>> ppp =
-                                    { 1, { "string in pair",  {7.8,  "string in pair B" }}};
-    ZEN_EXPECT(silent_print(ppp) == "[1, [\"string in pair\", [7.8, \"string in pair B\"]]]");
+                                    { 1, { "pairstr",  {7.8,  "pairstr B" }}};
+    ZEN_EXPECT(silent_print(ppp) == "[1, [\"pairstr\", [7.8, \"pairstr B\"]]]");
 
     std::tuple<int, int, std::tuple<int, std::pair<std::pair<std::string, std::string>, int>, int>, double> ttpp
                                    = { 1, 2, {0, {{ "tuplestr A",   "tuplestr B"},  7}, 0}, 3.9 };
