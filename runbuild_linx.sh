@@ -23,8 +23,8 @@ for arg in "$@"; do
 done
 
 cmake --build . --config $BUILD_TYPE # build the project
-if [ $? -eq 0 ]; then          # check if build succeeded
-    ./kaizen -verbose $ARG_CLOC # run the executable (will run the tests)
+if [ $? -eq 0 ]; then                # check if build succeeded
+    ./kaizen -verbose $ARG_CLOC      # run the executable (will run the tests)
 else
   echo "Build failed. Exiting."
   exit 1
