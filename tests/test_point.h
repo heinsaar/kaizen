@@ -152,8 +152,8 @@ void main_test_point()
         a.y() == p2.y()
     );
 
-    std::tuple<int, float, double> my_point = { 1, 2.0f, 3.0 };
-    zen::point3d p3d(my_point);
+    std::tuple<int, float, double> tup = { 1, 2.0f, 3.0 };
+    zen::point3d p3d(tup);
     ZEN_EXPECT(
         p3d.x() == 1 &&
         p3d.y() == 2 &&
