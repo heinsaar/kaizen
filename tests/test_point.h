@@ -174,6 +174,6 @@ void main_test_point()
     test_point_std_map_interoperability();
     test_point_std_vector_of_pairs();
     test_point_copy_assignment();
-    test_point_arithmetic();
     test_point_std_algorithms();
+    test_point_arithmetic();
 }
