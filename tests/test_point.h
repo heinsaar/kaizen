@@ -2,6 +2,8 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+#include "../internal.h"
+
 void test_point_copy_assignment()
 {
     BEGIN_SUBTEST;
@@ -52,6 +54,7 @@ void test_point_std_map_interoperability()
     );
 
     std::map<double, double> md = { {1.0, 1.0}, {2.0, 2.0}, {3.0, 3.0} };
+    ZEN_EXPECT(silent_print(md) == "[[1, 1], [2, 2], [3, 3]]");
     const zen::point p = *md.begin();
     md.insert(zen::point(4, 4));
     ZEN_EXPECT(p.x() == 1.0 && p.y() == 1.0);
@@ -63,6 +66,8 @@ void test_point_std_vector_of_pairs()
     BEGIN_SUBTEST;
     std::vector<std::pair<double, double>> v1 = { {1.0, 2.0}, {3.0, 4.0} };
     zen::points v2(v1.begin(), v1.end()); // copy construct from std::pair vector
+
+    ZEN_EXPECT(silent_print(v1) == "[[1, 2], [3, 4]]");
 
     ZEN_EXPECT(
         v2[0].x() == 1.0 &&
@@ -77,6 +82,8 @@ void test_point_std_algorithms()
     BEGIN_SUBTEST;
     zen::points v = { {1.0, 2.0}, {3.0, 4.0}, {5.0, 6.0} };
     std::sort(v.begin(), v.end()); // sort using pair's comparison
+
+    ZEN_EXPECT(silent_print(v) == "[[1, 2], [3, 4], [5, 6]]");
 
     ZEN_EXPECT(
         v[0].x() == 1.0 &&
