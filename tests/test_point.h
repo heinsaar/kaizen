@@ -86,6 +86,49 @@ void test_std_algorithms()
     );
 }
 
+void test_point_arithmetic()
+{
+    BEGIN_SUBTEST;
+
+    zen::points2d v2d = { {1.0, 2.0}, {3.0, 4.0}, {5.0, 6.0} };
+    zen::points3d v3d = { {1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}, {7.0, 8.0, 9.0} };
+
+    // Test addition
+    zen::point2d sum2d = v2d[0] + v2d[1];
+    zen::point3d sum3d = v3d[0] + v3d[1];
+
+    ZEN_EXPECT(sum2d.x() == 4.0 && sum2d.y() == 6.0);
+    ZEN_EXPECT(sum3d.x() == 5.0 && sum3d.y() == 7.0 && sum3d.z() == 9.0);
+
+    // Test subtraction
+    zen::point2d diff2d = v2d[2] - v2d[0];
+    zen::point3d diff3d = v3d[2] - v3d[0];
+
+    ZEN_EXPECT(diff2d.x() == 4.0 && diff2d.y() == 4.0);
+    ZEN_EXPECT(diff3d.x() == 6.0 && diff3d.y() == 6.0 && diff3d.z() == 6.0);
+
+    // Test multiplication
+    zen::point2d prod2d = v2d[0] * 2.0;
+    zen::point3d prod3d = v3d[0] * 2.0;
+
+    ZEN_EXPECT(prod2d.x() == 2.0 && prod2d.y() == 4.0);
+    ZEN_EXPECT(prod3d.x() == 2.0 && prod3d.y() == 4.0 && prod3d.z() == 6.0);
+
+    // Test division
+    zen::point2d div2d = v2d[2] / 2.0;
+    zen::point3d div3d = v3d[2] / 2.0;
+
+    ZEN_EXPECT(div2d.x() == 2.5 && div2d.y() == 3.0);
+    ZEN_EXPECT(div3d.x() == 3.5 && div3d.y() == 4.0 && div3d.z() == 4.5);
+
+    // Test equality and inequality
+    ZEN_EXPECT(v2d[0] == zen::point2d(1.0, 2.0));
+    ZEN_EXPECT(v2d[1] != zen::point2d(1.0, 2.0));
+
+    ZEN_EXPECT(v3d[0] == zen::point3d(1.0, 2.0, 3.0));
+    ZEN_EXPECT(v3d[1] != zen::point3d(1.0, 2.0, 3.0));
+}
+
 void main_test_point()
 {
     BEGIN_TEST;
@@ -131,5 +174,6 @@ void main_test_point()
     test_point_std_map_interoperability();
     test_point_std_vector_of_pairs();
     test_point_copy_assignment();
+    test_point_arithmetic();
     test_std_algorithms();
 }

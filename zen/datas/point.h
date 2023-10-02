@@ -64,6 +64,19 @@ public:
     constexpr double& y()       { return this->second; }
     constexpr double  x() const { return this->first;  }
     constexpr double  y() const { return this->second; }
+
+    friend point2d operator+(const point2d& a, const point2d& b) { return point2d(a.x() + b.x(), a.y() + b.y()); }
+    friend point2d operator-(const point2d& a, const point2d& b) { return point2d(a.x() - b.x(), a.y() - b.y()); }
+    friend point2d operator*(const point2d& a, const double   k) { return point2d(a.x() * k, a.y() * k); }
+    friend bool   operator==(const point2d& a, const point2d& b) { return a.x() == b.x() && a.y() == b.y(); }
+    friend bool   operator!=(const point2d& a, const point2d& b) { return !(a == b); }
+    friend point2d operator/(const point2d& a, double k) {
+        if (k != 0) {
+            return point2d(a.x() / k, a.y() / k);
+        } else {
+            throw std::invalid_argument("ATTEMPTED DIVISION BY ZERO FOR point2d");
+        }
+    }
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::point3d
@@ -100,6 +113,21 @@ public:
     // interface to avoid writing '->first', '->second' or '->z_'
     constexpr double& z()       { return z_; }
     constexpr double  z() const { return z_; }
+
+    friend point3d operator+(const point3d& a, const point3d& b) { return point3d(a.x() + b.x(), a.y() + b.y(), a.z() + b.z()); }
+    friend point3d operator-(const point3d& a, const point3d& b) { return point3d(a.x() - b.x(), a.y() - b.y(), a.z() - b.z()); }
+    friend point3d operator*(const point3d& a, const double k)   { return point3d(a.x() * k, a.y() * k, a.z() * k); }
+    friend bool   operator==(const point3d& a, const point3d& b) { return a.x() == b.x() && a.y() == b.y() && a.z() == b.z(); }
+    friend bool   operator!=(const point3d& a, const point3d& b) { return !(a == b); }
+
+    friend point3d operator/(const point3d& a, double k) {
+        if (k != 0) {
+            return point3d(a.x() / k, a.y() / k, a.z() / k);
+        }
+        else {
+            throw std::invalid_argument("ATTEMPTED DIVISION BY ZERO FOR point3d");
+        }
+    }
 
 private:
     double z_;
