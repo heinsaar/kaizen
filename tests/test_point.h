@@ -61,8 +61,8 @@ void test_point_std_map_interoperability()
 void test_point_std_vector_of_pairs()
 {
     BEGIN_SUBTEST;
-    std::vector<std::pair<double, double>> v1 = { {1.0, 2.0}, {3.0, 4.0} };
-    zen::points v2(v1.begin(), v1.end()); // copy construct from std::pair vector
+    std::vector<std::pair<double, double>> v = { {1.0, 2.0}, {3.0, 4.0} };
+    zen::points v2(v.begin(), v.end()); // copy construct from std::pair vector
 
     ZEN_EXPECT(
         v2[0].x() == 1.0 &&
