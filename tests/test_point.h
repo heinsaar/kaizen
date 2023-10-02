@@ -72,7 +72,7 @@ void test_point_std_vector_of_pairs()
     );
 }
 
-void test_std_algorithms()
+void test_point_std_algorithms()
 {
     BEGIN_SUBTEST;
     zen::points v = { {1.0, 2.0}, {3.0, 4.0}, {5.0, 6.0} };
@@ -175,5 +175,5 @@ void main_test_point()
     test_point_std_vector_of_pairs();
     test_point_copy_assignment();
     test_point_arithmetic();
-    test_std_algorithms();
+    test_point_std_algorithms();
 }
