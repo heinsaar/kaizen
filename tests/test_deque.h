@@ -24,6 +24,7 @@ void main_test_deque()
     q.push_back(777);
 
     ZEN_EXPECT(q.contains(777));
+    ZEN_EXPECT(zen::to_string(q).contains("777"));
     ZEN_EXPECT(zen::is_empty(q) == q.is_empty());
 
     test_deque_of_strings();
