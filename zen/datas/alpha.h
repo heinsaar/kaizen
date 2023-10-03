@@ -45,6 +45,75 @@ inline auto timestamp() {
     return timestr.substr(0, timestr.length() - 1);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////// SERIALIZATION
+
+//------------------------------------------------------------------------------------------- std::pair
+
+namespace internal {
+    template<typename T>
+    std::string serialize(const T& x) {
+        std::ostringstream ss;
+        ss << x;
+        return ss.str();
+    }
+
+    // Overload for std::string type: serialization for a string type means
+    // simply quoting it, so that wherever it appears, it does so in quotes
+    std::string serialize(const std::string& s) { return quote(s); }
+
+    // Helper function to handle pair serialization
+    template<typename T1, typename T2>
+    std::string serialize(const std::pair<T1, T2>& p) {
+        return "[" + serialize(p.first) + ", " + serialize(p.second) + "]";
+    }
+
+    // Helper function to handle pair stream output
+    template<typename Os, typename T1, typename T2>
+    void pair_to_stream(Os& os, const std::pair<T1, T2>& p) {
+        os << serialize(p.first) << ", " << serialize(p.second);
+    }
+} // namespace internal
+
+template<class T1, class T2>
+std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p) {
+    os << "[";
+    internal::pair_to_stream(os, p);
+    os << "]";
+    return os;
+}
+
+//------------------------------------------------------------------------------------------- std::tuple
+
+namespace internal {
+    template<typename... Ts>
+    std::string serialize(const std::tuple<Ts...>& tup) {
+        std::string s = "[";
+        std::apply([&s](auto&&... args) {
+            auto append = [&](const auto& arg) { s += serialize(arg) + ", "; };
+            (append(args), ...);
+        }, tup);
+        if (s.size() > 1)
+            s.erase(s.size() - 2); // remove trailing ", "
+        return s + "]";
+    }
+    // Helper function to handle comma-space separator
+    template<typename Os, typename T, typename... Ts>
+    void tuple_to_stream(Os& os, const T& first, const Ts&... rest) {
+        os << serialize(first);
+        ((os << ", " << serialize(rest)), ...);
+    }
+} // namespace internal
+
+template<typename... Ts>
+std::ostream& operator<<(std::ostream& os, const std::tuple<Ts...>& tup) {
+    os << "[";
+    std::apply([&os](auto&&... args) {
+        internal::tuple_to_stream(os, args...);
+        }, tup);
+    os << "]";
+    return os;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::stackonly
 
 struct stackonly
@@ -132,7 +201,7 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
         } \
     } while(0)
 
-// TODO: Add ZEN_EXPECT_NOTHROW()
+// ISSUE#25: Add ZEN_EXPECT_NOTHROW()
 
 ///////////////////////////////////////////////////////////////////////////////////////////// COLORS
 // Example: zen::print(zen::color::red(str));

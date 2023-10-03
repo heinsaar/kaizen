@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 ### Working with files
 Open a file and read any line right away:
 ```cpp
-zen::file::ifile      license_text("../LICENSE.txt"_path);
+zen::ifile            license_text("../LICENSE.txt"_path);
 zen::string version = license_text.getline(1);
 zen::string license = license_text.getline(3);
 ```
@@ -34,6 +34,10 @@ for (int i : zen::in(5))        // i from 0 to 4
 for (int i : zen::in(1, 10))    // i from 1 to 9
 for (int i : zen::in(0, 10, 2)) // i from 0 to 8, step 2
 ```
+Our benchmarks consistently show that, for optimized builds, not only is there zero overhead from using
+`zen::in()` instead of a raw loop, but sometimes `zen::in` even ends up slightly *faster* (yes, faster)
+than the raw loop for both MSVC (the Visual Studio compiler) as well as GCC/Clang.
+Compiler optimizations can be full of surprises.
 ### Strings
 Python-like substring extractions:
 ```cpp
@@ -134,6 +138,16 @@ A static assert that shows the expression that failed:
 // Will show something like:
 // 'ZEN STATIC ASSERTION FAILED. "FAILED EXPRESSION:": zen::is_iterable_v<int>'
 ZEN_STATIC_ASSERT(zen::is_iterable_v<int>, "FAILED EXPRESSION:");
+```
+### Timer
+A simple timer:
+```cpp
+// Let's benchmark zen::in
+zen::timer timer;
+for (int i : zen::in(N)) {
+    // Some computation
+}
+zen::log(timer.stop().duration_string());
 ```
 ### Versions
 Semantic versioning:

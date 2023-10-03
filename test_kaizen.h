@@ -45,3 +45,6 @@
 #include "tests/test_set.h"
 #include "tests/test_map.h"
 #include "tests/test_in.h"
+
+// Performance tests
+#include "tests/test_perf.h"

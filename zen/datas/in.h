@@ -43,7 +43,7 @@ public:
     public:
         iterator(int n = 0, int step = 1) : n_(n), step_(step) {}
         iterator& operator++() { n_ += step_; return *this; }
-        const int& operator* ()            const { return n_; }
+        const int& operator*()             const { return n_; }
         bool operator!=(const iterator& x) const {
             return (step_ > 0) ? (n_ < x.n_) : (n_ > x.n_);
         }

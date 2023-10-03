@@ -51,8 +51,8 @@ public:
                stop_(std::chrono::high_resolution_clock::now())
     {}
 
-    void start() { start_ = std::chrono::high_resolution_clock::now(); }
-    void stop()  {  stop_ = std::chrono::high_resolution_clock::now(); }
+    auto start() { start_ = std::chrono::high_resolution_clock::now(); return *this; }
+    auto stop()  {  stop_ = std::chrono::high_resolution_clock::now(); return *this; }
 
     template<class Duration>
     auto elapsed() const {

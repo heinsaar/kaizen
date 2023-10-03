@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 
 	zen::timer timer;
 
-	// Since the order of tests doesn't matter, their
+	// Since the order of these tests doesn't matter, their
 	// calls are listed in descending length for aesthetics
 	main_test_cmd_args(argc, argv);
 	main_test_unordered_multiset();
@@ -79,7 +79,11 @@ int main(int argc, char* argv[])
 	main_test_set();
 	main_test_in();
 
-	if (cmd_args.is_present("-cloc")) main_test_cloc();
+	// Performance tests
+	main_test_performance();
+
+	if (cmd_args.is_present("-cloc"))
+		main_test_cloc();
 
 	timer.stop();
 
