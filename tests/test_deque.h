@@ -10,8 +10,6 @@ void test_deque_of_strings()
     zen::deque<zen::string> x = { "1", "2", "3", "4" };
     x.push_back("0");
 
-    //zen::log(typeid(x).name(), x);
-
     ZEN_EXPECT(silent_print(x) == "[1, 2, 3, 4, 0]");
     ZEN_EXPECT(x.contains("0"));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
@@ -24,8 +22,6 @@ void main_test_deque()
     zen::deque<int> q;
     zen::generate_random(q);
     q.push_back(777);
-
-    //zen::log("RANDOM DEQUE:", q);
 
     ZEN_EXPECT(q.contains(777));
     ZEN_EXPECT(zen::is_empty(q) == q.is_empty());
