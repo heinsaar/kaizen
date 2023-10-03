@@ -8,8 +8,6 @@ void test_vector_of_strings()
     zen::vector<zen::string> v = { "1", "2", "3", "4" };
     v.push_back("0");
 
-    //zen::log(typeid(v).name(), v);
-
     zen::strings zs = v;
 
     ZEN_EXPECT(v.contains("0") == zs.contains("0"));
@@ -22,8 +20,6 @@ void main_test_vector()
     zen::vector<int> v;
     zen::generate_random(v);
     v.push_back(777);
-
-    //zen::log("RANDOM VECTOR:", v);
 
     ZEN_EXPECT(v.contains(777));
     ZEN_EXPECT(zen::is_empty(v) == v.is_empty());
