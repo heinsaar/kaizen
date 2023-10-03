@@ -77,40 +77,42 @@ void test_utils_print()
 {
     BEGIN_SUBTEST;
 
-    // Test with a number
+    // Number
     ZEN_EXPECT(silent_print(5) == "5");
 
-    // Test with a string
+    // String
     ZEN_EXPECT(silent_print("hello") == "hello");
 
-    // Test with multiple arguments of mixed types
+    // Multiple arguments of mixed types
     ZEN_EXPECT(silent_print(5, "hello", 7.2) == "5 hello 7.2");
 
-    // Test with a vector
+    // Vector
     std::vector<int> v =          { 1, 2, 3 };
     ZEN_EXPECT(silent_print(v) == "[1, 2, 3]");
 
-    // Test with nested containers
+    // Nested containers
     std::vector<std::vector<int>> vv = { {1, 2}, {3, 4} };
     ZEN_EXPECT(silent_print(vv) ==     "[[1, 2], [3, 4]]");
 
-    // Test with even more nested containers: vector, list, vector
+    // Even more nested containers: vector, list, vector
     std::vector<std::list<std::vector<int>>> vxv = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
     ZEN_EXPECT(silent_print(vxv) ==                "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
 
-    // Test with even more nested containers: list, vector, list
+    // Even more nested containers: list, vector, list
     std::list<std::vector<std::list<int>>> xvx = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
     ZEN_EXPECT(silent_print(xvx) ==              "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
 
-    // Test with even more nested containers: list, vector, map
+    // Even more nested containers: list, vector, map
     std::list<std::vector<std::deque<int>>> xvd = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
     ZEN_EXPECT(silent_print(xvd) ==               "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
 
-    // Test with mixed types
+    // Mixed types
     ZEN_EXPECT(silent_print("Test", 1, 4.5) == "Test 1 4.5");
 
-    // Test an empty print call
+    // Empty print call
     ZEN_EXPECT(silent_print() == "");
+
+    // Strings nested in pairs and tuples nested in each other in various ways
 
     std::tuple<int, int, std::string, double> tup = { 1, 2,  "tuplestr",  3.9 };
     ZEN_EXPECT(silent_print(tup) ==                 "[1, 2, \"tuplestr\", 3.9]");
