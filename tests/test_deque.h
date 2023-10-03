@@ -2,6 +2,8 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+#include "../internal.h"
+
 void test_deque_of_strings()
 {
     BEGIN_SUBTEST;
@@ -10,6 +12,7 @@ void test_deque_of_strings()
 
     //zen::log(typeid(x).name(), x);
 
+    ZEN_EXPECT(silent_print(x) == "[1, 2, 3, 4, 0]");
     ZEN_EXPECT(x.contains("0"));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
