@@ -2,7 +2,8 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
-void test_cmd_args_empty_args() {
+void test_cmd_args_empty_args()
+{
     BEGIN_SUBTEST;
     const char* argv[] = { "exe" };
     zen::cmd_args args(argv, 1);
@@ -10,7 +11,8 @@ void test_cmd_args_empty_args() {
     ZEN_EXPECT(!args.is_present("-ignore"));
 }
 
-void test_cmd_args_single_arg_present() {
+void test_cmd_args_single_arg_present()
+{
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args args(argv, 2);
@@ -18,7 +20,8 @@ void test_cmd_args_single_arg_present() {
     ZEN_EXPECT(args.is_present());
 }
 
-void test_cmd_args_single_arg_not_present() {
+void test_cmd_args_single_arg_not_present()
+{
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args args(argv, 2);
@@ -26,7 +29,8 @@ void test_cmd_args_single_arg_not_present() {
     ZEN_EXPECT(!args.is_present());
 }
 
-void test_cmd_args_multiple_args_present() {
+void test_cmd_args_multiple_args_present()
+{
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args args(argv, 3);
@@ -35,7 +39,8 @@ void test_cmd_args_multiple_args_present() {
     ZEN_EXPECT(args.is_present("-ignore"));
 }
 
-void test_cmd_args_multiple_args_one_missing() {
+void test_cmd_args_multiple_args_one_missing()
+{
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose" };
     zen::cmd_args args(argv, 2);
@@ -44,7 +49,8 @@ void test_cmd_args_multiple_args_one_missing() {
     ZEN_EXPECT(!args.is_present("-ignore"));
 }
 
-void test_cmd_args_arg_at() {
+void test_cmd_args_arg_at()
+{
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args args(argv, 3);
@@ -53,7 +59,8 @@ void test_cmd_args_arg_at() {
     ZEN_EXPECT(   args.arg_at(2) == "-ignore");
 }
 
-void test_cmd_args_first_last_arg() {
+void test_cmd_args_first_last_arg()
+{
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args args(argv, 3);
@@ -61,7 +68,8 @@ void test_cmd_args_first_last_arg() {
     ZEN_EXPECT(   args.last_arg()  == "-ignore");
 }
 
-void test_cmd_args_constructor_exceptions() {
+void test_cmd_args_constructor_exceptions()
+{
     BEGIN_SUBTEST;
     // Test negative argc
     try {
