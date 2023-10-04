@@ -60,27 +60,27 @@ public:
         }
     }
 
-    auto& accept(const std::string& a)
+    auto& accept(const std::string& arg)
     {
-        if (a.empty())
+        if (arg.empty())
             return *this; // reject accept("") calls
 
         if (std::find(std::begin(args_accepted_),
-                      std::end(  args_accepted_), a)
+                      std::end(  args_accepted_), arg)
                    == std::end(  args_accepted_))
-            args_accepted_.push_back(a);
+            args_accepted_.push_back(arg);
         return *this;
     }
 
     // Returns true if either the provided argument 'a' or the last argument added by accept()
     // is present in the command line (with which the program was presumably launched)
-    bool is_present(const std::string& a = "") const
+    bool is_present(const std::string& arg = "") const
     {
-        if (a.empty())
+        if (arg.empty())
             return args_accepted_.empty() ? false : is_present(args_accepted_.back());
 
         for (int i = 0; i < argc_; ++i)
-            if (a == arg_at(i))
+            if (arg == arg_at(i))
                 return true;
 
         return false;
