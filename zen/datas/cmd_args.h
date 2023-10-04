@@ -90,7 +90,7 @@ public:
     {
         if (0 <= n && n < argc_)
             return argv_[n];
-        return "";
+        return ""; // signals non-existence
     }
 
     std::string first_arg() const { return arg_at(0); }
