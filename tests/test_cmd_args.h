@@ -64,8 +64,8 @@ void test_cmd_args_first_last_arg()
     BEGIN_SUBTEST;
     const char* argv[] = { "exe", "-verbose", "-ignore" };
     zen::cmd_args args(argv, 3);
-    ZEN_EXPECT(   args.first_arg() == "exe");
-    ZEN_EXPECT(   args.last_arg()  == "-ignore");
+    ZEN_EXPECT(   args.first() == "exe");
+    ZEN_EXPECT(   args.last()  == "-ignore");
 }
 
 void test_cmd_args_constructor_exceptions()

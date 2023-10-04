@@ -93,8 +93,8 @@ public:
         return ""; // signals non-existence
     }
 
-    std::string first_arg() const { return arg_at(0); }
-    std::string  last_arg() const { return arg_at(argc_ - 1); }
+    std::string first() const { return arg_at(0); }
+    std::string  last() const { return arg_at(argc_ - 1); }
 
     std::size_t count_accepted() const { return args_accepted_.size(); }
 
