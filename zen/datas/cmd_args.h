@@ -86,6 +86,29 @@ public:
         return false;
     }
 
+    auto get_options(const std::string& arg) const
+    {
+        std::vector<std::string> options;
+
+        int idx = find(arg);
+        if (idx >= argc_)
+            return options; // as empty
+
+        // Collect all non-dashed strings that follow arg as its options
+        // Example: --copy from/some/dir to/some/dir -verbose
+        //                 ^^^^^^^^^^^^^ ^^^^^^^^^^^
+        for (int i = idx + 1; i < argc_; ++i)
+        {
+            const std::string& ai = arg_at(i);
+            if (ai[0] == '-')
+                break; // stop collecting when a new dashed argument is encountered
+
+            options.push_back(ai);
+        }
+
+        return options;
+    }
+
     std::string arg_at(const int n) const
     {
         if (0 <= n && n < argc_)
@@ -97,6 +120,15 @@ public:
     std::string  last() const { return arg_at(argc_ - 1); }
 
     std::size_t count_accepted() const { return args_accepted_.size(); }
+
+    int find(const std::string& arg = "") const
+    {
+        for (int i = 0; i < argc_; ++i)
+            if (arg_at(i) == arg)
+                return i;
+
+        return argc_; // the end, signals 'not found'
+    }
 
 private:
     using arguments = std::vector<std::string>;
