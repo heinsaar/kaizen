@@ -100,6 +100,59 @@ void test_cmd_args_uniqueness()
     ZEN_EXPECT(args.count_accepted() == 1);
 }
 
+void test_cmd_args_one_arg_with_value()
+{
+    BEGIN_SUBTEST;
+    const char* argv[] = { "exe", "--path", "from/some/dir", "to/some/dir" };
+    zen::cmd_args args(argv, 4);
+    args.accept("--path");
+    ZEN_EXPECT(args.is_present("--path"));
+    ZEN_EXPECT(
+        args.get_options("--path")[0] == "from/some/dir" &&
+        args.get_options("--path")[1] ==   "to/some/dir"
+    );
+}
+
+void test_cmd_args_one_arg_with_no_value()
+{
+    BEGIN_SUBTEST;
+    const char* argv[] = { "exe", "--verbose" };
+    zen::cmd_args args(argv, 2);
+    args.accept("--verbose");
+    ZEN_EXPECT(args.is_present("--verbose"));
+    ZEN_EXPECT(
+        args.get_options("--verbose").empty()
+    );
+}
+
+void test_cmd_args_multiple_args_with_values()
+{
+    BEGIN_SUBTEST;
+    const char* argv[] = { "exe", "--src", "source/dir", "--dst", "dest/dir" };
+    zen::cmd_args args(argv, 5);
+    args.accept("--src").accept("--dst");
+    ZEN_EXPECT(args.is_present("--src"));
+    ZEN_EXPECT(args.is_present("--dst"));
+    ZEN_EXPECT(
+        args.get_options("--src")[0] == "source/dir" &&
+        args.get_options("--dst")[0] ==   "dest/dir"
+    );
+}
+
+void test_cmd_args_arg_followed_by_another_arg()
+{
+    BEGIN_SUBTEST;
+    const char* argv[] = { "exe", "--src", "--dst", "dest/dir" };
+    zen::cmd_args args(argv, 4);
+    args.accept("--src").accept("--dst");
+    ZEN_EXPECT(args.is_present("--src"));
+    ZEN_EXPECT(args.is_present("--dst"));
+    ZEN_EXPECT(
+        args.get_options("--src").empty() &&
+        args.get_options("--dst")[0] == "dest/dir"
+    );
+}
+
 void main_test_cmd_args(int argc, char* argv[])
 {
     BEGIN_TEST;
@@ -112,11 +165,15 @@ void main_test_cmd_args(int argc, char* argv[])
     ZEN_EXPECT(absent  == args.is_present("-absent"));
     ZEN_EXPECT(!args.is_present("-ignore"));
 
+    test_cmd_args_arg_followed_by_another_arg();
     test_cmd_args_multiple_args_one_missing();
+    test_cmd_args_multiple_args_with_values();
     test_cmd_args_single_arg_not_present();
     test_cmd_args_constructor_exceptions();
     test_cmd_args_multiple_args_present();
+    test_cmd_args_one_arg_with_no_value();
     test_cmd_args_single_arg_present();
+    test_cmd_args_one_arg_with_value();
     test_cmd_args_first_last_arg();
     test_cmd_args_empty_args();
     test_cmd_args_uniqueness();
