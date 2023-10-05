@@ -2,6 +2,15 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+void test_queue_of_strings()
+{
+    BEGIN_SUBTEST;
+    zen::queue<zen::string> x = zen::strings{ "1", "2", "3", "4" }; // queue is not directly contructible from an initializer list
+    x.push("0");
+
+    ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
+}
+
 void test_priority_queue_of_strings()
 {
     BEGIN_SUBTEST;
@@ -13,15 +22,6 @@ void test_priority_queue_of_strings()
         std::size(x) == 5 &&
         zen::is_empty(x) == x.is_empty()
     );
-}
-
-void test_queue_of_strings()
-{
-    BEGIN_SUBTEST;
-    zen::queue<zen::string> x = zen::strings{ "1", "2", "3", "4" }; // queue is not directly contructible from an initializer list
-    x.push("0");
-
-    ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
 
 void main_test_priority_queue()
