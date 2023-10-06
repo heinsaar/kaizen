@@ -38,6 +38,8 @@ class deque : public std::deque<T, A>, private zen::stackonly
 public:
     using std::deque<T, A>::deque; // inherit constructors, has to be explicit
 
+    deque(const std::deque<T, A>& d) : std::deque<T, A>(d) {}
+
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
          contains(Pred p) const

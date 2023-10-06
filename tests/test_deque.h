@@ -15,6 +15,20 @@ void test_deque_of_strings()
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
 
+void test_deque_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::deque<int> v = { 1, 2, 3 };
+
+    std::deque sv{ v };
+    zen::deque zv{ sv };
+
+    zen::deque<int> zc = [&]() { return sv; }();
+
+    ZEN_EXPECT(v.contains(1) && zv.contains(2));
+    ZEN_EXPECT(zc == sv && sv == zv);
+}
+
 void main_test_deque()
 {
     BEGIN_TEST;
@@ -27,5 +41,6 @@ void main_test_deque()
     ZEN_EXPECT(zen::to_string(q).contains("777"));
     ZEN_EXPECT(zen::is_empty(q) == q.is_empty());
 
+    test_deque_zen_std_interchangeability();
     test_deque_of_strings();
 }
