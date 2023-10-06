@@ -35,6 +35,8 @@ class queue : public std::queue<T, C>, private zen::stackonly
 {
 public:
     using std::queue<T, C>::queue; // inherit constructors, has to be explicit
+
+    queue(const std::queue<T, C>& q) : std::queue<T, C>(q) {}
     
     template<class Iterable>
     queue(const Iterable& c)
@@ -62,6 +64,8 @@ class priority_queue : public std::priority_queue<T, C, L>, private zen::stackon
 {
 public:
     using std::priority_queue<T, C, L>::priority_queue; // inherit constructors, has to be explicit
+
+    priority_queue(const std::priority_queue<T, C, L>& q) : std::priority_queue<T, C, L>(q) {}
 
     template<class Iterable>
     priority_queue(const Iterable& c)
