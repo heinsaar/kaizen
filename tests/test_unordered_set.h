@@ -12,6 +12,19 @@ void test_unordered_set_of_strings()
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
 
+void test_unordered_set_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::hash_set<zen::string, zen::string_hash> v = { "1", "2", "3", "4" };
+    
+    std::unordered_set sv{ v };
+    zen::hash_set      zv{ sv };
+
+    zen::hash_set<zen::string, zen::string_hash> zc = [&]() { return sv; }();
+    
+    ZEN_EXPECT(zv == sv && sv == zc);
+}
+
 void test_unordered_multiset_of_strings()
 {
     BEGIN_SUBTEST;
@@ -21,6 +34,19 @@ void test_unordered_multiset_of_strings()
 
     ZEN_EXPECT(x.count("0") == 2 && x.size() == 6);
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
+}
+
+void test_unordered_multiset_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::hash_multiset<zen::string, zen::string_hash> v = { "1", "1", "2", "2" };
+
+    std::unordered_multiset sv{ v };
+    zen::hash_multiset      zv{ sv };
+
+    zen::hash_multiset<zen::string, zen::string_hash> zc = [&]() { return sv; }();
+
+    ZEN_EXPECT(zv == sv && sv == zc);
 }
 
 void main_test_unordered_set()
@@ -33,6 +59,7 @@ void main_test_unordered_set()
     ZEN_EXPECT(x.contains(777) && x.size() == 5);
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 
+    test_unordered_set_zen_std_interchangeability();
     test_unordered_set_of_strings();
 }
 
@@ -47,5 +74,6 @@ void main_test_unordered_multiset()
     ZEN_EXPECT(x.contains(888) && x.size() == 8);
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 
+    test_unordered_multiset_zen_std_interchangeability();
     test_unordered_set_of_strings();
 }

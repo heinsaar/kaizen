@@ -41,6 +41,13 @@ class unordered_set : public std::unordered_set<T, H, E, A>, private zen::stacko
 public:
     using std::unordered_set<T, H, E, A>::unordered_set; // inherit constructors, has to be explicit
 
+    unordered_set(const std::unordered_set<T, H, E, A>& u)
+        : std::unordered_set<T, H, E, A>(u) {}
+
+    template<class Tx, class Hx, class Ex, class Ax>
+    unordered_set(const std::unordered_set<Tx, Hx, Ex, Ax>& u)
+        : std::unordered_set<T, H, E, A>(u.begin(), u.end()) {}
+
     bool is_empty() const { return my::empty(); }
 
 private:
@@ -59,6 +66,13 @@ class unordered_multiset : public std::unordered_multiset<T, H, E, A>, private z
 {
 public:
     using std::unordered_multiset<T, H, E, A>::unordered_multiset; // inherit constructors, has to be explicit
+
+    unordered_multiset(const std::unordered_multiset<T, H, E, A>& u)
+        : std::unordered_multiset<T, H, E, A>(u) {}
+
+    template<class Tx, class Hx, class Ex, class Ax>
+    unordered_multiset(const std::unordered_multiset<Tx, Hx, Ex, Ax>& u)
+        : std::unordered_multiset<T, H, E, A>(u.begin(), u.end()) {}
 
     bool is_empty() const { return my::empty(); }
 
