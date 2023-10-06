@@ -329,7 +329,7 @@ void main_test_string()
     BEGIN_TEST;
 
     std::string s = "[Hello World] 1.2.3";
-    zen::string z = s; s = z; z = s; // check basic interchangability
+    zen::string z = s; s = z; z = s; // check basic interchangeability
 
     ZEN_EXPECT(z.contains("World"));
     ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
