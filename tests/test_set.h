@@ -16,6 +16,32 @@ void test_set_of_strings()
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
 
+void test_set_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::set<zen::string> v = { "1", "2", "3", "4" };
+
+    std::set sv{ v };
+    zen::set zv{ sv };
+
+    zen::set<zen::string> zc = [&]() { return sv; }();
+
+    ZEN_EXPECT(zv == sv && sv == zc);
+}
+
+void test_multiset_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::multiset<zen::string> v = { "1", "1", "2", "2" };
+
+    std::multiset sv{ v };
+    zen::multiset zv{ sv };
+
+    zen::multiset<zen::string> zc = [&]() { return sv; }();
+
+    ZEN_EXPECT(zv == sv && sv == zc);
+}
+
 void main_test_multiset()
 {
     BEGIN_SUBTEST;
@@ -26,6 +52,8 @@ void main_test_multiset()
 
     ZEN_EXPECT(x.contains("0"));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
+
+    test_multiset_zen_std_interchangeability();
 }
 
 void main_test_set()
@@ -40,5 +68,6 @@ void main_test_set()
     ZEN_EXPECT(q.contains(777));
     ZEN_EXPECT(zen::is_empty(q) == q.is_empty());
 
+    test_set_zen_std_interchangeability();
     test_set_of_strings();
 }

@@ -36,6 +36,11 @@ class set : public std::set<K, C, A>, private zen::stackonly
 public:
     using std::set<K, C, A>::set; // inherit constructors, has to be explicit
 
+    set(const std::set<K, C, A>& u) : std::set<K, C, A>(u) {}
+
+    template<typename Kx, typename Cx, typename Ax>
+    set(const std::set<Kx, Cx, Ax>& u) : std::set<K, C, A>(u.begin(), u.end()) {}
+
     bool is_empty() const { return my::empty(); }
 
 private:
@@ -49,6 +54,11 @@ class multiset : public std::multiset<K, C, A>, private zen::stackonly
 {
 public:
     using std::multiset<K, C, A>::multiset; // inherit constructors, has to be explicit
+
+    multiset(const std::multiset<K, C, A>& u) : std::multiset<K, C, A>(u) {}
+
+    template<typename Kx, typename Cx, typename Ax>
+    multiset(const std::multiset<Kx, Cx, Ax>& u) : std::multiset<K, C, A>(u.begin(), u.end()) {}
 
     bool is_empty() const { return my::empty(); }
 
