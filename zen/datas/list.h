@@ -38,6 +38,8 @@ class list : public std::list<T, A>, private zen::stackonly
 public:
     using std::list<T, A>::list; // inherit constructors, has to be explicit
 
+    list(const std::list<T, A>& x) : std::list<T, A>(x) {}
+
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
         contains(Pred p) const

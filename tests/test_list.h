@@ -12,6 +12,20 @@ void test_list_of_strings()
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
 
+void test_list_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::list<int> v = { 1, 2, 3 };
+
+    std::list sv{ v };
+    zen::list zv{ sv };
+
+    zen::list<int> zc = [&]() { return sv; }();
+
+    ZEN_EXPECT(v.contains(1) && zv.contains(2));
+    ZEN_EXPECT(zc == sv && sv == zv);
+}
+
 void main_test_list()
 {
     BEGIN_TEST;
@@ -23,5 +37,6 @@ void main_test_list()
     ZEN_EXPECT(x.contains(777));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 
+    test_list_zen_std_interchangeability();
     test_list_of_strings();
 }
