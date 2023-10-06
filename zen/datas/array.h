@@ -38,6 +38,8 @@ class array : public std::array<T, N>, private zen::stackonly
 public:
     using std::array<T, N>::array; // inherit constructors, has to be explicit
 
+    array(const std::array<T, N>& a) : std::array<T, N>(a) {}
+
     // Custom constructor to handle initializer list
     array(std::initializer_list<T> init_list)
     {
