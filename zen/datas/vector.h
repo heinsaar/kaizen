@@ -38,6 +38,8 @@ class vector : public std::vector<T, A>, private zen::stackonly
 public:
     using std::vector<T, A>::vector; // inherit constructors, has to be explicit
 
+    vector(const std::vector<T, A>& v) : std::vector<T, A>(v) {}
+
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
         contains(Pred p) const

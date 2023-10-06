@@ -14,6 +14,20 @@ void test_vector_of_strings()
     ZEN_EXPECT(zen::is_empty(v) == v.is_empty());
 }
 
+void test_vector_zen_std_interchangability()
+{
+    BEGIN_SUBTEST;
+    zen::vector<int> v = { 1, 2, 3 };
+
+    std::vector sv{ v };
+    zen::vector zv{ sv };
+
+    zen::vector<int> zc = [&]() { return sv; }();
+
+    ZEN_EXPECT(v.contains(1) && zv.contains(2));
+    ZEN_EXPECT(zc == sv && sv == zv);
+}
+
 void main_test_vector()
 {
     BEGIN_TEST;
@@ -24,5 +38,6 @@ void main_test_vector()
     ZEN_EXPECT(v.contains(777));
     ZEN_EXPECT(zen::is_empty(v) == v.is_empty());
 
+    test_vector_zen_std_interchangability();
     test_vector_of_strings();
 }
