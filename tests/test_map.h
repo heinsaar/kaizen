@@ -4,6 +4,32 @@
 
 #include "../internal.h"
 
+void test_map_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::dictionary v = { {"A", "1"}, {"B", "2"}, {"C", "3"} };
+
+    std::map sv{ v };
+    zen::map zv{ sv };
+
+    zen::dictionary zc = [&]() { return sv; }();
+
+    ZEN_EXPECT(zv == sv && sv == zc);
+}
+
+void test_multimap_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::multimap<zen::string, zen::string> v = { {"A", "1"}, {"A", "2"}, {"A", "3"}, {"B", "4"}, {"B", "5"} };
+
+    std::multimap sv{ v };
+    zen::multimap zv{ sv };
+
+    zen::multimap zc = [&]() { return sv; }();
+
+    ZEN_EXPECT(zv == sv && sv == zc);
+}
+
 void main_test_map()
 {
     BEGIN_TEST;
@@ -17,6 +43,8 @@ void main_test_map()
     ZEN_EXPECT(!m["A"].contains("x"));
     
     ZEN_EXPECT(zen::is_empty(m) == m.is_empty());
+
+    test_map_zen_std_interchangeability();
 }
 
 void main_test_multimap()
@@ -45,4 +73,6 @@ void main_test_multimap()
     ZEN_EXPECT(mss["D"].size() == 2);
     
     ZEN_EXPECT(zen::is_empty(mss) == mss.is_empty());
+
+    test_multimap_zen_std_interchangeability();
 }

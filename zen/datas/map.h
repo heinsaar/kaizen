@@ -37,6 +37,11 @@ class map : public std::map<K, V, C, A>, private zen::stackonly
 public:
     using std::map<K, V, C, A>::map; // inherit constructors, has to be explicit
 
+    map(const std::map<K, V, C, A>& m) : std::map<K, V, C, A>(m) {}
+
+    template<class Kx, class Vx, class Cx, class Ax>
+    map(const std::map<Kx, Vx, Cx, Ax>& m) : std::map<K, V, C, A>(m.begin(), m.end()) {}
+
     bool is_empty() const { return my::empty(); }
 
 private:
@@ -50,6 +55,11 @@ class multimap : public std::multimap<K, V, C, A>, private zen::stackonly
 {
 public:
     using std::multimap<K, V, C, A>::multimap; // inherit constructors, has to be explicit
+
+    multimap(const std::multimap<K, V, C, A>& m) : std::multimap<K, V, C, A>(m) {}
+
+    template<class Kx, class Vx, class Cx, class Ax>
+    multimap(const std::multimap<Kx, Vx, Cx, Ax>& m) : std::multimap<K, V, C, A>(m.begin(), m.end()) {}
 
     // std::map::operator[] is not defined, but
     // zen::map::operator[] returns an std::vector
