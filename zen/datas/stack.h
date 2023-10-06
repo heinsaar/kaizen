@@ -35,6 +35,8 @@ class stack : public std::stack<T, C>, private zen::stackonly
 {
 public:
     using std::stack<T, C>::stack; // inherit constructors, has to be explicit
+
+    stack(const std::stack<T, C>& q) : std::stack<T, C>(q) {}
         
     bool is_empty() const { return my::empty(); }
 

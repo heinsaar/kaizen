@@ -12,6 +12,18 @@ void test_stack_of_strings()
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
 
+void test_stack_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::deque<zen::string> d = { "1", "2", "3", "4" };
+    zen::stack<zen::string> v{ d };
+
+    std::stack sv{ v };
+    zen::stack zv{ sv };
+
+    ZEN_EXPECT(sv == zv);
+}
+
 void main_test_stack()
 {
     BEGIN_TEST;
@@ -23,5 +35,6 @@ void main_test_stack()
 
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 
+    test_stack_zen_std_interchangeability();
     test_stack_of_strings();
 }
