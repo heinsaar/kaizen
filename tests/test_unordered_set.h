@@ -18,7 +18,7 @@ void test_unordered_set_zen_std_interchangeability()
     zen::hash_set<zen::string, zen::string_hash> v = { "1", "2", "3", "4" };
     
     std::unordered_set sv{ v };
-    zen::hash_set      zv{ sv };
+    zen::unordered_set zv{ sv };
 
     zen::hash_set<zen::string, zen::string_hash> zc = [&]() { return sv; }();
     
@@ -42,7 +42,7 @@ void test_unordered_multiset_zen_std_interchangeability()
     zen::hash_multiset<zen::string, zen::string_hash> v = { "1", "1", "2", "2" };
 
     std::unordered_multiset sv{ v };
-    zen::hash_multiset      zv{ sv };
+    zen::unordered_multiset zv{ sv };
 
     zen::hash_multiset<zen::string, zen::string_hash> zc = [&]() { return sv; }();
 
