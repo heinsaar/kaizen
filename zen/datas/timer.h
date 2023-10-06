@@ -27,7 +27,7 @@
 
 namespace zen {
 
-template <typename Rep, typename Period>
+template <class Rep, class Period>
 std::string adaptive_duration(const std::chrono::duration<Rep, Period>& d)
 {
     using namespace std::chrono;

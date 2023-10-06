@@ -50,7 +50,7 @@ inline auto timestamp() {
 //------------------------------------------------------------------------------------------- std::pair
 
 namespace internal {
-    template<typename T>
+    template<class T>
     std::string serialize(const T& x) {
         std::ostringstream ss;
         ss << x;
@@ -62,13 +62,13 @@ namespace internal {
     std::string serialize(const std::string& s) { return quote(s); }
 
     // Helper function to handle pair serialization
-    template<typename T1, typename T2>
+    template<class T1, class T2>
     std::string serialize(const std::pair<T1, T2>& p) {
         return "[" + serialize(p.first) + ", " + serialize(p.second) + "]";
     }
 
     // Helper function to handle pair stream output
-    template<typename Os, typename T1, typename T2>
+    template<class Os, class T1, class T2>
     void pair_to_stream(Os& os, const std::pair<T1, T2>& p) {
         os << serialize(p.first) << ", " << serialize(p.second);
     }
@@ -85,7 +85,7 @@ std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p) {
 //------------------------------------------------------------------------------------------- std::tuple
 
 namespace internal {
-    template<typename... Ts>
+    template<class... Ts>
     std::string serialize(const std::tuple<Ts...>& tup) {
         std::string s = "[";
         std::apply([&s](auto&&... args) {
@@ -97,14 +97,14 @@ namespace internal {
         return s + "]";
     }
     // Helper function to handle comma-space separator
-    template<typename Os, typename T, typename... Ts>
+    template<class Os, class T, class... Ts>
     void tuple_to_stream(Os& os, const T& first, const Ts&... rest) {
         os << serialize(first);
         ((os << ", " << serialize(rest)), ...);
     }
 } // namespace internal
 
-template<typename... Ts>
+template<class... Ts>
 std::ostream& operator<<(std::ostream& os, const std::tuple<Ts...>& tup) {
     os << "[";
     std::apply([&os](auto&&... args) {

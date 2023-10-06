@@ -38,7 +38,7 @@ public:
 
     set(const std::set<K, C, A>& u) : std::set<K, C, A>(u) {}
 
-    template<typename Kx, typename Cx, typename Ax>
+    template<class Kx, class Cx, class Ax>
     set(const std::set<Kx, Cx, Ax>& u) : std::set<K, C, A>(u.begin(), u.end()) {}
 
     bool is_empty() const { return my::empty(); }
@@ -57,7 +57,7 @@ public:
 
     multiset(const std::multiset<K, C, A>& u) : std::multiset<K, C, A>(u) {}
 
-    template<typename Kx, typename Cx, typename Ax>
+    template<class Kx, class Cx, class Ax>
     multiset(const std::multiset<Kx, Cx, Ax>& u) : std::multiset<K, C, A>(u.begin(), u.end()) {}
 
     bool is_empty() const { return my::empty(); }
