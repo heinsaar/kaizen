@@ -2,6 +2,49 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+void test_string_zen_std_interchangeability()
+{
+    // Construction and assignment
+    std::string s1 = "Hello";
+    zen::string z1(s1);
+
+    // Concatenation
+    zen::string z2 = "World";
+    std::string s2 = z2;
+
+    // Comparison
+    std::string s3 = "Hello";
+    zen::string z3 = "World";
+    s3 += z3;
+    z3 += s3;
+
+    // Manupulation
+    std::string s4 = "ABC";
+    zen::string z4 = "ABC";
+    zen::string z5 = "12345";
+    z5.insert(2, "ABC");
+    std::string s5 = "12ABC345";
+    ZEN_EXPECT(z5 == s5);
+    s5.erase(2, 3);
+    z5.erase(2, 3);
+
+    // Iteration
+    zen::string z7 = "xyz";
+    std::string s7;
+    for (auto it = z7.begin(); it != z7.end(); ++it) {
+        s7.push_back(*it);
+    }
+
+    ZEN_EXPECT(z1 == s1);
+    ZEN_EXPECT(s2 == z2);
+    ZEN_EXPECT(s3 == "HelloWorld");
+    ZEN_EXPECT(z3 == "WorldHelloWorld");
+    ZEN_EXPECT(s4 == z4);
+    ZEN_EXPECT(z4 <= s4 && s4 <= z4);
+    ZEN_EXPECT(s5 == z5);
+    ZEN_EXPECT(s7 == z7);
+}
+
 void test_string_extract()
 {
     BEGIN_SUBTEST;
@@ -338,6 +381,7 @@ void main_test_string()
     // Check interchangeability with std::string // TODO: Cover more cases?
     std::string x = z; z = x;
 
+    test_string_zen_std_interchangeability();
     test_string_replace_all();
     test_string_substring();
     test_string_ends_with();
