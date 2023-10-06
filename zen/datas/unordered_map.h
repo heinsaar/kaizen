@@ -42,6 +42,13 @@ class unordered_map : public std::unordered_map<K, V, H, E, A>, private zen::sta
 public:
     using std::unordered_map<K, V, H, E, A>::unordered_map; // inherit constructors, has to be explicit
 
+    unordered_map(const std::unordered_map<K, V, H, E, A>& u)
+        : std::unordered_map<K, V, H, E, A>(u) {}
+
+    template<class Kx, class Vx, class Hx, class Ex, class Ax>
+    unordered_map(const std::unordered_map<Kx, Vx, Hx, Ex, Ax>& u)
+        : std::unordered_map<K, V, H, E, A>(u.begin(), u.end()) {}
+
     bool is_empty() const { return my::empty(); }
 
 private:
@@ -61,6 +68,13 @@ class unordered_multimap : public std::unordered_multimap<K, V, H, E, A>, privat
 {
 public:
     using std::unordered_multimap<K, V, H, E, A>::unordered_multimap; // inherit constructors, has to be explicit
+
+    unordered_multimap(const std::unordered_multimap<K, V, H, E, A>& u)
+        : std::unordered_multimap<K, V, H, E, A>(u) {}
+
+    template<class Kx, class Vx, class Hx, class Ex, class Ax>
+    unordered_multimap(const std::unordered_multimap<Kx, Vx, Hx, Ex, Ax>& u)
+        : std::unordered_multimap<K, V, H, E, A>(u.begin(), u.end()) {}
 
     bool is_empty() const { return my::empty(); }
 
