@@ -14,7 +14,7 @@ void test_vector_of_strings()
     ZEN_EXPECT(zen::is_empty(v) == v.is_empty());
 }
 
-void test_vector_zen_std_interchangability()
+void test_vector_zen_std_interchangeability()
 {
     BEGIN_SUBTEST;
     zen::vector<int> v = { 1, 2, 3 };
@@ -38,6 +38,6 @@ void main_test_vector()
     ZEN_EXPECT(v.contains(777));
     ZEN_EXPECT(zen::is_empty(v) == v.is_empty());
 
-    test_vector_zen_std_interchangability();
+    test_vector_zen_std_interchangeability();
     test_vector_of_strings();
 }
