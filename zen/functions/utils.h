@@ -153,6 +153,41 @@ auto sum(const Iterable& c)
     return sum;
 }
 
+template<class Iterable, class EqualityComparable>
+auto count(const Iterable& c, const EqualityComparable& x)
+{
+    ZEN_STATIC_ASSERT(is_iterable_v<Iterable>,
+        "TEMPLATE PARAMETER Iterable EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT(is_equality_comparable_v<EqualityComparable>,
+        "TEMPLATE PARAMETER EqualityComparable EXPECTED TO BE EqualityComparable, BUT IS NOT");
+
+    size_t count = 0;
+    for (auto it = std::begin(c); it != std::end(c); ++it) {
+        if (*it == x)
+            ++count;
+    }
+
+    return count;
+}
+
+template<class Iterable, class Pred>
+auto count_if(const Iterable& c, Pred p)
+{
+    using T = decltype(*std::begin(c));
+    ZEN_STATIC_ASSERT(is_iterable_v<Iterable>,
+        "TEMPLATE PARAMETER Iterable EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT((std::is_invocable_r<bool, Pred, const T&>::value),
+        "TEMPLATE PARAMETER Predicate NOT APPLICABLE TO ELEMENT TYPE");
+
+    size_t count = 0;
+    for (auto it = std::begin(c); it != std::end(c); ++it) {
+        if (p(*it))
+            ++count;
+    }
+
+    return count;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////// LPS (Log, Print, String)
 // 
 // Printing and logging in Kaizen follows the LPS principle of textual visualization.

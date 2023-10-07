@@ -42,6 +42,38 @@ void test_utils_sum()
     //zen::sum(int_umap); // should fail compilation with message: ZEN STATIC ASSERTION FAILED. "ELEMENT TYPE EXPECTED TO BE Addable, BUT IS NOT"
 }
 
+void test_utils_count()
+{
+    BEGIN_SUBTEST;
+    
+    zen::vector<int> x1 = { 1, 1, 3, 4, 5 };
+    std::list<int>   x2 = { 1, 2, 2, 4, 5 };
+    std::deque<int>  x3 = { 1, 1, 2, 3 };
+    std::set<int>    x4 = { 1, 1, 2, 3 }; // sets do not allow duplicates
+
+    ZEN_EXPECT(zen::count(zen::ints{}, 1) == 0);
+    ZEN_EXPECT(zen::count(x1,          1) == 2);
+    ZEN_EXPECT(zen::count(x2,          2) == 2);
+    ZEN_EXPECT(zen::count(x3,          1) == 2);
+    ZEN_EXPECT(zen::count(x4,          1) == 1);
+}
+
+void test_utils_count_if()
+{
+    BEGIN_SUBTEST;
+
+    zen::vector<int> x1 = { 1, 2, 3, 4, 5 };
+    std::list<int>   x2 = { 1, 2, 3, 4, 5 };
+    std::deque<int>  x3 = { 1, 2, 3, 4, 5 };
+    std::set<int>    x4 = { 1, 2, 3, 4, 5 };
+
+    ZEN_EXPECT(zen::count_if(zen::ints{}, [](int i) { return i > 0;      }) == 0);
+    ZEN_EXPECT(zen::count_if(x1,          [](int i) { return i > 2;      }) == 3);
+    ZEN_EXPECT(zen::count_if(x2,          [](int i) { return i % 2 == 0; }) == 2);
+    ZEN_EXPECT(zen::count_if(x3,          [](int i) { return i < 3;      }) == 2);
+    ZEN_EXPECT(zen::count_if(x4,          [](int i) { return i == 3;     }) == 1);
+}
+
 void test_utils_to_string()
 {
     BEGIN_SUBTEST;
@@ -198,6 +230,8 @@ void main_test_utils()
     test_utils_search_downward();
     test_utils_search_upward();
     test_utils_to_string();
+    test_utils_count_if();
     test_utils_print();
+    test_utils_count();
     test_utils_sum();
 }
