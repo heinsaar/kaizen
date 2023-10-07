@@ -37,7 +37,7 @@ namespace zen {
         { x.empty() } -> std::same_as<bool>;
     };
 
-    template <typename T> concept has_empty_v = HasEmpty<T>;
+    template <class T> concept has_empty_v = HasEmpty<T>;
 #else // use SFINAE if concepts are not available (pre-C++20)
     template <class T, class = void> struct has_empty : std::false_type {};
 
@@ -60,7 +60,7 @@ namespace zen {
        *std::begin(x); // has begin and can be dereferenced
         std::end(x);   // has an end
     };
-    template <typename T> concept is_iterable_v = Iterable<T>;
+    template <class T> concept is_iterable_v = Iterable<T>;
 #else // use SFINAE if concepts are not available (pre-C++20)
     template <class T, class = void> struct is_iterable : std::false_type {};
 
@@ -80,7 +80,7 @@ namespace zen {
 #if __cpp_concepts >= 202002L
     template <class T>
     concept Addable = requires(T x, T y) { x + y; };
-    template <typename T> concept is_addable_v = Addable<T>;
+    template <class T> concept is_addable_v = Addable<T>;
 #else
     template <class T, class = void> struct is_addable : std::false_type {};
 
@@ -97,7 +97,7 @@ namespace zen {
 #if __cpp_concepts >= 202002L
     template <class T>
     concept Arithmetic = std::is_arithmetic<T>::value;
-    template <typename T> concept is_arithmetic_v = Arithmetic<T>;
+    template <class T> concept is_arithmetic_v = Arithmetic<T>;
 #else
     template <class T> struct is_arithmetic : std::is_arithmetic<T> {};
     template <class T> constexpr bool is_arithmetic_v = is_arithmetic<T>::value;
@@ -111,7 +111,7 @@ namespace zen {
         x.resize(n); // has a resize method
         { x.size() } -> std::same_as<size_t>; // has a size method returning size_t
     };
-    template <typename T> concept is_resizable_v = Resizable<T>;
+    template <class T> concept is_resizable_v = Resizable<T>;
 #else
     template <class T, class = void> struct is_resizable : std::false_type {};
 
