@@ -227,6 +227,8 @@ void main_test_utils()
 
     ZEN_EXPECT(zen::random_int() <= 10);
 
+    ZEN_EXPECT_NOTHROW([]{}());
+
     test_utils_search_downward();
     test_utils_search_upward();
     test_utils_to_string();

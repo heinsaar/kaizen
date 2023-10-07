@@ -201,7 +201,35 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
         } \
     } while(0)
 
-// ISSUE#25: Add ZEN_EXPECT_NOTHROW()
+// ZEN_EXPECT_NOTHROW checks its expression parameter to not throw an exception
+// and spits out the expression statement if it an exception is, in fact, thrown.
+// The do { } while (0) construct ensures that the macro behaves as a single statement.
+// This allows it to be used safely in contexts like if-else statements without braces,
+// preventing syntax errors or unexpected behavior due to dangling elses.
+// Example: ZEN_EXPECT_NOTHROW(no_throw_function());
+// Continues execution regardless of the expectation result.
+// Result:  CASE PASS: ...
+//     or:  CASE FAIL: ...
+#define ZEN_EXPECT_NOTHROW(expression) \
+    do { \
+        bool exception_caught{false}; \
+        try { \
+            expression; \
+        } \
+        catch (...) { \
+            exception_caught = true; \
+            if (zen::REPORT_TC_FAIL) \
+                zen::log(zen::color::red("CASE FAIL:"), __func__, \
+                        "EXPECTED `" #expression "` NOT TO THROW ANY EXCEPTION, BUT IT DID."); \
+            ++zen::TEST_CASE_FAIL_COUNT; \
+            break; \
+        } \
+        if (!exception_caught) { \
+            if (zen::REPORT_TC_PASS) \
+                zen::log(zen::color::green("CASE PASS:"), #expression); \
+            ++zen::TEST_CASE_PASS_COUNT; \
+        } \
+    } while(0)
 
 ///////////////////////////////////////////////////////////////////////////////////////////// COLORS
 // Example: zen::print(zen::color::red(str));
