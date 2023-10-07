@@ -126,6 +126,28 @@ namespace zen {
     template <class T> constexpr bool is_resizable_v = is_resizable<T>::value;
 #endif
 
+// ------------------------------------------------------------------------------------------ EqualityComparable
+
+#if __cpp_concepts >= 202002L
+    // Check if a type is equality comparable
+    template <class T>
+    concept EqualityComparable = requires(T x, T y) {
+        { x == y } -> std::same_as<bool>; // can be compared using ==
+    };
+    template <class T> concept is_equality_comparable_v = EqualityComparable<T>;
+#else // use SFINAE if concepts are not available (pre-C++20)
+    template <class T, class = void> struct is_equality_comparable : std::false_type {};
+
+    template <class T>
+    struct is_equality_comparable<T,
+        std::void_t<
+            decltype(std::declval<T&>() == std::declval<T&>()) // can be compared using ==
+        >
+    > : std::true_type {};
+
+    template <class T> constexpr bool is_equality_comparable_v = is_equality_comparable<T>::value;
+#endif
+
 // ------------------------------------------------------------------------------------------ is_string_like
 
 template<class T>
