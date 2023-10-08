@@ -113,6 +113,17 @@ In addition, `zen::log()` is equivalent to `zen::print()` except that it will au
 ```cpp
 zen::log(v, "4", 5); // equivalent to zen::print(v, "4", 5, '\n');
 ```
+In general, `zen::log()` calls `zen::print()`, which, in turn, calls `zen::to_string()`, which is able to convert
+to a string a wide range of objects that are intuitively expected to be convertible to a string. For example:
+```cpp
+std::vector<int> v  = { 1, 2, 3 };
+zen::to_string(v); // [ 1, 2, 2 ]
+```
+With arbitrary nestedness of any containers:
+```cpp
+std::vector<std::list<std::vector<int>>> vxv = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
+zen::to_string(vxv);                         // [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]
+```
 ### Containers
 Richer containers with many useful functions:
 ```cpp
