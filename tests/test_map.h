@@ -57,8 +57,8 @@ void main_test_multimap()
 
     zen::multimap<std::pair<zen::string, zen::string>, zen::string> mps = { {{"A", "A"}, "1"}, {{"B", "B"}, "2"} };
 
-    ZEN_EXPECT(silent_print(mss) == "[[A, 1], [A, 2], [A, 3], [B, 4], [B, 5], [D, 6], [D, 7]]");
-    ZEN_EXPECT(silent_print(mps) == "[[[A, A], 1], [[B, B], 2]]");
+    ZEN_EXPECT(silent_print(mss) == "[[\"A\", \"1\"], [\"A\", \"2\"], [\"A\", \"3\"], [\"B\", \"4\"], [\"B\", \"5\"], [\"D\", \"6\"], [\"D\", \"7\"]]");
+    ZEN_EXPECT(silent_print(mps) == "[[[\"A\", \"A\"], \"1\"], [[\"B\", \"B\"], \"2\"]]");
 
     ZEN_EXPECT(!mss.contains({ "X" }));
     ZEN_EXPECT(

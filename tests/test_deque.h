@@ -10,7 +10,7 @@ void test_deque_of_strings()
     zen::deque<zen::string> x = { "1", "2", "3", "4" };
     x.push_back("0");
 
-    ZEN_EXPECT(silent_print(x) == "[1, 2, 3, 4, 0]");
+    ZEN_EXPECT(silent_print(x) == "[\"1\", \"2\", \"3\", \"4\", \"0\"]");
     ZEN_EXPECT(x.contains("0"));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }

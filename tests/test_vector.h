@@ -10,6 +10,7 @@ void test_vector_of_strings()
 
     zen::strings zs = v;
 
+    ZEN_EXPECT(silent_print(v) == "[\"1\", \"2\", \"3\", \"4\", \"0\"]");
     ZEN_EXPECT(v.contains("0") == zs.contains("0"));
     ZEN_EXPECT(zen::is_empty(v) == v.is_empty());
 }

@@ -10,7 +10,7 @@ void test_set_of_strings()
     zen::set<zen::string> x = { "1", "2", "3", "4" };
     x.insert("0");
 
-    ZEN_EXPECT(silent_print(x) == "[0, 1, 2, 3, 4]");
+    ZEN_EXPECT(silent_print(x) == "[\"0\", \"1\", \"2\", \"3\", \"4\"]");
 
     ZEN_EXPECT(x.contains("0"));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
@@ -48,7 +48,7 @@ void main_test_multiset()
     zen::multiset<zen::string> x = { "1", "1", "3", "4", "4"};
     x.insert("0");
 
-    ZEN_EXPECT(silent_print(x) == "[0, 1, 1, 3, 4, 4]");
+    ZEN_EXPECT(silent_print(x) == "[\"0\", \"1\", \"1\", \"3\", \"4\", \"4\"]");
 
     ZEN_EXPECT(x.contains("0"));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
