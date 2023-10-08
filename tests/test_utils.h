@@ -78,6 +78,9 @@ void test_utils_to_string()
 {
     BEGIN_SUBTEST;
 
+    std::initializer_list<
+    std::initializer_list<
+    std::initializer_list<int>>>               v0 = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
     std::vector<std::vector<std::vector<int>>> v1 = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
     std::vector<std::vector<int>>              v2 = { {1, 2}, {3, 4} };
     std::vector<std::vector<int>>              v3 = { {}, {}, {} };
@@ -88,6 +91,7 @@ void test_utils_to_string()
     std::vector<std::array<int, 2>>            v8 = { {1, 2}, {3, 4} };
     std::vector<int>                           v9;
 
+    ZEN_EXPECT(zen::to_string(v0)                == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
     ZEN_EXPECT(zen::to_string()                  == "");
     ZEN_EXPECT(zen::to_string(1, 2, 3)           == "1 2 3");
     ZEN_EXPECT(zen::to_string(42.24)             == "42.24");
