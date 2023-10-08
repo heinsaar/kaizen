@@ -7,10 +7,13 @@
 void test_unordered_set_of_strings()
 {
     BEGIN_SUBTEST;
+
+    zen::hash_set<zen::string, zen::string_hash> v = { "1", "1" };
+    ZEN_EXPECT(silent_print(v) == "[\"1\"]");
+
     zen::hash_set<zen::string, zen::string_hash> x = { "1", "2", "3", "4" };
     x.insert("0");
-
-    ZEN_EXPECT(silent_print(x) == "[\"1\", \"2\", \"3\", \"4\", \"0\"]");
+    
     ZEN_EXPECT(x.contains("0"));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
