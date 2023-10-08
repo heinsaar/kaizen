@@ -78,31 +78,31 @@ void test_utils_to_string()
 {
     BEGIN_SUBTEST;
 
-    std::vector<std::vector<std::vector<int>>> vvv     = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
-    std::vector<std::vector<int>>              vv      = { {1, 2}, {3, 4} };
-    std::vector<std::vector<int>>              vve     = { {}, {}, {} };
-    std::vector<std::list<int>>                vx      = { {1, 2}, {3, 4} };
-    std::list<std::vector<int>>                xv      = { {1, 2}, {3, 4} };
-    std::vector<int>                           vone    = { 1 };
-    std::vector<int>                           v       = { 1, 2, 3 };
-    std::vector<std::array<int, 2>>            va      = { {1, 2}, {3, 4} };
-    std::vector<int>                           vempty;
+    std::vector<std::vector<std::vector<int>>> v1     = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
+    std::vector<std::vector<int>>              v2      = { {1, 2}, {3, 4} };
+    std::vector<std::vector<int>>              v3     = { {}, {}, {} };
+    std::vector<std::list<int>>                v4      = { {1, 2}, {3, 4} };
+    std::list<std::vector<int>>                v5      = { {1, 2}, {3, 4} };
+    std::vector<int>                           v6    = { 1 };
+    std::vector<int>                           v7       = { 1, 2, 3 };
+    std::vector<std::array<int, 2>>            v8      = { {1, 2}, {3, 4} };
+    std::vector<int>                           v9;
 
     ZEN_EXPECT(zen::to_string()                  == "");
     ZEN_EXPECT(zen::to_string(1, 2, 3)           == "1 2 3");
     ZEN_EXPECT(zen::to_string(42.24)             == "42.24");
     ZEN_EXPECT(zen::to_string("hello")           == "hello");
-    ZEN_EXPECT(zen::to_string(v)                 == "[1, 2, 3]");
-    ZEN_EXPECT(zen::to_string(vempty)            == "[]");
+    ZEN_EXPECT(zen::to_string(v7)                 == "[1, 2, 3]");
+    ZEN_EXPECT(zen::to_string(v9)            == "[]");
     ZEN_EXPECT(zen::to_string(1, 42.24, "hello") == "1 42.24 hello");
-    ZEN_EXPECT(zen::to_string(vone)              == "[1]");
-    ZEN_EXPECT(zen::to_string(vv)                == "[[1, 2], [3, 4]]");
-    ZEN_EXPECT(zen::to_string(vve)               == "[[], [], []]");
-    ZEN_EXPECT(zen::to_string(vx)                == "[[1, 2], [3, 4]]");
-    ZEN_EXPECT(zen::to_string(xv)                == "[[1, 2], [3, 4]]");
-    ZEN_EXPECT(zen::to_string(va)                == "[[1, 2], [3, 4]]");
-    ZEN_EXPECT(zen::to_string(vvv)               == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
-    ZEN_EXPECT(zen::to_string(v, "mixed", 42)    == "[1, 2, 3] mixed 42");
+    ZEN_EXPECT(zen::to_string(v6)              == "[1]");
+    ZEN_EXPECT(zen::to_string(v2)                == "[[1, 2], [3, 4]]");
+    ZEN_EXPECT(zen::to_string(v3)               == "[[], [], []]");
+    ZEN_EXPECT(zen::to_string(v4)                == "[[1, 2], [3, 4]]");
+    ZEN_EXPECT(zen::to_string(v5)                == "[[1, 2], [3, 4]]");
+    ZEN_EXPECT(zen::to_string(v8)                == "[[1, 2], [3, 4]]");
+    ZEN_EXPECT(zen::to_string(v1)               == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
+    ZEN_EXPECT(zen::to_string(v7, "mixed", 42)    == "[1, 2, 3] mixed 42");
 }
 
 void test_utils_print()
