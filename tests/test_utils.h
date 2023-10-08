@@ -151,28 +151,28 @@ void test_utils_print()
     // Strings nested in pairs and tuples nested in each other in various ways
 
     std::tuple<int, int, std::string, double> tup = { 1, 2,  "tuplestr",  3.9 };
-    ZEN_EXPECT(silent_print(tup) ==                 "[1, 2, \"tuplestr\", 3.9]");
+    ZEN_EXPECT(silent_print(tup) ==                 "{1, 2, \"tuplestr\", 3.9}");
 
     std::tuple<int, int, std::pair<std::string, int>, double> tp = { 1, 2, { "tuplestr",  0}, 3.9 };
-    ZEN_EXPECT(silent_print(tp) ==                                 "[1, 2, [\"tuplestr\", 0], 3.9]");
+    ZEN_EXPECT(silent_print(tp) ==                                 "{1, 2, {\"tuplestr\", 0}, 3.9}");
 
     std::tuple<int, int, std::tuple<int, std::string, int>, double> tt = { 1, 2, {0,  "tuplestr",  0}, 3.9 };
-    ZEN_EXPECT(silent_print(tt)                                       == "[1, 2, [0, \"tuplestr\", 0], 3.9]");
+    ZEN_EXPECT(silent_print(tt)                                       == "{1, 2, {0, \"tuplestr\", 0}, 3.9}");
 
     std::tuple<int, int, std::tuple<int, std::pair<std::string, int>, int>, double>
                             ttp   = { 1, 2, {0, { "tuplestr",  7}, 0}, 3.9 };
-    ZEN_EXPECT(silent_print(ttp) == "[1, 2, [0, [\"tuplestr\", 7], 0], 3.9]");
+    ZEN_EXPECT(silent_print(ttp) == "{1, 2, {0, {\"tuplestr\", 7}, 0}, 3.9}");
 
     std::pair<int, std::pair<std::string, double>> pp = { 1, { "pairstr",  7.8}};
-    ZEN_EXPECT(silent_print(pp) ==                      "[1, [\"pairstr\", 7.8]]");
+    ZEN_EXPECT(silent_print(pp) ==                      "{1, {\"pairstr\", 7.8}}");
 
     std::pair<int, std::pair<std::string, std::pair<double, std::string>>>
                             ppp =   { 1, { "pairstr",  {7.8,  "pairstr B" }}};
-    ZEN_EXPECT(silent_print(ppp) == "[1, [\"pairstr\", [7.8, \"pairstr B\"]]]");
+    ZEN_EXPECT(silent_print(ppp) == "{1, {\"pairstr\", {7.8, \"pairstr B\"}}}");
 
     std::tuple<int, int, std::tuple<int, std::pair<std::pair<std::string, std::string>, int>, int>, double>
                             ttpp   = { 1, 2, {0, {{ "tuplestr A",   "tuplestr B"},  7}, 0}, 3.9 };
-    ZEN_EXPECT(silent_print(ttpp) == "[1, 2, [0, [[\"tuplestr A\", \"tuplestr B\"], 7], 0], 3.9]");
+    ZEN_EXPECT(silent_print(ttpp) == "{1, 2, {0, {{\"tuplestr A\", \"tuplestr B\"}, 7}, 0}, 3.9}");
 }
 
 void test_utils_search_upward()

@@ -9,13 +9,13 @@ void test_unordered_map_of_strings()
     BEGIN_SUBTEST;
 
     zen::hash_map<zen::string, zen::string, zen::string_hash> v = { {"1", "1"} };
-    ZEN_EXPECT(silent_print(v) == "[[\"1\", \"1\"]]");
+    ZEN_EXPECT(silent_print(v) == "[{\"1\", \"1\"}]");
 
     zen::hash_map<zen::string, int, zen::string_hash> x = { {"1", 1}, {"1", 1}, {"2", 2}, {"3", 3}, {"4", 4} };
     x.insert({ "0", 0 });
 
     zen::hash_map<int, zen::string> y = { {1, "1"} };
-    ZEN_EXPECT(silent_print(y) == "[[1, \"1\"]]");
+    ZEN_EXPECT(silent_print(y) == "[{1, \"1\"}]");
     ZEN_EXPECT(x.contains("0"));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 }
