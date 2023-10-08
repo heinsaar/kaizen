@@ -214,10 +214,16 @@ zen::string to_string(const T& x) {
         ss << "[";
         auto it = std::begin(x);
         if (it != std::end(x)) {
-            ss << to_string(*it++);       // recursive call to handle nested iterables
+            if constexpr (is_string_like<decltype(*it)>())
+                ss << quote(to_string(*it++));
+            else
+                ss << to_string(*it++);              // recursive call to handle nested iterables
         }
         for (; it != std::end(x); ++it) {
-            ss << ", " << to_string(*it); // recursive call to handle nested iterables
+            if constexpr (is_string_like<decltype(*it)>())
+                ss << ", " << quote(to_string(*it)); // recursive call to handle nested iterables
+            else
+                ss << ", " << to_string(*it);        // recursive call to handle nested iterables
         }
         ss << "]";
     } else { // not iterable, single item

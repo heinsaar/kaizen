@@ -53,7 +53,10 @@ namespace internal {
     template<class T>
     std::string serialize(const T& x) {
         std::ostringstream ss;
-        ss << x;
+        if constexpr (is_string_like<T>())
+            ss << quote(x);
+        else
+            ss << x;
         return ss.str();
     }
 
