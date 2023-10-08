@@ -69,7 +69,7 @@ namespace internal {
     // Helper function to handle pair serialization
     template<class T1, class T2>
     std::string serialize(const std::pair<T1, T2>& p) {
-        return "[" + serialize(p.first) + ", " + serialize(p.second) + "]";
+        return "{" + serialize(p.first) + ", " + serialize(p.second) + "}";
     }
 
     // Helper function to handle pair stream output
@@ -81,9 +81,9 @@ namespace internal {
 
 template<class T1, class T2>
 std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p) {
-    os << "[";
+    os << "{";
     internal::pair_to_stream(os, p);
-    os << "]";
+    os << "}";
     return os;
 }
 
@@ -92,14 +92,14 @@ std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p) {
 namespace internal {
     template<class... Ts>
     std::string serialize(const std::tuple<Ts...>& tup) {
-        std::string s = "[";
+        std::string s = "{";
         std::apply([&s](auto&&... args) {
             auto append = [&](const auto& arg) { s += serialize(arg) + ", "; };
             (append(args), ...);
         }, tup);
         if (s.size() > 1)
             s.erase(s.size() - 2); // remove trailing ", "
-        return s + "]";
+        return s + "}";
     }
     // Helper function to handle comma-space separator
     template<class Os, class T, class... Ts>
@@ -111,11 +111,11 @@ namespace internal {
 
 template<class... Ts>
 std::ostream& operator<<(std::ostream& os, const std::tuple<Ts...>& tup) {
-    os << "[";
+    os << "{";
     std::apply([&os](auto&&... args) {
         internal::tuple_to_stream(os, args...);
         }, tup);
-    os << "]";
+    os << "}";
     return os;
 }
 
