@@ -101,11 +101,11 @@ void test_utils_to_string()
     ZEN_EXPECT(zen::to_string(v5)                == "[[1, 2], [3, 4]]");
     ZEN_EXPECT(zen::to_string(v8)                == "[[1, 2], [3, 4]]");
     ZEN_EXPECT(zen::to_string(v1)                == "[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]");
-    ZEN_EXPECT(zen::to_string(v7, "mixed", 42)   == "[1, 2, 3] mixed 42");
     ZEN_EXPECT(zen::to_string()                  == "");
-    ZEN_EXPECT(zen::to_string(1, 2, 3)           == "1 2 3");
     ZEN_EXPECT(zen::to_string(42.24)             == "42.24");
+    ZEN_EXPECT(zen::to_string(1, 2, 3)           == "1 2 3");
     ZEN_EXPECT(zen::to_string("hello")           == "hello");
+    ZEN_EXPECT(zen::to_string(v7, "mixed", 42)   == "[1, 2, 3] mixed 42");
     ZEN_EXPECT(zen::to_string(1, 42.24, "hello") == "1 42.24 hello");
 }
 
