@@ -75,5 +75,5 @@ void main_test_unordered_multiset()
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 
     test_unordered_multiset_zen_std_interchangeability();
-    test_unordered_set_of_strings();
+    test_unordered_multiset_of_strings();
 }
