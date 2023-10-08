@@ -47,6 +47,9 @@ inline auto timestamp() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// SERIALIZATION
 
+// Forward declaration of is_string_like()
+template <class T> constexpr bool is_string_like();
+
 //------------------------------------------------------------------------------------------- std::pair
 
 namespace internal {
