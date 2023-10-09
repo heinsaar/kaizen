@@ -6,11 +6,7 @@
 
 Collection of utilities and enhanced data structures for a wide range of C++ projects in a single header file ```kaizen.h```
 
-=====================================================================
-
 **AT THE MOMENT IN ACTIVE DEVELOPMENT, WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
-
-=====================================================================
 
 ## Design Philosophy
 
