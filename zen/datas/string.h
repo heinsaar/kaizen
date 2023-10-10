@@ -41,13 +41,6 @@ public:
     string(const std::string&     s) : std::string(s) {}
     string(const std::string_view s) : std::string(s) {}
 
-    // Non-modifying functions
-    bool starts_with(const std::string_view s) const { return substr(0, s.length()) == s; }
-    bool ends_with(  const std::string_view s) const {
-        if (size() < s.size()) return false;
-        return substr(size() - s.size(), s.size()) == s;
-    }
-    
 #if __cplusplus < 202303L // check pre-C++23, at which point std::string::contains() is standard
     // SFINAE to ensure that this version is only enabled when Pred is callable
     template<class Pred, typename = std::enable_if_t<std::is_invocable_r_v<bool, Pred, char>>>
