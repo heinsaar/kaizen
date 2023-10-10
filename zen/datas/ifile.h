@@ -103,7 +103,7 @@ public:
     }
 
 private:
-    // TODO: Dynamically cache lines that are read the first time
+    // TODO: Dynamically cache lines that are read the first time?
     const std::filesystem::path& filepath_;
     std::ifstream                ifstream_;
 };
