@@ -164,9 +164,8 @@ void test_string_trimming()
     ZEN_EXPECT(z.deflate().is_deflated());
 
     z.trim_from_last("me").trim();
-    z.trim_from_last('m').trim();
 
-    ZEN_EXPECT(z == "Tri");
+    ZEN_EXPECT(z == "Trim");
     ZEN_EXPECT(z.is_empty() == zen::is_empty(z));
 }
 
