@@ -165,7 +165,6 @@ void test_string_trimming()
 
     ZEN_EXPECT(zen::repeat("*", 10) == "**********");
     ZEN_EXPECT(zen::repeat(10, "*") == "**********");
-
 }
 
 void test_string_remove()
