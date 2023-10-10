@@ -375,6 +375,7 @@ void main_test_string()
     zen::string z = s; s = z; z = s; // check basic interchangeability
 
     ZEN_EXPECT(z.contains("World"));
+    ZEN_EXPECT(z.extract_between("[", "]").starts_with('H'));
     ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
     ZEN_EXPECT(z.extract_between("[", "]").ends_with(  "World"));
 
