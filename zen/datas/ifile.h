@@ -96,7 +96,7 @@ public:
         }
 
         if (nth != 0)
-            throw std::out_of_range("END OF FILE REACHED");
+            throw std::out_of_range("REACHED END OF FILE: " + zen::quote(filepath_.string()));
 
         return *it;
     }
