@@ -127,6 +127,12 @@ public:
         return *this;
     }
 
+    auto& trim_from_last(const char c)
+    {
+        *this = substr(0, rfind(c));
+        return *this;
+    }
+
     auto& trim()
     {
         // Trim leading and trailing spaces
