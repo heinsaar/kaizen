@@ -233,6 +233,9 @@ void main_test_utils()
 
     ZEN_EXPECT_NOTHROW([]{}());
 
+    ZEN_EXPECT(zen::repeat("*", 10) == "**********");
+    ZEN_EXPECT(zen::repeat(10, "*") == "**********");
+
     test_utils_search_downward();
     test_utils_search_upward();
     test_utils_to_string();
