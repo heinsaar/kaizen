@@ -88,7 +88,8 @@ public:
     auto begin() { return iterator{ifstream_}; }
     auto end()   { return iterator{ifstream_, true}; }
 
-    // Method to get line n from the file (indexing starts from 1, not 0)
+    // Method to get line n from the file.
+    // Indexing starts from 1, not 0 to reflect the numbering of lines used in most editors.
     std::string getline(int nth) {
         auto it = begin();
         while (--nth > 0 && it != end()) {
