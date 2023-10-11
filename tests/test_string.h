@@ -859,6 +859,33 @@ void test_string_rstrip() {
     ZEN_EXPECT(z5.empty());
 }
 
+void test_string_lstrip() {
+    zen::string z1 = "  \t  Hello, World!";
+    zen::string z2 = "   Leading spaces";
+    zen::string z3 = "No leading spaces";
+    zen::string z4 = "";
+    zen::string z5 = "  ";
+
+    // Test 1: Remove leading spaces and tabs
+    z1.lstrip();
+    ZEN_EXPECT(z1 == "Hello, World!");
+
+    // Test 2: Remove leading spaces
+    z2.lstrip();
+    ZEN_EXPECT(z2 == "Leading spaces");
+
+    // Test 3: No leading spaces to remove
+    z3.lstrip();
+    ZEN_EXPECT(z3 == "No leading spaces");
+
+    // Test 4: Empty string remains empty
+    z4.lstrip();
+    ZEN_EXPECT(z4.empty());
+
+    // Test 5: Remove leading spaces, leaving an empty string
+    z5.lstrip();
+    ZEN_EXPECT(z5.empty());
+}
 
 void main_test_string()
 {
@@ -901,5 +928,6 @@ void main_test_string()
     test_string_ljust();
     test_string_rjust();
     test_string_rstrip();
+    test_string_lstrip();
 
 }

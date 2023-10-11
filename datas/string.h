@@ -342,10 +342,16 @@ public:
                     }).base(), my::end());
         return *this;
     }
+
+    auto& lstrip() {
+        my::erase(my::begin(), std::find_if(my::begin(), my::end(), [](int ch) {
+                    return !std::isspace(ch);
+                    }));
+        return *this;
+    }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_numeric()	    Returns True if all characters in the string are numeric
-    // lstrip()	        Returns a left trim version of the string
     // partition()	    Returns a tuple where the string is parted into three parts
     // rfind()	        Searches the string for a specified value and returns the last position of where it was found
     // rpartition()	    Returns a tuple where the string is parted into three parts
