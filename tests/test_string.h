@@ -725,6 +725,34 @@ void test_string_is_upper() {
     ZEN_EXPECT(z12.is_upper() == true);
 }
 
+void test_string_is_printable() {
+    zen::string z1 = "Hello, World!";    // Test 1: Printable characters (no control characters)
+    zen::string z2 = "\n";              // Test 2: Newline character (control character)
+    zen::string z3 = "12345";           // Test 3: Digits (printable)
+    zen::string z4 = "!@#$%^";          // Test 4: Special characters (printable)
+    zen::string z5 = "\t";              // Test 5: Tab character (control character)
+    zen::string z6 = " ";               // Test 6: Space character (printable)
+    zen::string z7 = "\x7F";            // Test 7: Delete character (control character)
+    zen::string z8 = "\x1F";            // Test 8: Unit separator character (control character)
+    zen::string z9 = "ᾭᾮᾯ";             // Test 9: Unicode characters (non-ASCII)
+    zen::string z10 = "\u03A9";         // Test 10: Unicode character (Ω)
+    zen::string z11 = "\u0010";         // Test 11: Data Link Escape (control character)
+    zen::string z12 = "";               // Test 12: Empty string
+
+    ZEN_EXPECT(z1.is_printable() == true);
+    ZEN_EXPECT(z2.is_printable() == false);
+    ZEN_EXPECT(z3.is_printable() == true);
+    ZEN_EXPECT(z4.is_printable() == true);
+    ZEN_EXPECT(z5.is_printable() == false);
+    ZEN_EXPECT(z6.is_printable() == true);
+    ZEN_EXPECT(z7.is_printable() == false);
+    ZEN_EXPECT(z8.is_printable() == false);
+    ZEN_EXPECT(z9.is_printable() == false);
+    ZEN_EXPECT(z10.is_printable() == false);
+    ZEN_EXPECT(z11.is_printable() == false);
+    ZEN_EXPECT(z12.is_printable() == true);
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -761,5 +789,6 @@ void main_test_string()
     test_string_is_identifier();
     test_string_is_lower();
     test_string_is_upper();
+    test_string_is_printable();
 
 }
