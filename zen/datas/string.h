@@ -305,13 +305,13 @@ public:
         return true;
     }
 
-    bool is_lower() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::islower(c);     }); }
+    bool is_lower() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::islower(c); }); }
 
-    bool is_upper() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isupper(c);     }); }
+    bool is_upper() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isupper(c); }); }
 
-    bool is_printable() const { return std::all_of(my::begin(), my::end(), [](char c) { return std::isprint(c);     }); }
+    bool is_printable() const { return std::all_of(my::begin(), my::end(), [](char c) { return std::isprint(c); }); }
 
-    bool is_space() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isspace(c);     }); }
+    bool is_space() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isspace(c); }); }
 
     auto& ljust(int width, char fillchar = ' ') {
         if (0 > width || width <= my::size()) return *this;
