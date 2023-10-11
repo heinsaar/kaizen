@@ -493,7 +493,6 @@ void test_string_to_lower() {
     ZEN_EXPECT(z8 == "hello\nworld");
 }
 
-
 void main_test_string()
 {
     BEGIN_TEST;
@@ -520,5 +519,6 @@ void main_test_string()
     test_string_replace_if();
     test_string_replace_all_if();
     test_string_capitalize();
+    test_string_to_lower();
 
 }

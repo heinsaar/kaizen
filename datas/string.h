@@ -257,6 +257,16 @@ public:
         return *this;
     }
 
+    auto& to_lower() {
+        for (auto& c : *this) {
+            if (std::isalpha(c) && std::isupper(c)) {
+                c = std::tolower(c);
+            }
+        }
+        return *this;
+    }
+
+
     // TODO: Implement all or some of these (from Python string)
     // capitalize()	    Converts the first character to upper case
     // to_lower()	    Converts string into lower case
