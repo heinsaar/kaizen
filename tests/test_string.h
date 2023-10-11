@@ -753,6 +753,20 @@ void test_string_is_printable() {
     ZEN_EXPECT(z12.is_printable() == true);
 }
 
+void test_string_is_space() {
+    zen::string z1 = "   ";           // Test 1: All spaces
+    zen::string z2 = "Hello World";    // Test 2: Contains non-space characters
+    zen::string z3 = "\t\n\r";         // Test 3: Various whitespace characters
+    zen::string z4 = "";               // Test 4: Empty string
+    zen::string z5 = "NoSpacesHere";   // Test 5: No spaces at all
+
+    ZEN_EXPECT(z1.is_space() == true);
+    ZEN_EXPECT(z2.is_space() == false);
+    ZEN_EXPECT(z3.is_space() == true);
+    ZEN_EXPECT(z4.is_space() == false);
+    ZEN_EXPECT(z5.is_space() == false);
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -790,5 +804,6 @@ void main_test_string()
     test_string_is_lower();
     test_string_is_upper();
     test_string_is_printable();
+    test_string_is_space();
 
 }

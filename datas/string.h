@@ -315,10 +315,11 @@ public:
     bool is_upper() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isupper(c);     }); }
 
     bool is_printable() const { return std::all_of(my::begin(), my::end(), [](char c) { return std::isprint(c);     }); }
+
+    bool is_space() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isspace(c);     }); }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_numeric()	    Returns True if all characters in the string are numeric
-    // is_space()	    Returns True if all characters in the string are whitespaces
     // ljust()	        Returns a left justified version of the string
     // lstrip()	        Returns a left trim version of the string
     // partition()	    Returns a tuple where the string is parted into three parts
