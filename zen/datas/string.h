@@ -426,11 +426,7 @@ public:
     {
         for (auto& c : *this) {
             if (std::isalpha(c)) {
-                if (std::islower(c)) {
-                    c = std::toupper(c);
-                } else {
-                    c = std::tolower(c);
-                }
+                c = std::islower(c) ? std::toupper(c) : std::tolower(c);
             }
         }
         return *this;
