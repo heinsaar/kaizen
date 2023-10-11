@@ -293,9 +293,10 @@ public:
     bool is_alpha() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isalpha(c); }); }
 
     bool is_decimal() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit((c)); }); }
+
+    bool is_digit() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit(c); }); }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
-    // is_digit()	    Returns True if all characters in the string are digits
     // is_identifier()	Returns True if the string is an identifier
     // is_lower()	    Returns True if all characters in the string are lower case
     // is_numeric()	    Returns True if all characters in the string are numeric
