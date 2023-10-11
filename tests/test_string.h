@@ -411,6 +411,53 @@ void test_string_replace()
     ZEN_EXPECT(z11 == "EndReplaced");
 }
 
+void test_string_capitalize() {
+    zen::string str1 = "hello world";
+    zen::string str2 = ""; 
+    zen::string str3 = "this is a test";
+    zen::string str4 = "THIS IS ANOTHER TEST";
+    zen::string str5 = "x";
+    zen::string str6 = "12345 !@#";
+    zen::string str7 = "MiXeD CaSe";
+    zen::string str8 = "!hello #world$";
+    zen::string str9 = "  leading spaces";
+    zen::string str10 = "trailing spaces  ";
+    zen::string str11 = "aL";
+
+    str1.capitalize();
+    ZEN_EXPECT(str1 == "Hello world");
+
+    str2.capitalize();
+    ZEN_EXPECT(str2 == "");
+
+    str3.capitalize();
+    ZEN_EXPECT(str3 == "This is a test");
+
+    str4.capitalize();
+    ZEN_EXPECT(str4 == "This is another test");
+
+    str5.capitalize();
+    ZEN_EXPECT(str5 == "X");
+
+    str6.capitalize();
+    ZEN_EXPECT(str6 == "12345 !@#");
+
+    str7.capitalize();
+    ZEN_EXPECT(str7 == "Mixed case");
+
+    str8.capitalize();
+    ZEN_EXPECT(str8 == "!hello #world$");
+
+    str9.capitalize();
+    ZEN_EXPECT(str9 == "  leading spaces");
+
+    str10.capitalize();
+    ZEN_EXPECT(str10 == "Trailing spaces  ");
+
+    str11.capitalize();
+    ZEN_EXPECT(str11 == "Al");
+}
+
 void main_test_string()
 {
     BEGIN_TEST;

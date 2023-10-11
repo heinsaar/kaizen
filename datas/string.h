@@ -241,6 +241,22 @@ public:
         return *this;
     }
 
+    auto& capitalize() {
+        if (is_empty()) return *this;
+        if (std::isalpha(front()) && std::islower(front())) {
+            my::front() = std::toupper(my::front());  // Capitalize the first character
+        }
+
+        for (size_t i = 1; i < my::size(); ++i) {
+            char& c = my::at(i);
+            if (std::isalpha(c) && std::isupper(c)) {
+                c = std::tolower(c);
+            }
+        }
+
+        return *this;
+    }
+
     // TODO: Implement all or some of these (from Python string)
     // capitalize()	    Converts the first character to upper case
     // to_lower()	    Converts string into lower case
