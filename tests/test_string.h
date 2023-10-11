@@ -677,6 +677,26 @@ void test_string_is_identifier() {
     ZEN_EXPECT(z8.is_identifier() == false);
 }
 
+void test_string_is_lower() {
+    zen::string z1 = "lowercase";    // Test 1: All lowercase characters (valid)
+    zen::string z2 = "MiXeDCaSe";   // Test 2: Mixed case characters (invalid, contains uppercase)
+    zen::string z3 = "12345";       // Test 4: Digits (invalid, contains digits)
+    zen::string z4 = "lower case";   // Test 5: Space (invalid, contains space)
+    zen::string z5 = "lower-case";   // Test 6: Hyphen (invalid, contains special character)
+    zen::string z6 = "";             // Test 7: Empty string ()
+    zen::string z7 = " ";            // Test 8: Space (invalid, contains space)
+    zen::string z8 = "lowercase1234"; // Test 9: Digits (invalid, contains digits)
+
+    ZEN_EXPECT(z1.is_lower() == true);
+    ZEN_EXPECT(z2.is_lower() == false);
+    ZEN_EXPECT(z3.is_lower() == false);
+    ZEN_EXPECT(z4.is_lower() == false);
+    ZEN_EXPECT(z5.is_lower() == false);
+    ZEN_EXPECT(z6.is_lower() == false);
+    ZEN_EXPECT(z7.is_lower() == false);
+    ZEN_EXPECT(z8.is_lower() == false);
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -711,5 +731,6 @@ void main_test_string()
     test_string_is_decimal();
     test_string_is_digit();
     test_string_is_identifier();
+    test_string_is_lower();
 
 }

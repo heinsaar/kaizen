@@ -310,9 +310,9 @@ public:
         return true;
     }
 
+    bool is_lower() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::islower(c);     }); }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
-    // is_lower()	    Returns True if all characters in the string are lower case
     // is_numeric()	    Returns True if all characters in the string are numeric
     // is_printable()	Returns True if all characters in the string are printable
     // is_space()	    Returns True if all characters in the string are whitespaces
