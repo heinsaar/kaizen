@@ -308,48 +308,28 @@ void test_string_replace_if()
     zen::string z10 = "Lengthy";
     zen::string z11 = "EndReplace";
 
-    // Attempt replacement, and the predicate returns true.
-    z1.replace_if("apples", "oranges", [](const zen::string&){ return true; });
+    z1.replace_if("apples", "oranges",         [](const zen::string&){ return true;  });
+    z2.replace_if("replace", "REPLACED",       [](const zen::string&){ return false; });
+    z3.replace_if("replace", "REPLACED",       [](const zen::string&){ return true;  });
+    z4.replace_if("", "REPLACED",              [](const zen::string&){ return true;  });
+    z5.replace_if("Remove ", "",               [](const zen::string&){ return true;  });
+    z6.replace_if("", "",                      [](const zen::string&){ return false; });
+    z7.replace_if("Case", "CASE",              [](const zen::string&){ return true;  });
+    z8.replace_if("ReplaceAll", "AllReplaced", [](const zen::string&){ return true;  });
+    z9.replace_if("Short", "Lengthy",          [](const zen::string&){ return true;  });
+    z10.replace_if("Lengthy", "Short",         [](const zen::string&){ return false; });
+    z11.replace_if("Replace", "Replaced",      [](const zen::string&){ return false; });
+
     ZEN_EXPECT(z1 == "I love oranges.");
-
-    // Attempt replacement, but the predicate returns false, so no replacement should occur.
-    z2.replace_if("replace", "REPLACED", [](const zen::string&){ return false; });
     ZEN_EXPECT(z2 == "Replace me, replace me!");
-
-    // Attempt replacement, and the predicate returns true.
-    z3.replace_if("replace", "REPLACED", [](const zen::string&){ return true; });
     ZEN_EXPECT(z3 == "Nothing to REPLACED here.");
-
-    // Attempt replacement with an empty search string, and the predicate returns true.
-    z4.replace_if("", "REPLACED", [](const zen::string&){ return true; });
     ZEN_EXPECT(z4 == "No change.");
-
-    // Attempt removal using a predicate, and the predicate returns true.
-    z5.replace_if("Remove ", "", [](const zen::string&){ return true; });
     ZEN_EXPECT(z5 == "me.");
-
-    // Attempt removal using a predicate, but the predicate returns false, so no replacement should occur.
-    z6.replace_if("", "", [](const zen::string&){ return false; });
     ZEN_EXPECT(z6 == "No change.");
-
-    // Case-sensitive replacement, and the predicate returns true.
-    z7.replace_if("Case", "CASE", [](const zen::string&){ return true; });
     ZEN_EXPECT(z7 == "CASESensitive");
-
-    // Attempt replacement, and the predicate returns true.
-    z8.replace_if("ReplaceAll", "AllReplaced", [](const zen::string&){ return true; });
     ZEN_EXPECT(z8 == "AllReplaced");
-
-    // Predicate returns true, so the replacement should occur.
-    z9.replace_if("Short", "Lengthy", [](const zen::string&){ return true; });
     ZEN_EXPECT(z9 == "Lengthy");
-
-    // Predicate returns false, so no replacement should occur.
-    z10.replace_if("Lengthy", "Short", [](const zen::string&){ return false; });
     ZEN_EXPECT(z10 == "Lengthy");
-
-    // Attempt replacement, but the predicate returns false, so no replacement should occur.
-    z11.replace_if("Replace", "Replaced", [](const zen::string&){ return false; });
     ZEN_EXPECT(z11 == "EndReplace");
 }
 
@@ -364,28 +344,18 @@ void test_string_replace_all_if()
     zen::string z5 = "abcde";
     zen::string z6 = "";
 
-    // Replace all occurrences if the string starts with 'A'
-    z1.replace_all_if("a", "X", [](const std::string& s) { return !s.empty() && s[0] == 'A'; });
-    ZEN_EXPECT(z1 == "Apple, bXnXnX, Xnd Xpricot Xre fruits.");
-
-    // Replace all occurrences if the string contains 'cat'
+    z1.replace_all_if("a",   "X",   [](const std::string& s) { return !s.empty() && s[0] == 'A'; });
     z2.replace_all_if("cat", "DOG", [](const std::string& s) { return s.find("cat") != std::string::npos; });
+    z3.replace_all_if("1",   "X",   [](const std::string&)   { return false; });
+    z4.replace_all_if("cde", "",    [](const std::string&)   { return true;  });
+    z5.replace_all_if("",    "X",   [](const std::string&)   { return true;  });
+    z6.replace_all_if("abc", "XYZ", [](const std::string&)   { return true;  });
+
+    ZEN_EXPECT(z1 == "Apple, bXnXnX, Xnd Xpricot Xre fruits.");
     ZEN_EXPECT(z2 == "The DOG chased the rat. CATapult!");
-
-    // No replacements should occur when the predicate always returns false
-    z3.replace_all_if("1", "X", [](const std::string&) { return false; });
     ZEN_EXPECT(z3 == "1234567890");
-
-    // Replace all occurrences with an empty string
-    z4.replace_all_if("cde", "", [](const std::string&) { return true; });
     ZEN_EXPECT(z4 == "abab");
-
-    // No replacements should occur when the search string is empty
-    z5.replace_all_if("", "X", [](const std::string&) { return true; });
     ZEN_EXPECT(z5 == "abcde");
-
-    // Empty string
-    z6.replace_all_if("abc", "XYZ", [](const std::string&) { return true; });
     ZEN_EXPECT(z6 == ""); // No change expected
 }
 
@@ -482,36 +452,27 @@ void test_string_capitalize()
     zen::string str11 = "aL";
 
     str1.capitalize();
-    ZEN_EXPECT(str1 == "Hello world");
-
     str2.capitalize();
-    ZEN_EXPECT(str2 == "");
-
     str3.capitalize();
-    ZEN_EXPECT(str3 == "This is a test");
-
     str4.capitalize();
-    ZEN_EXPECT(str4 == "This is another test");
-
     str5.capitalize();
-    ZEN_EXPECT(str5 == "X");
-
     str6.capitalize();
-    ZEN_EXPECT(str6 == "12345 !@#");
-
     str7.capitalize();
-    ZEN_EXPECT(str7 == "Mixed case");
-
     str8.capitalize();
-    ZEN_EXPECT(str8 == "!hello #world$");
-
     str9.capitalize();
-    ZEN_EXPECT(str9 == "  leading spaces");
-
     str10.capitalize();
-    ZEN_EXPECT(str10 == "Trailing spaces  ");
-
     str11.capitalize();
+
+    ZEN_EXPECT(str1 == "Hello world");
+    ZEN_EXPECT(str2 == "");
+    ZEN_EXPECT(str3 == "This is a test");
+    ZEN_EXPECT(str4 == "This is another test");
+    ZEN_EXPECT(str5 == "X");
+    ZEN_EXPECT(str6 == "12345 !@#");
+    ZEN_EXPECT(str7 == "Mixed case");
+    ZEN_EXPECT(str8 == "!hello #world$");
+    ZEN_EXPECT(str9 == "  leading spaces");
+    ZEN_EXPECT(str10 == "Trailing spaces  ");
     ZEN_EXPECT(str11 == "Al");
 }
 
@@ -529,27 +490,21 @@ void test_string_to_lower()
     zen::string z8 = "Hello\nWorld";
 
     z1.to_lower();
-    ZEN_EXPECT(z1 == "hello world!");
-
     z2.to_lower();
-    ZEN_EXPECT(z2 == "123 abc xyz");
-
     z3.to_lower();
-    ZEN_EXPECT(z3 == "nochange");
-
     z4.to_lower();
-    ZEN_EXPECT(z4 == "uppercase");
-
     z5.to_lower();
-    ZEN_EXPECT(z5 == "");
-
     z6.to_lower();
-    ZEN_EXPECT(z6 == "!@#$%^&*()");
-
     z7.to_lower();
-    ZEN_EXPECT(z7 == "12345");
-
     z8.to_lower();
+
+    ZEN_EXPECT(z1 == "hello world!");
+    ZEN_EXPECT(z2 == "123 abc xyz");
+    ZEN_EXPECT(z3 == "nochange");
+    ZEN_EXPECT(z4 == "uppercase");
+    ZEN_EXPECT(z5 == "");
+    ZEN_EXPECT(z6 == "!@#$%^&*()");
+    ZEN_EXPECT(z7 == "12345");
     ZEN_EXPECT(z8 == "hello\nworld");
 }
 
@@ -567,27 +522,21 @@ void test_string_to_upper()
     zen::string z8 = "Hello\nWorld";
 
     z1.to_upper();
-    ZEN_EXPECT(z1 == "HELLO WORLD!");
-
     z2.to_upper();
-    ZEN_EXPECT(z2 == "123 ABC XYZ");
-
     z3.to_upper();
-    ZEN_EXPECT(z3 == "NOCHANGE");
-
     z4.to_upper();
-    ZEN_EXPECT(z4 == "");
-
     z5.to_upper();
-    ZEN_EXPECT(z5 == "!@#$%^&*()");
-
     z6.to_upper();
-    ZEN_EXPECT(z6 == "123!@#");
-
     z7.to_upper();
-    ZEN_EXPECT(z7 == "MIXEDCASE123");
-
     z8.to_upper();
+
+    ZEN_EXPECT(z1 == "HELLO WORLD!");
+    ZEN_EXPECT(z2 == "123 ABC XYZ");
+    ZEN_EXPECT(z3 == "NOCHANGE");
+    ZEN_EXPECT(z4 == "");
+    ZEN_EXPECT(z5 == "!@#$%^&*()");
+    ZEN_EXPECT(z6 == "123!@#");
+    ZEN_EXPECT(z7 == "MIXEDCASE123");
     ZEN_EXPECT(z8 == "HELLO\nWORLD");
 }
 
@@ -605,27 +554,21 @@ void test_string_center()
     zen::string z8 = "Padded";
 
     z1.center(10);
-    ZEN_EXPECT(z1 == "  Hello   ");
-
     z2.center(12, '-');
-    ZEN_EXPECT(z2 == "--Centered--");
-
     z3.center(10, '*');
-    ZEN_EXPECT(z3 == "***Wide***");
-
     z4.center(5);
-    ZEN_EXPECT(z4 == "  X  ");
-
     z5.center(8);
-    ZEN_EXPECT(z5 == "        ");
-
     z6.center(10, '+');
-    ZEN_EXPECT(z6 == "+++Zen++++");
-
     z7.center(5, '-');
-    ZEN_EXPECT(z7 == "WideWord");
-
     z8.center(10, '\n');
+
+    ZEN_EXPECT(z1 == "  Hello   ");
+    ZEN_EXPECT(z2 == "--Centered--");
+    ZEN_EXPECT(z3 == "***Wide***");
+    ZEN_EXPECT(z4 == "  X  ");
+    ZEN_EXPECT(z5 == "        ");
+    ZEN_EXPECT(z6 == "+++Zen++++");
+    ZEN_EXPECT(z7 == "WideWord");
     ZEN_EXPECT(z8 == "\n\nPadded\n\n");
 }
 
@@ -879,27 +822,19 @@ void test_string_rjust()
     zen::string z5 = "ThisIsALongerString";
     zen::string z6 = "negative";
 
-    // Test 1: Left-justify with space padding
-    z1.rjust(10);
-    ZEN_EXPECT(z1 == "     Hello");
-
-    // Test 2: Left-justify with '0' padding
-    z2.rjust(5, '0');
-    ZEN_EXPECT(z2 == "00123");
-
-    // Test 3: Left-justify a shorter string with space padding
-    z3.rjust(5);
-    ZEN_EXPECT(z3 == "Short");
-
-    // Test 4: Left-justify an empty string with space padding
-    z4.rjust(5);
-    ZEN_EXPECT(z4 == "     ");
-
-    // Test 5: Left-justify a longer string, no padding needed
-    z5.rjust(20);
-    ZEN_EXPECT(z5 == " ThisIsALongerString");
+    z1.rjust(10);     // Left-justify with space padding
+    z2.rjust(5, '0'); // Left-justify with '0' padding
+    z3.rjust(5);      // Left-justify a shorter string with space padding
+    z4.rjust(5);      // Left-justify an empty string with space padding
+    z5.rjust(20);     // Left-justify a longer string, no padding needed
 
     z6.rjust(-1);
+
+    ZEN_EXPECT(z1 == "     Hello");
+    ZEN_EXPECT(z2 == "00123");
+    ZEN_EXPECT(z3 == "Short");
+    ZEN_EXPECT(z4 == "     ");
+    ZEN_EXPECT(z5 == " ThisIsALongerString");
     ZEN_EXPECT(z6 == "negative");
 }
 
@@ -913,24 +848,16 @@ void test_string_rstrip()
     zen::string z4 = "";
     zen::string z5 = "  ";
 
-    // Test 1: Remove trailing spaces and tabs
-    z1.rstrip();
+    z1.rstrip(); // Remove trailing spaces and tabs
+    z2.rstrip(); // Remove trailing spaces
+    z3.rstrip(); // No trailing spaces to remove
+    z4.rstrip(); // Empty string remains empty
+    z5.rstrip(); // Remove trailing spaces, leaving an empty string
+
     ZEN_EXPECT(z1 == "Hello, World!");
-
-    // Test 2: Remove trailing spaces
-    z2.rstrip();
     ZEN_EXPECT(z2 == "Trailing spaces");
-
-    // Test 3: No trailing spaces to remove
-    z3.rstrip();
     ZEN_EXPECT(z3 == "No trailing spaces");
-
-    // Test 4: Empty string remains empty
-    z4.rstrip();
     ZEN_EXPECT(z4.empty());
-
-    // Test 5: Remove trailing spaces, leaving an empty string
-    z5.rstrip();
     ZEN_EXPECT(z5.empty());
 }
 
@@ -944,24 +871,16 @@ void test_string_lstrip()
     zen::string z4 = "";
     zen::string z5 = "  ";
 
-    // Test 1: Remove leading spaces and tabs
-    z1.lstrip();
+    z1.lstrip(); // Remove leading spaces and tabs
+    z2.lstrip(); // Remove leading spaces
+    z3.lstrip(); // No leading spaces to remove
+    z4.lstrip(); // Empty string remains empty
+    z5.lstrip(); // Remove leading spaces, leaving an empty string
+
     ZEN_EXPECT(z1 == "Hello, World!");
-
-    // Test 2: Remove leading spaces
-    z2.lstrip();
     ZEN_EXPECT(z2 == "Leading spaces");
-
-    // Test 3: No leading spaces to remove
-    z3.lstrip();
     ZEN_EXPECT(z3 == "No leading spaces");
-
-    // Test 4: Empty string remains empty
-    z4.lstrip();
     ZEN_EXPECT(z4.empty());
-
-    // Test 5: Remove leading spaces, leaving an empty string
-    z5.lstrip();
     ZEN_EXPECT(z5.empty());
 }
 
@@ -1143,5 +1062,4 @@ void main_test_string()
     test_string_rjust();
     test_string_ljust();
     test_string_split();
-
 }
