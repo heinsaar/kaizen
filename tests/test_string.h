@@ -959,6 +959,57 @@ void test_string_rpartition() {
     ZEN_EXPECT(std::get<2>(result4).empty());
 }
 
+void test_string_split() {
+    zen::string input1 = "apple,banana,cherry";
+    zen::string separator1 = ",";
+
+    std::vector<zen::string> result1 = input1.split(separator1);
+
+    ZEN_EXPECT(result1.size() == 3);
+    ZEN_EXPECT(result1[0] == "apple");
+    ZEN_EXPECT(result1[1] == "banana");
+    ZEN_EXPECT(result1[2] == "cherry");
+
+    zen::string input2 = "one|two|three|four";
+    zen::string separator2 = "|";
+
+    std::vector<zen::string> result2 = input2.split(separator2);
+
+    ZEN_EXPECT(result2.size() == 4);
+    ZEN_EXPECT(result2[0] == "one");
+    ZEN_EXPECT(result2[1] == "two");
+    ZEN_EXPECT(result2[2] == "three");
+    ZEN_EXPECT(result2[3] == "four");
+
+    zen::string input3 = "no_separator_here";
+    zen::string separator3 = "|";
+
+    std::vector<zen::string> result3 = input3.split(separator3);
+
+    ZEN_EXPECT(result3.size() == 1);
+    ZEN_EXPECT(result3[0] == "no_separator_here");
+
+    zen::string input4 = "only_separator||||";
+    zen::string separator4 = "|";
+
+    std::vector<zen::string> result4 = input4.split(separator4);
+
+    ZEN_EXPECT(result4.size() == 5);
+    ZEN_EXPECT(result4[0] == "only_separator");
+    ZEN_EXPECT(result4[1].empty());
+    ZEN_EXPECT(result4[2].empty());
+    ZEN_EXPECT(result4[3].empty());
+    ZEN_EXPECT(result4[4].empty());
+
+    zen::string input5 = "";
+    zen::string separator5 = ",";
+
+    std::vector<zen::string> result5 = input5.split(separator5);
+
+    ZEN_EXPECT(result5.size() == 1);
+    ZEN_EXPECT(result5[0].empty());
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -1003,5 +1054,6 @@ void main_test_string()
     test_string_lstrip();
     test_string_partition();
     test_string_rpartition();
+    test_string_split();
 
 }

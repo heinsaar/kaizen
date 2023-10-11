@@ -377,6 +377,21 @@ public:
 
         return std::make_tuple(before, sep, after);
     }
+
+    std::vector<zen::string> split(const std::string& separator) {
+        //TODO can be template to support any container
+        std::vector<zen::string> result;
+        std::string s(*this);
+        size_t pos = 0;
+        std::string token;
+        while ((pos = s.find(separator)) != std::string::npos) {
+            token = s.substr(0, pos);
+            result.push_back(token);
+            s.erase(0, pos + separator.length());
+        }
+        result.push_back(s);
+        return result;
+    }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_numeric()	    Returns True if all characters in the string are numeric
