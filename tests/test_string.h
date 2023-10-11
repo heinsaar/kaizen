@@ -767,6 +767,38 @@ void test_string_is_space() {
     ZEN_EXPECT(z5.is_space() == false);
 }
 
+void test_string_ljust() {
+    zen::string z1 = "Hello";
+    zen::string z2 = "123";
+    zen::string z3 = "Short";
+    zen::string z4 = "";
+    zen::string z5 = "ThisIsALongerString";
+    zen::string z6 = "negative";
+
+    // Test 1: Left-justify with space padding
+    z1.ljust(10);
+    ZEN_EXPECT(z1 == "Hello     ");
+
+    // Test 2: Left-justify with '0' padding
+    z2.ljust(5, '0');
+    ZEN_EXPECT(z2 == "12300");
+
+    // Test 3: Left-justify a shorter string with space padding
+    z3.ljust(5);
+    ZEN_EXPECT(z3 == "Short");
+
+    // Test 4: Left-justify an empty string with space padding
+    z4.ljust(5);
+    ZEN_EXPECT(z4 == "     ");
+
+    // Test 5: Left-justify a longer string, no padding needed
+    z5.ljust(20);
+    ZEN_EXPECT(z5 == "ThisIsALongerString ");
+
+    z6.ljust(-1);
+    ZEN_EXPECT(z6 == "negative");
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -805,5 +837,7 @@ void main_test_string()
     test_string_is_upper();
     test_string_is_printable();
     test_string_is_space();
+    test_string_ljust();
+
 
 }
