@@ -290,8 +290,8 @@ public:
 
     bool is_alnum() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isalnum(c); }); }
 
+    bool is_alpha() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isalpha(c); }); }
     // TODO: Implement all or some of these (from Python string)
-    // is_alpha()	    Returns True if all characters in the string are in the alphabet
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_decimal()	    Returns True if all characters in the string are decimals
     // is_digit()	    Returns True if all characters in the string are digits

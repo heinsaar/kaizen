@@ -587,6 +587,29 @@ void test_string_is_alnum() {
     ZEN_EXPECT(z10.is_alnum() == false);    // Test 10: Empty string
 }
 
+void test_string_is_alpha() {
+    zen::string z1 = "Hello";
+    zen::string z2 = "Testing123";
+    zen::string z3 = "12345";
+    zen::string z4 = "!@#$%^";
+    zen::string z5 = " ";
+    zen::string z6 = "AaBbCc";
+    zen::string z7 = "With Space Inside";
+    zen::string z8 = "Alpha$Characters";
+    zen::string z9 = "";
+
+    ZEN_EXPECT(z1.is_alpha() == true);      // Test 1: Alphabetic only (all characters are letters)
+    ZEN_EXPECT(z2.is_alpha() == false);     // Test 2: Alphanumeric (contains both letters and numbers)
+    ZEN_EXPECT(z3.is_alpha() == false);     // Test 3: Numeric only (all characters are numbers)
+    ZEN_EXPECT(z4.is_alpha() == false);     // Test 4: Special characters only (contains special characters)
+    ZEN_EXPECT(z5.is_alpha() == false);     // Test 5: Space only (contains only space)
+    ZEN_EXPECT(z6.is_alpha() == true);      // Test 6: Alphabetic mixed case (contains letters in mixed case)
+    ZEN_EXPECT(z7.is_alpha() == false);     // Test 7: Alphabetic with spaces inside (contains letters with spaces)
+    ZEN_EXPECT(z8.is_alpha() == false);     // Test 8: Alphabetic with special characters (contains letters with special characters)
+    ZEN_EXPECT(z9.is_alpha() == false);    // Test 9: Empty string
+}
+
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -617,5 +640,6 @@ void main_test_string()
     test_string_to_upper();
     test_string_center();
     test_string_is_alnum();
+    test_string_is_alpha();
 
 }
