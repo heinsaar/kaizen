@@ -392,12 +392,21 @@ public:
         result.push_back(s);
         return result;
     }
+
+    std::vector<zen::string> split_lines() {
+        std::vector<zen::string> lines;
+        std::istringstream f(*this);
+        std::string line;
+        while (std::getline(f, line)) {
+            lines.push_back(line);
+        }
+        return lines;
+    }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_numeric()	    Returns True if all characters in the string are numeric
     // rfind()	        Searches the string for a specified value and returns the last position of where it was found
     // rsplit()	        Splits the string at the specified separator, and returns a list
-    // split()	        Splits the string at the specified separator, and returns a list
     // split_lines()	Splits the string at line breaks and returns a list
     // strip()	        Returns a trimmed version of the string
     // swapcase()	    Swaps cases, lower case becomes upper case and vice versa
