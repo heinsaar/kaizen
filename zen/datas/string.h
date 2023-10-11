@@ -298,8 +298,8 @@ public:
 
     bool is_alnum()   const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c)          { return std::isalnum(c);   }); }
     bool is_alpha()   const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c)          { return std::isalpha(c);   }); }
-    bool is_decimal() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit((c)); }); }
     bool is_digit()   const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit(c);   }); }
+    bool is_decimal() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit((c)); }); }
         
     bool is_identifier() const
     {
@@ -321,8 +321,8 @@ public:
 
     bool is_lower()     const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::islower(c); }); }
     bool is_upper()     const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isupper(c); }); }
-    bool is_printable() const { return std::all_of(my::begin(), my::end(), [](char c) { return std::isprint(c); }); }
     bool is_space()     const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isspace(c); }); }
+    bool is_printable() const { return std::all_of(my::begin(), my::end(), [](char c) { return std::isprint(c); }); }
 
     auto& ljust(int width, char fillchar = ' ')
     {
