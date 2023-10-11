@@ -289,8 +289,6 @@ public:
     }
 
     // TODO: Implement all or some of these (from Python string)
-    // capitalize()	    Converts the first character to upper case
-    // to_lower()	    Converts string into lower case
     // is_alnum()	    Returns True if all characters in the string are alphanumeric
     // is_alpha()	    Returns True if all characters in the string are in the alphabet
     // is_ascii()	    Returns True if all characters in the string are ascii characters
@@ -314,7 +312,6 @@ public:
     // split_lines()	Splits the string at line breaks and returns a list
     // strip()	        Returns a trimmed version of the string
     // swapcase()	    Swaps cases, lower case becomes upper case and vice versa
-    // to_upper()	    Converts a string into upper case
 
 private:
     using my = zen::string;
