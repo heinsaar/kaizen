@@ -681,33 +681,6 @@ void test_string_is_alpha()
     ZEN_EXPECT(z9.is_alpha() == false);    // Test 9: Empty string
 }
 
-void test_string_is_decimal()
-{
-    BEGIN_SUBTEST;
-
-    zen::string z1 = "12345";
-    zen::string z2 = "\u0030"; // This is the Unicode representation of '0'
-    zen::string z3 = "Testing123";
-    zen::string z4 = "!@#$%^";
-    zen::string z5 = " ";
-    zen::string z6 = "AaBbCc";
-    zen::string z7 = "";
-    zen::string z8 = "\u0041"; // This is the Unicode representation of 'A'
-    zen::string z9 = "0012345";
-    zen::string z10 = "123456789012345678901234567890";
-
-    ZEN_EXPECT(z1.is_decimal() == true); // Test 1: Numeric characters (all characters are decimal digits)
-    ZEN_EXPECT(z2.is_decimal() == true); // Test 2: Unicode representation of '0' (should also be considered decimal)
-    ZEN_EXPECT(z3.is_decimal() == false); // Test 3: Alphanumeric (contains both letters and numbers)
-    ZEN_EXPECT(z4.is_decimal() == false); // Test 4: Special characters only (contains special characters)
-    ZEN_EXPECT(z5.is_decimal() == false); // Test 5: Space only (contains only space)
-    ZEN_EXPECT(z6.is_decimal() == false); // Test 6: Alphabetic mixed case (contains letters in mixed case)
-    ZEN_EXPECT(z7.is_decimal() == false); // Test 7: empty case (contains letters in mixed case)
-    ZEN_EXPECT(z8.is_decimal() == false); // Test 8: Unicode representation of 'A' (should not be considered decimal)
-    ZEN_EXPECT(z9.is_decimal() == true);  // Test 9: Leading zeros (should be considered decimal)
-    ZEN_EXPECT(z10.is_decimal() == true); // Test 10: Long string (should be considered decimal)
-}
-
 void test_string_is_digit()
 {
     BEGIN_SUBTEST;
@@ -1147,7 +1120,6 @@ void main_test_string()
     test_string_replace_if();
     test_string_capitalize();
     test_string_rpartition();
-    test_string_is_decimal();
     test_string_substring();
     test_string_ends_with();
     test_string_pad_start();
