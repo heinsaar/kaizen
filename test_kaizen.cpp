@@ -24,7 +24,7 @@
 
 int main(int argc, char* argv[])
 {
-	const auto project_dir = zen::search_upward(std::filesystem::current_path(), "kaizen").value();
+	const auto project_dir = zen::search_upward("kaizen").value();
 
 	zen::cmd_args		  cmd_args(argv, argc);
 	zen::REPORT_TC_PASS = cmd_args.accept("-report_tc_pass").is_present();
@@ -32,9 +32,9 @@ int main(int argc, char* argv[])
 ///////////////////////////////////////////////////////////////////////////////////////////// PREAMBLE
 
 	// Extract Kaizen version from the license file
-	zen::file::filestring textfile(project_dir / "LICENSE.txt");
-	zen::string	   line = textfile.getline(1);
-	zen::string	   vers = line.extract_version();
+	zen::ifile         license(project_dir / "LICENSE.txt");
+	zen::string	line = license.getline(1);
+	zen::string	vers = line.extract_version();
 	
 	std::string time      = R"((\d+\:\d+\:\d+))";
 	std::string datestamp = zen::string(zen::timestamp()).remove(time).deflate();
@@ -52,20 +52,38 @@ int main(int argc, char* argv[])
 
 	zen::timer timer;
 
+	// Since the order of these tests doesn't matter, their
+	// calls are listed in descending length for aesthetics
 	main_test_cmd_args(argc, argv);
+	main_test_unordered_multiset();
+	main_test_unordered_multimap();
+	main_test_priority_queue();
+	main_test_unordered_set();
+	main_test_unordered_map();
 	main_test_forward_list();
-	main_test_filestring();
+	main_test_multiset();
+	main_test_multimap();
     main_test_version();
 	main_test_string();
 	main_test_vector();
+	main_test_ifile();
 	main_test_array();
 	main_test_deque();
+	main_test_stack();
+	main_test_queue();
 	main_test_utils();
 	main_test_timer();
+	main_test_point();
 	main_test_list();
+	main_test_map();
+	main_test_set();
 	main_test_in();
 
-	if (cmd_args.is_present("-cloc")) main_test_cloc();
+	// Performance tests
+	main_test_performance();
+
+	if (cmd_args.is_present("-cloc"))
+		main_test_cloc();
 
 	timer.stop();
 
@@ -81,12 +99,12 @@ int main(int argc, char* argv[])
 	const zen::cloc cloc(zen::parent_path(), { "build"});
 	int total_loc = cloc.count({ ".h" });
 
-	auto ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
+	auto total_loctc_ratio = static_cast<double>(total_loc) / (zen::TEST_CASE_PASS_COUNT + zen::TEST_CASE_FAIL_COUNT);
 
 	zen::log(""); // new line
-	zen::log(zen::string("TOTAL DURATION (MILLIS):").pad_end(24), timer.duration<zen::timer::msec>());
-	zen::log(zen::string("TOTAL kaizen.h LOC:"     ).pad_end(24), total_loc);
-	zen::log(zen::string("TOTAL kaizen.h LOC/TC:").pad_end(24), ratio);
+	zen::log(zen::string("TOTAL DURATION :"		 ).pad_end(22), timer.duration_string());
+	zen::log(zen::string("TOTAL kaizen.h LOC:"   ).pad_end(22), total_loc);
+	zen::log(zen::string("TOTAL kaizen.h LOC/TC:").pad_end(22), total_loctc_ratio);
 
 // ------------------------------------------------------------------------------------------ Total PASS/FAIL
 

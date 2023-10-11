@@ -50,7 +50,7 @@ public:
     cloc(const std::filesystem::path& root, const std::vector<std::string>& dirs) 
         : root_(root), dirs_(dirs) {}
  
-    // LATER: This will run cloc on multiple threads, but will require linking with a
+    // TODO:LATER: This will run cloc on multiple threads, but will require linking with a
     // threading library. Seems to not be worth the cost just for this one. Maybe if
     // there's a more compelling reason to make Kaizen require multithreading.
     // Used like this to run on 10 threads:

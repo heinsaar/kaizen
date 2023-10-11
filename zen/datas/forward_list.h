@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2023 Leo Heinsaar
 // 
@@ -22,29 +22,36 @@
 
 #pragma once
 
-// Since the order of these #includes doesn't matter,
-// they're sorted in descending length for aesthetics
-#include "tests/test_unordered_set.h"
-#include "tests/test_unordered_map.h"
-#include "tests/test_uncompilable.h"
-#include "tests/test_forward_list.h"
-#include "tests/test_cmd_args.h"
-#include "tests/test_version.h"
-#include "tests/test_string.h"
-#include "tests/test_vector.h"
-#include "tests/test_ifile.h"
-#include "tests/test_array.h"
-#include "tests/test_deque.h"
-#include "tests/test_stack.h"
-#include "tests/test_queue.h"
-#include "tests/test_utils.h"
-#include "tests/test_timer.h"
-#include "tests/test_point.h"
-#include "tests/test_list.h"
-#include "tests/test_cloc.h"
-#include "tests/test_set.h"
-#include "tests/test_map.h"
-#include "tests/test_in.h"
+#include <forward_list>
+#include <type_traits>
+#include <algorithm>
 
-// Performance tests
-#include "tests/test_perf.h"
+#include "alpha.h" // internal; will not be included in kaizen.h
+
+namespace zen {
+
+///////////////////////////////////////////////////////////////////////////////////////////// zen::forward_list
+
+template<class T, class A = std::allocator<T>>
+class forward_list : public std::forward_list<T, A>, private zen::stackonly
+{
+public:
+    using std::forward_list<T, A>::forward_list; // inherit constructors, has to be explicit
+
+    forward_list(const std::forward_list<T, A>& x) : std::forward_list<T, A>(x) {}
+
+    template<class Pred>
+    typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
+        contains(Pred p) const
+    {
+        return std::find_if(my::begin(), my::end(), p) != my::end();
+    }
+    bool contains(const T& x) const { return std::find(my::begin(), my::end(), x) != my::end(); }
+
+    bool is_empty() const { return my::empty(); }
+
+private:
+    using my = forward_list<T, A>;
+};
+
+} // namespace zen

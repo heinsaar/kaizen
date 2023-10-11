@@ -22,43 +22,36 @@
 
 #pragma once
 
+#include <type_traits>
+#include <algorithm>
+#include <deque>
+
+#include "alpha.h" // internal; will not be included in kaizen.h
+
 namespace zen {
 
-///////////////////////////////////////////////////////////////////////////////////////////// zen::in
+///////////////////////////////////////////////////////////////////////////////////////////// zen::deque
 
-// Declarative range-for loop. Note that apart from an intuitive
-// reading, "in" can also be thought of standing for "interval".
-// Example: for (int i : zen::in(5))         // from  0 to  5
-// Example: for (int i : zen::in(1, 10))     // from  1 to 10
-// Example: for (int i : zen::in(10, 1, -1)) // from 10 to  1, step -1
-class in {
+template<class T, class A = std::allocator<T>>
+class deque : public std::deque<T, A>, private zen::stackonly
+{
 public:
-    in(int end)
-        : begin_(0), end_(end), step_(1) {}
+    using std::deque<T, A>::deque; // inherit constructors, has to be explicit
 
-    in(int begin, int end, int step = 1)
-        : begin_(begin), end_(end), step_(step) {}
+    deque(const std::deque<T, A>& d) : std::deque<T, A>(d) {}
 
-    class iterator {
-    public:
-        iterator(int n = 0, int step = 1) : n_(n), step_(step) {}
-        iterator& operator++() { n_ += step_; return *this; }
-        const int& operator* ()            const { return n_; }
-        bool operator!=(const iterator& x) const {
-            return (step_ > 0) ? (n_ < x.n_) : (n_ > x.n_);
-        }
-    private:
-        int n_;
-        int step_;
-    };
+    template<class Pred>
+    typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
+         contains(Pred p) const
+    {
+        return std::find_if(my::begin(), my::end(), p) != my::end();
+    }
+    bool contains(const T& x) const { return std::find(my::begin(), my::end(), x) != my::end(); }
 
-    iterator begin() const { return iterator(begin_, step_); }
-    iterator end()   const { return iterator(end_,   step_); }
+    bool is_empty() const { return my::empty(); }
 
 private:
-    int begin_;
-    int end_;
-    int step_;
+    using my = deque<T, A>;
 };
 
 } // namespace zen

@@ -22,38 +22,26 @@
 
 #pragma once
 
-#include <type_traits>
-#include <algorithm>
-#include <array>
+#include <stack>
+
+#include "alpha.h" // internal; will not be included in kaizen.h
 
 namespace zen {
 
-///////////////////////////////////////////////////////////////////////////////////////////// zen::array
+///////////////////////////////////////////////////////////////////////////////////////////// zen::stack
 
-template<class T, size_t N>
-class array : public std::array<T, N>
+template<class T, class C = std::deque<T>>
+class stack : public std::stack<T, C>, private zen::stackonly
 {
 public:
-    using std::array<T, N>::array; // inherit constructors, has to be explicit
+    using std::stack<T, C>::stack; // inherit constructors, has to be explicit
 
-    // Custom constructor to handle initializer list
-    array(std::initializer_list<T> init_list)
-    {
-        std::copy(std::begin(init_list), std::end(init_list), my::begin());
-    }
-
-    template<class Pred>
-    typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
-        contains(Pred p) const
-    {
-        return std::find_if(my::begin(), my::end(), p) != my::end();
-    }
-    bool contains(const T& x) const { return std::find(   my::begin(), my::end(), x) != my::end(); }
-
+    stack(const std::stack<T, C>& q) : std::stack<T, C>(q) {}
+        
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = array<T, N>;
+    using my = stack<T, C>;
 };
 
 } // namespace zen

@@ -15,6 +15,11 @@ int main(int argc, char* argv[])
     zen::cmd_args  args(argv, argc);
     bool verbose = args.accept("-verbose").is_present();
     bool ignore  = args.accept("-ignore" ).is_present();
+
+    // For: -copy from/some/dir to/some/dir
+    args.accept("-copy");
+    args.get_options("-copy")[0] // "from/some/dir"
+    args.get_options("-copy")[1] //   "to/some/dir"
     
     // Or sometime later
     if (args.is_present("-ignore"))
@@ -23,9 +28,9 @@ int main(int argc, char* argv[])
 ### Working with files
 Open a file and read any line right away:
 ```cpp
-zen::filesystem::filestring filestr("../LICENSE.txt"_path);
-zen::string version       = filestr.getline(1);
-zen::string license       = filestr.getline(3);
+zen::ifile            license_text("../LICENSE.txt"_path);
+zen::string version = license_text.getline(1);
+zen::string license = license_text.getline(3);
 ```
 ### Simple ranges
 Python-like range notation:
@@ -34,6 +39,10 @@ for (int i : zen::in(5))        // i from 0 to 4
 for (int i : zen::in(1, 10))    // i from 1 to 9
 for (int i : zen::in(0, 10, 2)) // i from 0 to 8, step 2
 ```
+Our benchmarks consistently show that, for optimized builds, not only is there zero overhead from using
+`zen::in()` instead of a raw loop, but sometimes `zen::in` even ends up slightly *faster* (yes, faster)
+than the raw loop for both MSVC (the Visual Studio compiler) as well as GCC/Clang.
+Compiler optimizations can be full of surprises.
 ### Strings
 Python-like substring extractions:
 ```cpp
@@ -104,11 +113,22 @@ In addition, `zen::log()` is equivalent to `zen::print()` except that it will au
 ```cpp
 zen::log(v, "4", 5); // equivalent to zen::print(v, "4", 5, '\n');
 ```
+In general, `zen::log()` calls `zen::print()`, which, in turn, calls `zen::to_string()`, which is able to convert
+to a string a wide range of objects that are intuitively expected to be convertible to a string. For example:
+```cpp
+std::vector<int> v  = { 1, 2, 3 };
+zen::to_string(v); // [ 1, 2, 2 ]
+```
+With arbitrary nestedness of any containers:
+```cpp
+std::vector<std::list<std::vector<int>>> vxv = { {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}} };
+zen::to_string(vxv);                         // [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]
+```
 ### Containers
 Richer containers with many useful functions:
 ```cpp
 zen::vector<int> v;
-zen::populate_random(v);  // randomly populate anything resizable & iterable
+zen::generate_random(v);  // randomly populate anything resizable & iterable
 if (v.contains(42)) {     // easily check for containment
     zen::sum(v);          // easily sum up anything iterable with addable elements
 }
@@ -134,6 +154,16 @@ A static assert that shows the expression that failed:
 // Will show something like:
 // 'ZEN STATIC ASSERTION FAILED. "FAILED EXPRESSION:": zen::is_iterable_v<int>'
 ZEN_STATIC_ASSERT(zen::is_iterable_v<int>, "FAILED EXPRESSION:");
+```
+### Timer
+A simple timer:
+```cpp
+// Let's benchmark zen::in
+zen::timer timer;
+for (int i : zen::in(N)) {
+    // Some computation
+}
+zen::log(timer.stop().duration_string());
 ```
 ### Versions
 Semantic versioning:

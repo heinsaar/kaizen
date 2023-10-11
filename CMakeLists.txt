@@ -36,6 +36,19 @@ endif()
 
 project("kaizen")
 
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
+endif()
+
+# Set compiler flags for different configurations
+if(MSVC)
+  set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MDd /Zi")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD /O2")
+else()
+  set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} -g")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
+endif()
+
 ################################### Delete kaizen.h if it exists
 
 add_custom_target(delete_kaizen_header
@@ -48,12 +61,11 @@ add_custom_target(delete_kaizen_header
 add_custom_command(
     OUTPUT  kaizen.h
     COMMAND python3 ${CMAKE_SOURCE_DIR}/make_kaizen.py
-    DEPENDS datas/list.h datas/vector.h datas/array.h
     COMMENT "GENERATING kaizen.h"
 )
 
 add_custom_target(generate_kaizen_header ALL DEPENDS kaizen.h)
-add_dependencies(generate_kaizen_header delete_kaizen_header)
+add_dependencies( generate_kaizen_header delete_kaizen_header)
 
 ################################### Add source to this project's executable.
 file(GLOB datas         datas/*.h)
@@ -61,6 +73,12 @@ file(GLOB functions functions/*.h)
 file(GLOB tests    tests/test_*.h)
 add_executable(kaizen "test_kaizen.cpp" ${datas} ${functions} ${tests})
 # add_test(NAME KaizenTest COMMAND kaizen -verbose) # TODO: This should be picked up by CI, but isn't
+
+if(MSVC)
+    target_compile_options(kaizen PRIVATE /W4)
+else()
+    target_compile_options(kaizen PRIVATE -Wall -Wextra -Wpedantic)
+endif()
 
 # Set a dependency on the custom target to ensure it runs before the kaizen executable is built
 add_dependencies(kaizen generate_kaizen_header)

@@ -30,26 +30,23 @@
 namespace zen {
 
 // Forward declarations
-template <class T, class... Args> void log(T x, Args... args);
+std::string quote(const std::string_view s);
 
-namespace file {
+///////////////////////////////////////////////////////////////////////////////////////////// zen::ifile
 
-///////////////////////////////////////////////////////////////////////////////////////////// zen::filestring
-
-class filestring {
+class ifile {
 public:
-    filestring(const std::filesystem::path& path)
-        : filepath_(path), filestream_(path)
+    ifile(const std::filesystem::path& path)
+        : filepath_(path), ifstream_(path)
     {
-        if (!filestream_.is_open()) {
-            zen::log("ERROR OPENING FILE: ", path);
-            throw std::runtime_error("END OF FILE REACHED");
+        if (!ifstream_.is_open()) {
+            throw std::runtime_error("ERROR OPENING FILE: " + zen::quote(path.string()));
         }
     }
 
-    ~filestring() {
-        if (filestream_.is_open()) {
-            filestream_.close();
+    ~ifile() {
+        if (ifstream_.is_open()) {
+            ifstream_.close();
         }
     }
 
@@ -88,10 +85,11 @@ public:
         std::string    line_;
     };
 
-    auto begin() { return iterator{filestream_}; }
-    auto end()   { return iterator{filestream_, true}; }
+    auto begin() { return iterator{ifstream_}; }
+    auto end()   { return iterator{ifstream_, true}; }
 
-    // Method to get line n from the file (indexing starts from 1, not 0)
+    // Method to get line n from the file.
+    // Indexing starts from 1, not 0 to reflect the numbering of lines used in most editors.
     std::string getline(int nth) {
         auto it = begin();
         while (--nth > 0 && it != end()) {
@@ -99,26 +97,23 @@ public:
         }
 
         if (nth != 0)
-            throw std::out_of_range("END OF FILE REACHED");
+            throw std::out_of_range("REACHED END OF FILE: " + zen::quote(filepath_.string()));
 
         return *it;
     }
 
 private:
-    // TODO: Dynamically cache lines that are read the first time
+    // TODO: Dynamically cache lines that are read the first time?
     const std::filesystem::path& filepath_;
-    std::ifstream                filestream_;
+    std::ifstream                ifstream_;
 };
 
-namespace literals {
-namespace path {
+namespace literals::path {
 
-std::filesystem::path operator "" _path(const char* str, std::size_t length)
+std::filesystem::path operator ""_path(const char* str, std::size_t length)
 {
     return std::filesystem::path(std::string(str, length));
 }
 
-}}
-
-} // namespace file
+} // namespace literals::path
 } // namespace zen

@@ -29,7 +29,7 @@
 
 namespace zen {
 
-///////////////////////////////////////////////////////////////////////////////////////////// zen::vector
+///////////////////////////////////////////////////////////////////////////////////////////// zen::cmd_args
 
 // Usage:
 // int main(argc, argv)
@@ -40,7 +40,7 @@ namespace zen {
 
 // TODO: Enhance with support for:
 // - Help strings
-// - arg arguments (like -path "/to/some/dir"
+// - arg arguments (like -path "/to/some/dir") // ISSUE#26
 class cmd_args {
 public:
     cmd_args() : argv_(nullptr), argc_(0) {}
@@ -60,43 +60,75 @@ public:
         }
     }
 
-    auto& accept(const std::string& a)
+    auto& accept(const std::string& arg)
     {
-        if (a.empty())
-            return *this; // effectively voids an accept("") call
+        if (arg.empty())
+            return *this; // reject accept("") calls
 
         if (std::find(std::begin(args_accepted_),
-                      std::end(  args_accepted_), a)
+                      std::end(  args_accepted_), arg)
                    == std::end(  args_accepted_))
-            args_accepted_.push_back(a);
+            args_accepted_.push_back(arg);
         return *this;
     }
 
     // Returns true if either the provided argument 'a' or the last argument added by accept()
     // is present in the command line (with which the program was presumably launched)
-    bool is_present(const std::string& a = "") const
+    bool is_present(const std::string& arg = "") const
     {
-        if (a.empty())
+        if (arg.empty())
             return args_accepted_.empty() ? false : is_present(args_accepted_.back());
 
         for (int i = 0; i < argc_; ++i)
-            if (a == arg_at(i))
+            if (arg == arg_at(i))
                 return true;
 
         return false;
+    }
+
+    auto get_options(const std::string& arg) const
+    {
+        std::vector<std::string> options;
+
+        int idx = find(arg);
+        if (idx >= argc_)
+            return options; // as empty
+
+        // Collect all non-dashed strings that follow arg as its options
+        // Example: --copy from/some/dir to/some/dir -verbose
+        //                 ^^^^^^^^^^^^^ ^^^^^^^^^^^
+        for (int i = idx + 1; i < argc_; ++i)
+        {
+            const std::string& ai = arg_at(i);
+            if (ai[0] == '-')
+                break; // stop collecting when a new dashed argument is encountered
+
+            options.push_back(ai);
+        }
+
+        return options;
     }
 
     std::string arg_at(const int n) const
     {
         if (0 <= n && n < argc_)
             return argv_[n];
-        return "";
+        return ""; // signals non-existence
     }
 
-    std::string first_arg() const { return arg_at(0); }
-    std::string  last_arg() const { return arg_at(argc_ - 1); }
+    std::string first() const { return arg_at(0); }
+    std::string  last() const { return arg_at(argc_ - 1); }
 
-    int count_accepted() const { return args_accepted_.size(); }
+    std::size_t count_accepted() const { return args_accepted_.size(); }
+
+    int find(const std::string& arg = "") const
+    {
+        for (int i = 0; i < argc_; ++i)
+            if (arg_at(i) == arg)
+                return i;
+
+        return argc_; // the end, signals 'not found'
+    }
 
 private:
     using arguments = std::vector<std::string>;

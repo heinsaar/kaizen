@@ -28,6 +28,15 @@
 
 namespace zen {
 
+// One Linux system gave the warning: In the GNU C Library, "major" is defined
+// by <sys/sysmacros.h>. For historical compatibility, it is currently defined
+// by <sys / types.h> as well, but we plan to remove this soon. To use "major",
+// include < sys / sysmacros directly. If you did not intend to use a system-defined
+// macro "major", you should undefine it after including <sys/types.h>.
+// So we undefine them:
+#undef major
+#undef minor
+
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::version
 // Example: zen::version v8("8.2.3.4567");
 // Example: zen::version v1(1, 2, 3, 4567);

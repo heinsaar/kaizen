@@ -2,15 +2,31 @@
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
+#include "../internal.h"
+
 void test_array_of_strings()
 {
     BEGIN_SUBTEST;
     zen::array<zen::string, 4> a = { "1", "2", "3", "4" };
 
-    //zen::log(typeid(a).name(), a);
+    ZEN_EXPECT(silent_print(a) == "[\"1\", \"2\", \"3\", \"4\"]");
 
     ZEN_EXPECT(a.contains("1"));
     ZEN_EXPECT(zen::is_empty(a) == a.is_empty());
+}
+
+void test_array_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::array<int, 5> a = { 1, 2, 3, 4, 5 };
+
+    std::array<int, 5> sa{ a };
+    zen::array<int, 5> za{ sa };
+
+    zen::array zc = [&]() { return sa; }();
+
+    ZEN_EXPECT(a.contains(1) && za.contains(2));
+    ZEN_EXPECT(zc == sa && sa == za);
 }
 
 void main_test_array()
@@ -25,5 +41,6 @@ void main_test_array()
     ZEN_EXPECT(!a.contains(7));
     ZEN_EXPECT(zen::is_empty(a) == a.is_empty());
 
+    test_array_zen_std_interchangeability();
     test_array_of_strings();
 }

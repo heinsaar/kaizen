@@ -31,7 +31,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         build_type: [Release]
-        c_compiler: [gcc, clang, cl]
+        c_compiler: [gcc, clang, cl, 'gcc-11', 'gcc-10', 'gcc-9', 'clang-14']
         include:
           - os: windows-latest
             c_compiler: cl
@@ -42,6 +42,18 @@ jobs:
           - os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
+          - os: ubuntu-latest
+            c_compiler: gcc-11
+            cpp_compiler: g++-11
+          - os: ubuntu-latest
+            c_compiler: gcc-10
+            cpp_compiler: g++-10
+          - os: ubuntu-latest
+            c_compiler: gcc-9
+            cpp_compiler: g++-9
+          - os: ubuntu-latest
+            c_compiler: clang-14
+            cpp_compiler: clang++-14
         exclude:
           - os: windows-latest
             c_compiler: gcc
@@ -52,6 +64,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    #- name: Install dependencies
+    #  run: |
+    #    apt-get update
+    #    apt-get install -y ${{ matrix.c_compiler }} ${{ matrix.c_compiler }}++  # install the necessary compilers
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs.
@@ -77,6 +94,13 @@ jobs:
       # the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
+    - name: Upload Artifacts on Failure
+      if: failure() # so that we can get the artifacts and inspect why builds fail, for example
+      uses: actions/upload-artifact@v2
+      with:
+        name: kaizen-ci-failed-build-artifacts-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
+        path: ${{ steps.strings.outputs.build-output-dir }}/*
+        
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       # Execute tests defined by the CMake configuration. Note that --build-config is needed because
@@ -85,8 +109,14 @@ jobs:
       run: ctest --build-config ${{ matrix.build_type }}
 
       # TODO: Seems like this step should be configured in CMake, but there it isn't picked up. See why.
-    - name: Test by running kaizen executable (Linux) # Only run on Linux for now (Sep 2023)
+    - name: Test by running kaizen executable (Linux)
       if: success() && runner.os != 'Windows'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       shell: bash
       run: ./kaizen -verbose
+
+    - name: Test by running kaizen executable (Windows)
+      if: success() && runner.os == 'Windows'
+      working-directory: ${{ steps.strings.outputs.build-output-dir }}
+      shell: bash
+      run: .\\Release\\kaizen.exe -verbose

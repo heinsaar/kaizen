@@ -8,10 +8,23 @@ void test_list_of_strings()
     zen::list<zen::string> x = { "1", "2", "3", "4" };
     x.push_back("0");
 
-    //zen::log(typeid(x).name(), x);
-
     ZEN_EXPECT(x.contains("0"));
+    ZEN_EXPECT(silent_print(x) == "[\"1\", \"2\", \"3\", \"4\", \"0\"]");
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
+}
+
+void test_list_zen_std_interchangeability()
+{
+    BEGIN_SUBTEST;
+    zen::list<int> v = { 1, 2, 3 };
+
+    std::list sv{ v };
+    zen::list zv{ sv };
+
+    zen::list<int> zc = [&]() { return sv; }();
+
+    ZEN_EXPECT(v.contains(1) && zv.contains(2));
+    ZEN_EXPECT(zc == sv && sv == zv);
 }
 
 void main_test_list()
@@ -19,13 +32,12 @@ void main_test_list()
     BEGIN_TEST;
 
     zen::list<int> x;
-    zen::populate_random(x);
+    zen::generate_random(x);
     x.push_back(777);
-
-    //zen::log("RANDOM LIST:", x);
 
     ZEN_EXPECT(x.contains(777));
     ZEN_EXPECT(zen::is_empty(x) == x.is_empty());
 
+    test_list_zen_std_interchangeability();
     test_list_of_strings();
 }

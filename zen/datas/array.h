@@ -22,19 +22,29 @@
 
 #pragma once
 
-#include <forward_list>
 #include <type_traits>
 #include <algorithm>
+#include <array>
+
+#include "alpha.h" // internal; will not be included in kaizen.h
 
 namespace zen {
 
-///////////////////////////////////////////////////////////////////////////////////////////// zen::forward_list
+///////////////////////////////////////////////////////////////////////////////////////////// zen::array
 
-template<class T>
-class forward_list : public std::forward_list<T>
+template<class T, size_t N>
+class array : public std::array<T, N>, private zen::stackonly
 {
 public:
-    using std::forward_list<T>::forward_list; // inherit constructors, has to be explicit
+    using std::array<T, N>::array; // inherit constructors, has to be explicit
+
+    array(const std::array<T, N>& a) : std::array<T, N>(a) {}
+
+    // Custom constructor to handle initializer list
+    array(std::initializer_list<T> init_list)
+    {
+        std::copy(std::begin(init_list), std::end(init_list), my::begin());
+    }
 
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
@@ -42,12 +52,15 @@ public:
     {
         return std::find_if(my::begin(), my::end(), p) != my::end();
     }
-    bool contains(const T& x) const { return std::find(   my::begin(), my::end(), x) != my::end(); }
+    bool contains(const T& x) const { return std::find(my::begin(), my::end(), x) != my::end(); }
 
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = forward_list<T>;
+    using my = array<T, N>;
+
+    // Disable dynamic allocation since this type is derived from its std namesake that's
+    // not meant to be derived from (in particular, its destructor is not virtual).
 };
 
 } // namespace zen

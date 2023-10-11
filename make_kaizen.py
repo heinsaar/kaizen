@@ -1,15 +1,34 @@
 import datetime
+import fnmatch
 import re
 import os
 
+PRAGMA_ONCE = "#pragma once"
+
 # Collects header files from specified dirs
-def collect_header_files(dirs):
+def collect_main_header_files(dirs):
     header_files = []
+    alpha_header = None # separate out the alpha.h file
     for dir in dirs:
         for filename in os.listdir(dir):
             if filename.endswith('.h'):
-                header_files.append(os.path.join(dir, filename))
-    return header_files
+                file_path = os.path.join(dir, filename)
+                if filename == 'alpha.h' and dir.endswith('zen/datas'):
+                    alpha_header = file_path
+                else:
+                    header_files.append(file_path)
+    return header_files, alpha_header
+
+def collect_composite_headers(zen_composites):
+    header_files = []
+    composite_includes = set()
+    for filename in os.listdir(zen_composites):
+        if filename.endswith('.h'):
+            header_file = os.path.join(zen_composites, filename)
+            include_directives, _ = parse_header_file(header_file)
+            composite_includes.update(include_directives)
+            header_files.append(header_file)
+    return header_files, composite_includes
 
 # Separates license, include directives and code
 def parse_header_file(header_file):
@@ -25,10 +44,14 @@ def parse_header_file(header_file):
                 else:
                     skipping_license = False # end of license comment section, prepare for reading code
 
-            if '#pragma once' in line:
+            if PRAGMA_ONCE in line:
                 continue
+            
+            # If line #includes any non-standard C++ headers (like Kaizen-internal), skip it
+            if re.match(r'#include\s+"(.*)"', line):
+                continue # skip non-standard headers
 
-            match_include = re.match(r'#include\s+["<](.*)[">]', line)
+            match_include = re.match(r'#include\s+[<](.*)[>]', line)
             if match_include:
                 include_directives.add(line.strip())
             else:
@@ -42,14 +65,60 @@ def read_license(filename):
         # Return with comment characters added if they're not present
         return ['// ' + line if not line.startswith('// ') else line for line in lines]
 
+def compact_namespace_zen(code_content):
+    first_namespace_found      = False
+    last_closing_namespace_idx = None
+    compacted_code_content     = []
+    
+    # Find the index of the last "} // namespace zen"
+    for idx, line in reversed(list(enumerate(code_content))):
+        if "} // namespace zen" in line:
+            last_closing_namespace_idx = idx
+            break
+            
+    # Create a new list for compacted code content
+    for idx, line in enumerate(code_content):
+        if "namespace zen {" in line:
+            if not first_namespace_found:
+                first_namespace_found = True
+                compacted_code_content.append(line)
+            continue
+        elif "} // namespace zen" in line:
+            if idx == last_closing_namespace_idx:
+                compacted_code_content.append(line)
+            continue
+        else:
+            compacted_code_content.append(line)
+    
+    return compacted_code_content
+
+def deflate(code_content):
+    deflated_code_content = []
+    prev_was_empty = False # keep track of whether the previous line was empty
+    
+    for line in code_content:
+        if line.strip() == '':
+            if not prev_was_empty:
+                deflated_code_content.append(line)
+            prev_was_empty = True
+        else:
+            deflated_code_content.append(line)
+            prev_was_empty = False
+            
+    return deflated_code_content
+
 # Produces the final resulting kaizen library single header file
 def write_output_file(filename, license_text, include_directives, code_content):
+    code_content = compact_namespace_zen(code_content)
+    code_content = deflate(code_content)
+    
     with open(filename, 'w') as output_file:
         now = datetime.datetime.now()
         output_file.write('// FILE GENERATED ON: ' + now.strftime("%d.%m.%Y %H:%M:%S") + '\n//\n')
         output_file.writelines(license_text)
-        output_file.write('\n#pragma once\n\n')
-        for include_directive in sorted(include_directives):
+        output_file.write(f'\n{PRAGMA_ONCE} \n\n')
+        output_file.write('// Since the order of these #includes doesn\'t matter,\n// they\'re sorted in descending length for aesthetics\n')
+        for include_directive in sorted(include_directives, key=len, reverse=True):
             output_file.write(include_directive + '\n')
         # Remove all leading empty lines but one that come right after the #include directives:
         while code_content and code_content[0].strip() == '':
@@ -58,26 +127,69 @@ def write_output_file(filename, license_text, include_directives, code_content):
         output_file.writelines(code_content)
         os.chmod(filename, 0o444) # make readonly
 
+# check if pragma_once is present in file
+def is_pragma_once_present(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+    for line in lines:
+        linestrip = line.strip()
+        if linestrip == PRAGMA_ONCE:
+            return True
+        elif not linestrip.startswith(('//', '/*', '*/', '*')) and linestrip:
+            return False
+    return False
+
+# checks for header
+def check_headers_in(directory):
+    for root, _, files in os.walk(directory):
+        for file in fnmatch.filter(files, '*.h*'): # .h and .hpp files
+            file_path = os.path.join(root, file)
+            if not is_pragma_once_present(file_path):
+                print(f'WARNING: {PRAGMA_ONCE} NOT FOUND IN KAIZEN HEADER {file_path}')
+
 if __name__ == '__main__':
     project_dir = os.path.dirname(os.path.abspath(__file__))
     
-    datas_dir = os.path.join(project_dir, 'datas')
-    function_dir = os.path.join(project_dir, 'functions')
-    
+    zen_datas      = os.path.join(project_dir, 'zen/datas')
+    zen_functions  = os.path.join(project_dir, 'zen/functions')
+    zen_composites = os.path.join(project_dir, 'zen/composites')
+
+    # checks for headers
+    check_headers_in(zen_datas)
+    check_headers_in(zen_functions)
+    check_headers_in(zen_composites)
+
     license_file = os.path.join(project_dir, 'LICENSE.txt')
 
-    header_files = collect_header_files([datas_dir, function_dir])
+    header_files, alpha_header = collect_main_header_files([zen_datas, zen_functions])
+    composite_headers, composite_includes = collect_composite_headers(zen_composites)
+    
     license_text = read_license(license_file)
 
     all_include_directives = set()
     all_code_content = []
 
+    # Process 'alpha.h' separately and ensure its content is added first
+    if alpha_header:
+        _, alpha_content = parse_header_file(alpha_header)
+        all_code_content.extend(alpha_content) # ensure alpha.h content is first
+    
+    # Process regular headers
     for header_file in header_files:
         include_directives, code_content = parse_header_file(header_file)
         all_include_directives.update(include_directives)
         all_code_content.extend(code_content)
-    
+        
+    # Process composite headers
+    for composite_header in composite_headers:
+        _, code_content = parse_header_file(composite_header)
+        all_code_content.extend(code_content)
+        
+    # Remove headers included in composite headers
+    all_include_directives -= composite_includes
+
     # Generate the final result of the Kaizen library header file
     write_output_file('kaizen.h', license_text, all_include_directives, all_code_content)
 
-# end
+    
+# end of make_kayzen.py

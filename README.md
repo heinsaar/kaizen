@@ -1,29 +1,27 @@
 ![Build](https://github.com/heinsaar/kaizen/actions/workflows/cmake-multi-platform.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![image](https://github.com/heinsaar/kaizen/assets/14178490/c501af55-a0d3-4a2f-be11-8190ce680569)
 # Kaizen
 
 Collection of utilities and enhanced data structures for a wide range of C++ projects in a single header file ```kaizen.h```
 
-=====================================================================
-
 **AT THE MOMENT IN ACTIVE DEVELOPMENT, WITH LOTS OF CODE HAVING VERY LOW MELTING POINT.**
-
-=====================================================================
 
 ## Design Philosophy
 
-Kaizen 1.0 does not aim to be radiation-hardened, like STL or Boost, for all imaginable scenarios and use cases.
-Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), emphasizing gradual
-improvement over attempts of ideally perfect designs, this library is built on top of STL and aims to provide a
-malleable and growing set of practical and simple tools through a single header file that, like a Swiss army knife,
-includes just enough of everything that can be useful for a broad range of C++ projects right off the bat.
+Kaizen does not aim to be neither radiation-hardened nor generic for all imaginable scenarios and use cases.
+Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), emphasizing frequent
+and gradual improvement, this library builds on top of STL and aims to provide a malleable and growing set of
+practical, simple and well-tested tools through a single header file that, like a Swiss army knife, includes just
+enough of everything that can be useful for a broad range of C++ projects right off the bat.
 
 So, for example, even though STL containers were not meant to be derived from (in particular, their destructors
 are not virtual), `zen::string` derives from `std::string` in order to quickly, without having to implement all
 the conversion operators and delegate functions that a composition-based approach would require, provide the ability
 to convert to and from `std::string` at any point in the codebase whenever there's need for the richer interface
-of working with strings that `zen::string` provides.
+of working with strings that `zen::string` provides. Although `zen::string` and similarly derived types in `zen`
+do have all the necessary restrictions in place to prevent such dynamic allocations just in case.
 
 This approach is rooted in the philosophy that in the vast majority of cases and projects, the benefits from these
 utilities far outweigh any theoretical dangers of for some reason allocating `zen::string` itself dynamically and
@@ -51,9 +49,9 @@ int main(int argc, char* argv[])
 ```
 Open a file and read any line right away:
 ```cpp
-zen::filesystem::filestring filestr("../LICENSE.txt"_path);
-zen::string version       = filestr.getline(1);
-zen::string license       = filestr.getline(3);
+zen::ifile            license_text("../LICENSE.txt"_path);
+zen::string version = license_text.getline(1);
+zen::string license = license_text.getline(3);
 ```
 Python-like range notation:
 ```cpp
@@ -68,8 +66,8 @@ zen::string z = "Test substrings";
 
 z.substring(  0,   4) == "Test");        // both arguments are indices
 z.substring(-20,   4) == "Test");        // negative indices are okay
-z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(100, 300) == "");            // out-of-bounds indices are okay too
+z.substring(  0,  -5) == "Test subst");  // just like in Python
 z.substring(  5,  50) == "substrings");  // just like in Python
 
 // A drop-in replacement for std::string
@@ -90,7 +88,7 @@ zen::print(v, "4", 5);          // [1, 2, 3] 4 5
 Richer containers with many useful functions:
 ```cpp
 zen::vector<int> v;             // declare & use just like std::vector
-zen::populate_random(v);        // randomly populate anything resizable & iterable
+zen::generate_random(v);        // randomly populate anything resizable & iterable
 if (v.contains(42)) {           // easily check for containment
     zen::sum(v);                // easily sum up anything iterable with addable elements
 }
@@ -117,13 +115,16 @@ Yellow circles signify a potential need to code, although quite often a suggesti
 1. 🔴 **Add tests.** There can never be enough tests that cover anything previously not covered.
 1. 🔴 **Automate.** If you see ways to automate any process and thus save iteration time.
 
-See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
+### Communication
+
+* See our [Communication](https://github.com/heinsaar/kaizen/blob/master/Communication.md) page for our approach to communication.
+* See [RAPID Practice](https://leoheinsaar.blogspot.com/p/rapid-practice.html) for conventions on issues & commit messages.
 
 ## Prerequisites for building
 
 You'll need the GCC compiler for Linux or MSVC (comes with Visual Studio) for Windows development.
 
-The project is probably more backward-compatible, but at the moment is being developed and tested with the following tools: 
+The project is probably more widely and more backward-compatible, but at the moment is being developed and tested with the following tools: 
 
 1. Python 3.11
 2. MSVC 19.37
@@ -131,7 +132,7 @@ The project is probably more backward-compatible, but at the moment is being dev
 
 Open the repo folder in your favorite IDE (on Windows, if you're not very used to Visual Studio,
 I recommend using Visual Studio Code with [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)) and follow the steps described below to run it on your system.
-The `main()` function simply runs the tests and print out the report.
+The `main()` function simply runs the tests and prints out the report (see a sample screenshot below).
 
 ## Build & Run on Windows & Linux (including [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
 

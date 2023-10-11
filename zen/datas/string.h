@@ -26,26 +26,21 @@
 #include <string>
 #include <regex>
 
+#include "alpha.h" // internal; will not be included in kaizen.h
+
 namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::string
 
-class string : public std::string
+class string : public std::string, private zen::stackonly
 {
 public:
-    using std::string::string;    // inherit constructors, has to be explicit
+    using std::string::string;    // inherit constructors,         has to be explicit
     using std::string::operator=; // inherit assignment operators, has to be explicit
 
     string(const std::string&     s) : std::string(s) {}
     string(const std::string_view s) : std::string(s) {}
 
-    // Non-modifying functions
-    bool starts_with(const std::string_view s) const { return substr(0, s.length()) == s; }
-    bool ends_with(  const std::string_view s) const {
-        if (size() < s.size()) return false;
-        return substr(size() - s.size(), s.size()) == s;
-    }
-    
 #if __cplusplus < 202303L // check pre-C++23, at which point std::string::contains() is standard
     // SFINAE to ensure that this version is only enabled when Pred is callable
     template<class Pred, typename = std::enable_if_t<std::is_invocable_r_v<bool, Pred, char>>>
@@ -138,22 +133,22 @@ public:
     }
 
     template <typename Pred>
-        auto& replace_all_if(const std::string& search, const std::string& replacement, Pred predicate) {
-            if (search.empty()) return *this;
-            static_assert(std::is_invocable<Pred, const std::string&>(), "Predicate must be callable with const std::string&.");
-            static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>, "Predicate must return bool.");
+    auto& replace_all_if(const std::string& search, const std::string& replacement, Pred predicate) {
+        if (search.empty()) return *this;
+        static_assert(std::is_invocable<Pred, const std::string&>(), "Predicate must be callable with const std::string&.");
+        static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>, "Predicate must return bool.");
 
-            size_t pos = 0;
-            while ((pos = this->find(search, pos)) != std::string::npos) {
-                if (predicate(*this)) {
-                    std::string::replace(pos, search.length(), replacement);
-                    pos += replacement.length(); // move pos forward by the length of replace to prevent infinite loops
-                } else {
-                    pos += search.length(); // move pos forward by the length of search
-                }
+        size_t pos = 0;
+        while ((pos = this->find(search, pos)) != std::string::npos) {
+            if (predicate(*this)) {
+                std::string::replace(pos, search.length(), replacement);
+                pos += replacement.length(); // move pos forward by the length of replace to prevent infinite loops
+            } else {
+                pos += search.length(); // move pos forward by the length of search
             }
-            return *this;
         }
+        return *this;
+    }
 
     auto& trim_from_last(const std::string_view str)
     {
@@ -189,7 +184,7 @@ public:
     auto substring(int i1, int i2) const {
         const int sz = static_cast<int>(size());
 
-        // Convert negative indices to positive, if necessary
+        // If necessary, convert negative indices to positive
         if (i1 < 0) i1 += sz;
         if (i2 < 0) i2 += sz;
 
@@ -426,4 +421,11 @@ private:
     using my = zen::string;
 };
 
+struct string_hash {
+    size_t operator()(const zen::string& z) const {
+        return std::hash<std::string>()(z);
+    }
+};
+
 } // namespace zen
+

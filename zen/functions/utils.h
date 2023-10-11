@@ -35,90 +35,6 @@ namespace zen {
 
 ///////////////////////////////////////////////////////////////////////////////////////////// USEFUL MISC
 
-#define BEGIN_TEST    zen::log("BEGIN", zen::repeat("-", 50), __func__)
-#define BEGIN_SUBTEST zen::log(         zen::repeat("-", 61), __func__)
-#define END_TESTS     zen::log("END  ", zen::repeat("-", 50), __func__)
-
-std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
-std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
-
-bool REPORT_TC_PASS = false; // by default, don't report passes to avoid chatter
-bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
-
-#define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN STATIC ASSERTION FAILED. "#M ": " #X)
-
-// ZEN_EXPECT checks its expression parameter and spits out the expression if it fails.
-// The do { } while (0) construct ensures that the macro behaves as a single statement.
-// This allows it to be used safely in contexts like if-else statements without braces,
-// preventing syntax errors or unexpected behavior due to dangling elses.
-// Example: ZEN_EXPECT(str == "good");
-// Result:  CASE PASS: ...
-//          CASE FAIL: ...
-#define ZEN_EXPECT(expression) \
-    do { \
-        if (expression) { \
-            if (zen::REPORT_TC_PASS) \
-                zen::log(zen::color::green("CASE PASS:"), #expression); \
-            ++zen::TEST_CASE_PASS_COUNT; \
-        } \
-        if (!(expression)) { \
-            if (zen::REPORT_TC_FAIL) \
-                zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #expression); \
-            ++zen::TEST_CASE_FAIL_COUNT; \
-        } \
-    } while (0)
-
-// ZEN_EXPECT_THROW checks its expression parameter to throw the expression_type exception
-// and spits out the expression statement if it encounters another exception type thrown.
-// The do { } while (0) construct ensures that the macro behaves as a single statement.
-// This allows it to be used safely in contexts like if-else statements without braces,
-// preventing syntax errors or unexpected behavior due to dangling elses.
-// Example: ZEN_EXPECT_THROW(zen::version vi("bad"), std::invalid_argument);
-// Result:  CASE PASS: ...
-//     or:  CASE FAIL: ...
-#define ZEN_EXPECT_THROW(expression, exception_type) \
-    do { \
-        bool exception_caught{false}; \
-        try { \
-            expression; \
-        } \
-        catch (const exception_type&) { \
-            exception_caught = true; \
-            if (zen::REPORT_TC_PASS) \
-                zen::log(zen::color::green("CASE PASS:"), #expression); \
-            ++zen::TEST_CASE_PASS_COUNT; \
-            break; \
-        } \
-        catch (...) { \
-            exception_caught = true; \
-            if (zen::REPORT_TC_FAIL) \
-                zen::log(zen::color::red("CASE FAIL:"), __func__, \
-                        "EXPECTED `" #expression \
-                        "` TO THROW AN EXCEPTION OF TYPE `" #exception_type \
-                        "`, BUT IT THROWS ANOTHER TYPE."); \
-            ++zen::TEST_CASE_FAIL_COUNT; \
-            break; \
-        } \
-        if (!exception_caught) { \
-            if (zen::REPORT_TC_FAIL) \
-                zen::log(zen::color::red("CASE FAIL:"), __func__, \
-                        "EXPECTED `" #expression \
-                        "` TO THROW AN EXCEPTION, BUT IT DOES NOT."); \
-            ++zen::TEST_CASE_FAIL_COUNT; \
-        } \
-    } while(0)
-
-// Quotes a string. This helps avoid cumbersome quote gymnastics in code.
-// Example: quote(filename) + " does not exist";
-// Result:  "/path/to/file" does not exist
-inline auto quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
-
-inline auto timestamp() {
-    std::time_t result  = std::time(nullptr);
-    std::string timestr = std::asctime(std::localtime(&result));
-    return timestr.substr(0, timestr.length() - 1);
-}
-
 // Repeats a string patterns.
 // This is the symmetrical complement of repeat(int, str).
 // Example: repeat("*", 10);
@@ -144,6 +60,7 @@ zen::string repeat(const int n, const std::string_view s) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// MAIN UTILITIES
+
 // Example: random_int();
 // Result: A random integer between [min, max)
 template<class T = int>
@@ -184,24 +101,31 @@ T random_int(const T min = 0, const T max = 10) {
     return dis(gen);
 }
 
-// Example: populate_random(c); // c is an iterable and resizable container
-// Result: A random integer between [min, max)
+// Very often all we want is a dead simple way of quickly
+// generating a container filled with some random numbers.
+// Example: std::vector<int> v;
+//          zen::generate_random(v);
+// Result: A vector of size 10 with random integers between [min, max)
 template<class Iterable>
-void populate_random(Iterable& c, int size = 10) // TODO: Generalize & test with all containers before Kaizen 1.0.0 release
+void generate_random(Iterable& c, int size = 10) // TODO: Generalize & test with all containers before Kaizen 1.0.0 release
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_iterable_v< Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::is_resizable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
 
-    if (!std::size(c))
+    if (std::empty(c))
         c.resize(size);
 
     std::generate(std::begin(c), std::end(c), [&]() { return random_int(10, 99); });
 }
 
-// Example: is_empty(c); // c is an iterable container
-template<class Iterable>
-bool is_empty(const Iterable& c)
+// Over the years it has become clear that the standard member
+// function empty() that lacks an 'is_' prefix is confusing to
+// non-familiar users due to its ambiguity as a noun and a verb.
+// Example: zen::is_empty(c); // c is any iterable container
+template<class HasEmpty>
+bool is_empty(const HasEmpty& c)
 {
-    ZEN_STATIC_ASSERT(zen::is_iterable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
+    ZEN_STATIC_ASSERT(zen::has_empty_v<HasEmpty>, "TEMPLATE PARAMETER EXPECTED TO HAVE empty(), BUT DOES NOT");
     return c.empty();
 }
 
@@ -229,32 +153,39 @@ auto sum(const Iterable& c)
     return sum;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////// COLORS
-// Example: zen::print(zen::color::red(str));
-// Example: std::cout( zen::color::red(str));
-// Result: Red-colored str in the console.
-namespace color {
-    class color_string {
-    public:
-        color_string(const std::string_view s, int c) : text(s), code(c) {}
-        const std::string text;
-        const int /*col*/ code;
+template<class Iterable, class EqualityComparable>
+auto count(const Iterable& c, const EqualityComparable& x)
+{
+    ZEN_STATIC_ASSERT(is_iterable_v<Iterable>,
+        "TEMPLATE PARAMETER Iterable EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT(is_equality_comparable_v<EqualityComparable>,
+        "TEMPLATE PARAMETER EqualityComparable EXPECTED TO BE EqualityComparable, BUT IS NOT");
 
-        friend std::ostream& operator<<(std::ostream& os, const color_string& cw) {
-            os << "\033[" << cw.code << "m" << cw.text << "\033[0m";
-            return os;
-        }
-    };
+    size_t count = 0;
+    for (auto it = std::begin(c); it != std::end(c); ++it) {
+        if (*it == x)
+            ++count;
+    }
 
-    color_string nocolor(const std::string_view s) { return color_string(s,  0); }
-    color_string red    (const std::string_view s) { return color_string(s, 31); }
-    color_string blue   (const std::string_view s) { return color_string(s, 34); }
-    color_string green  (const std::string_view s) { return color_string(s, 32); }
-    color_string black  (const std::string_view s) { return color_string(s, 30); }
-    color_string yellow (const std::string_view s) { return color_string(s, 33); }
-    color_string magenta(const std::string_view s) { return color_string(s, 35); }
-    color_string cyan   (const std::string_view s) { return color_string(s, 36); }
-    color_string white  (const std::string_view s) { return color_string(s, 37); }
+    return count;
+}
+
+template<class Iterable, class Pred>
+auto count_if(const Iterable& c, Pred p)
+{
+    using T = decltype(*std::begin(c));
+    ZEN_STATIC_ASSERT(is_iterable_v<Iterable>,
+        "TEMPLATE PARAMETER Iterable EXPECTED TO BE ITERABLE, BUT IS NOT");
+    ZEN_STATIC_ASSERT((std::is_invocable_r<bool, Pred, const T&>::value),
+        "TEMPLATE PARAMETER Predicate NOT APPLICABLE TO ELEMENT TYPE");
+
+    size_t count = 0;
+    for (auto it = std::begin(c); it != std::end(c); ++it) {
+        if (p(*it))
+            ++count;
+    }
+
+    return count;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// LPS (Log, Print, String)
@@ -272,7 +203,7 @@ namespace color {
 // Example: to_string(vec) Result: [1, 2, 3]
 // Example: to_string(42)  Result: "42"
 template<class T>
-std::string to_string(const T& x) {
+zen::string to_string(const T& x) {
     std::stringstream ss;
     
     // First check for string-likeness so that zen::pring("abc") prints "abc"
@@ -283,10 +214,16 @@ std::string to_string(const T& x) {
         ss << "[";
         auto it = std::begin(x);
         if (it != std::end(x)) {
-            ss << to_string(*it++);       // recursive call to handle nested iterables
+            if constexpr (is_string_like<decltype(*it)>())
+                ss << quote(to_string(*it++));
+            else
+                ss << to_string(*it++);              // recursive call to handle nested iterables
         }
         for (; it != std::end(x); ++it) {
-            ss << ", " << to_string(*it); // recursive call to handle nested iterables
+            if constexpr (is_string_like<decltype(*it)>())
+                ss << ", " << quote(to_string(*it)); // recursive call to handle nested iterables
+            else
+                ss << ", " << to_string(*it);        // recursive call to handle nested iterables
         }
         ss << "]";
     } else { // not iterable, single item
@@ -297,11 +234,11 @@ std::string to_string(const T& x) {
 
 // Recursive variadic template to handle multiple arguments
 template<class T, class... Args>
-inline std::string to_string(const T& x, const Args&... args) {
+inline zen::string to_string(const T& x, const Args&... args) {
     return to_string(x) + " " + to_string(args...);
 }
 // Base case for the recursive calls
-inline std::string to_string() { return ""; }
+inline zen::string to_string() { return ""; }
 
 // ------------------------------------------------------------------------------------------ print
 
@@ -344,22 +281,5 @@ void log(T x, Args... args) {
 }
 // Base case for the recursive calls
 inline void log() {}
-
-///////////////////////////////////////////////////////////////////////////////////////////// PATHS
-
-std::filesystem::path current_path() { return std::filesystem::current_path(); }
-std::filesystem::path  parent_path() { return std::filesystem::current_path().parent_path(); }
-
-std::optional<std::filesystem::path>
-search_upward(std::filesystem::path dir, std::string_view name) {
-    while (dir.filename() != name) {
-        dir = dir.parent_path();
-    }
-
-    if (dir.empty())
-        return std::nullopt;
-        
-    return dir;
-}
 
 } // namespace zen

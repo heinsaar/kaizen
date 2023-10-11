@@ -24,17 +24,21 @@
 
 #include <type_traits>
 #include <algorithm>
-#include <list>
+#include <vector>
+
+#include "alpha.h" // internal; will not be included in kaizen.h
 
 namespace zen {
 
-///////////////////////////////////////////////////////////////////////////////////////////// zen::list
+///////////////////////////////////////////////////////////////////////////////////////////// zen::vector
 
-template<class T>
-class list : public std::list<T>
+template<class T, class A = std::allocator<T>>
+class vector : public std::vector<T, A>, private zen::stackonly
 {
 public:
-    using std::list<T>::list; // inherit constructors, has to be explicit
+    using std::vector<T, A>::vector; // inherit constructors, has to be explicit
+
+    vector(const std::vector<T, A>& v) : std::vector<T, A>(v) {}
 
     template<class Pred>
     typename std::enable_if<std::is_invocable_r<bool, Pred, const T&>::value, bool>::type
@@ -42,12 +46,13 @@ public:
     {
         return std::find_if(my::begin(), my::end(), p) != my::end();
     }
-    bool contains(const T& x) const { return std::find(   my::begin(), my::end(), x) != my::end(); }
 
+    bool contains(const T& x) const { return std::find(my::begin(), my::end(), x) != my::end(); }
+    
     bool is_empty() const { return my::empty(); }
 
 private:
-    using my = list<T>;
+    using my = vector<T, A>;
 };
 
 } // namespace zen
