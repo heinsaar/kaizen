@@ -296,7 +296,7 @@ public:
         return *this;
     }
 
-    bool is_printable() const { return std::all_of(my::begin(), my::end(), [](char c) { return std::isprint(c); }); }
+    bool is_printable() const { return                std::all_of(my::begin(), my::end(), [](char c)          { return std::isprint(c);   }); }
     bool is_decimal()   const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit((c)); }); }
     bool is_alnum()     const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c)          { return std::isalnum(c);   }); }
     bool is_alpha()     const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c)          { return std::isalpha(c);   }); }
