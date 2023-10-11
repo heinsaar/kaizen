@@ -921,6 +921,44 @@ void test_string_partition() {
     ZEN_EXPECT(std::get<2>(result4).empty());
 }
 
+void test_string_rpartition() {
+    zen::string input1 = "apple;banana;cherry";
+    zen::string separator1 = ";";
+
+    auto result1 = input1.rpartition(separator1);
+
+    ZEN_EXPECT(std::get<0>(result1) == "apple;banana");
+    ZEN_EXPECT(std::get<1>(result1) == ";");
+    ZEN_EXPECT(std::get<2>(result1) == "cherry");
+
+    zen::string input2 = "one::two::three";
+    zen::string separator2 = "::";
+
+    auto result2 = input2.rpartition(separator2);
+
+    ZEN_EXPECT(std::get<0>(result2) == "one::two");
+    ZEN_EXPECT(std::get<1>(result2) == "::");
+    ZEN_EXPECT(std::get<2>(result2) == "three");
+
+    zen::string input3 = "no_separator_here";
+    zen::string separator3 = "::";
+
+    auto result3 = input3.rpartition(separator3);
+
+    ZEN_EXPECT(std::get<0>(result3) == "no_separator_here");
+    ZEN_EXPECT(std::get<1>(result3).empty());
+    ZEN_EXPECT(std::get<2>(result3).empty());
+
+    zen::string input4 = "::";
+    zen::string separator4 = "::";
+
+    auto result4 = input4.rpartition(separator4);
+
+    ZEN_EXPECT(std::get<0>(result4).empty());
+    ZEN_EXPECT(std::get<1>(result4) == "::");
+    ZEN_EXPECT(std::get<2>(result4).empty());
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -964,5 +1002,6 @@ void main_test_string()
     test_string_rstrip();
     test_string_lstrip();
     test_string_partition();
+    test_string_rpartition();
 
 }

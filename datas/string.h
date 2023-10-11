@@ -364,11 +364,23 @@ public:
 
         return std::make_tuple(before, sep, after);
     }
+
+    std::tuple<std::string, std::string, std::string> rpartition(const std::string& separator) {
+        size_t pos = this->rfind(separator);
+        if (pos == std::string::npos) {
+            return std::make_tuple(*this, "", "");
+        }
+
+        std::string before = this->substr(0, pos);
+        std::string sep = this->substr(pos, separator.length());
+        std::string after = this->substr(pos + separator.length());
+
+        return std::make_tuple(before, sep, after);
+    }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_numeric()	    Returns True if all characters in the string are numeric
     // rfind()	        Searches the string for a specified value and returns the last position of where it was found
-    // rpartition()	    Returns a tuple where the string is parted into three parts
     // rsplit()	        Splits the string at the specified separator, and returns a list
     // split()	        Splits the string at the specified separator, and returns a list
     // split_lines()	Splits the string at line breaks and returns a list
