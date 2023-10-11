@@ -493,6 +493,41 @@ void test_string_to_lower() {
     ZEN_EXPECT(z8 == "hello\nworld");
 }
 
+void test_string_to_upper() {
+    zen::string z1 = "Hello World!";
+    zen::string z2 = "123 abc XYZ";
+    zen::string z3 = "NOCHANGE";
+    zen::string z4 = "";
+    zen::string z5 = "!@#$%^&*()";
+    zen::string z6 = "123!@#";
+    zen::string z7 = "MixedCASE123";
+    zen::string z8 = "Hello\nWorld";
+
+    z1.to_upper();
+    ZEN_EXPECT(z1 == "HELLO WORLD!");
+
+    z2.to_upper();
+    ZEN_EXPECT(z2 == "123 ABC XYZ");
+
+    z3.to_upper();
+    ZEN_EXPECT(z3 == "NOCHANGE");
+
+    z4.to_upper();
+    ZEN_EXPECT(z4 == "");
+
+    z5.to_upper();
+    ZEN_EXPECT(z5 == "!@#$%^&*()");
+
+    z6.to_upper();
+    ZEN_EXPECT(z6 == "123!@#");
+
+    z7.to_upper();
+    ZEN_EXPECT(z7 == "MIXEDCASE123");
+
+    z8.to_upper();
+    ZEN_EXPECT(z8 == "HELLO\nWORLD");
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -520,5 +555,6 @@ void main_test_string()
     test_string_replace_all_if();
     test_string_capitalize();
     test_string_to_lower();
+    test_string_to_upper();
 
 }

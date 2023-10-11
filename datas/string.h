@@ -266,6 +266,14 @@ public:
         return *this;
     }
 
+    auto& to_upper() {
+        for (auto& c : *this) {
+            if (std::isalpha(c) && std::islower(c)) {
+                c = std::toupper(c);
+            }
+        }
+        return *this;
+    }
 
     // TODO: Implement all or some of these (from Python string)
     // capitalize()	    Converts the first character to upper case
