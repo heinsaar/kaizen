@@ -383,14 +383,14 @@ public:
 
     std::tuple<std::string, std::string, std::string> rpartition(const std::string& separator) 
     {
-        size_t pos = this->rfind(separator);
+        const size_t pos = my::rfind(separator);
         if (pos == std::string::npos) {
             return std::make_tuple(*this, "", "");
         }
 
-        std::string before = this->substr(0, pos);
-        std::string sep = this->substr(pos, separator.length());
-        std::string after = this->substr(pos + separator.length());
+        const std::string before = my::substr(0, pos);
+        const std::string sep    = my::substr(pos, separator.length());
+        const std::string after  = my::substr(pos + separator.length());
 
         return std::make_tuple(before, sep, after);
     }
