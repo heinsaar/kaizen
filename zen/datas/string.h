@@ -345,18 +345,23 @@ public:
         return *this;
     }
 
-    auto& rstrip() {
-        my::erase(std::find_if(my::rbegin(), my::rend(), [](int ch) {
-                    return !std::isspace(ch);
-                    }).base(), my::end());
+    auto& rstrip()
+    {
+        my::erase(
+            std::find_if(my::rbegin(), my::rend(),
+                [](int ch) { return !std::isspace(ch); }
+            ).base(),
+            my::end()
+        );
         return *this;
     }
 
     auto& lstrip()
     {
-        my::erase(my::begin(), std::find_if(my::begin(), my::end(), [](int ch) {
-                    return !std::isspace(ch);
-                    }));
+        my::erase(
+            my::begin(),
+            std::find_if(my::begin(), my::end(), [](int ch) { return !std::isspace(ch); })
+        );
         return *this;
     }
 
