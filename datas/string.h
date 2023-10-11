@@ -335,6 +335,13 @@ public:
 
         return *this;
     }
+
+    auto& rstrip() {
+        my::erase(std::find_if(my::rbegin(), my::rend(), [](int ch) {
+                    return !std::isspace(ch);
+                    }).base(), my::end());
+        return *this;
+    }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_numeric()	    Returns True if all characters in the string are numeric
@@ -343,7 +350,6 @@ public:
     // rfind()	        Searches the string for a specified value and returns the last position of where it was found
     // rpartition()	    Returns a tuple where the string is parted into three parts
     // rsplit()	        Splits the string at the specified separator, and returns a list
-    // rstrip()	        Returns a right trim version of the string
     // split()	        Splits the string at the specified separator, and returns a list
     // split_lines()	Splits the string at line breaks and returns a list
     // strip()	        Returns a trimmed version of the string

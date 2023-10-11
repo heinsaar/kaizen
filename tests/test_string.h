@@ -831,6 +831,35 @@ void test_string_rjust() {
     ZEN_EXPECT(z6 == "negative");
 }
 
+void test_string_rstrip() {
+    zen::string z1 = "Hello, World!  \t  ";
+    zen::string z2 = "Trailing spaces   ";
+    zen::string z3 = "No trailing spaces";
+    zen::string z4 = "";
+    zen::string z5 = "  ";
+
+    // Test 1: Remove trailing spaces and tabs
+    z1.rstrip();
+    ZEN_EXPECT(z1 == "Hello, World!");
+
+    // Test 2: Remove trailing spaces
+    z2.rstrip();
+    ZEN_EXPECT(z2 == "Trailing spaces");
+
+    // Test 3: No trailing spaces to remove
+    z3.rstrip();
+    ZEN_EXPECT(z3 == "No trailing spaces");
+
+    // Test 4: Empty string remains empty
+    z4.rstrip();
+    ZEN_EXPECT(z4.empty());
+
+    // Test 5: Remove trailing spaces, leaving an empty string
+    z5.rstrip();
+    ZEN_EXPECT(z5.empty());
+}
+
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -871,5 +900,6 @@ void main_test_string()
     test_string_is_space();
     test_string_ljust();
     test_string_rjust();
+    test_string_rstrip();
 
 }
