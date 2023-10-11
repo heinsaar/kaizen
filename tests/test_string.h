@@ -587,16 +587,16 @@ void test_string_is_alnum()
     zen::string z9 = "Special-Characters!";
     zen::string z10 = "";
 
-    ZEN_EXPECT(z1.is_alnum() == true);   // Alphanumeric
-    ZEN_EXPECT(z2.is_alnum() == true);   // Alphabetic
-    ZEN_EXPECT(z3.is_alnum() == true);   // Numeric
-    ZEN_EXPECT(z4.is_alnum() == false);  // Special characters
-    ZEN_EXPECT(z5.is_alnum() == false);  // Empty string
-    ZEN_EXPECT(z6.is_alnum() == true);   // Alphabetic mixed case
-    ZEN_EXPECT(z7.is_alnum() == false);  // Alphanumeric with space
-    ZEN_EXPECT(z8.is_alnum() == false);  // Alphanumeric with underscore
-    ZEN_EXPECT(z9.is_alnum() == false);  // Special characters with exclamation mark
-    ZEN_EXPECT(z10.is_alnum() == false); // Empty string
+    ZEN_EXPECT( z1.is_alnum());  // Alphanumeric
+    ZEN_EXPECT( z2.is_alnum());  // Alphabetic
+    ZEN_EXPECT( z3.is_alnum());  // Numeric
+    ZEN_EXPECT(!z4.is_alnum());  // Special characters
+    ZEN_EXPECT(!z5.is_alnum());  // Empty string
+    ZEN_EXPECT( z6.is_alnum());  // Alphabetic mixed case
+    ZEN_EXPECT(!z7.is_alnum());  // Alphanumeric with space
+    ZEN_EXPECT(!z8.is_alnum());  // Alphanumeric with underscore
+    ZEN_EXPECT(!z9.is_alnum());  // Special characters with exclamation mark
+    ZEN_EXPECT(!z10.is_alnum()); // Empty string
 }
 
 void test_string_is_alpha()
@@ -613,15 +613,15 @@ void test_string_is_alpha()
     zen::string z8 = "Alpha$Characters";
     zen::string z9 = "";
 
-    ZEN_EXPECT(z1.is_alpha() == true);  // Alphabetic only (all characters are letters)
-    ZEN_EXPECT(z2.is_alpha() == false); // Alphanumeric (contains both letters and numbers)
-    ZEN_EXPECT(z3.is_alpha() == false); // Numeric only (all characters are numbers)
-    ZEN_EXPECT(z4.is_alpha() == false); // Special characters only (contains special characters)
-    ZEN_EXPECT(z5.is_alpha() == false); // Space only (contains only space)
-    ZEN_EXPECT(z6.is_alpha() == true);  // Alphabetic mixed case (contains letters in mixed case)
-    ZEN_EXPECT(z7.is_alpha() == false); // Alphabetic with spaces inside (contains letters with spaces)
-    ZEN_EXPECT(z8.is_alpha() == false); // Alphabetic with special characters (contains letters with special characters)
-    ZEN_EXPECT(z9.is_alpha() == false); // Empty string
+    ZEN_EXPECT( z1.is_alpha()); // Alphabetic only (all characters are letters)
+    ZEN_EXPECT(!z2.is_alpha()); // Alphanumeric (contains both letters and numbers)
+    ZEN_EXPECT(!z3.is_alpha()); // Numeric only (all characters are numbers)
+    ZEN_EXPECT(!z4.is_alpha()); // Special characters only (contains special characters)
+    ZEN_EXPECT(!z5.is_alpha()); // Space only (contains only space)
+    ZEN_EXPECT( z6.is_alpha()); // Alphabetic mixed case (contains letters in mixed case)
+    ZEN_EXPECT(!z7.is_alpha()); // Alphabetic with spaces inside (contains letters with spaces)
+    ZEN_EXPECT(!z8.is_alpha()); // Alphabetic with special characters (contains letters with special characters)
+    ZEN_EXPECT(!z9.is_alpha()); // Empty string
 }
 
 void test_string_is_digit()
@@ -639,16 +639,16 @@ void test_string_is_digit()
     zen::string z9 = "0012345";
     zen::string z10 = "123456789012345678901234567890";
 
-    ZEN_EXPECT(z1.is_digit() == true);  // Numeric characters (all characters are decimal digits)
-    ZEN_EXPECT(z2.is_digit() == true);  // Unicode representation of '0' (should also be considered decimal)
-    ZEN_EXPECT(z3.is_digit() == false); // Alphanumeric (contains both letters and numbers)
-    ZEN_EXPECT(z4.is_digit() == false); // Special characters only (contains special characters)
-    ZEN_EXPECT(z5.is_digit() == false); // Space only (contains only space)
-    ZEN_EXPECT(z6.is_digit() == false); // Alphabetic mixed case (contains letters in mixed case)
-    ZEN_EXPECT(z7.is_digit() == false); // empty case (contains letters in mixed case)
-    ZEN_EXPECT(z8.is_digit() == false); // Unicode representation of 'A' (should not be considered decimal)
-    ZEN_EXPECT(z9.is_digit() == true);  // Leading zeros (should be considered decimal)
-    ZEN_EXPECT(z10.is_digit() == true); // Long string (should be considered decimal)
+    ZEN_EXPECT( z1.is_digit()); // Numeric characters (all characters are decimal digits)
+    ZEN_EXPECT( z2.is_digit()); // Unicode representation of '0' (should also be considered decimal)
+    ZEN_EXPECT(!z3.is_digit()); // Alphanumeric (contains both letters and numbers)
+    ZEN_EXPECT(!z4.is_digit()); // Special characters only (contains special characters)
+    ZEN_EXPECT(!z5.is_digit()); // Space only (contains only space)
+    ZEN_EXPECT(!z6.is_digit()); // Alphabetic mixed case (contains letters in mixed case)
+    ZEN_EXPECT(!z7.is_digit()); // empty case (contains letters in mixed case)
+    ZEN_EXPECT(!z8.is_digit()); // Unicode representation of 'A' (should not be considered decimal)
+    ZEN_EXPECT( z9.is_digit()); // Leading zeros (should be considered decimal)
+    ZEN_EXPECT(z10.is_digit()); // Long string (should be considered decimal)
 }
 
 void test_string_is_identifier()
