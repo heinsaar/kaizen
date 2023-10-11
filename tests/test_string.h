@@ -528,6 +528,41 @@ void test_string_to_upper() {
     ZEN_EXPECT(z8 == "HELLO\nWORLD");
 }
 
+void test_string_center() {
+    zen::string z1 = "Hello";
+    zen::string z2 = "Centered";
+    zen::string z3 = "Wide";
+    zen::string z4 = "X";
+    zen::string z5 = "";
+    zen::string z6 = "Zen";
+    zen::string z7 = "WideWord";
+    zen::string z8 = "Padded";
+
+    z1.center(10);
+    ZEN_EXPECT(z1 == "  Hello   ");
+
+    z2.center(12, '-');
+    ZEN_EXPECT(z2 == "--Centered--");
+
+    z3.center(10, '*');
+    ZEN_EXPECT(z3 == "***Wide***");
+
+    z4.center(5);
+    ZEN_EXPECT(z4 == "  X  ");
+
+    z5.center(8);
+    ZEN_EXPECT(z5 == "        ");
+
+    z6.center(10, '+');
+    ZEN_EXPECT(z6 == "+++Zen++++");
+
+    z7.center(5, '-');
+    ZEN_EXPECT(z7 == "WideWord");
+
+    z8.center(10, '\n');
+    ZEN_EXPECT(z8 == "\n\nPadded\n\n");
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -556,5 +591,6 @@ void main_test_string()
     test_string_capitalize();
     test_string_to_lower();
     test_string_to_upper();
+    test_string_center();
 
 }

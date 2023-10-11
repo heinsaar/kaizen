@@ -275,10 +275,22 @@ public:
         return *this;
     }
 
+    auto& center(size_t width, char fillchar = ' ') {
+        if (width <= my::size()) return *this;
+
+        const size_t padding = width - my::size();
+        const size_t left_padding = padding / 2;
+        const size_t right_padding = padding - left_padding;
+
+        my::insert(0, left_padding, fillchar);
+        my::append(right_padding, fillchar);
+
+        return *this;
+    }
+
     // TODO: Implement all or some of these (from Python string)
     // capitalize()	    Converts the first character to upper case
     // to_lower()	    Converts string into lower case
-    // center()	        Returns a centered string
     // is_alnum()	    Returns True if all characters in the string are alphanumeric
     // is_alpha()	    Returns True if all characters in the string are in the alphabet
     // is_ascii()	    Returns True if all characters in the string are ascii characters
