@@ -295,9 +295,23 @@ public:
     bool is_decimal() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit((c)); }); }
 
     bool is_digit() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit(c); }); }
+        
+    bool is_identifier() const {
+        if (is_empty()) return false;
+        if (!std::isalpha(front()) && front() != '_') return false;
+
+        for (size_t i = 1; i < my::size(); ++i) {
+            const char& c = my::at(i);
+            if (!std::isalnum(c) && c != '_') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
-    // is_identifier()	Returns True if the string is an identifier
     // is_lower()	    Returns True if all characters in the string are lower case
     // is_numeric()	    Returns True if all characters in the string are numeric
     // is_printable()	Returns True if all characters in the string are printable

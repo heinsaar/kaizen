@@ -657,6 +657,25 @@ void test_string_is_digit() {
     ZEN_EXPECT(z10.is_digit() == true); // Test 10: Long string (should be considered decimal)
 }
 
+void test_string_is_identifier() {
+    zen::string z1 = "variable123"; // Test 1: Starts with a letter (valid identifier)
+    zen::string z2 = "123variable"; // Test 2: Starts with a digit (invalid identifier)
+    zen::string z3 = "var_iable";   // Test 3: Contains underscore (valid identifier)
+    zen::string z4 = "var iable";    // Test 4: Contains space (invalid identifier)
+    zen::string z5 = "var!able";     // Test 5: Contains special character (invalid identifier)
+    zen::string z6 = "_variable";    // Test 6: Starts with an underscore (valid identifier)
+    zen::string z7 = "";             // Test 7: Empty string (not a valid identifier)
+    zen::string z8 = " ";             // Test 7: Empty string (not a valid identifier)
+
+    ZEN_EXPECT(z1.is_identifier() == true);
+    ZEN_EXPECT(z2.is_identifier() == false);
+    ZEN_EXPECT(z3.is_identifier() == true);
+    ZEN_EXPECT(z4.is_identifier() == false);
+    ZEN_EXPECT(z5.is_identifier() == false);
+    ZEN_EXPECT(z6.is_identifier() == true);
+    ZEN_EXPECT(z7.is_identifier() == false);
+    ZEN_EXPECT(z8.is_identifier() == false);
+}
 
 void main_test_string()
 {
@@ -691,5 +710,6 @@ void main_test_string()
     test_string_is_alpha();
     test_string_is_decimal();
     test_string_is_digit();
+    test_string_is_identifier();
 
 }
