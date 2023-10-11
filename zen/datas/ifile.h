@@ -34,25 +34,25 @@ std::string quote(const std::string_view s);
 
 ///////////////////////////////////////////////////////////////////////////////////////////// zen::ifile
 
-class ifile {
+class ifile : public std::ifstream {
 public:
     ifile(const std::filesystem::path& path)
-        : filepath_(path), ifstream_(path)
+        : std::ifstream(path), filepath_(path)
     {
-        if (!ifstream_.is_open()) {
+        if (!my::is_open()) {
             throw std::runtime_error("ERROR OPENING FILE: " + zen::quote(path.string()));
         }
     }
 
     ~ifile() {
-        if (ifstream_.is_open()) {
-            ifstream_.close();
+        if (my::is_open()) {
+            my::close();
         }
     }
 
     class iterator {
     public:
-        iterator(std::ifstream& is, bool end_marker = false)
+        iterator(ifile& is, bool end_marker = false)
             : input_{is}, end_marker_{end_marker}
         {
             if (!end_marker_) {
@@ -65,7 +65,7 @@ public:
         bool operator!=(const iterator& it) const {
             return it.end_marker_ != end_marker_;
         }
-        
+
         const std::string& operator*() const {
             return line_;
         }
@@ -80,16 +80,14 @@ public:
         }
 
     private:
-        std::ifstream& input_;
-        bool           end_marker_{false};
-        std::string    line_;
+        ifile&       input_;
+        bool         end_marker_{ false };
+        std::string  line_;
     };
 
-    auto begin() { return iterator{ifstream_}; }
-    auto end()   { return iterator{ifstream_, true}; }
+    auto begin() { return iterator{*this}; }
+    auto end()   { return iterator{*this, true}; }
 
-    // Method to get line n from the file.
-    // Indexing starts from 1, not 0 to reflect the numbering of lines used in most editors.
     std::string getline(int nth) {
         auto it = begin();
         while (--nth > 0 && it != end()) {
@@ -105,7 +103,8 @@ public:
 private:
     // TODO: Dynamically cache lines that are read the first time?
     const std::filesystem::path& filepath_;
-    std::ifstream                ifstream_;
+
+    using my = std::ifstream;
 };
 
 namespace literals::path {
