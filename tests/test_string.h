@@ -563,6 +563,30 @@ void test_string_center() {
     ZEN_EXPECT(z8 == "\n\nPadded\n\n");
 }
 
+void test_string_is_alnum() {
+    zen::string z1 = "Hello123";
+    zen::string z2 = "Testing";
+    zen::string z3 = "12345";
+    zen::string z4 = "!@#$%^";
+    zen::string z5 = " ";
+    zen::string z6 = "AaBbCc";
+    zen::string z7 = "123 456";
+    zen::string z8 = "Alphanumeric_123";
+    zen::string z9 = "Special-Characters!";
+    zen::string z10 = "";
+
+    ZEN_EXPECT(z1.is_alnum() == true);      // Test 1: Alphanumeric
+    ZEN_EXPECT(z2.is_alnum() == true);      // Test 2: Alphabetic
+    ZEN_EXPECT(z3.is_alnum() == true);      // Test 3: Numeric
+    ZEN_EXPECT(z4.is_alnum() == false);     // Test 4: Special characters
+    ZEN_EXPECT(z5.is_alnum() == false);     // Test 5: Empty string
+    ZEN_EXPECT(z6.is_alnum() == true);      // Test 6: Alphabetic mixed case
+    ZEN_EXPECT(z7.is_alnum() == false);     // Test 7: Alphanumeric with space
+    ZEN_EXPECT(z8.is_alnum() == false);     // Test 8: Alphanumeric with underscore
+    ZEN_EXPECT(z9.is_alnum() == false);     // Test 9: Special characters with exclamation mark
+    ZEN_EXPECT(z10.is_alnum() == false);    // Test 10: Empty string
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -592,5 +616,6 @@ void main_test_string()
     test_string_to_lower();
     test_string_to_upper();
     test_string_center();
+    test_string_is_alnum();
 
 }
