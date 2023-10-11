@@ -62,7 +62,8 @@ public:
         return substr(posBeg + 1, posEnd - posBeg - 1);
     }
 
-    zen::string extract_pattern(const std::string& pattern) {
+    zen::string extract_pattern(const std::string& pattern)
+    {
         const std::regex regex_pattern(pattern);
         std::smatch match;
         std::string in(my::begin(), my::end());
@@ -108,8 +109,10 @@ public:
     }
 
     template <typename Pred>
-    auto& replace_if(const std::string& search, const std::string& replacement, Pred predicate) {
+    auto& replace_if(const std::string& search, const std::string& replacement, Pred predicate)
+    {
         if (search.empty()) return *this;
+
         static_assert(std::is_invocable<Pred, const std::string&>(),
             "TEMPLATE PARAMETER Pred MUST BE CALLABLE WITH const std::string&, BUT IS NOT");
         static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>,
@@ -123,7 +126,8 @@ public:
     }
 
     // Behaves like JavaScript's string.replaceAll()
-    auto& replace_all(const std::string& search, const std::string& replacement) {
+    auto& replace_all(const std::string& search, const std::string& replacement)
+    {
         if (search.empty()) return *this;
 
         size_t pos = 0;
@@ -135,8 +139,10 @@ public:
     }
 
     template <typename Pred>
-    auto& replace_all_if(const std::string& search, const std::string& replacement, Pred predicate) {
+    auto& replace_all_if(const std::string& search, const std::string& replacement, Pred predicate)
+    {
         if (search.empty()) return *this;
+
         static_assert(std::is_invocable<Pred, const std::string&>(),
             "TEMPLATE PARAMETER Pred MUST BE CALLABLE WITH const std::string&, BUT IS NOT");
         static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>,
@@ -185,7 +191,8 @@ public:
         return my::end() == std::adjacent_find(my::begin(), my::end(), neighbor_spaces);
     }
 
-    auto substring(int i1, int i2) const {
+    auto substring(int i1, int i2) const
+    {
         const int sz = static_cast<int>(size());
 
         // If necessary, convert negative indices to positive
@@ -240,8 +247,10 @@ public:
         return *this;
     }
 
-    auto& capitalize() {
+    auto& capitalize()
+    {
         if (is_empty()) return *this;
+
         if (std::isalpha(front()) && std::islower(front())) {
             my::front() = std::toupper(my::front());  // Capitalize the first character
         }
@@ -287,17 +296,18 @@ public:
         return *this;
     }
 
-    bool is_alnum() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isalnum(c); }); }
-
-    bool is_alpha() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isalpha(c); }); }
-
+    bool is_alnum()   const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c)          { return std::isalnum(c);   }); }
+    bool is_alpha()   const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c)          { return std::isalpha(c);   }); }
     bool is_decimal() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit((c)); }); }
-
-    bool is_digit() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit(c); }); }
+    bool is_digit()   const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit(c);   }); }
         
-    bool is_identifier() const {
-        if (is_empty()) return false;
-        if (!std::isalpha(front()) && front() != '_') return false;
+    bool is_identifier() const
+    {
+        if (is_empty())
+            return false;
+
+        if (!std::isalpha(front()) && front() != '_')
+            return false;
 
         for (size_t i = 1; i < my::size(); ++i) {
             const char& c = my::at(i);
@@ -309,16 +319,15 @@ public:
         return true;
     }
 
-    bool is_lower() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::islower(c); }); }
-
-    bool is_upper() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isupper(c); }); }
-
+    bool is_lower()     const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::islower(c); }); }
+    bool is_upper()     const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isupper(c); }); }
     bool is_printable() const { return std::all_of(my::begin(), my::end(), [](char c) { return std::isprint(c); }); }
+    bool is_space()     const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isspace(c); }); }
 
-    bool is_space() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isspace(c); }); }
-
-    auto& ljust(int width, char fillchar = ' ') {
-        if (0 > width || width <= my::size()) return *this;
+    auto& ljust(int width, char fillchar = ' ')
+    {
+        if (0 > width || width <= my::size())
+            return *this;
 
         const size_t padding = width - my::size();
         my::append(padding, fillchar);
@@ -326,8 +335,10 @@ public:
         return *this;
     }
 
-    auto& rjust(int width, char fillchar = ' ') {
-        if (0 > width || width <= my::size()) return *this;
+    auto& rjust(int width, char fillchar = ' ')
+    {
+        if (0 > width || width <= my::size())
+            return *this;
 
         const size_t padding = width - my::size();
         my::insert(0, padding, fillchar);
@@ -342,14 +353,16 @@ public:
         return *this;
     }
 
-    auto& lstrip() {
+    auto& lstrip()
+    {
         my::erase(my::begin(), std::find_if(my::begin(), my::end(), [](int ch) {
                     return !std::isspace(ch);
                     }));
         return *this;
     }
 
-    std::tuple<std::string, std::string, std::string> partition(const std::string& separator) {
+    std::tuple<std::string, std::string, std::string> partition(const std::string& separator)
+    {
         size_t pos = this->find(separator);
 
         if (pos == std::string::npos) {
@@ -364,7 +377,8 @@ public:
         return std::make_tuple(before, sep, after);
     }
 
-    std::tuple<std::string, std::string, std::string> rpartition(const std::string& separator) {
+    std::tuple<std::string, std::string, std::string> rpartition(const std::string& separator) 
+    {
         size_t pos = this->rfind(separator);
         if (pos == std::string::npos) {
             return std::make_tuple(*this, "", "");
@@ -377,7 +391,8 @@ public:
         return std::make_tuple(before, sep, after);
     }
 
-    std::vector<zen::string> split(const std::string& separator) {
+    std::vector<zen::string> split(const std::string& separator)
+    {
         //TODO can be template to support any container
         std::vector<zen::string> result;
         std::string s(*this);
@@ -392,7 +407,8 @@ public:
         return result;
     }
 
-    std::vector<zen::string> split_lines() {
+    std::vector<zen::string> split_lines()
+    {
         std::vector<zen::string> lines;
         std::istringstream f(*this);
         std::string line;
@@ -402,7 +418,8 @@ public:
         return lines;
     }
 
-    auto& swapcase() {
+    auto& swapcase()
+    {
         for (auto& c : *this) {
             if (std::isalpha(c)) {
                 if (std::islower(c)) {
