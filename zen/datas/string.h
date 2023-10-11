@@ -374,9 +374,9 @@ public:
             return std::make_tuple(*this, "", "");
         }
 
-        std::string before = this->substr(0, pos);
-        std::string sep = this->substr(pos, separator.length());
-        std::string after = this->substr(pos + separator.length());
+        std::string before = my::substr(0, pos);
+        std::string sep    = my::substr(pos, separator.length());
+        std::string after  = my::substr(pos + separator.length());
 
         return std::make_tuple(before, sep, after);
     }
