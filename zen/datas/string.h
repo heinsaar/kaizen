@@ -137,8 +137,10 @@ public:
     template <typename Pred>
     auto& replace_all_if(const std::string& search, const std::string& replacement, Pred predicate) {
         if (search.empty()) return *this;
-        static_assert(std::is_invocable<Pred, const std::string&>(), "Predicate must be callable with const std::string&.");
-        static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>, "Predicate must return bool.");
+        static_assert(std::is_invocable<Pred, const std::string&>(),
+            "TEMPLATE PARAMETER Pred MUST BE CALLABLE WITH const std::string&, BUT IS NOT");
+        static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>,
+            "TEMPLATE PARAMETER Pred MUST RETURN bool, BUT DOES NOT");
 
         size_t pos = 0;
         while ((pos = this->find(search, pos)) != std::string::npos) {
