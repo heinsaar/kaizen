@@ -294,6 +294,8 @@ void test_string_pad_start()
 
 void test_string_replace_if()
 {
+    BEGIN_SUBTEST;
+
     zen::string z1  = "I love apples.";
     zen::string z2  = "Replace me, replace me!";
     zen::string z3  = "Nothing to replace here.";
@@ -351,7 +353,10 @@ void test_string_replace_if()
     ZEN_EXPECT(z11 == "EndReplace");
 }
 
-void test_string_replace_all_if() {
+void test_string_replace_all_if()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Apple, banana, and apricot are fruits.";
     zen::string z2 = "The cat chased the rat. CATapult!";
     zen::string z3 = "1234567890";
@@ -460,7 +465,10 @@ void test_string_replace()
     ZEN_EXPECT(z11 == "EndReplaced");
 }
 
-void test_string_capitalize() {
+void test_string_capitalize()
+{
+    BEGIN_SUBTEST;
+
     zen::string str1 = "hello world";
     zen::string str2 = ""; 
     zen::string str3 = "this is a test";
@@ -507,7 +515,10 @@ void test_string_capitalize() {
     ZEN_EXPECT(str11 == "Al");
 }
 
-void test_string_to_lower() {
+void test_string_to_lower()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Hello World!";
     zen::string z2 = "123 ABC xyz";
     zen::string z3 = "nochange";
@@ -542,7 +553,10 @@ void test_string_to_lower() {
     ZEN_EXPECT(z8 == "hello\nworld");
 }
 
-void test_string_to_upper() {
+void test_string_to_upper()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Hello World!";
     zen::string z2 = "123 abc XYZ";
     zen::string z3 = "NOCHANGE";
@@ -577,7 +591,10 @@ void test_string_to_upper() {
     ZEN_EXPECT(z8 == "HELLO\nWORLD");
 }
 
-void test_string_center() {
+void test_string_center()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Hello";
     zen::string z2 = "Centered";
     zen::string z3 = "Wide";
@@ -612,7 +629,10 @@ void test_string_center() {
     ZEN_EXPECT(z8 == "\n\nPadded\n\n");
 }
 
-void test_string_is_alnum() {
+void test_string_is_alnum()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Hello123";
     zen::string z2 = "Testing";
     zen::string z3 = "12345";
@@ -636,7 +656,10 @@ void test_string_is_alnum() {
     ZEN_EXPECT(z10.is_alnum() == false);    // Test 10: Empty string
 }
 
-void test_string_is_alpha() {
+void test_string_is_alpha()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Hello";
     zen::string z2 = "Testing123";
     zen::string z3 = "12345";
@@ -658,7 +681,10 @@ void test_string_is_alpha() {
     ZEN_EXPECT(z9.is_alpha() == false);    // Test 9: Empty string
 }
 
-void test_string_is_decimal() {
+void test_string_is_decimal()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "12345";
     zen::string z2 = "\u0030"; // This is the Unicode representation of '0'
     zen::string z3 = "Testing123";
@@ -682,7 +708,10 @@ void test_string_is_decimal() {
     ZEN_EXPECT(z10.is_decimal() == true); // Test 10: Long string (should be considered decimal)
 }
 
-void test_string_is_digit() {
+void test_string_is_digit()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "12345";
     zen::string z2 = "\u0030"; // This is the Unicode representation of '0'
     zen::string z3 = "Testing123";
@@ -706,7 +735,10 @@ void test_string_is_digit() {
     ZEN_EXPECT(z10.is_digit() == true); // Test 10: Long string (should be considered decimal)
 }
 
-void test_string_is_identifier() {
+void test_string_is_identifier()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "variable123"; // Test 1: Starts with a letter (valid identifier)
     zen::string z2 = "123variable"; // Test 2: Starts with a digit (invalid identifier)
     zen::string z3 = "var_iable";   // Test 3: Contains underscore (valid identifier)
@@ -726,7 +758,10 @@ void test_string_is_identifier() {
     ZEN_EXPECT(z8.is_identifier() == false);
 }
 
-void test_string_is_lower() {
+void test_string_is_lower()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "lowercase";    // Test 1: All lowercase characters (valid)
     zen::string z2 = "MiXeDCaSe";   // Test 2: Mixed case characters (invalid, contains uppercase)
     zen::string z3 = "12345";       // Test 4: Digits (invalid, contains digits)
@@ -746,7 +781,10 @@ void test_string_is_lower() {
     ZEN_EXPECT(z8.is_lower() == false);
 }
 
-void test_string_is_upper() {
+void test_string_is_upper()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "HELLO";            // Test 1: All uppercase characters
     zen::string z2 = "hello";            // Test 2: All lowercase characters
     zen::string z3 = "HeLLo";            // Test 3: Mixed case
@@ -774,7 +812,10 @@ void test_string_is_upper() {
     ZEN_EXPECT(z12.is_upper() == true);
 }
 
-void test_string_is_printable() {
+void test_string_is_printable()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Hello, World!";    // Test 1: Printable characters (no control characters)
     zen::string z2 = "\n";              // Test 2: Newline character (control character)
     zen::string z3 = "12345";           // Test 3: Digits (printable)
@@ -802,7 +843,10 @@ void test_string_is_printable() {
     ZEN_EXPECT(z12.is_printable() == true);
 }
 
-void test_string_is_space() {
+void test_string_is_space()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "   ";           // Test 1: All spaces
     zen::string z2 = "Hello World";    // Test 2: Contains non-space characters
     zen::string z3 = "\t\n\r";         // Test 3: Various whitespace characters
@@ -816,7 +860,10 @@ void test_string_is_space() {
     ZEN_EXPECT(z5.is_space() == false);
 }
 
-void test_string_ljust() {
+void test_string_ljust()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Hello";
     zen::string z2 = "123";
     zen::string z3 = "Short";
@@ -848,7 +895,10 @@ void test_string_ljust() {
     ZEN_EXPECT(z6 == "negative");
 }
 
-void test_string_rjust() {
+void test_string_rjust()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Hello";
     zen::string z2 = "123";
     zen::string z3 = "Short";
@@ -880,7 +930,10 @@ void test_string_rjust() {
     ZEN_EXPECT(z6 == "negative");
 }
 
-void test_string_rstrip() {
+void test_string_rstrip()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "Hello, World!  \t  ";
     zen::string z2 = "Trailing spaces   ";
     zen::string z3 = "No trailing spaces";
@@ -908,7 +961,10 @@ void test_string_rstrip() {
     ZEN_EXPECT(z5.empty());
 }
 
-void test_string_lstrip() {
+void test_string_lstrip()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "  \t  Hello, World!";
     zen::string z2 = "   Leading spaces";
     zen::string z3 = "No leading spaces";
@@ -936,7 +992,10 @@ void test_string_lstrip() {
     ZEN_EXPECT(z5.empty());
 }
 
-void test_string_partition() {
+void test_string_partition()
+{
+    BEGIN_SUBTEST;
+
     zen::string z1 = "apple;banana;cherry";
     std::string separator1 = ";";
     auto result1 = z1.partition(separator1);
@@ -970,7 +1029,10 @@ void test_string_partition() {
     ZEN_EXPECT(std::get<2>(result4).empty());
 }
 
-void test_string_rpartition() {
+void test_string_rpartition()
+{
+    BEGIN_SUBTEST;
+
     zen::string input1 = "apple;banana;cherry";
     zen::string separator1 = ";";
 
@@ -1008,7 +1070,10 @@ void test_string_rpartition() {
     ZEN_EXPECT(std::get<2>(result4).empty());
 }
 
-void test_string_split() {
+void test_string_split()
+{
+    BEGIN_SUBTEST;
+
     zen::string input1 = "apple,banana,cherry";
     zen::string separator1 = ",";
 
