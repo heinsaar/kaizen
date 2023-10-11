@@ -106,7 +106,19 @@ public:
         }
         return *this;
     }
-    // ISSUE#27: Add an equivalent replace_if()
+
+    template <typename Pred>
+        auto& replace_if(const std::string& search, const std::string& replacement, Pred predicate) {
+            if (search.empty()) return *this;
+            static_assert(std::is_invocable<Pred, const std::string&>(), "Predicate must be callable with const std::string&.");
+            static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>, "Predicate must return bool.");
+
+            size_t position = std::string::find(search);
+            if (position != std::string::npos && predicate(*this)) {
+                std::string::replace(position, search.length(), replacement);
+            }
+            return *this;
+        }
 
     // Behaves like JavaScript's string.replaceAll()
     auto& replace_all(const std::string& search, const std::string& replacement) {
@@ -119,7 +131,24 @@ public:
         }
         return *this;
     }
-    // ISSUE#28: Add an equivalent replace_all_if()
+
+    template <typename Pred>
+    auto& replace_all_if(const std::string& search, const std::string& replacement, Pred predicate) {
+        if (search.empty()) return *this;
+        static_assert(std::is_invocable<Pred, const std::string&>(), "Predicate must be callable with const std::string&.");
+        static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>, "Predicate must return bool.");
+
+        size_t pos = 0;
+        while ((pos = this->find(search, pos)) != std::string::npos) {
+            if (predicate(*this)) {
+                std::string::replace(pos, search.length(), replacement);
+                pos += replacement.length(); // move pos forward by the length of replace to prevent infinite loops
+            } else {
+                pos += search.length(); // move pos forward by the length of search
+            }
+        }
+        return *this;
+    }
 
     auto& trim_from_last(const std::string_view str)
     {
@@ -207,34 +236,186 @@ public:
         return *this;
     }
 
+    auto& capitalize() {
+        if (is_empty()) return *this;
+        if (std::isalpha(front()) && std::islower(front())) {
+            my::front() = std::toupper(my::front());  // Capitalize the first character
+        }
+
+        for (size_t i = 1; i < my::size(); ++i) {
+            char& c = my::at(i);
+            if (std::isalpha(c) && std::isupper(c)) {
+                c = std::tolower(c);
+            }
+        }
+
+        return *this;
+    }
+
+    auto& to_lower() {
+        for (auto& c : *this) {
+            if (std::isalpha(c) && std::isupper(c)) {
+                c = std::tolower(c);
+            }
+        }
+        return *this;
+    }
+
+    auto& to_upper() {
+        for (auto& c : *this) {
+            if (std::isalpha(c) && std::islower(c)) {
+                c = std::toupper(c);
+            }
+        }
+        return *this;
+    }
+
+    auto& center(size_t width, char fillchar = ' ') {
+        if (width <= my::size()) return *this;
+
+        const size_t padding = width - my::size();
+        const size_t left_padding = padding / 2;
+        const size_t right_padding = padding - left_padding;
+
+        my::insert(0, left_padding, fillchar);
+        my::append(right_padding, fillchar);
+
+        return *this;
+    }
+
+    bool is_alnum() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isalnum(c); }); }
+
+    bool is_alpha() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isalpha(c); }); }
+
+    bool is_decimal() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit((c)); }); }
+
+    bool is_digit() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isdigit(c); }); }
+        
+    bool is_identifier() const {
+        if (is_empty()) return false;
+        if (!std::isalpha(front()) && front() != '_') return false;
+
+        for (size_t i = 1; i < my::size(); ++i) {
+            const char& c = my::at(i);
+            if (!std::isalnum(c) && c != '_') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    bool is_lower() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::islower(c);     }); }
+
+    bool is_upper() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isupper(c);     }); }
+
+    bool is_printable() const { return std::all_of(my::begin(), my::end(), [](char c) { return std::isprint(c);     }); }
+
+    bool is_space() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](unsigned char c) { return std::isspace(c);     }); }
+
+    auto& ljust(int width, char fillchar = ' ') {
+        if (0 > width || width <= my::size()) return *this;
+
+        const size_t padding = width - my::size();
+        my::append(padding, fillchar);
+
+        return *this;
+    }
+
+    auto& rjust(int width, char fillchar = ' ') {
+        if (0 > width || width <= my::size()) return *this;
+
+        const size_t padding = width - my::size();
+        my::insert(0, padding, fillchar);
+
+        return *this;
+    }
+
+    auto& rstrip() {
+        my::erase(std::find_if(my::rbegin(), my::rend(), [](int ch) {
+                    return !std::isspace(ch);
+                    }).base(), my::end());
+        return *this;
+    }
+
+    auto& lstrip() {
+        my::erase(my::begin(), std::find_if(my::begin(), my::end(), [](int ch) {
+                    return !std::isspace(ch);
+                    }));
+        return *this;
+    }
+
+    std::tuple<std::string, std::string, std::string> partition(const std::string& separator) {
+        size_t pos = this->find(separator);
+
+        if (pos == std::string::npos) {
+            // Separator not found, return the whole string and two empty strings
+            return std::make_tuple(*this, "", "");
+        }
+
+        std::string before = this->substr(0, pos);
+        std::string sep = this->substr(pos, separator.length());
+        std::string after = this->substr(pos + separator.length());
+
+        return std::make_tuple(before, sep, after);
+    }
+
+    std::tuple<std::string, std::string, std::string> rpartition(const std::string& separator) {
+        size_t pos = this->rfind(separator);
+        if (pos == std::string::npos) {
+            return std::make_tuple(*this, "", "");
+        }
+
+        std::string before = this->substr(0, pos);
+        std::string sep = this->substr(pos, separator.length());
+        std::string after = this->substr(pos + separator.length());
+
+        return std::make_tuple(before, sep, after);
+    }
+
+    std::vector<zen::string> split(const std::string& separator) {
+        //TODO can be template to support any container
+        std::vector<zen::string> result;
+        std::string s(*this);
+        size_t pos = 0;
+        std::string token;
+        while ((pos = s.find(separator)) != std::string::npos) {
+            token = s.substr(0, pos);
+            result.push_back(token);
+            s.erase(0, pos + separator.length());
+        }
+        result.push_back(s);
+        return result;
+    }
+
+    std::vector<zen::string> split_lines() {
+        std::vector<zen::string> lines;
+        std::istringstream f(*this);
+        std::string line;
+        while (std::getline(f, line)) {
+            lines.push_back(line);
+        }
+        return lines;
+    }
+
+    auto& swapcase() {
+        for (auto& c : *this) {
+            if (std::isalpha(c)) {
+                if (std::islower(c)) {
+                    c = std::toupper(c);
+                } else {
+                    c = std::tolower(c);
+                }
+            }
+        }
+        return *this;
+    }
     // TODO: Implement all or some of these (from Python string)
-    // capitalize()	    Converts the first character to upper case
-    // to_lower()	    Converts string into lower case
-    // center()	        Returns a centered string
-    // is_alnum()	    Returns True if all characters in the string are alphanumeric
-    // is_alpha()	    Returns True if all characters in the string are in the alphabet
     // is_ascii()	    Returns True if all characters in the string are ascii characters
-    // is_decimal()	    Returns True if all characters in the string are decimals
-    // is_digit()	    Returns True if all characters in the string are digits
-    // is_identifier()	Returns True if the string is an identifier
-    // is_lower()	    Returns True if all characters in the string are lower case
     // is_numeric()	    Returns True if all characters in the string are numeric
-    // is_printable()	Returns True if all characters in the string are printable
-    // is_space()	    Returns True if all characters in the string are whitespaces
-    // is_upper()	    Returns True if all characters in the string are upper case
-    // ljust()	        Returns a left justified version of the string
-    // lstrip()	        Returns a left trim version of the string
-    // partition()	    Returns a tuple where the string is parted into three parts
     // rfind()	        Searches the string for a specified value and returns the last position of where it was found
-    // rjust()	        Returns a right justified version of the string
-    // rpartition()	    Returns a tuple where the string is parted into three parts
     // rsplit()	        Splits the string at the specified separator, and returns a list
-    // rstrip()	        Returns a right trim version of the string
-    // split()	        Splits the string at the specified separator, and returns a list
-    // split_lines()	Splits the string at line breaks and returns a list
     // strip()	        Returns a trimmed version of the string
-    // swapcase()	    Swaps cases, lower case becomes upper case and vice versa
-    // to_upper()	    Converts a string into upper case
 
 private:
     using my = zen::string;
@@ -247,3 +428,4 @@ struct string_hash {
 };
 
 } // namespace zen
+
