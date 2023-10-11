@@ -100,7 +100,7 @@ public:
 
     // Behaves like JavaScript's string.replace()
     auto& replace(const std::string& search, const std::string& replacement) {
-        size_t position = std::string::find(search);
+        const size_t position = std::string::find(search);
         if (position != std::string::npos) {
             std::string::replace(position, search.length(), replacement);
         }
@@ -108,19 +108,19 @@ public:
     }
 
     template <typename Pred>
-        auto& replace_if(const std::string& search, const std::string& replacement, Pred predicate) {
-            if (search.empty()) return *this;
-            static_assert(std::is_invocable<Pred, const std::string&>(),
-                "TEMPLATE PARAMETER Pred MUST BE CALLABLE WITH const std::string&, BUT IS NOT");
-            static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>,
-                "TEMPLATE PARAMETER Pred MUST RETURN bool, BUT DOES NOT");
+    auto& replace_if(const std::string& search, const std::string& replacement, Pred predicate) {
+        if (search.empty()) return *this;
+        static_assert(std::is_invocable<Pred, const std::string&>(),
+            "TEMPLATE PARAMETER Pred MUST BE CALLABLE WITH const std::string&, BUT IS NOT");
+        static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>,
+            "TEMPLATE PARAMETER Pred MUST RETURN bool, BUT DOES NOT");
 
-            size_t position = std::string::find(search);
-            if (position != std::string::npos && predicate(*this)) {
-                std::string::replace(position, search.length(), replacement);
-            }
-            return *this;
+        const size_t position = std::string::find(search);
+        if (position != std::string::npos && predicate(*this)) {
+            std::string::replace(position, search.length(), replacement);
         }
+        return *this;
+    }
 
     // Behaves like JavaScript's string.replaceAll()
     auto& replace_all(const std::string& search, const std::string& replacement) {
