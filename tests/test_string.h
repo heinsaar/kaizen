@@ -304,6 +304,39 @@ void test_string_replace_if()
     ZEN_EXPECT(z11 == "EndReplace");
 }
 
+void test_string_replace_all_if() {
+    zen::string z1 = "Apple, banana, and apricot are fruits.";
+    zen::string z2 = "The cat chased the rat. CATapult!";
+    zen::string z3 = "1234567890";
+    zen::string z4 = "abcdeabcde";
+    zen::string z5 = "abcde";
+    zen::string z6 = "";
+
+    // Replace all occurrences if the string starts with 'A'
+    z1.replace_all_if("a", "X", [](const std::string& s) { return !s.empty() && s[0] == 'A'; });
+    ZEN_EXPECT(z1 == "Apple, bXnXnX, Xnd Xpricot Xre fruits.");
+
+    // Replace all occurrences if the string contains 'cat'
+    z2.replace_all_if("cat", "DOG", [](const std::string& s) { return s.find("cat") != std::string::npos; });
+    ZEN_EXPECT(z2 == "The DOG chased the rat. CATapult!");
+
+    // No replacements should occur when the predicate always returns false
+    z3.replace_all_if("1", "X", [](const std::string&) { return false; });
+    ZEN_EXPECT(z3 == "1234567890");
+
+    // Replace all occurrences with an empty string
+    z4.replace_all_if("cde", "", [](const std::string&) { return true; });
+    ZEN_EXPECT(z4 == "abab");
+
+    // No replacements should occur when the search string is empty
+    z5.replace_all_if("", "X", [](const std::string&) { return true; });
+    ZEN_EXPECT(z5 == "abcde");
+
+    // Empty string
+    z6.replace_all_if("abc", "XYZ", [](const std::string&) { return true; });
+    ZEN_EXPECT(z6 == ""); // No change expected
+}
+
 void test_string_replace_all()
 {
     BEGIN_SUBTEST;
