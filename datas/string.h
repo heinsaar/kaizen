@@ -402,14 +402,25 @@ public:
         }
         return lines;
     }
+
+    auto& swapcase() {
+        for (auto& c : *this) {
+            if (std::isalpha(c)) {
+                if (std::islower(c)) {
+                    c = std::toupper(c);
+                } else {
+                    c = std::tolower(c);
+                }
+            }
+        }
+        return *this;
+    }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_numeric()	    Returns True if all characters in the string are numeric
     // rfind()	        Searches the string for a specified value and returns the last position of where it was found
     // rsplit()	        Splits the string at the specified separator, and returns a list
-    // split_lines()	Splits the string at line breaks and returns a list
     // strip()	        Returns a trimmed version of the string
-    // swapcase()	    Swaps cases, lower case becomes upper case and vice versa
 
 private:
     using my = zen::string;
