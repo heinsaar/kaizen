@@ -245,6 +245,65 @@ void test_string_pad_start()
     ZEN_EXPECT(z8 == "AAA");
 }
 
+void test_string_replace_if()
+{
+    zen::string z1  = "I love apples.";
+    zen::string z2  = "Replace me, replace me!";
+    zen::string z3  = "Nothing to replace here.";
+    zen::string z4  = "No change.";
+    zen::string z5  = "Remove me.";
+    zen::string z6  = "No change.";
+    zen::string z7  = "CaseSensitive";
+    zen::string z8  = "ReplaceAll";
+    zen::string z9  = "Short";
+    zen::string z10 = "Lengthy";
+    zen::string z11 = "EndReplace";
+
+    // Attempt replacement, and the predicate returns true.
+    z1.replace_if("apples", "oranges", [](const zen::string&){ return true; });
+    ZEN_EXPECT(z1 == "I love oranges.");
+
+    // Attempt replacement, but the predicate returns false, so no replacement should occur.
+    z2.replace_if("replace", "REPLACED", [](const zen::string&){ return false; });
+    ZEN_EXPECT(z2 == "Replace me, replace me!");
+
+    // Attempt replacement, and the predicate returns true.
+    z3.replace_if("replace", "REPLACED", [](const zen::string&){ return true; });
+    ZEN_EXPECT(z3 == "Nothing to REPLACED here.");
+
+    // Attempt replacement with an empty search string, and the predicate returns true.
+    z4.replace_if("", "REPLACED", [](const zen::string&){ return true; });
+    ZEN_EXPECT(z4 == "No change.");
+
+    // Attempt removal using a predicate, and the predicate returns true.
+    z5.replace_if("Remove ", "", [](const zen::string&){ return true; });
+    ZEN_EXPECT(z5 == "me.");
+
+    // Attempt removal using a predicate, but the predicate returns false, so no replacement should occur.
+    z6.replace_if("", "", [](const zen::string&){ return false; });
+    ZEN_EXPECT(z6 == "No change.");
+
+    // Case-sensitive replacement, and the predicate returns true.
+    z7.replace_if("Case", "CASE", [](const zen::string&){ return true; });
+    ZEN_EXPECT(z7 == "CASESensitive");
+
+    // Attempt replacement, and the predicate returns true.
+    z8.replace_if("ReplaceAll", "AllReplaced", [](const zen::string&){ return true; });
+    ZEN_EXPECT(z8 == "AllReplaced");
+
+    // Predicate returns true, so the replacement should occur.
+    z9.replace_if("Short", "Lengthy", [](const zen::string&){ return true; });
+    ZEN_EXPECT(z9 == "Lengthy");
+
+    // Predicate returns false, so no replacement should occur.
+    z10.replace_if("Lengthy", "Short", [](const zen::string&){ return false; });
+    ZEN_EXPECT(z10 == "Lengthy");
+
+    // Attempt replacement, but the predicate returns false, so no replacement should occur.
+    z11.replace_if("Replace", "Replaced", [](const zen::string&){ return false; });
+    ZEN_EXPECT(z11 == "EndReplace");
+}
+
 void test_string_replace_all()
 {
     BEGIN_SUBTEST;

@@ -111,7 +111,19 @@ public:
         }
         return *this;
     }
-    // TODO: Add an equivalent replace_if()
+
+    template <typename Pred>
+        auto& replace_if(const std::string& search, const std::string& replacement, Pred predicate) {
+            if (search.empty()) return *this;
+            static_assert(std::is_invocable<Pred, const std::string&>(), "Predicate must be callable with const std::string&.");
+            static_assert(std::is_same_v<std::invoke_result_t<Pred, const std::string&>, bool>, "Predicate must return bool.");
+
+            size_t position = std::string::find(search);
+            if (position != std::string::npos && predicate(*this)) {
+                std::string::replace(position, search.length(), replacement);
+            }
+            return *this;
+        }
 
     // Behaves like JavaScript's string.replaceAll()
     auto& replace_all(const std::string& search, const std::string& replacement) {
