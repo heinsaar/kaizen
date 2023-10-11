@@ -252,7 +252,7 @@ public:
         if (is_empty()) return *this;
 
         if (std::isalpha(front()) && std::islower(front())) {
-            my::front() = std::toupper(my::front());  // Capitalize the first character
+            my::front() = std::toupper(my::front()); // capitalize the first character
         }
 
         for (size_t i = 1; i < my::size(); ++i) {
