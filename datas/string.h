@@ -311,12 +311,13 @@ public:
     }
 
     bool is_lower() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::islower(c);     }); }
+
+    bool is_upper() const { return !is_empty() && std::all_of(my::begin(), my::end(), [](char c) { return std::isupper(c);     }); }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_numeric()	    Returns True if all characters in the string are numeric
     // is_printable()	Returns True if all characters in the string are printable
     // is_space()	    Returns True if all characters in the string are whitespaces
-    // is_upper()	    Returns True if all characters in the string are upper case
     // ljust()	        Returns a left justified version of the string
     // lstrip()	        Returns a left trim version of the string
     // partition()	    Returns a tuple where the string is parted into three parts

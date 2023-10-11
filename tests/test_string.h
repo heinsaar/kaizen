@@ -697,6 +697,34 @@ void test_string_is_lower() {
     ZEN_EXPECT(z8.is_lower() == false);
 }
 
+void test_string_is_upper() {
+    zen::string z1 = "HELLO";            // Test 1: All uppercase characters
+    zen::string z2 = "hello";            // Test 2: All lowercase characters
+    zen::string z3 = "HeLLo";            // Test 3: Mixed case
+    zen::string z4 = "12345";            // Test 4: All digits
+    zen::string z5 = " ";                // Test 5: Space character
+    zen::string z6 = "!@#$%^";           // Test 6: Special characters
+    zen::string z7 = "HELLO world";      // Test 7: Mixed case with space
+    zen::string z8 = "HELLO123";         // Test 8: Uppercase and digits
+    zen::string z9 = "";                // Test 12: Empty string
+    zen::string z10 = " ";               // Test 13: Space character
+    zen::string z11 = "\u0061\u0061"; // Test 14: Unicode representation of ''
+    zen::string z12 = "\u0041\u0041"; // Test 14: Unicode representation of ''
+
+    ZEN_EXPECT(z1.is_upper() == true);
+    ZEN_EXPECT(z2.is_upper() == false);
+    ZEN_EXPECT(z3.is_upper() == false);
+    ZEN_EXPECT(z4.is_upper() == false);
+    ZEN_EXPECT(z5.is_upper() == false);
+    ZEN_EXPECT(z6.is_upper() == false);
+    ZEN_EXPECT(z7.is_upper() == false);
+    ZEN_EXPECT(z8.is_upper() == false);
+    ZEN_EXPECT(z9.is_upper() == false);
+    ZEN_EXPECT(z10.is_upper() == false);
+    ZEN_EXPECT(z11.is_upper() == false);
+    ZEN_EXPECT(z12.is_upper() == true);
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -732,5 +760,6 @@ void main_test_string()
     test_string_is_digit();
     test_string_is_identifier();
     test_string_is_lower();
+    test_string_is_upper();
 
 }
