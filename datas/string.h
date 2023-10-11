@@ -327,14 +327,20 @@ public:
         return *this;
     }
 
+    auto& rjust(int width, char fillchar = ' ') {
+        if (0 > width || width <= my::size()) return *this;
+
+        const size_t padding = width - my::size();
+        my::insert(0, padding, fillchar);
+
+        return *this;
+    }
     // TODO: Implement all or some of these (from Python string)
     // is_ascii()	    Returns True if all characters in the string are ascii characters
     // is_numeric()	    Returns True if all characters in the string are numeric
-    // ljust()	        Returns a left justified version of the string
     // lstrip()	        Returns a left trim version of the string
     // partition()	    Returns a tuple where the string is parted into three parts
     // rfind()	        Searches the string for a specified value and returns the last position of where it was found
-    // rjust()	        Returns a right justified version of the string
     // rpartition()	    Returns a tuple where the string is parted into three parts
     // rsplit()	        Splits the string at the specified separator, and returns a list
     // rstrip()	        Returns a right trim version of the string
