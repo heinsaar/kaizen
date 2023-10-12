@@ -958,15 +958,21 @@ void test_string_split()
     BEGIN_SUBTEST;
 
     zen::string input1 = "apple,banana,cherry";
+    zen::string input2 = "one|two|three|four";
+    zen::string input3 = "no_separator_here";
+    zen::string input4 = "only_separator||||";
+    zen::string input5 = "";
+
     auto res1 = input1.split(",");
+    auto res2 = input2.split("|");
+    auto res3 = input3.split("|");
+    auto res4 = input4.split("|");
+    auto res5 = input5.split(",");
 
     ZEN_EXPECT(res1.size() == 3);
     ZEN_EXPECT(res1[0] == "apple");
     ZEN_EXPECT(res1[1] == "banana");
     ZEN_EXPECT(res1[2] == "cherry");
-
-    zen::string input2 = "one|two|three|four";
-    auto res2 = input2.split("|");
 
     ZEN_EXPECT(res2.size() == 4);
     ZEN_EXPECT(res2[0] == "one");
@@ -974,14 +980,8 @@ void test_string_split()
     ZEN_EXPECT(res2[2] == "three");
     ZEN_EXPECT(res2[3] == "four");
 
-    zen::string input3 = "no_separator_here";
-    auto res3 = input3.split("|");
-
     ZEN_EXPECT(res3.size() == 1);
     ZEN_EXPECT(res3[0] == "no_separator_here");
-
-    zen::string input4 = "only_separator||||";
-    auto res4 = input4.split("|");
 
     ZEN_EXPECT(res4.size() == 5);
     ZEN_EXPECT(res4[0] == "only_separator");
@@ -989,9 +989,6 @@ void test_string_split()
     ZEN_EXPECT(res4[2].empty());
     ZEN_EXPECT(res4[3].empty());
     ZEN_EXPECT(res4[4].empty());
-
-    zen::string input5 = "";
-    auto res5 = input5.split(",");
 
     ZEN_EXPECT(res5.size() == 1);
     ZEN_EXPECT(res5[0].empty());
