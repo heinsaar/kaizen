@@ -385,7 +385,7 @@ public:
 
         const std::string_view before = sv.substr(0, pos);
         const std::string_view after  = sv.substr(pos + separator.length());
-        const std::string_view sep    = sv.substr(pos, separator.length());
+        const std::string_view sep    = sv.substr(pos,  separator.length());
 
         return std::make_tuple(before, sep, after);
     }
@@ -403,7 +403,7 @@ public:
 
         const std::string_view before = sv.substr(0, pos);
         const std::string_view after  = sv.substr(pos + separator.length());
-        const std::string_view sep    = sv.substr(pos, separator.length());
+        const std::string_view sep    = sv.substr(pos,  separator.length());
 
         return std::make_tuple(before, sep, after);
     }
