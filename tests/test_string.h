@@ -308,17 +308,17 @@ void test_string_replace_if()
     zen::string z10 = "Lengthy";
     zen::string z11 = "EndReplace";
 
-    z1.replace_if("apples", "oranges",         [](const zen::string&){ return true;  });
-    z2.replace_if("replace", "REPLACED",       [](const zen::string&){ return false; });
-    z3.replace_if("replace", "REPLACED",       [](const zen::string&){ return true;  });
-    z4.replace_if("", "REPLACED",              [](const zen::string&){ return true;  });
-    z5.replace_if("Remove ", "",               [](const zen::string&){ return true;  });
-    z6.replace_if("", "",                      [](const zen::string&){ return false; });
-    z7.replace_if("Case", "CASE",              [](const zen::string&){ return true;  });
-    z8.replace_if("ReplaceAll", "AllReplaced", [](const zen::string&){ return true;  });
-    z9.replace_if("Short", "Lengthy",          [](const zen::string&){ return true;  });
-    z10.replace_if("Lengthy", "Short",         [](const zen::string&){ return false; });
-    z11.replace_if("Replace", "Replaced",      [](const zen::string&){ return false; });
+    z1.replace_if("apples", "oranges",         [](auto){ return true;  });
+    z2.replace_if("replace", "REPLACED",       [](auto){ return false; });
+    z3.replace_if("replace", "REPLACED",       [](auto){ return true;  });
+    z4.replace_if("", "REPLACED",              [](auto){ return true;  });
+    z5.replace_if("Remove ", "",               [](auto){ return true;  });
+    z6.replace_if("", "",                      [](auto){ return false; });
+    z7.replace_if("Case", "CASE",              [](auto){ return true;  });
+    z8.replace_if("ReplaceAll", "AllReplaced", [](auto){ return true;  });
+    z9.replace_if("Short", "Lengthy",          [](auto){ return true;  });
+    z10.replace_if("Lengthy", "Short",         [](auto){ return false; });
+    z11.replace_if("Replace", "Replaced",      [](auto){ return false; });
 
     ZEN_EXPECT(z1 == "I love oranges.");
     ZEN_EXPECT(z2 == "Replace me, replace me!");
@@ -344,12 +344,12 @@ void test_string_replace_all_if()
     zen::string z5 = "abcde";
     zen::string z6 = "";
 
-    z1.replace_all_if("a",   "X",   [](const std::string& s) { return !s.empty() && s[0] == 'A'; });
-    z2.replace_all_if("cat", "DOG", [](const std::string& s) { return s.find("cat") != std::string::npos; });
-    z3.replace_all_if("1",   "X",   [](const std::string&)   { return false; });
-    z4.replace_all_if("cde", "",    [](const std::string&)   { return true;  });
-    z5.replace_all_if("",    "X",   [](const std::string&)   { return true;  });
-    z6.replace_all_if("abc", "XYZ", [](const std::string&)   { return true;  });
+    z1.replace_all_if("a",   "X",   [](auto& s) { return !s.empty() && s[0] == 'A'; });
+    z2.replace_all_if("cat", "DOG", [](auto& s) { return s.find("cat") != std::string::npos; });
+    z3.replace_all_if("1",   "X",   [](auto)    { return false; });
+    z4.replace_all_if("cde", "",    [](auto)    { return true;  });
+    z5.replace_all_if("",    "X",   [](auto)    { return true;  });
+    z6.replace_all_if("abc", "XYZ", [](auto)    { return true;  });
 
     ZEN_EXPECT(z1 == "Apple, bXnXnX, Xnd Xpricot Xre fruits.");
     ZEN_EXPECT(z2 == "The DOG chased the rat. CATapult!");
