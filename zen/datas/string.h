@@ -388,16 +388,21 @@ public:
         return std::make_tuple(before, sep, after);
     }
 
-    std::tuple<std::string, std::string, std::string> rpartition(const std::string& separator) 
+    auto rpartition(const std::string& separator)
     {
+        if (separator.empty())
+            throw std::invalid_argument("STRING SEPARATOR CANNOT BE EMPTY");
+
+        std::string_view sv(my::data(), my::size());
         const size_t pos = my::rfind(separator);
+
         if (pos == std::string::npos) {
-            return std::make_tuple(*this, "", "");
+            return std::make_tuple(sv, std::string_view(), std::string_view());
         }
 
-        const std::string before = my::substr(0, pos);
-        const std::string sep    = my::substr(pos, separator.length());
-        const std::string after  = my::substr(pos + separator.length());
+        const std::string_view before = sv.substr(0, pos);
+        const std::string_view after  = sv.substr(pos + separator.length());
+        const std::string_view sep    = sv.substr(pos, separator.length());
 
         return std::make_tuple(before, sep, after);
     }
