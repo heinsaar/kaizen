@@ -1,8 +1,8 @@
 #pragma once
 
-#include "kaizen.h" // test using generated header: jump with the parachute you folded
-
 #include <thread>
+
+#include "kaizen.h" // test using generated header: jump with the parachute you folded
 
 void main_test_timer()
 {
