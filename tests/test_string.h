@@ -754,7 +754,7 @@ void test_string_is_printable()
     ZEN_EXPECT(z7.is_printable() == false);
     ZEN_EXPECT(z8.is_printable() == false);
   //ZEN_EXPECT(z9.is_printable() == false);
-    ZEN_EXPECT(z10.is_printable() == true);
+    ZEN_EXPECT(z10.is_printable() == false);
     ZEN_EXPECT(z11.is_printable() == false);
     ZEN_EXPECT(z12.is_printable() == true);
 }
