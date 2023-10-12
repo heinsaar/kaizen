@@ -324,10 +324,14 @@ public:
 
     auto& ljust(int width, char fillchar = ' ')
     {
-        if (0 > width || width <= my::size())
+        if (width < 0)
+            width = 0; // handle negative width gracefully
+
+        auto uwidth = static_cast<std::string::size_type>(width);
+        if (uwidth <= my::size())
             return *this;
 
-        const size_t padding = width - my::size();
+        const size_t padding = uwidth - my::size();
         my::append(padding, fillchar);
 
         return *this;
@@ -335,10 +339,14 @@ public:
 
     auto& rjust(int width, char fillchar = ' ')
     {
-        if (0 > width || width <= my::size())
+        if (width < 0)
+            width = 0; // handle negative width gracefully
+
+        auto uwidth = static_cast<std::string::size_type>(width);
+        if (uwidth <= my::size())
             return *this;
 
-        const size_t padding = width - my::size();
+        const std::string::size_type padding = uwidth - my::size();
         my::insert(0, padding, fillchar);
 
         return *this;
