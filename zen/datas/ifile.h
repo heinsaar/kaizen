@@ -50,10 +50,26 @@ public:
         }
     }
 
+    std::string getline(int nth) {
+        auto it = begin();
+        while (--nth > 0 && it != end()) {
+            ++it;
+        }
+
+        if (nth != 0)
+            throw std::out_of_range("REACHED END OF FILE: " + zen::quote(filepath_.string()));
+
+        return *it;
+    }
+
+    
+    auto begin() { return iterator{*this}; }
+    auto end()   { return iterator{*this, true}; }
+
     class iterator {
     public:
         iterator(ifile& is, bool end_marker = false)
-            : input_{is}, end_marker_{end_marker}
+            : input_{ is }, end_marker_{ end_marker }
         {
             if (!end_marker_) {
                 input_.clear();
@@ -80,25 +96,10 @@ public:
         }
 
     private:
-        ifile&       input_;
+        ifile& input_;
         bool         end_marker_{ false };
         std::string  line_;
     };
-
-    auto begin() { return iterator{*this}; }
-    auto end()   { return iterator{*this, true}; }
-
-    std::string getline(int nth) {
-        auto it = begin();
-        while (--nth > 0 && it != end()) {
-            ++it;
-        }
-
-        if (nth != 0)
-            throw std::out_of_range("REACHED END OF FILE: " + zen::quote(filepath_.string()));
-
-        return *it;
-    }
 
 private:
     // TODO: Dynamically cache lines that are read the first time?
