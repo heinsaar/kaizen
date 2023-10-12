@@ -404,7 +404,7 @@ public:
 
     std::vector<zen::string> split(const std::string& separator)
     {
-        //TODO can be template to support any container
+        // TODO: can be template to support any container
         std::vector<zen::string> result;
         std::string s(*this);
         size_t pos = 0;
