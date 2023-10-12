@@ -32,19 +32,19 @@ namespace zen {
 // Forward declarations
 std::string quote(const std::string_view s);
 
-///////////////////////////////////////////////////////////////////////////////////////////// zen::ifile
+///////////////////////////////////////////////////////////////////////////////////////////// zen::file
 
-class ifile : public std::ifstream {
+class file : public std::fstream {
 public:
-    ifile(const std::filesystem::path& path)
-        : std::ifstream(path), filepath_(path)
+    file(const std::filesystem::path& path)
+        : std::fstream(path), filepath_(path)
     {
         if (!my::is_open()) {
             throw std::runtime_error("ERROR OPENING FILE: " + zen::quote(path.string()));
         }
     }
 
-    ~ifile() {
+    ~file() {
         if (my::is_open()) {
             my::close();
         }
@@ -68,7 +68,7 @@ public:
 
     class iterator {
     public:
-        iterator(ifile& is, bool end_marker = false)
+        iterator(file& is, bool end_marker = false)
             : input_{ is }, end_marker_{ end_marker }
         {
             if (!end_marker_) {
@@ -96,7 +96,7 @@ public:
         }
 
     private:
-        ifile& input_;
+        file&        input_;
         bool         end_marker_{ false };
         std::string  line_;
     };
@@ -105,7 +105,7 @@ private:
     // TODO: Dynamically cache lines that are read the first time?
     const std::filesystem::path& filepath_;
 
-    using my = std::ifstream;
+    using my = std::fstream;
 };
 
 namespace literals::path {

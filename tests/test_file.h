@@ -3,21 +3,21 @@
 #include <cassert>
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
 
-void main_test_ifile()
+void main_test_file()
 {
     BEGIN_TEST;
 
     const auto project_dir = zen::search_upward("kaizen").value();
 
-    zen::ifile lic(project_dir / "LICENSE.txt");
+    zen::file lic(project_dir / "LICENSE.txt");
 
     using namespace zen::literals::path;
-    zen::ifile test_literal("../LICENSE.txt"_path);
+    zen::file test_literal("../LICENSE.txt"_path);
 
-    // TODO: This shouldn't compile, zen::ifile constructor only
+    // TODO: This shouldn't compile, zen::file constructor only
     // accepts std::filesystem::path, but it compiles. Why? It was failing
     // to compile, as expected, just a few hours ago. May be a Heisenbug.
-    zen::ifile test_string("../LICENSE.txt");
+    zen::file test_string("../LICENSE.txt");
 
     zen::string version = lic.getline(1);
     zen::string license = lic.getline(3);
