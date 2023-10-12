@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <thread>
 
 #include "kaizen.h" // test using generated header: jump with the parachute you folded
