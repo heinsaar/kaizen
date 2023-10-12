@@ -372,7 +372,7 @@ public:
         return *this;
     }
 
-    std::tuple<std::string_view, std::string_view, std::string_view> partition(const std::string& separator) 
+    auto partition(const std::string& separator) 
     {
         if (separator.empty())
             throw std::invalid_argument("STRING SEPARATOR CANNOT BE EMPTY");
