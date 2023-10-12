@@ -372,18 +372,20 @@ public:
         return *this;
     }
 
-    std::tuple<std::string, std::string, std::string> partition(const std::string& separator)
+    std::tuple<std::string_view, std::string_view, std::string_view> partition(const std::string& separator) 
     {
-        size_t pos = this->find(separator);
+        if (separator.empty())
+            throw std::invalid_argument("STRING SEPARATOR CANNOT BE EMPTY");
 
-        if (pos == std::string::npos) {
-            // Separator not found, return the whole string and two empty strings
-            return std::make_tuple(*this, "", "");
-        }
+        const std::string_view sv(my::data(), my::size());
+        const size_t pos = my::find(separator);
 
-        const std::string before = my::substr(0, pos);
-        const std::string sep    = my::substr(pos,  separator.length());
-        const std::string after  = my::substr(pos + separator.length());
+        if (pos == std::string::npos)
+            return std::make_tuple(sv, std::string_view(), std::string_view());
+
+        std::string_view before = sv.substr(0, pos);
+        std::string_view after  = sv.substr(pos + separator.length());
+        std::string_view sep    = sv.substr(pos, separator.length());
 
         return std::make_tuple(before, sep, after);
     }
