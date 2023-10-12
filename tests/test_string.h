@@ -1039,6 +1039,35 @@ void test_string_swapcase()
   //ZEN_EXPECT(z8 == "ΣΥΜΒΟΛΑ");
 }
 
+void test_string_split_lines()
+{
+    BEGIN_SUBTEST;
+
+    zen::string z1 = "Line 1\nLine 2\nLine 3";
+    zen::string z2 = "Single line";
+    zen::string z3 = "\n";
+    zen::string z4 = "";
+    zen::string z5 = "Ends with newline\n";
+    zen::string z6 = "\nStarts with newline";
+    zen::string z7 = "Multiple\n\nNewlines";
+
+    auto res1 = z1.split_lines();
+    auto res2 = z2.split_lines();
+    auto res3 = z3.split_lines();
+    auto res4 = z4.split_lines();
+    auto res5 = z5.split_lines();
+    auto res6 = z6.split_lines();
+    auto res7 = z7.split_lines();
+
+    ZEN_EXPECT(res1.size() == 3 && res1[0] == "Line 1" && res1[1] == "Line 2" && res1[2] == "Line 3");
+    ZEN_EXPECT(res2.size() == 1 && res2[0] == "Single line");
+    ZEN_EXPECT(res3.size() == 1 && res3[0].empty());
+    ZEN_EXPECT(res4.empty());
+    ZEN_EXPECT(res5.size() == 1 && res5[0] == "Ends with newline");
+    ZEN_EXPECT(res6.size() == 2 && res6[0].empty() && res6[1] == "Starts with newline");
+    ZEN_EXPECT(res7.size() == 3 && res7[0] == "Multiple" && res7[1].empty() && res7[2] == "Newlines");
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -1059,6 +1088,7 @@ void main_test_string()
     test_string_is_identifier();
     test_string_is_printable();
     test_string_replace_all();
+    test_string_split_lines();
     test_string_replace_if();
     test_string_capitalize();
     test_string_rpartition();
