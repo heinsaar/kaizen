@@ -1007,6 +1007,38 @@ void test_string_split()
     ZEN_EXPECT(result5[0].empty());
 }
 
+void test_string_swapcase()
+{
+    BEGIN_SUBTEST;
+
+    zen::string z1 = "Hello, World!";
+    zen::string z2 = "mIXeD cASe";
+    zen::string z3 = "ALLUPPER";
+    zen::string z4 = "alllower";
+    zen::string z5 = "";
+    zen::string z6 = "123!@#";
+  //zen::string z7 = "ΣΥΜΒΟΛΑ"; // Greek uppercase letters
+  //zen::string z8 = "σύμβολα"; // Greek lowercase letters
+
+    z1.swapcase();
+    z2.swapcase();
+    z3.swapcase();
+    z4.swapcase();
+    z5.swapcase();
+    z6.swapcase();
+  //z7.swapcase();
+  //z8.swapcase();
+
+    ZEN_EXPECT(z1 == "hELLO, wORLD!");
+    ZEN_EXPECT(z2 == "MixEd CasE");
+    ZEN_EXPECT(z3 == "allupper");
+    ZEN_EXPECT(z4 == "ALLLOWER");
+    ZEN_EXPECT(z5.empty());
+    ZEN_EXPECT(z6 == "123!@#");
+  //ZEN_EXPECT(z7 == "σύμβολα");
+  //ZEN_EXPECT(z8 == "ΣΥΜΒΟΛΑ");
+}
+
 void main_test_string()
 {
     BEGIN_TEST;
@@ -1043,6 +1075,7 @@ void main_test_string()
     test_string_is_lower();
     test_string_is_upper();
     test_string_is_space();
+    test_string_swapcase();
     test_string_extract();
     test_string_pad_end();
     test_string_replace();
