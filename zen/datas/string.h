@@ -412,8 +412,8 @@ public:
         // TODO: can be template to support any container
         std::vector<zen::string> result;
         std::string s(*this);
-        size_t pos = 0;
         std::string token;
+        size_t pos = 0;
         while ((pos = s.find(separator)) != std::string::npos) {
             token = s.substr(0, pos);
             result.push_back(token);
