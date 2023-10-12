@@ -393,12 +393,11 @@ public:
         if (separator.empty())
             throw std::invalid_argument("STRING SEPARATOR CANNOT BE EMPTY");
 
-        std::string_view sv(my::data(), my::size());
+        const std::string_view sv(my::data(), my::size());
         const size_t pos = my::rfind(separator);
 
-        if (pos == std::string::npos) {
+        if (pos == std::string::npos)
             return std::make_tuple(sv, std::string_view(), std::string_view());
-        }
 
         const std::string_view before = sv.substr(0, pos);
         const std::string_view after  = sv.substr(pos + separator.length());
