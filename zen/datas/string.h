@@ -252,13 +252,13 @@ public:
         if (is_empty()) return *this;
 
         if (std::isalpha(front()) && std::islower(front())) {
-            my::front() = std::toupper(my::front()); // capitalize the first character
+            my::front() = static_cast<char>(std::toupper(my::front())); // capitalize the first character
         }
 
         for (size_t i = 1; i < my::size(); ++i) {
             char& c = my::at(i);
             if (std::isalpha(c) && std::isupper(c)) {
-                c = std::tolower(c);
+                c = static_cast<char>(std::tolower(c));
             }
         }
 
@@ -268,7 +268,7 @@ public:
     auto& to_lower() {
         for (auto& c : *this) {
             if (std::isalpha(c) && std::isupper(c)) {
-                c = std::tolower(c);
+                c = static_cast<char>(std::tolower(c));
             }
         }
         return *this;
@@ -277,7 +277,7 @@ public:
     auto& to_upper() {
         for (auto& c : *this) {
             if (std::isalpha(c) && std::islower(c)) {
-                c = std::toupper(c);
+                c = static_cast<char>(std::toupper(c));
             }
         }
         return *this;
@@ -433,7 +433,7 @@ public:
     {
         for (auto& c : *this) {
             if (std::isalpha(c)) {
-                c = std::islower(c) ? std::toupper(c) : std::tolower(c);
+                c = std::islower(c) ? static_cast<char>(std::toupper(c)) : static_cast<char>(std::tolower(c));
             }
         }
         return *this;
