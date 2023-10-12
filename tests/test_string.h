@@ -201,12 +201,12 @@ void test_string_remove()
      z8.remove("world");
      z9.remove("\\d+");
     z10.remove("a*");
-    z12.remove("[a-z]+");                        // all lowercase words
-    z13.remove("[a-zA-Z0-9]+");                  // all words and numbers
-    z14.remove("\\s+");                          // all spaces
-    z15.remove("<.*>");                          // greedy match
-    z16.remove("<.*?>");                         // lazy match
-    z17.remove("\\d{2,3}");                      // 2 to 3 digits
+    z12.remove("[a-z]+");       // all lowercase words
+    z13.remove("[a-zA-Z0-9]+"); // all words and numbers
+    z14.remove("\\s+");         // all spaces
+    z15.remove("<.*>");         // greedy match
+    z16.remove("<.*?>");        // lazy match
+    z17.remove("\\d{2,3}");     // 2 to 3 digits
     z18.remove("a+");
 
     ZEN_EXPECT(z1 == "Hello, !");
