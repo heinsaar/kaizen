@@ -587,16 +587,16 @@ void test_string_is_alnum()
     zen::string z9 = "Special-Characters!";
     zen::string z10 = "";
 
-    ZEN_EXPECT( z1.is_alnum());  // Alphanumeric
-    ZEN_EXPECT( z2.is_alnum());  // Alphabetic
-    ZEN_EXPECT( z3.is_alnum());  // Numeric
-    ZEN_EXPECT(!z4.is_alnum());  // Special characters
-    ZEN_EXPECT(!z5.is_alnum());  // Empty string
-    ZEN_EXPECT( z6.is_alnum());  // Alphabetic mixed case
-    ZEN_EXPECT(!z7.is_alnum());  // Alphanumeric with space
-    ZEN_EXPECT(!z8.is_alnum());  // Alphanumeric with underscore
-    ZEN_EXPECT(!z9.is_alnum());  // Special characters with exclamation mark
-    ZEN_EXPECT(!z10.is_alnum()); // Empty string
+    ZEN_EXPECT( z1.is_alnum());  // alphanumeric
+    ZEN_EXPECT( z2.is_alnum());  // alphabetic
+    ZEN_EXPECT( z3.is_alnum());  // numeric
+    ZEN_EXPECT(!z4.is_alnum());  // special characters
+    ZEN_EXPECT(!z5.is_alnum());  // empty string
+    ZEN_EXPECT( z6.is_alnum());  // alphabetic mixed case
+    ZEN_EXPECT(!z7.is_alnum());  // alphanumeric with space
+    ZEN_EXPECT(!z8.is_alnum());  // alphanumeric with underscore
+    ZEN_EXPECT(!z9.is_alnum());  // special characters with exclamation mark
+    ZEN_EXPECT(!z10.is_alnum()); // empty string
 }
 
 void test_string_is_alpha()
@@ -613,15 +613,15 @@ void test_string_is_alpha()
     zen::string z8 = "Alpha$Characters";
     zen::string z9 = "";
 
-    ZEN_EXPECT( z1.is_alpha()); // Alphabetic only (all characters are letters)
-    ZEN_EXPECT(!z2.is_alpha()); // Alphanumeric (contains both letters and numbers)
-    ZEN_EXPECT(!z3.is_alpha()); // Numeric only (all characters are numbers)
-    ZEN_EXPECT(!z4.is_alpha()); // Special characters only (contains special characters)
-    ZEN_EXPECT(!z5.is_alpha()); // Space only (contains only space)
-    ZEN_EXPECT( z6.is_alpha()); // Alphabetic mixed case (contains letters in mixed case)
-    ZEN_EXPECT(!z7.is_alpha()); // Alphabetic with spaces inside (contains letters with spaces)
-    ZEN_EXPECT(!z8.is_alpha()); // Alphabetic with special characters (contains letters with special characters)
-    ZEN_EXPECT(!z9.is_alpha()); // Empty string
+    ZEN_EXPECT( z1.is_alpha()); // alphabetic only (all characters are letters)
+    ZEN_EXPECT(!z2.is_alpha()); // alphanumeric (contains both letters and numbers)
+    ZEN_EXPECT(!z3.is_alpha()); // numeric only (all characters are numbers)
+    ZEN_EXPECT(!z4.is_alpha()); // special characters only (contains special characters)
+    ZEN_EXPECT(!z5.is_alpha()); // space only (contains only space)
+    ZEN_EXPECT( z6.is_alpha()); // alphabetic mixed case (contains letters in mixed case)
+    ZEN_EXPECT(!z7.is_alpha()); // alphabetic with spaces inside (contains letters with spaces)
+    ZEN_EXPECT(!z8.is_alpha()); // alphabetic with special characters (contains letters with special characters)
+    ZEN_EXPECT(!z9.is_alpha()); // empty string
 }
 
 void test_string_is_digit()
@@ -639,30 +639,30 @@ void test_string_is_digit()
     zen::string z9 = "0012345";
     zen::string z10 = "123456789012345678901234567890";
 
-    ZEN_EXPECT( z1.is_digit()); // Numeric characters (all characters are decimal digits)
-    ZEN_EXPECT( z2.is_digit()); // Unicode representation of '0' (should also be considered decimal)
-    ZEN_EXPECT(!z3.is_digit()); // Alphanumeric (contains both letters and numbers)
-    ZEN_EXPECT(!z4.is_digit()); // Special characters only (contains special characters)
-    ZEN_EXPECT(!z5.is_digit()); // Space only (contains only space)
-    ZEN_EXPECT(!z6.is_digit()); // Alphabetic mixed case (contains letters in mixed case)
+    ZEN_EXPECT( z1.is_digit()); // numeric characters (all characters are decimal digits)
+    ZEN_EXPECT( z2.is_digit()); // unicode representation of '0' (should also be considered decimal)
+    ZEN_EXPECT(!z3.is_digit()); // alphanumeric (contains both letters and numbers)
+    ZEN_EXPECT(!z4.is_digit()); // special characters only (contains special characters)
+    ZEN_EXPECT(!z5.is_digit()); // space only (contains only space)
+    ZEN_EXPECT(!z6.is_digit()); // alphabetic mixed case (contains letters in mixed case)
     ZEN_EXPECT(!z7.is_digit()); // empty case (contains letters in mixed case)
-    ZEN_EXPECT(!z8.is_digit()); // Unicode representation of 'A' (should not be considered decimal)
-    ZEN_EXPECT( z9.is_digit()); // Leading zeros (should be considered decimal)
-    ZEN_EXPECT(z10.is_digit()); // Long string (should be considered decimal)
+    ZEN_EXPECT(!z8.is_digit()); // unicode representation of 'A' (should not be considered decimal)
+    ZEN_EXPECT( z9.is_digit()); // leading zeros (should be considered decimal)
+    ZEN_EXPECT(z10.is_digit()); // long string (should be considered decimal)
 }
 
 void test_string_is_identifier()
 {
     BEGIN_SUBTEST;
 
-    zen::string z1 = "variable123"; // Starts with a letter (valid identifier)
-    zen::string z2 = "123variable"; // Starts with a digit (invalid identifier)
-    zen::string z3 = "var_iable";   // Contains underscore (valid identifier)
-    zen::string z4 = "var iable";   // Contains space (invalid identifier)
-    zen::string z5 = "var!able";    // Contains special character (invalid identifier)
-    zen::string z6 = "_variable";   // Starts with an underscore (valid identifier)
-    zen::string z7 = "";            // Empty string (not a valid identifier)
-    zen::string z8 = " ";           // Empty string (not a valid identifier)
+    zen::string z1 = "variable123"; // starts with a letter (valid identifier)
+    zen::string z2 = "123variable"; // starts with a digit (invalid identifier)
+    zen::string z3 = "var_iable";   // contains underscore (valid identifier)
+    zen::string z4 = "var iable";   // contains space (invalid identifier)
+    zen::string z5 = "var!able";    // contains special character (invalid identifier)
+    zen::string z6 = "_variable";   // starts with an underscore (valid identifier)
+    zen::string z7 = "";            // empty string (not a valid identifier)
+    zen::string z8 = " ";           // empty string (not a valid identifier)
 
     ZEN_EXPECT(z1.is_identifier() == true);
     ZEN_EXPECT(z2.is_identifier() == false);
@@ -678,14 +678,14 @@ void test_string_is_lower()
 {
     BEGIN_SUBTEST;
 
-    zen::string z1 = "lowercase";     // All lowercase characters (valid)
-    zen::string z2 = "MiXeDCaSe";     // Mixed case characters (invalid, contains uppercase)
-    zen::string z3 = "12345";         // Digits (invalid, contains digits)
-    zen::string z4 = "lower case";    // Space (invalid, contains space)
-    zen::string z5 = "lower-case";    // Hyphen (invalid, contains special character)
-    zen::string z6 = "";              // Empty string ()
-    zen::string z7 = " ";             // Space (invalid, contains space)
-    zen::string z8 = "lowercase1234"; // Digits (invalid, contains digits)
+    zen::string z1 = "lowercase";     // all lowercase characters (valid)
+    zen::string z2 = "MiXeDCaSe";     // mixed case characters (invalid, contains uppercase)
+    zen::string z3 = "12345";         // digits (invalid, contains digits)
+    zen::string z4 = "lower case";    // space (invalid, contains space)
+    zen::string z5 = "lower-case";    // hyphen (invalid, contains special character)
+    zen::string z6 = "";              // empty string ()
+    zen::string z7 = " ";             // space (invalid, contains space)
+    zen::string z8 = "lowercase1234"; // digits (invalid, contains digits)
 
     ZEN_EXPECT(z1.is_lower() == true);
     ZEN_EXPECT(z2.is_lower() == false);
@@ -701,18 +701,18 @@ void test_string_is_upper()
 {
     BEGIN_SUBTEST;
 
-    zen::string z1 = "HELLO";         // All uppercase characters
-    zen::string z2 = "hello";         // All lowercase characters
-    zen::string z3 = "HeLLo";         // Mixed case
-    zen::string z4 = "12345";         // All digits
-    zen::string z5 = " ";             // Space character
-    zen::string z6 = "!@#$%^";        // Special characters
-    zen::string z7 = "HELLO world";   // Mixed case with space
-    zen::string z8 = "HELLO123";      // Uppercase and digits
-    zen::string z9 = "";              // Empty string
-    zen::string z10 = " ";            // Space character
-    zen::string z11 = "\u0061\u0061"; // Unicode representation of ''
-    zen::string z12 = "\u0041\u0041"; // Unicode representation of ''
+    zen::string z1 = "HELLO";         // all uppercase characters
+    zen::string z2 = "hello";         // all lowercase characters
+    zen::string z3 = "HeLLo";         // mixed case
+    zen::string z4 = "12345";         // all digits
+    zen::string z5 = " ";             // space character
+    zen::string z6 = "!@#$%^";        // special characters
+    zen::string z7 = "HELLO world";   // mixed case with space
+    zen::string z8 = "HELLO123";      // uppercase and digits
+    zen::string z9 = "";              // empty string
+    zen::string z10 = " ";            // space character
+    zen::string z11 = "\u0061\u0061"; // unicode representation of ''
+    zen::string z12 = "\u0041\u0041"; // unicode representation of ''
 
     ZEN_EXPECT(z1.is_upper() == true);
     ZEN_EXPECT(z2.is_upper() == false);
@@ -732,18 +732,18 @@ void test_string_is_printable()
 {
     BEGIN_SUBTEST;
 
-    zen::string z1 = "Hello, World!"; // Printable characters (no control characters)
-    zen::string z2 = "\n";            // Newline character (control character)
-    zen::string z3 = "12345";         // Digits (printable)
-    zen::string z4 = "!@#$%^";        // Special characters (printable)
-    zen::string z5 = "\t";            // Tab character (control character)
-    zen::string z6 = " ";             // Space character (printable)
-    zen::string z7 = "\x7F";          // Delete character (control character)
-    zen::string z8 = "\x1F";          // Unit separator character (control character)
-  //zen::string z9 = "ᾭᾮᾯ";           // Unicode characters (non-ASCII)
-  //zen::string z10 = "\u03A9";       // Unicode character (Ω)
-    zen::string z11 = "\u0010";       // Data Link Escape (control character)
-    zen::string z12 = "";             // Empty string
+    zen::string z1 = "Hello, World!"; // printable characters (no control characters)
+    zen::string z2 = "\n";            // newline character (control character)
+    zen::string z3 = "12345";         // digits (printable)
+    zen::string z4 = "!@#$%^";        // special characters (printable)
+    zen::string z5 = "\t";            // tab character (control character)
+    zen::string z6 = " ";             // space character (printable)
+    zen::string z7 = "\x7F";          // delete character (control character)
+    zen::string z8 = "\x1F";          // unit separator character (control character)
+  //zen::string z9 = "ᾭᾮᾯ";           // unicode characters (non-ASCII)
+  //zen::string z10 = "\u03A9";       // unicode character (Ω)
+    zen::string z11 = "\u0010";       // data Link Escape (control character)
+    zen::string z12 = "";             // empty string
 
     ZEN_EXPECT(z1.is_printable() == true);
     ZEN_EXPECT(z2.is_printable() == false);
@@ -763,11 +763,11 @@ void test_string_is_space()
 {
     BEGIN_SUBTEST;
 
-    zen::string z1 = "   ";           // Test 1: All spaces
-    zen::string z2 = "Hello World";    // Test 2: Contains non-space characters
-    zen::string z3 = "\t\n\r";         // Test 3: Various whitespace characters
-    zen::string z4 = "";               // Test 4: Empty string
-    zen::string z5 = "NoSpacesHere";   // Test 5: No spaces at all
+    zen::string z1 = "   ";           // all spaces
+    zen::string z2 = "Hello World";   // contains non-space characters
+    zen::string z3 = "\t\n\r";        // various whitespace characters
+    zen::string z4 = "";              // empty string
+    zen::string z5 = "NoSpacesHere";  // no spaces at all
 
     ZEN_EXPECT(z1.is_space() == true);
     ZEN_EXPECT(z2.is_space() == false);
@@ -787,11 +787,11 @@ void test_string_ljust()
     zen::string z5 = "ThisIsALongerString";
     zen::string z6 = "negative";
 
-    z1.ljust(10);     // Left-justify with space padding
-    z2.ljust(5, '0'); // Left-justify with '0' padding
-    z3.ljust(5);      // Left-justify a shorter string with space padding
-    z4.ljust(5);      // Left-justify an empty string with space padding
-    z5.ljust(20);     // Left-justify a longer string, no padding needed
+    z1.ljust(10);     // left-justify with space padding
+    z2.ljust(5, '0'); // left-justify with '0' padding
+    z3.ljust(5);      // left-justify a shorter string with space padding
+    z4.ljust(5);      // left-justify an empty string with space padding
+    z5.ljust(20);     // left-justify a longer string, no padding needed
     z6.ljust(-1);
 
     ZEN_EXPECT(z1 == "Hello     ");
@@ -813,11 +813,11 @@ void test_string_rjust()
     zen::string z5 = "ThisIsALongerString";
     zen::string z6 = "negative";
 
-    z1.rjust(10);     // Left-justify with space padding
-    z2.rjust(5, '0'); // Left-justify with '0' padding
-    z3.rjust(5);      // Left-justify a shorter string with space padding
-    z4.rjust(5);      // Left-justify an empty string with space padding
-    z5.rjust(20);     // Left-justify a longer string, no padding needed
+    z1.rjust(10);     // right-justify with space padding
+    z2.rjust(5, '0'); // right-justify with '0' padding
+    z3.rjust(5);      // right-justify a shorter string with space padding
+    z4.rjust(5);      // right-justify an empty string with space padding
+    z5.rjust(20);     // right-justify a longer string, no padding needed
 
     z6.rjust(-1);
 
@@ -839,11 +839,11 @@ void test_string_rstrip()
     zen::string z4 = "";
     zen::string z5 = "  ";
 
-    z1.rstrip(); // Remove trailing spaces and tabs
-    z2.rstrip(); // Remove trailing spaces
-    z3.rstrip(); // No trailing spaces to remove
-    z4.rstrip(); // Empty string remains empty
-    z5.rstrip(); // Remove trailing spaces, leaving an empty string
+    z1.rstrip(); // remove trailing spaces and tabs
+    z2.rstrip(); // remove trailing spaces
+    z3.rstrip(); // no trailing spaces to remove
+    z4.rstrip(); // empty string remains empty
+    z5.rstrip(); // remove trailing spaces, leaving an empty string
 
     ZEN_EXPECT(z1 == "Hello, World!");
     ZEN_EXPECT(z2 == "Trailing spaces");
@@ -862,11 +862,11 @@ void test_string_lstrip()
     zen::string z4 = "";
     zen::string z5 = "  ";
 
-    z1.lstrip(); // Remove leading spaces and tabs
-    z2.lstrip(); // Remove leading spaces
-    z3.lstrip(); // No leading spaces to remove
-    z4.lstrip(); // Empty string remains empty
-    z5.lstrip(); // Remove leading spaces, leaving an empty string
+    z1.lstrip(); // remove leading spaces and tabs
+    z2.lstrip(); // remove leading spaces
+    z3.lstrip(); // no leading spaces to remove
+    z4.lstrip(); // empty string remains empty
+    z5.lstrip(); // remove leading spaces, leaving an empty string
 
     ZEN_EXPECT(z1 == "Hello, World!");
     ZEN_EXPECT(z2 == "Leading spaces");
