@@ -881,35 +881,35 @@ void test_string_partition()
 
     zen::string z1 = "apple;banana;cherry";
     std::string separator1 = ";";
-    auto result1 = z1.partition(separator1);
+    auto r1 = z1.partition(separator1);
 
-    ZEN_EXPECT(std::get<0>(result1) == "apple");
-    ZEN_EXPECT(std::get<1>(result1) == ";");
-    ZEN_EXPECT(std::get<2>(result1) == "banana;cherry");
+    ZEN_EXPECT(std::get<0>(r1) == "apple");
+    ZEN_EXPECT(std::get<1>(r1) == ";");
+    ZEN_EXPECT(std::get<2>(r1) == "banana;cherry");
 
     zen::string z2 = "red,green,blue";
     std::string separator2 = ",";
-    auto result2 = z2.partition(separator2);
+    auto r2 = z2.partition(separator2);
 
-    ZEN_EXPECT(std::get<0>(result2) == "red");
-    ZEN_EXPECT(std::get<1>(result2) == ",");
-    ZEN_EXPECT(std::get<2>(result2) == "green,blue");
+    ZEN_EXPECT(std::get<0>(r2) == "red");
+    ZEN_EXPECT(std::get<1>(r2) == ",");
+    ZEN_EXPECT(std::get<2>(r2) == "green,blue");
 
     zen::string z3 = "one.two.three";
     std::string separator3 = ".";
-    auto result3 = z3.partition(separator3);
+    auto r3 = z3.partition(separator3);
 
-    ZEN_EXPECT(std::get<0>(result3) == "one");
-    ZEN_EXPECT(std::get<1>(result3) == ".");
-    ZEN_EXPECT(std::get<2>(result3) == "two.three");
+    ZEN_EXPECT(std::get<0>(r3) == "one");
+    ZEN_EXPECT(std::get<1>(r3) == ".");
+    ZEN_EXPECT(std::get<2>(r3) == "two.three");
 
     zen::string z4 = "no_separator_here";
     std::string separator4 = ",";
-    auto result4 = z4.partition(separator4);
+    auto r4 = z4.partition(separator4);
 
-    ZEN_EXPECT(std::get<0>(result4) == "no_separator_here");
-    ZEN_EXPECT(std::get<1>(result4).empty());
-    ZEN_EXPECT(std::get<2>(result4).empty());
+    ZEN_EXPECT(std::get<0>(r4) == "no_separator_here");
+    ZEN_EXPECT(std::get<1>(r4).empty());
+    ZEN_EXPECT(std::get<2>(r4).empty());
 }
 
 void test_string_rpartition()
@@ -919,38 +919,38 @@ void test_string_rpartition()
     zen::string input1 = "apple;banana;cherry";
     zen::string separator1 = ";";
 
-    auto result1 = input1.rpartition(separator1);
+    auto r1 = input1.rpartition(separator1);
 
-    ZEN_EXPECT(std::get<0>(result1) == "apple;banana");
-    ZEN_EXPECT(std::get<1>(result1) == ";");
-    ZEN_EXPECT(std::get<2>(result1) == "cherry");
+    ZEN_EXPECT(std::get<0>(r1) == "apple;banana");
+    ZEN_EXPECT(std::get<1>(r1) == ";");
+    ZEN_EXPECT(std::get<2>(r1) == "cherry");
 
     zen::string input2 = "one::two::three";
     zen::string separator2 = "::";
 
-    auto result2 = input2.rpartition(separator2);
+    auto r2 = input2.rpartition(separator2);
 
-    ZEN_EXPECT(std::get<0>(result2) == "one::two");
-    ZEN_EXPECT(std::get<1>(result2) == "::");
-    ZEN_EXPECT(std::get<2>(result2) == "three");
+    ZEN_EXPECT(std::get<0>(r2) == "one::two");
+    ZEN_EXPECT(std::get<1>(r2) == "::");
+    ZEN_EXPECT(std::get<2>(r2) == "three");
 
     zen::string input3 = "no_separator_here";
     zen::string separator3 = "::";
 
-    auto result3 = input3.rpartition(separator3);
+    auto r3 = input3.rpartition(separator3);
 
-    ZEN_EXPECT(std::get<0>(result3) == "no_separator_here");
-    ZEN_EXPECT(std::get<1>(result3).empty());
-    ZEN_EXPECT(std::get<2>(result3).empty());
+    ZEN_EXPECT(std::get<0>(r3) == "no_separator_here");
+    ZEN_EXPECT(std::get<1>(r3).empty());
+    ZEN_EXPECT(std::get<2>(r3).empty());
 
     zen::string input4 = "::";
     zen::string separator4 = "::";
 
-    auto result4 = input4.rpartition(separator4);
+    auto r4 = input4.rpartition(separator4);
 
-    ZEN_EXPECT(std::get<0>(result4).empty());
-    ZEN_EXPECT(std::get<1>(result4) == "::");
-    ZEN_EXPECT(std::get<2>(result4).empty());
+    ZEN_EXPECT(std::get<0>(r4).empty());
+    ZEN_EXPECT(std::get<1>(r4) == "::");
+    ZEN_EXPECT(std::get<2>(r4).empty());
 }
 
 void test_string_split()
@@ -963,35 +963,35 @@ void test_string_split()
     zen::string input4 = "only_separator||||";
     zen::string input5 = "";
 
-    auto res1 = input1.split(",");
-    auto res2 = input2.split("|");
-    auto res3 = input3.split("|");
-    auto res4 = input4.split("|");
-    auto res5 = input5.split(",");
+    auto r1 = input1.split(",");
+    auto r2 = input2.split("|");
+    auto r3 = input3.split("|");
+    auto r4 = input4.split("|");
+    auto r5 = input5.split(",");
 
-    ZEN_EXPECT(res1.size() == 3);
-    ZEN_EXPECT(res1[0] == "apple");
-    ZEN_EXPECT(res1[1] == "banana");
-    ZEN_EXPECT(res1[2] == "cherry");
+    ZEN_EXPECT(r1.size() == 3);
+    ZEN_EXPECT(r1[0] == "apple");
+    ZEN_EXPECT(r1[1] == "banana");
+    ZEN_EXPECT(r1[2] == "cherry");
 
-    ZEN_EXPECT(res2.size() == 4);
-    ZEN_EXPECT(res2[0] == "one");
-    ZEN_EXPECT(res2[1] == "two");
-    ZEN_EXPECT(res2[2] == "three");
-    ZEN_EXPECT(res2[3] == "four");
+    ZEN_EXPECT(r2.size() == 4);
+    ZEN_EXPECT(r2[0] == "one");
+    ZEN_EXPECT(r2[1] == "two");
+    ZEN_EXPECT(r2[2] == "three");
+    ZEN_EXPECT(r2[3] == "four");
 
-    ZEN_EXPECT(res3.size() == 1);
-    ZEN_EXPECT(res3[0] == "no_separator_here");
+    ZEN_EXPECT(r3.size() == 1);
+    ZEN_EXPECT(r3[0] == "no_separator_here");
 
-    ZEN_EXPECT(res4.size() == 5);
-    ZEN_EXPECT(res4[0] == "only_separator");
-    ZEN_EXPECT(res4[1].empty());
-    ZEN_EXPECT(res4[2].empty());
-    ZEN_EXPECT(res4[3].empty());
-    ZEN_EXPECT(res4[4].empty());
+    ZEN_EXPECT(r4.size() == 5);
+    ZEN_EXPECT(r4[0] == "only_separator");
+    ZEN_EXPECT(r4[1].empty());
+    ZEN_EXPECT(r4[2].empty());
+    ZEN_EXPECT(r4[3].empty());
+    ZEN_EXPECT(r4[4].empty());
 
-    ZEN_EXPECT(res5.size() == 1);
-    ZEN_EXPECT(res5[0].empty());
+    ZEN_EXPECT(r5.size() == 1);
+    ZEN_EXPECT(r5[0].empty());
 }
 
 void test_string_swapcase()
@@ -1038,21 +1038,21 @@ void test_string_split_lines()
     zen::string z6 = "\nStarts with newline";
     zen::string z7 = "Multiple\n\nNewlines";
 
-    auto res1 = z1.split_lines();
-    auto res2 = z2.split_lines();
-    auto res3 = z3.split_lines();
-    auto res4 = z4.split_lines();
-    auto res5 = z5.split_lines();
-    auto res6 = z6.split_lines();
-    auto res7 = z7.split_lines();
+    auto r1 = z1.split_lines();
+    auto r2 = z2.split_lines();
+    auto r3 = z3.split_lines();
+    auto r4 = z4.split_lines();
+    auto r5 = z5.split_lines();
+    auto r6 = z6.split_lines();
+    auto r7 = z7.split_lines();
 
-    ZEN_EXPECT(res1.size() == 3 && res1[0] == "Line 1" && res1[1] == "Line 2" && res1[2] == "Line 3");
-    ZEN_EXPECT(res2.size() == 1 && res2[0] == "Single line");
-    ZEN_EXPECT(res3.size() == 1 && res3[0].empty());
-    ZEN_EXPECT(res4.empty());
-    ZEN_EXPECT(res5.size() == 1 && res5[0] == "Ends with newline");
-    ZEN_EXPECT(res6.size() == 2 && res6[0].empty() && res6[1] == "Starts with newline");
-    ZEN_EXPECT(res7.size() == 3 && res7[0] == "Multiple" && res7[1].empty() && res7[2] == "Newlines");
+    ZEN_EXPECT(r1.size() == 3 && r1[0] == "Line 1" && r1[1] == "Line 2" && r1[2] == "Line 3");
+    ZEN_EXPECT(r2.size() == 1 && r2[0] == "Single line");
+    ZEN_EXPECT(r3.size() == 1 && r3[0].empty());
+    ZEN_EXPECT(r4.empty());
+    ZEN_EXPECT(r5.size() == 1 && r5[0] == "Ends with newline");
+    ZEN_EXPECT(r6.size() == 2 && r6[0].empty() && r6[1] == "Starts with newline");
+    ZEN_EXPECT(r7.size() == 3 && r7[0] == "Multiple" && r7[1].empty() && r7[2] == "Newlines");
 }
 
 void main_test_string()
