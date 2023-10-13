@@ -910,37 +910,37 @@ void test_string_rpartition()
 {
     BEGIN_SUBTEST;
 
-    zen::string input1 = "apple;banana;cherry";
+    zen::string s1 = "apple;banana;cherry";
     zen::string separator1 = ";";
 
-    auto r1 = input1.rpartition(separator1);
+    auto r1 = s1.rpartition(separator1);
 
     ZEN_EXPECT(std::get<0>(r1) == "apple;banana");
     ZEN_EXPECT(std::get<1>(r1) == ";");
     ZEN_EXPECT(std::get<2>(r1) == "cherry");
 
-    zen::string input2 = "one::two::three";
+    zen::string s2 = "one::two::three";
     zen::string separator2 = "::";
 
-    auto r2 = input2.rpartition(separator2);
+    auto r2 = s2.rpartition(separator2);
 
     ZEN_EXPECT(std::get<0>(r2) == "one::two");
     ZEN_EXPECT(std::get<1>(r2) == "::");
     ZEN_EXPECT(std::get<2>(r2) == "three");
 
-    zen::string input3 = "no_separator_here";
+    zen::string s3 = "no_separator_here";
     zen::string separator3 = "::";
 
-    auto r3 = input3.rpartition(separator3);
+    auto r3 = s3.rpartition(separator3);
 
     ZEN_EXPECT(std::get<0>(r3) == "no_separator_here");
     ZEN_EXPECT(std::get<1>(r3).empty());
     ZEN_EXPECT(std::get<2>(r3).empty());
 
-    zen::string input4 = "::";
+    zen::string s4 = "::";
     zen::string separator4 = "::";
 
-    auto r4 = input4.rpartition(separator4);
+    auto r4 = s4.rpartition(separator4);
 
     ZEN_EXPECT(std::get<0>(r4).empty());
     ZEN_EXPECT(std::get<1>(r4) == "::");
@@ -951,17 +951,17 @@ void test_string_split()
 {
     BEGIN_SUBTEST;
 
-    zen::string input1 = "apple,banana,cherry";
-    zen::string input2 = "one|two|three|four";
-    zen::string input3 = "no_separator_here";
-    zen::string input4 = "only_separator||||";
-    zen::string input5 = "";
+    zen::string s1 = "apple,banana,cherry";
+    zen::string s2 = "one|two|three|four";
+    zen::string s3 = "no_separator_here";
+    zen::string s4 = "only_separator||||";
+    zen::string s5 = "";
 
-    auto r1 = input1.split(",");
-    auto r2 = input2.split("|");
-    auto r3 = input3.split("|");
-    auto r4 = input4.split("|");
-    auto r5 = input5.split(",");
+    auto r1 = s1.split(",");
+    auto r2 = s2.split("|");
+    auto r3 = s3.split("|");
+    auto r4 = s4.split("|");
+    auto r5 = s5.split(",");
 
     ZEN_EXPECT(r1.size() == 3);
     ZEN_EXPECT(r1[0] == "apple");
