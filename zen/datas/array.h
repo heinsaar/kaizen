@@ -58,9 +58,6 @@ public:
 
 private:
     using my = array<T, N>;
-
-    // Disable dynamic allocation since this type is derived from its std namesake that's
-    // not meant to be derived from (in particular, its destructor is not virtual).
 };
 
 } // namespace zen
