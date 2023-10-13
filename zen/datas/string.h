@@ -356,7 +356,7 @@ public:
     {
         my::erase(
             std::find_if(my::rbegin(), my::rend(),
-                [](int ch) { return !std::isspace(ch); }
+                [](int c) { return !std::isspace(c); }
             ).base(),
             my::end()
         );
@@ -367,7 +367,7 @@ public:
     {
         my::erase(
             my::begin(),
-            std::find_if(my::begin(), my::end(), [](int ch) { return !std::isspace(ch); })
+            std::find_if(my::begin(), my::end(), [](int c) { return !std::isspace(c); })
         );
         return *this;
     }
