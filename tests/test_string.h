@@ -880,28 +880,26 @@ void test_string_partition()
     BEGIN_SUBTEST;
 
     zen::string z1 = "apple;banana;cherry";
+    zen::string z2 = "red,green,blue";
+    zen::string z3 = "one.two.three";
+    zen::string z4 = "no_separator_here";
+
     auto r1 = z1.partition(";");
+    auto r2 = z2.partition(",");
+    auto r3 = z3.partition(".");
+    auto r4 = z4.partition(",");
 
     ZEN_EXPECT(std::get<0>(r1) == "apple");
     ZEN_EXPECT(std::get<1>(r1) == ";");
     ZEN_EXPECT(std::get<2>(r1) == "banana;cherry");
 
-    zen::string z2 = "red,green,blue";
-    auto r2 = z2.partition(",");
-
     ZEN_EXPECT(std::get<0>(r2) == "red");
     ZEN_EXPECT(std::get<1>(r2) == ",");
     ZEN_EXPECT(std::get<2>(r2) == "green,blue");
 
-    zen::string z3 = "one.two.three";
-    auto r3 = z3.partition(".");
-
     ZEN_EXPECT(std::get<0>(r3) == "one");
     ZEN_EXPECT(std::get<1>(r3) == ".");
     ZEN_EXPECT(std::get<2>(r3) == "two.three");
-
-    zen::string z4 = "no_separator_here";
-    auto r4 = z4.partition(",");
 
     ZEN_EXPECT(std::get<0>(r4) == "no_separator_here");
     ZEN_EXPECT(std::get<1>(r4).empty());
