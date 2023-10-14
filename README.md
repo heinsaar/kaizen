@@ -42,6 +42,11 @@ int main(int argc, char* argv[])
     zen::cmd_args  args(argv, argc);
     bool verbose = args.accept("-verbose").is_present();
     bool ignore  = args.accept("-ignore" ).is_present();
+
+    // For: -copy from/some/dir to/some/dir
+    args.accept("-copy");
+    args.get_options("-copy")[0] // "from/some/dir"
+    args.get_options("-copy")[1] //   "to/some/dir"
     
     // Or sometime later
     if (args.is_present("-ignore"))
