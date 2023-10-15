@@ -194,3 +194,17 @@ using namespace zen::literals::version;
 auto v7 = "7.6.5.4321"_version; // construct using string literals
 v7.build()    == 4321;
 ```
+### Recursive dereferencing
+Dereference any level of nested pointers:
+```cpp
+int      _1 = 11;
+int*     _2 = &_1;
+int**    _3 = &_2;
+int***   _4 = &_3;
+int****  _5 = &_4;
+int***** _6 = &_5;
+
+zen::deref(_1); // 11
+zen::deref(_3); // 11
+zen::deref(_6); // 11
+```
