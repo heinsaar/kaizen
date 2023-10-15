@@ -66,6 +66,25 @@ void test_deref_multiple_pointer_layers()
     A*** p = new A**;
     *p = new A*;
     **p = &a;
+
+    A    _1;
+    auto _2 = &_1;
+    auto _3 = &_2;
+    auto _4 = &_3;
+    auto _5 = &_4;
+    auto _6 = &_5;
+    auto _7 = &_6; // and so on
+
+    ZEN_EXPECT(
+        zen::deref(_1).f() == 77 &&
+        zen::deref(_2).f() == 77 &&
+        zen::deref(_3).f() == 77 &&
+        zen::deref(_4).f() == 77 &&
+        zen::deref(_5).f() == 77 &&
+        zen::deref(_6).f() == 77 &&
+        zen::deref(_7).f() == 77
+    );
+
     ZEN_EXPECT(zen::deref(p).f() == 77);
     delete *p;
     delete  p;
