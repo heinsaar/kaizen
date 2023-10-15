@@ -22,8 +22,8 @@
 
 #pragma once
 
-#include <chrono>
 #include <functional>
+#include <chrono>
 
 namespace zen {
 
