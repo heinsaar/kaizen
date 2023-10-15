@@ -73,6 +73,7 @@ int main(int argc, char* argv[])
 	main_test_utils();
 	main_test_timer();
 	main_test_point();
+	main_test_deref();
 	main_test_file();
 	main_test_list();
 	main_test_map();

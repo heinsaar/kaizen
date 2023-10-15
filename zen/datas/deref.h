@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2023 Leo Heinsaar
 // 
@@ -22,30 +22,38 @@
 
 #pragma once
 
-// Since the order of these #includes doesn't matter,
-// they're sorted in descending length for aesthetics
-#include "tests/test_unordered_set.h"
-#include "tests/test_unordered_map.h"
-#include "tests/test_uncompilable.h"
-#include "tests/test_forward_list.h"
-#include "tests/test_cmd_args.h"
-#include "tests/test_version.h"
-#include "tests/test_string.h"
-#include "tests/test_vector.h"
-#include "tests/test_array.h"
-#include "tests/test_deque.h"
-#include "tests/test_stack.h"
-#include "tests/test_queue.h"
-#include "tests/test_utils.h"
-#include "tests/test_timer.h"
-#include "tests/test_point.h"
-#include "tests/test_deref.h"
-#include "tests/test_file.h"
-#include "tests/test_list.h"
-#include "tests/test_cloc.h"
-#include "tests/test_set.h"
-#include "tests/test_map.h"
-#include "tests/test_in.h"
+#include <type_traits>
+#include <algorithm>
+#include <deque>
 
-// Performance tests
-#include "tests/test_perf.h"
+#include "alpha.h" // internal; will not be included in kaizen.h
+
+namespace zen {
+
+///////////////////////////////////////////////////////////////////////////////////////////// zen::deref
+
+namespace internal {
+
+// Base case: stop dereferencing
+template <typename T, typename = void>
+struct deref_recursive {
+    static T& deref(T& x) { return x; }
+};
+
+// Recursive case: continue dereferencing
+template <typename T>
+struct deref_recursive<T, std::void_t<decltype(*std::declval<T&>())>> {
+    static auto deref(T& x) -> decltype(deref_recursive<std::remove_reference_t<decltype(*x)>>::deref(*x)) {
+        return                          deref_recursive<std::remove_reference_t<decltype(*x)>>::deref(*x);
+    }
+};
+
+} // namespace internal
+
+// Main deref function
+template <typename T>
+auto deref(T& x) -> decltype(internal::deref_recursive<T>::deref(x)) {
+    return                   internal::deref_recursive<T>::deref(x);
+}
+
+} // namespace zen
