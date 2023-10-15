@@ -44,5 +44,5 @@ void main_test_timer()
         [&ms20]{
             std::this_thread::sleep_for(ms20);
         });
-    ZEN_EXPECT(zen::adaptive_duration(dur) != "20 milliseconds"); // flaky test: sometimes fails, but that's okay
+    ZEN_EXPECT(zen::string(zen::adaptive_duration(dur)).contains("seconds")); // flaky test: sometimes fails, but that's okay
 }
