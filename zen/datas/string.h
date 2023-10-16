@@ -131,7 +131,7 @@ public:
         if (search.empty()) return *this;
 
         size_t pos = 0;
-        while ((pos = this->find(search, pos)) != std::string::npos) {
+        while ((pos = my::find(search, pos)) != std::string::npos) {
             std::string::replace(pos, search.length(), replacement);
             pos += replacement.length(); // move pos forward by the length of replace to prevent infinite loops
         }
@@ -149,7 +149,7 @@ public:
             "TEMPLATE PARAMETER Pred MUST RETURN bool, BUT DOES NOT");
 
         size_t pos = 0;
-        while ((pos = this->find(search, pos)) != std::string::npos) {
+        while ((pos = my::find(search, pos)) != std::string::npos) {
             if (predicate(*this)) {
                 std::string::replace(pos, search.length(), replacement);
                 pos += replacement.length(); // move pos forward by the length of replace to prevent infinite loops
