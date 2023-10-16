@@ -41,12 +41,13 @@ void test_deref_verydeep_pointer_layers()
 {
     BEGIN_SUBTEST;
     int  _1 = 11;
-    auto _2 = &_1;
-    auto _3 = &_2;
-    auto _4 = &_3;
-    auto _5 = &_4;
-    auto _6 = &_5;
-    auto _7 = &_6; // and so on
+    auto _2 = &_1; // int*
+    auto _3 = &_2; // int**
+    auto _4 = &_3; // int***
+    auto _5 = &_4; // int****
+    auto _6 = &_5; // int*****
+    auto _7 = &_6; // int******
+ // and so on
 
     ZEN_EXPECT(
         zen::deref(_1) == 11 &&
