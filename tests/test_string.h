@@ -862,11 +862,11 @@ void test_string_lstrip()
     zen::string z4 = "";
     zen::string z5 = "  ";
 
-    z1.lstrip(); // remove leading spaces and tabs
-    z2.lstrip(); // remove leading spaces
-    z3.lstrip(); // no leading spaces to remove
-    z4.lstrip(); // empty string remains empty
-    z5.lstrip(); // remove leading spaces, leaving an empty string
+    z1.ltrim(); // remove leading spaces and tabs
+    z2.ltrim(); // remove leading spaces
+    z3.ltrim(); // no leading spaces to remove
+    z4.ltrim(); // empty string remains empty
+    z5.ltrim(); // remove leading spaces, leaving an empty string
 
     ZEN_EXPECT(z1 == "Hello, World!");
     ZEN_EXPECT(z2 == "Leading spaces");

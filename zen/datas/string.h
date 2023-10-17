@@ -363,7 +363,7 @@ public:
         return *this;
     }
 
-    auto& lstrip()
+    auto& ltrim()
     {
         my::erase(
             my::begin(),
