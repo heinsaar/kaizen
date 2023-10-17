@@ -445,6 +445,14 @@ public:
         return *this;
     }
 
+    bool is_ascii()
+    {
+        for (char c : *this)
+            if (!isascii(c))
+                return false;
+        return true;
+    }
+
 private:
     using my = zen::string;
 };
