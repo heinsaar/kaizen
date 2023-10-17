@@ -1,0 +1,45 @@
+# additional-tests.yml
+
+name: Additional Tests
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+
+jobs:
+  additional_tests:
+    runs-on: ubuntu-latest  # or whatever OS you want
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Test by running kaizen executable (Linux)
+      if: success() && runner.os != 'Windows'
+      working-directory: ${{ steps.strings.outputs.build-output-dir }}
+      shell: bash
+      run: |
+        OUTPUT=$(./kaizen -verbose)
+        echo "$OUTPUT"
+        if [[ "$OUTPUT" == *"ALL TESTS PASS"* ]]; then
+          echo "ALL TESTS PASS"
+        else
+          echo "NOT ALL TESTS PASS"
+          exit 1
+        fi
+
+    - name: Test by running kaizen executable (Windows)
+      if: success() && runner.os == 'Windows'
+      working-directory: ${{ steps.strings.outputs.build-output-dir }}
+      shell: bash
+      run: |
+        OUTPUT=$(.\\Release\\kaizen.exe -verbose)
+        echo "$OUTPUT"
+        if [[ "$OUTPUT" == *"ALL TESTS PASS"* ]]; then
+          echo "All tests passed."
+        else
+          echo "NOT ALL TESTS PASS"
+          exit 1
+        fi

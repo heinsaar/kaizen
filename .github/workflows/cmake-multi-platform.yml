@@ -113,26 +113,10 @@ jobs:
       if: success() && runner.os != 'Windows'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       shell: bash
-      run: |
-        OUTPUT=$(./kaizen -verbose)
-        echo "$OUTPUT"
-        if [[ "$OUTPUT" == *"ALL TESTS PASS"* ]]; then
-          echo "ALL TESTS PASS"
-        else
-          echo "NOT ALL TESTS PASS"
-          exit 1
-        fi
+      run: ./kaizen -verbose
 
     - name: Test by running kaizen executable (Windows)
       if: success() && runner.os == 'Windows'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       shell: bash
-      run: |
-        OUTPUT=$(.\\Release\\kaizen.exe -verbose)
-        echo "$OUTPUT"
-        if [[ "$OUTPUT" == *"ALL TESTS PASS"* ]]; then
-          echo "All tests passed."
-        else
-          echo "NOT ALL TESTS PASS"
-          exit 1
-        fi
+      run: .\\Release\\kaizen.exe -verbose
