@@ -839,11 +839,11 @@ void test_string_rstrip()
     zen::string z4 = "";
     zen::string z5 = "  ";
 
-    z1.rstrip(); // remove trailing spaces and tabs
-    z2.rstrip(); // remove trailing spaces
-    z3.rstrip(); // no trailing spaces to remove
-    z4.rstrip(); // empty string remains empty
-    z5.rstrip(); // remove trailing spaces, leaving an empty string
+    z1.rtrim(); // remove trailing spaces and tabs
+    z2.rtrim(); // remove trailing spaces
+    z3.rtrim(); // no trailing spaces to remove
+    z4.rtrim(); // empty string remains empty
+    z5.rtrim(); // remove trailing spaces, leaving an empty string
 
     ZEN_EXPECT(z1 == "Hello, World!");
     ZEN_EXPECT(z2 == "Trailing spaces");

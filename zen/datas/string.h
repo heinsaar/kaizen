@@ -352,7 +352,7 @@ public:
         return *this;
     }
 
-    auto& rstrip()
+    auto& rtrim()
     {
         my::erase(
             std::find_if(my::rbegin(), my::rend(),
