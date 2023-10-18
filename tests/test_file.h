@@ -33,4 +33,6 @@ void main_test_file()
     ZEN_EXPECT(v.minor() ==    0);
     ZEN_EXPECT(v.patch() ==    0);
     ZEN_EXPECT(v.build() == 0000);
+
+    ZEN_EXPECT_THROW(zen::file f("nosuchfile.txt"_path), std::runtime_error);
 }
