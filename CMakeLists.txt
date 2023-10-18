@@ -60,7 +60,7 @@ add_custom_target(delete_kaizen_header
 
 add_custom_command(
     OUTPUT  kaizen.h
-    COMMAND python3 ${CMAKE_SOURCE_DIR}/make_kaizen.py
+    COMMAND python ${CMAKE_SOURCE_DIR}/make_kaizen.py
     COMMENT "GENERATING kaizen.h"
 )
 
