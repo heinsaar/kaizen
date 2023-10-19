@@ -410,7 +410,7 @@ public:
 
     std::vector<zen::string> split(const std::string& separator)
     {
-        // TODO: can be template to support any container
+        // TODO: Can be template to support any container
         std::vector<zen::string> result;
         std::string s(*this);
         std::string token;
