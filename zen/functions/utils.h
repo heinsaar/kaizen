@@ -107,7 +107,7 @@ T random_int(const T min = 0, const T max = 10) {
 //          zen::generate_random(v);
 // Result: A vector of size 10 with random integers between [min, max)
 template<class Iterable>
-void generate_random(Iterable& c, int size = 10) // TODO: Generalize & test with all containers before Kaizen 1.0.0 release
+void generate_random(Iterable& c, int size = 10) // TODO: Maybe generalize this to make it work with all containers
 {
     ZEN_STATIC_ASSERT(zen::is_iterable_v< Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE Iterable, BUT IS NOT");
     ZEN_STATIC_ASSERT(zen::is_resizable_v<Iterable>, "TEMPLATE PARAMETER EXPECTED TO BE RESIZABLE, BUT IS NOT");
