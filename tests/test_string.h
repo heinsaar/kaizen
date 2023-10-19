@@ -1051,7 +1051,7 @@ void main_test_string()
     ZEN_EXPECT(z.extract_between("[", "]").starts_with("Hello"));
     ZEN_EXPECT(z.extract_between("[", "]").ends_with(  "World"));
 
-    // Check interchangeability with std::string // TODO: Cover more cases?
+    // Check basic interchangeability with std::string
     std::string x = z; z = x;
 
     test_string_zen_std_interchangeability();
