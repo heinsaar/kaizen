@@ -138,7 +138,7 @@ struct stackonly
 std::atomic<int> TEST_CASE_PASS_COUNT = 0; // atomic in case tests are ever parallelized
 std::atomic<int> TEST_CASE_FAIL_COUNT = 0; // atomic in case tests are ever parallelized
 
-bool REPORT_TC_PASS = false; // by default, don't report passes to avoid chatter
+bool REPORT_TC_PASS = false; // by default, don't report passes to avoid excessive chatter
 bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 
 #define ZEN_STATIC_ASSERT(X, M) static_assert(X, "ZEN STATIC ASSERTION FAILED. "#M ": " #X)

@@ -36,7 +36,7 @@ namespace zen {
 // cloc.count({    ".h",     ".cpp",     ".py" });
 // cloc.count({ R"(\.h)", R"(\.cpp)", R"(\.py)" };
 // 
-// Name is based onthe popular utility cloc: https://github.com/AlDanial/cloc
+// Name is based on the popular utility cloc: https://github.com/AlDanial/cloc
 class cloc {
 public:
     cloc() // by default initialized with current directory
