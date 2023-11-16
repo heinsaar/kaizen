@@ -8,6 +8,16 @@ Collection of utilities and enhanced data structures for a wide range of C++ pro
 
 ## Design Philosophy
 
+In pretty much any project written in C++, most of the time only about 1% of code  needs to execute super-fast.
+While the other 99% doesn't, as any other code it must nevertheless be written, read, understood and modified fast.
+One of the main goals of this library is to serve precisely that need of that 99%.
+
+Over time, functions and tools similar to what can be found in this library make their way into the Standard. For
+obvious and often justifiable reasons, that process is slow, but even more unfortunately - even after they become
+available in the Standard, in practice they are not available in an average production code for at least another
+decade. The second goal of this library, therefore, is to make them available to those who want them _today_:
+simply `#include "kaizen.h"` and off you go.
+
 Kaizen does not aim to be neither radiation-hardened nor generic for all imaginable scenarios and use cases.
 Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), emphasizing frequent
 and gradual improvement, this library builds on top of STL and aims to provide a malleable and growing set of
