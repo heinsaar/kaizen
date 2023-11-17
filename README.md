@@ -8,8 +8,8 @@ Collection of utilities and enhanced data structures for a wide range of C++ pro
 
 ## Design Philosophy
 
-In pretty much any project written in C++, most of the time only about 1% of code  needs to execute super-fast.
-While the other 99% doesn't, as any other code it must nevertheless be written, read, understood and modified fast.
+In pretty much any project written in C++, most of the time only about 1% of the code  needs to execute super-fast.
+While the other 99% doesn't, as any other code, it must nevertheless be written, read, understood and modified fast.
 One of the main goals of this library is to serve precisely that need of that 99%.
 
 Over time, functions and tools similar to what can be found in this library make their way into the Standard. For
@@ -18,11 +18,11 @@ available in the Standard, in practice they are not available in an average prod
 decade. The second goal of this library, therefore, is to make them available to those who want them _today_:
 simply `#include "kaizen.h"` and off you go.
 
-Kaizen does not aim to be neither radiation-hardened nor generic for all imaginable scenarios and use cases.
-Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen), emphasizing frequent
-and gradual improvement, this library builds on top of STL and aims to provide a malleable and growing set of
-practical, simple and well-tested tools through a single header file that, like a Swiss army knife, includes just
-enough of everything that can be useful for a broad range of C++ projects right off the bat.
+Kaizen does not aim to be neither radiation-hardened nor generic for all imaginable scenarios and use cases right
+from the get-go. Instead, inspired by the Japanese concept of [Kaizen](https://en.wikipedia.org/wiki/Kaizen),
+emphasizing frequent and gradual improvement, this library builds on top of STL and aims to provide a malleable and
+growing set of practical, simple and well-tested tools through a single header file that, like a Swiss army knife,
+includes just enough of everything that can be useful for a broad range of C++ projects right off the bat.
 
 So, for example, even though STL containers were not meant to be derived from (in particular, their destructors
 are not virtual), `zen::string` derives from `std::string` in order to quickly, without having to implement all
