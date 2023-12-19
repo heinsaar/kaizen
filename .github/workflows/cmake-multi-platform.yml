@@ -31,6 +31,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         build_type: [Release]
+       # Uncomment the line below when this is fixed: https://github.com/actions/runner-images/issues/8659
        #c_compiler: [gcc, clang, cl, 'gcc-11', 'gcc-10', 'gcc-9', 'clang-14']
         c_compiler: [gcc, cl, 'gcc-11', 'gcc-10', 'gcc-9']
         include:
