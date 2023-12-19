@@ -61,10 +61,11 @@ jobs:
             c_compiler: clang
           - os: ubuntu-latest
             c_compiler: cl
-          - os: ubuntu-latest
-            c_compiler: clang
-          - os: ubuntu-latest
-            c_compiler: clang-14
+         # Uncomment these below when this is fixed: https://github.com/actions/runner-images/issues/8659
+         #- os: ubuntu-latest
+         #  c_compiler: clang
+         #- os: ubuntu-latest
+         #  c_compiler: clang-14
 
     steps:
     - uses: actions/checkout@v3
