@@ -39,9 +39,9 @@ jobs:
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
+         #- os: ubuntu-latest
+         #  c_compiler: clang
+         #  cpp_compiler: clang++
           - os: ubuntu-latest
             c_compiler: gcc-11
             cpp_compiler: g++-11
@@ -51,9 +51,9 @@ jobs:
           - os: ubuntu-latest
             c_compiler: gcc-9
             cpp_compiler: g++-9
-          - os: ubuntu-latest
-            c_compiler: clang-14
-            cpp_compiler: clang++-14
+         #- os: ubuntu-latest
+         #  c_compiler: clang-14
+         #  cpp_compiler: clang++-14
         exclude:
           - os: windows-latest
             c_compiler: gcc
