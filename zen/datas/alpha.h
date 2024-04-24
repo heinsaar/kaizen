@@ -173,12 +173,12 @@ std::string to_string(const T& value) {
 
 #define ZEN_EXPECT(expression, x_value) \
     do { \
-        if (expression) { \
+        bool result = (expression); \
+        if (result) { \
             if (zen::REPORT_TC_PASS) \
                 zen::log(zen::color::green("CASE PASS:"), #expression); \
             ++zen::TEST_CASE_PASS_COUNT; \
-        } \
-        if (!(expression)) { \
+        } else { \
             if (zen::REPORT_TC_FAIL) \
                 std::string x_str = to_string(x_value); \
                 zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #expression); \
