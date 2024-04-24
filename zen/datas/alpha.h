@@ -151,7 +151,27 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // Example: ZEN_EXPECT(str == "good");
 // Result:  CASE PASS: ...
 //     or:  CASE FAIL: ...
-#define ZEN_EXPECT(expression) \
+
+#define EQ(expected, actual) ((expected) == (actual))
+#define IS_TRUE(expression) ((expression))
+#define IS_FALSE(expression) (!(expression))
+#define GT(value, other) ((value) > (other))
+#define LT(value, other) ((value) < (other))
+#define GE(value, other) ((value) >= (other))
+#define LE(value, other) ((value) <= (other))
+#define AND(condition1, condition2) ((condition1) && (condition2))
+#define OR(condition1, condition2) ((condition1) || (condition2))
+#define EXPECT_FLOAT_EQ(expected, actual, epsilon) (fabs((expected) - (actual)) < (epsilon))
+#define EXPECT_DOUBLE_EQ(expected, actual, epsilon) (fabs((expected) - (actual)) < (epsilon))
+
+template<typename T>
+std::string to_string(const T& value) {
+    std::ostringstream out;
+    out << value;
+    return out.str();
+}
+
+#define ZEN_EXPECT(expression, x_value) \
     do { \
         if (expression) { \
             if (zen::REPORT_TC_PASS) \
@@ -160,6 +180,7 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
         } \
         if (!(expression)) { \
             if (zen::REPORT_TC_FAIL) \
+                std::string x_str = to_string(x_value); \
                 zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #expression); \
             ++zen::TEST_CASE_FAIL_COUNT; \
         } \
