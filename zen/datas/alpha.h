@@ -23,6 +23,7 @@
 #pragma once
 
 #include <queue>
+#include<string>
 
 namespace zen {
 
@@ -164,24 +165,17 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 #define EXPECT_FLOAT_EQ(expected, actual, epsilon) (fabs((expected) - (actual)) < (epsilon))
 #define EXPECT_DOUBLE_EQ(expected, actual, epsilon) (fabs((expected) - (actual)) < (epsilon))
 
-template<typename T>
-std::string to_string(const T& value) {
-    std::ostringstream out;
-    out << value;
-    return out.str();
-}
-
-#define ZEN_EXPECT(expression, x_value) \
+#define ZEN_EXPECT(expression) \
     do { \
-        if (expression) { \
+        bool result = (expression); \
+        if (result) { \
             if (zen::REPORT_TC_PASS) \
                 zen::log(zen::color::green("CASE PASS:"), #expression); \
             ++zen::TEST_CASE_PASS_COUNT; \
-        } \
-        if (!(expression)) { \
-            if (zen::REPORT_TC_FAIL) \
-                std::string x_str = to_string(x_value); \
+        } else { \
+            if (zen::REPORT_TC_FAIL) { \
                 zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #expression); \
+            } \
             ++zen::TEST_CASE_FAIL_COUNT; \
         } \
     } while (0)
