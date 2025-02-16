@@ -28,8 +28,6 @@
 
 #pragma once
 
-#include "kaizen.h" // test using generated header: jump with the parachute you folded
-
 // silent_print() is designed to test zen::print()
 // Testing zen::print() is a special case since we're testing the same function
 // that's also used for test output log. Therefore, in order not to pollute the
