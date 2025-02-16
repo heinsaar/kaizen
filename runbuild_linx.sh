@@ -29,3 +29,5 @@ else
   echo "Build failed. Exiting."
   exit 1
 fi
+
+# Trigger CI
