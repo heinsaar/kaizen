@@ -251,6 +251,14 @@ namespace color {
             os << "\033[" << cw.code << "m" << cw.text << "\033[0m";
             return os;
         }
+
+        // Implicit conversion to std::string, useful for situations where
+        // the color_string object is used in a context that expects a string.
+        explicit operator std::string() const {
+            std::ostringstream oss;
+            oss << *this;
+            return oss.str();
+        }
     };
 
     color_string nocolor(const std::string_view s) { return color_string(s,  0); }
