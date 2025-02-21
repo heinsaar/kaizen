@@ -59,7 +59,7 @@ public:
         }
     }
 
-    auto& accept(const std::string& arg)
+    auto& accept(std::string_view arg)
     {
         if (arg.empty())
             return *this; // reject accept("") calls
@@ -67,13 +67,13 @@ public:
         if (std::find(std::begin(args_accepted_),
                       std::end(  args_accepted_), arg)
                    == std::end(  args_accepted_))
-            args_accepted_.push_back(arg);
+            args_accepted_.emplace_back(arg);
         return *this;
     }
 
     // Returns true if either the provided argument 'a' or the last argument added by accept()
     // is present in the command line (with which the program was presumably launched)
-    bool is_present(const std::string& arg = "") const
+    bool is_present(std::string_view arg = "") const
     {
         if (arg.empty())
             return args_accepted_.empty() ? false : is_present(args_accepted_.back());
@@ -85,7 +85,7 @@ public:
         return false;
     }
 
-    auto get_options(const std::string& arg) const
+    auto get_options(std::string_view arg) const
     {
         std::vector<std::string> options;
 
@@ -120,7 +120,7 @@ public:
 
     std::size_t count_accepted() const { return args_accepted_.size(); }
 
-    int find(const std::string& arg = "") const
+    int find(std::string_view arg = "") const
     {
         for (int i = 0; i < argc_; ++i)
             if (arg_at(i) == arg)
