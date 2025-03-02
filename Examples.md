@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     args.get_options("--copy")[1] //   "to/some/dir"
     
     // Or sometime later
-    if (args.is_present("-ignore"))
+    if (args.is_present("--ignore"))
 }
 ```
 ### Working with files
