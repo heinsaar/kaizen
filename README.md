@@ -43,7 +43,7 @@ The development version is generated during the build, see below.
 ## Examples
 Here's a taste of what you can do with Kaizen right out of the box:
 
-Parse program arguments declaratively:
+### Parse program arguments declaratively:
 ```cpp
 #include "kaizen.h"
 
@@ -62,19 +62,19 @@ int main(int argc, char* argv[])
     if (args.is_present("--ignore"))
 }
 ```
-Open a file and read any line right away:
+### Open a file and read any line right away:
 ```cpp
 zen::file             license_text("../LICENSE.txt"_path);
 zen::string version = license_text.getline(1);
 zen::string license = license_text.getline(3);
 ```
-Python-like range notation:
+### Python-like range notation:
 ```cpp
 for (int i : zen::in(5))        // i from 0 to 4
 for (int i : zen::in(1, 10))    // i from 1 to 9
 for (int i : zen::in(0, 10, 2)) // i from 0 to 8, step 2
 ```
-Python-like substring extractions:
+### Python-like substring extractions:
 ```cpp
 // indices ----> 012345678912345
 zen::string z = "Test substrings";
@@ -88,19 +88,19 @@ z.substring(  5,  50) == "substrings");  // just like in Python
 // A drop-in replacement for std::string
 std::string x = z; z = x; // and so on
 ```
-Replace a substring:
+### Replace a substring:
 ```cpp
 z = "I love apples, apples, apples";
 z.replace(    "apples", "oranges"); // "I love oranges, apples, apples"
 z.replace_all("apples", "oranges"); // "I love oranges, oranges, oranges"
 ```
-Python-like printing:
+### Python-like printing:
 ```cpp
 std::vector<int> v = {1, 2, 3}
 zen::print(v);                  // [1, 2, 3]
 zen::print(v, "4", 5);          // [1, 2, 3] 4 5
 ```
-Richer containers with many useful functions:
+### Richer containers with many useful functions:
 ```cpp
 zen::vector<int> v;             // declare & use just like std::vector
 zen::generate_random(v);        // randomly populate anything resizable & iterable
