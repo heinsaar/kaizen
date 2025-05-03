@@ -59,6 +59,17 @@ public:
         }
     }
 
+    std::string original_command()
+    {
+        std::string cmd;
+        for (int i = 0; i < argc_; ++i) {
+            cmd += argv_[i];
+            if (i < argc_ - 1)
+                cmd += " ";
+        }
+        return cmd;
+    }
+
     auto& accept(std::string_view arg)
     {
         if (arg.empty())
