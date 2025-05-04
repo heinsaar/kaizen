@@ -153,6 +153,14 @@ void test_cmd_args_arg_followed_by_another_arg()
     );
 }
 
+void test_cmd_args_original_command()
+{
+    BEGIN_SUBTEST;
+    const char* argv[] = { "exe", "--src", "--dst", "dest/dir" };
+    zen::cmd_args args(argv, 4);
+    ZEN_EXPECT(args.original_command() == "exe --src --dst dest/dir");
+}
+
 void main_test_cmd_args(int argc, char* argv[])
 {
     BEGIN_TEST;
@@ -174,6 +182,7 @@ void main_test_cmd_args(int argc, char* argv[])
     test_cmd_args_one_arg_with_no_value();
     test_cmd_args_single_arg_present();
     test_cmd_args_one_arg_with_value();
+    test_cmd_args_original_command();
     test_cmd_args_first_last_arg();
     test_cmd_args_empty_args();
     test_cmd_args_uniqueness();
