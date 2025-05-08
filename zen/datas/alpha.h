@@ -23,6 +23,7 @@
 #pragma once
 
 #include <queue>
+#include<string>
 
 namespace zen {
 
@@ -151,16 +152,30 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // Example: ZEN_EXPECT(str == "good");
 // Result:  CASE PASS: ...
 //     or:  CASE FAIL: ...
+
+#define EQ(expected, actual) ((expected) == (actual))
+#define IS_TRUE(expression) ((expression))
+#define IS_FALSE(expression) (!(expression))
+#define GT(value, other) ((value) > (other))
+#define LT(value, other) ((value) < (other))
+#define GE(value, other) ((value) >= (other))
+#define LE(value, other) ((value) <= (other))
+#define AND(condition1, condition2) ((condition1) && (condition2))
+#define OR(condition1, condition2) ((condition1) || (condition2))
+#define EXPECT_FLOAT_EQ(expected, actual, epsilon) (fabs((expected) - (actual)) < (epsilon))
+#define EXPECT_DOUBLE_EQ(expected, actual, epsilon) (fabs((expected) - (actual)) < (epsilon))
+
 #define ZEN_EXPECT(expression) \
     do { \
-        if (expression) { \
+        bool result = (expression); \
+        if (result) { \
             if (zen::REPORT_TC_PASS) \
                 zen::log(zen::color::green("CASE PASS:"), #expression); \
             ++zen::TEST_CASE_PASS_COUNT; \
-        } \
-        if (!(expression)) { \
-            if (zen::REPORT_TC_FAIL) \
+        } else { \
+            if (zen::REPORT_TC_FAIL) { \
                 zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #expression); \
+            } \
             ++zen::TEST_CASE_FAIL_COUNT; \
         } \
     } while (0)
