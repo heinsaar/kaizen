@@ -23,7 +23,7 @@ void main_test_file()
     zen::string license = lic.getline(3);
 
     // TODO: Add cases here
-    ZEN_EXPECT(version.contains("0.1.0.0000"));
+    ZEN_EXPECT(version.contains("0.1.1.0000"));
     ZEN_EXPECT(license.contains("MIT"));
 
     zen::string ver = version.extract_version();
@@ -31,7 +31,7 @@ void main_test_file()
     zen::version v(ver);
     ZEN_EXPECT(v.major() ==    0);
     ZEN_EXPECT(v.minor() ==    1);
-    ZEN_EXPECT(v.patch() ==    0);
+    ZEN_EXPECT(v.patch() ==    1);
     ZEN_EXPECT(v.build() == 0000);
 
     ZEN_EXPECT_THROW(zen::file f("nosuchfile.txt"_path), std::runtime_error);
