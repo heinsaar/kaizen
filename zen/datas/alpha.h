@@ -37,7 +37,10 @@ namespace zen {
 // Quotes a string. This helps avoid cumbersome quote gymnastics in code.
 // Example: quote(filename) + " does not exist";
 // Result:  "/path/to/file" does not exist
-inline std::string quote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
+inline std::string dquote(const std::string_view s) { return '\"' + std::string(s) + '\"'; }
+inline std::string squote(const std::string_view s) { return '\'' + std::string(s) + '\''; }
+
+#define quote(s) dquote(s)
 
 inline auto timestamp() {
     std::time_t result  = std::time(nullptr);
