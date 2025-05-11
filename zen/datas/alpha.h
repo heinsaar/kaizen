@@ -279,11 +279,11 @@ namespace color {
 
 namespace fs = std::filesystem;
 
-std::filesystem::path current_path() { return std::filesystem::current_path(); }
-std::filesystem::path  parent_path() { return std::filesystem::current_path().parent_path(); }
+fs::path current_path() { return fs::current_path(); }
+fs::path  parent_path() { return fs::current_path().parent_path(); }
 
-std::optional<std::filesystem::path>
-search_upward(std::string_view name, std::filesystem::path from = std::filesystem::current_path())
+std::optional<fs::path>
+search_upward(std::string_view name, fs::path from = fs::current_path())
 {
     while (from.filename() != name) {
         if (from.root_path() == from && name == "/")
@@ -294,7 +294,7 @@ search_upward(std::string_view name, std::filesystem::path from = std::filesyste
         // potentially infinite loops when the search reaches the root
         // directory and still can't find the specified directory or file
         // handle, we check to see if the parent of 'from' is 'from' itself:
-        std::filesystem::path parent = from.parent_path();
+        fs::path parent = from.parent_path();
         if (from == parent)
             return std::nullopt;
 
@@ -307,10 +307,10 @@ search_upward(std::string_view name, std::filesystem::path from = std::filesyste
     return from;
 }
 
-std::optional<std::filesystem::path>
-search_downward(std::string_view name, std::filesystem::path from = std::filesystem::current_path(), const int depth = 10)
+std::optional<fs::path>
+search_downward(std::string_view name, fs::path from = fs::current_path(), const int depth = 10)
 {
-    std::queue<std::pair<std::filesystem::path, int>> search_queue;
+    std::queue<std::pair<fs::path, int>> search_queue;
     search_queue.push({ from, 0 });
 
     while (!search_queue.empty()) {
@@ -323,8 +323,8 @@ search_downward(std::string_view name, std::filesystem::path from = std::filesys
         if (current_depth >= depth)
             continue;
 
-        if (std::filesystem::is_directory(current_path))
-            for (const auto& entry : std::filesystem::directory_iterator(current_path))
+        if (fs::is_directory(current_path))
+            for (const auto& entry : fs::directory_iterator(current_path))
                 search_queue.push({ entry.path(), current_depth + 1 });
     }
 
