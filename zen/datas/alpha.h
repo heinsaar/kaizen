@@ -154,18 +154,18 @@ bool REPORT_TC_FAIL = true;  // by default, do    report fails (should be few)
 // Example: ZEN_EXPECT(str == "good");
 // Result:  CASE PASS: ...
 //     or:  CASE FAIL: ...
-#define ZEN_EXPECT(expression) \
-    do { \
-        if (expression) { \
-            if (zen::REPORT_TC_PASS) \
-                zen::log(zen::color::green("CASE PASS:"), #expression); \
-            ++zen::TEST_CASE_PASS_COUNT; \
-        } \
-        if (!(expression)) { \
-            if (zen::REPORT_TC_FAIL) \
+#define ZEN_EXPECT(expression)                                                               \
+    do {                                                                                     \
+        const bool X = (expression);                                                         \
+        if (X) {                                                                             \
+            if (zen::REPORT_TC_PASS)                                                         \
+                zen::log(zen::color::green("CASE PASS:"), #expression);                      \
+            ++zen::TEST_CASE_PASS_COUNT;                                                     \
+        } else {                                                                             \
+            if (zen::REPORT_TC_FAIL)                                                         \
                 zen::log(zen::color::red("CASE FAIL:"), __func__, "EXPECTED:", #expression); \
-            ++zen::TEST_CASE_FAIL_COUNT; \
-        } \
+            ++zen::TEST_CASE_FAIL_COUNT;                                                     \
+        }                                                                                    \
     } while (0)
 
 // ZEN_EXPECT_THROW checks its expression parameter to throw the expression_type exception
